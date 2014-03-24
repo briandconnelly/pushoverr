@@ -1,8 +1,14 @@
 # TODO
+* Function to check receipt status of a Message (https://pushover.net/api#receipt)
+    * https://api.pushover.net/1/receipts/(your receipt).json?token=(your app token)
+    * Function that takes a receipt code and builds a response
+        * Helper function that checks the that response
 * PushoverResponse should have a query slot that stores the original query.
+    * Or the query url at least
+* PushoverResponse should have a content slot that stores the content from the query (has some useful information)
 * Methods to set user and API keys. These will remain in the session (in the right namespace). If none provided when object created, it can check these vars
     * http://www.r-bloggers.com/package-wide-variablescache-in-r-packages/
-* functions in Response for app limits, etc?
+* Make a vignette
 
 # Alternatives
 * http://cran.r-project.org/web/packages/notifyR/index.html - unmaintained, not very nicely implemented

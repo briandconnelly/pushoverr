@@ -40,7 +40,8 @@ validate_key <- function(token, user, device=NA)
     rsp <- PushoverResponse(status=content(response)$status,
                             request=content(response)$request,
                             status_code=response$status_code ,
-                            headers=response$headers)
+                            headers=response$headers,
+                            content=content(response))
     return(rsp)
 }
 
@@ -49,6 +50,23 @@ is.valid_key <- function(token, user, device=NA)
 {
     response <- validate_key(token=token, user=user, device=device)
     return(http_status_code(response)==200 & status(response)==1)
+}
+
+# TODO: document
+get_user_devices <- function(token, user)
+{
+    if(missing(token)) stop("Error: Must provide application token")
+    if(missing(user)) stop("Error: Must provide user/group key")
+    
+    response <- validate_key(token=token, user=user)
+    return(response@content$devices)
+}
+
+# TODO: document
+is.user_device <- function(token, user, device)
+{
+    if(missing(device)) stop("Error: Must provide device name")
+    return(device %in% get_user_devices(token, user))
 }
 
 

@@ -2,11 +2,13 @@ PushoverResponse <- setClass('PushoverResponse',
                              slots=list(status='numeric',
                                         request='character',
                                         status_code='numeric',
-                                        headers='list'),
+                                        headers='list',
+                                        content='list'),
                              prototype=list(status=NA_integer_,
                                             request=NA_character_,
                                             status_coe=NA_integer_,
-                                            headers=list()),
+                                            headers=list(),
+                                            content=list()),
                              validity=validate_PushoverResponse
 )
 
@@ -19,6 +21,7 @@ validate_PushoverResponse <- function(object)
     length_request <- length(object@request)
     length_status_code <- length(object@status_code)
     length_headers <- length(object@headers)
+    length_content <- length(object@content)
     
     if(length_status > 1)
     {
@@ -79,4 +82,3 @@ setMethod("headers", "PushoverResponse",
 setGeneric("app_limit", function(object) standardGeneric("app_limit"))
 setMethod("app_limit", "PushoverResponse",
           function(object) return(object@headers))
-

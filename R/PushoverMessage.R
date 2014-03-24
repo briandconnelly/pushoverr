@@ -220,6 +220,7 @@ function(object)
     if(!is.na(object@url)) params['url'] <- object@url
     if(!is.na(object@url_title)) params['url_title'] <- object@url_title
     if(!is.na(object@timestamp)) params['timestamp'] <- object@timestamp
+    if(!is.na(object@callback)) params['callback'] <- object@callback
     
     response <- POST(url="https://api.pushover.net:443/1/messages.json",
                      body=params)
@@ -228,7 +229,8 @@ function(object)
     rsp <- PushoverResponse(status=content(response)$status,
                             request=content(response)$request,
                             status_code=response$status_code ,
-                            headers=response$headers)
+                            headers=response$headers,
+                            content=content(response))
     
     # TODO: parse the response, create and return PushoverResponse object
     return(rsp)
