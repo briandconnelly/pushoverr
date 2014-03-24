@@ -1,6 +1,8 @@
 # TODO
-* Pushover object
-    * Constructor function to make it easy
-    * Constants for sounds and priorities
-* Pushover response object
+* PushoverResponse should have a query slot that stores the original query.
+* Methods to set user and API keys. These will remain in the session (in the right namespace). If none provided when object created, it can check these vars
+    * http://www.r-bloggers.com/package-wide-variablescache-in-r-packages/
+* functions in Response for app limits, etc?
 
+# Alternatives
+* http://cran.r-project.org/web/packages/notifyR/index.html - unmaintained, not very nicely implemented
