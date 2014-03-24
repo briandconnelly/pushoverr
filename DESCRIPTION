@@ -1,0 +1,15 @@
+Package: pushoverr
+Type: Package
+Title: Send notifications using Pushover
+Version: 1.0
+Date: 2014-03-23
+Author: Brian Connelly <bdc@bconnelly.net>
+Authors@R: c(person(family="Connelly", given="Brian D.", email="bdc@bconnelly.net",
+                    role=c("aut", "cre")))
+Maintainer: Brian Connelly <bdc@bconnelly.net>
+Description: More about what it does (maybe more than one line)
+License: BSD_3_clause + file LICENSE
+URL: https://github.com/briandconnelly/pushoverr
+BugReports: https://github.com/briandconnelly/pushoverr/issues
+ByteCompile: no
+NeedsCompilation: no
