@@ -1,3 +1,27 @@
+#' The PushoverResponse class
+#' 
+#' PushoverResponse objects store information from responses to Pushover queries
+#' 
+#' @name PushoverResponse
+#' @exportClass PushoverResponse
+#' @slot status TODO
+#' @slot request TODO
+#' @slot status_code TODO
+#' @slot headers
+#' @slot content
+#' 
+# @usage 
+#' ## Create PushoverResponse object
+#' # TODO
+#' PushoverResponse(TODO)
+#' 
+#' @slot nrow The number of rows in the microtiter plate (\code{numeric})
+#' @slot ncol The number of columns in the microtiter plate (\code{numeric})
+#' @slot attributes Collection of 0+ name-value pairs describing any important
+#' attributes of the microtiter plate (\code{list})
+#' @slot wellgroups Collection of 0+ \code{\link{WellGroup}} objects that
+#' describe logical groupings of wells (\code{list})
+
 PushoverResponse <- setClass('PushoverResponse',
                              slots=list(status='numeric',
                                         request='character',

@@ -2,6 +2,22 @@ library(httr)
 
 # TODO: document the package. Content similar to README.
 
+#' Send a message using Pushover
+#'
+#' \code{pushover} sends a message (push notifivation) to a user or group using
+#' Pushover (\link{https://pushover.net}). Messages can be given different
+#' priorities, play different sounds, or require acknowledgments.
+#'
+#' @export
+#' @param token The application token
+#' @return A list of available sounds and their descriptions
+#' @examples
+#' sounds <- get_sounds(token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
+#' for (s in names(sounds))
+#' {
+#'     cat(paste(s, ":", sounds[s], "\n"))
+#' }
+#'
 
 # TODO: document these
 pushover <- function(message, token, user, device=NA_character_,

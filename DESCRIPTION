@@ -1,7 +1,7 @@
 Package: pushoverr
 Type: Package
 Title: Send notifications using Pushover
-Version: 1.0
+Version: 0.9
 Date: 2014-03-23
 Author: Brian Connelly <bdc@bconnelly.net>
 Authors@R: c(person(family="Connelly", given="Brian D.", email="bdc@bconnelly.net",

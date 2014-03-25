@@ -6,6 +6,7 @@
 
 
 # TODO for release
+* Get on GitHub
 * news function?
 * build and test package
 * submit to CRAN
