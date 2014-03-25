@@ -1,3 +1,34 @@
+
+# TODO: document
+validate_PushoverResponse <- function(object)
+{
+    retval <- NULL
+    
+    length_status <- length(object@status)
+    length_request <- length(object@request)
+    length_status_code <- length(object@status_code)
+    length_headers <- length(object@headers)
+    length_content <- length(object@content)
+    
+    if(length_status > 1)
+    {
+        retval <- c(retval, "only one response status is supported")
+    }
+    
+    if(length_request > 1)
+    {
+        retval <- c(retval, "only one request token is supported")
+    }
+    
+    if(length_status_code > 1)
+    {
+        retval <- c(retval, "only one HTTP status code is supported")
+    }
+    
+    if(is.null(retval)) return(TRUE)
+    else return(retval)
+}
+
 #' The PushoverResponse class
 #' 
 #' PushoverResponse objects store information from responses to Pushover queries
@@ -36,35 +67,6 @@ PushoverResponse <- setClass('PushoverResponse',
                              validity=validate_PushoverResponse
 )
 
-# TODO: document
-validate_PushoverResponse <- function(object)
-{
-    retval <- NULL
-    
-    length_status <- length(object@status)
-    length_request <- length(object@request)
-    length_status_code <- length(object@status_code)
-    length_headers <- length(object@headers)
-    length_content <- length(object@content)
-    
-    if(length_status > 1)
-    {
-       retval <- c(retval, "only one response status is supported")
-    }
-    
-    if(length_request > 1)
-    {
-        retval <- c(retval, "only one request token is supported")
-    }
-    
-    if(length_status_code > 1)
-    {
-        retval <- c(retval, "only one HTTP status code is supported")
-    }
-
-    if(is.null(retval)) return(TRUE)
-    else return(retval)
-}
 
 # TODO: document
 show_PushoverResponse <- function(object)
