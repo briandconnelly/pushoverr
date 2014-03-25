@@ -238,6 +238,5 @@ function(object)
     # check response$status, names(response), and content(response)
 })
 
-
-q=PushoverMessage(message='Test Message', user='uywN7SbBsu5Kw1EkwuoKjbSd7gqYWG', token='aWQi8Mgm21ttAg8r4mo4B3DBhqez14', sound='NOPE')
-q=PushoverMessage(message='hello', user='uywN7SbBsu5Kw1EkwuoKjbSd7gqYWG')
+m1=PushoverMessage(message='Test Message', user='uywN7SbBsu5Kw1EkwuoKjbSd7gqYWG', token='aWQi8Mgm21ttAg8r4mo4B3DBhqez14')
+m2=PushoverMessage(message='hello', user='uywN7SbBsu5Kw1EkwuoKjbSd7gqYWG')

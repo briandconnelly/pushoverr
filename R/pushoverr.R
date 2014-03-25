@@ -71,9 +71,49 @@ is.user_device <- function(token, user, device)
 
 
 # TODO: wrapper function to easily send a message
+# TODO: document these
 pushover <- function(message, token, user, device=NA, title=NA, url=NA,
                      url_title=NA, priority=PRIORITY_NORMAL, timestamp=NA,
-                     sound='pushover')
+                     callback=NA, sound='pushover')
 {
-    
+    # TODO: make message
+    # TODO: send message
+    # TODO: check response
+}
+
+# TODO: document
+pushover_quiet <- function(message, token, user, device=NA, title=NA, url=NA,
+                           url_title=NA, timestamp=NA)
+{
+    return(pushover(message=message, token=token, user=user, device=device,
+                    title=title, url=url, url_title=url_title, priority=-1,
+                    timestamp=timestamp, sound='none'))
+}
+
+# TODO: document
+pushover_normal <- function(message, token, user, device=NA, title=NA, url=NA,
+                            url_title=NA, timestamp=NA, sound='pushover')
+{
+    return(pushover(message=message, token=token, user=user, device=device,
+                    title=title, url=url, url_title=url_title, priority=0,
+                    timestamp=timestamp, sound=sound))
+}
+
+# TODO: document
+pushover_high <- function(message, token, user, device=NA, title=NA, url=NA,
+                            url_title=NA, timestamp=NA, sound='pushover')
+{
+    return(pushover(message=message, token=token, user=user, device=device,
+                    title=title, url=url, url_title=url_title, priority=1,
+                    timestamp=timestamp, sound=sound))
+}
+
+# TODO: document
+pushover_emergency <- function(message, token, user, device=NA, title=NA, url=NA,
+                            url_title=NA, timestamp=NA, callback=NA, 
+                            sound='pushover')
+{
+    return(pushover(message=message, token=token, user=user, device=device,
+                    title=title, url=url, url_title=url_title, priority=2,
+                    timestamp=timestamp, callback=callback, sound=sound))
 }
