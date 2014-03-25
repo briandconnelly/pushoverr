@@ -6,7 +6,62 @@ pushover_sounds <- c('bike', 'bugle', 'cashregister', 'classical', 'cosmic',
 
 priorities <- list('-1'='quiet', '0'='normal', '1'='high', '2'='emergency')
 
-# TODO: document
+#' Class for storing Pushover messages
+#' 
+#' The \code{PushoverMessage} class represents a Pushover message and implements
+#' all of the features available in Pushover's
+#' API (\link{https://pushover.net/api}). \code{PushoverMessage} objects are
+#' used to build queries that are sent to Pushover's servers. These objects can
+#' be created using \code{\link{PushoverMessage}} or \code{\link{new}}.
+#' 
+#' @export
+#' @name PushoverMessage-class
+#' @rdname PushoverMessage-class
+#' @slot message The message to be sent (max. 512 characters)
+#' @slot token The application token
+#' @slot user The user or group key to send the message to
+#' @slot device The device to send the notification to (optional)
+#' @slot title The title of the message (optional)
+#' @slot url A URL to be included in the message (optional, max. 512 characters
+#' @slot url_title A title for the given url (optional, max. 100 characters)
+#' @slot priority The message's priority. One of: -1 (quiet), 0 (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a sound. Emergency messages require acknowledgement.
+#' @slot timestamp The time to associate with the message (default: now, format: UNIX time)
+#' @slot sound The sound to be played when the message is received (see \code{\link{get_sounds}})
+#' @slot callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \link{https://pushover.net/api#receipt})
+#' @slot retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
+#' @slot expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
+#' @seealso \code{\link{PushoverMessage}} for creating objects
+#' @examples
+#' # Create a PushoverMessage
+#' m1 <- new('PushoverMessage', message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+#'
+#' # Alternate way to create a PushoverMessage
+#' m2 <- PushoverMessage(message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+
+#' Create a Pushover message
+#' 
+#' The \code{PushoverMessage} creates a \code{\link{PushoverMessage-class}}
+#' object, which can be sent via Pushover.
+#' 
+#' @exportMethod
+#' @param message The message to be sent (max. 512 characters)
+#' @param token The application token
+#' @param user The user or group key to send the message to
+#' @param device The device to send the notification to (optional)
+#' @param title The title of the message (optional)
+#' @param url A URL to be included in the message (optional, max. 512 characters
+#' @param url_title A title for the given url (optional, max. 100 characters)
+#' @param priority The message's priority. One of: -1 (quiet), 0 (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a sound. Emergency messages require acknowledgement.
+#' @param timestamp The time to associate with the message (default: now, format: UNIX time)
+#' @param sound The sound to be played when the message is received (see \code{\link{get_sounds}})
+#' @param callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \link{https://pushover.net/api#receipt})
+#' @param retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
+#' @param expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
+#' @return A \code{\link{PushoverMessage-class}} object
+#' @examples
+#' Create a PushoverMessage
+#' m2 <- PushoverMessage(message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+#' 
 PushoverMessage <- setClass('PushoverMessage',
                             slots=list(message='character',
                                        token='character',
@@ -37,7 +92,24 @@ PushoverMessage <- setClass('PushoverMessage',
                             validity=validate_PushoverMessage
                             )
 
-# TODO: document
+
+#' Validate a given PushoverMessage object
+#'
+#' \code{validate_PushoverMessage} determines whether or not a given
+#' \code{PushoverMessage} object has valid slot values. It does not determine whether
+#' or not the given application token or user/group keys are registered with
+#' Pushover. This second step can be done with \code{\link{validate_key}} or
+#' \code{\link{is.valid_key}}. This function is automatically called when a
+#' \code{PushoverMessage} object is created or \code{\link{validObject}} is
+#' called with an existing \code{PushoverMessage} object.
+#' 
+#' @note To acquire a user key, register an account at \link{https://pushover.net}
+#' @note To acquire an application token, register your token at \link{https://pushover.net/apps}
+#'
+#' @param object A \code{\link{PushoverMessage}} object
+#' @return A boolean value indicating if the PushoverMessage object is
+#' valid (\code{TRUE}) or not (\code{FALSE})
+#' 
 validate_PushoverMessage <- function(object)
 {
     if(missing(object)) stop("Must provide object for validation")
@@ -189,14 +261,28 @@ validate_PushoverMessage <- function(object)
     }
     else if(object@expire > 86400)
     {
-        retval <- c(retval, "value for retry must be less than 86400")
+        retval <- c(retval, "value for expire must be less than 86400")
+    }
+    else if(object@expire <= 0)
+    {
+        retval <- c(retval, "value for expire must be positive")
     }
     
     if(is.null(retval)) return(TRUE)
     else return(retval)
 }
 
-# TODO: document
+
+#' Show (print information about) a PushoverMessage object
+#'
+#' \code{show_PushoverMessage} prints information about a given
+#' \code{PushoverMessage} object. This function is automatically called when a
+#' \code{PushoverMessage} object is referenced alone, when returned from a
+#' function and not stored, or when \code{\link{show}} is called with a
+#' \code{PushoverMessage} object.
+#'
+#' @param object A \code{\link{PushoverMessage}} object
+#' 
 show_PushoverMessage <- function(object)
 {
     cat('PushoverMessage object:\n')
@@ -233,9 +319,20 @@ show_PushoverMessage <- function(object)
     cat(sprintf('\tRetry: %d seconds\n', object@retry))
     cat(sprintf('\tExpire: %d seconds\n', object@expire))
 }
-setMethod('show', 'PushoverMessage', show_PushoverMessage)
+setMethod(f='show', signature='PushoverMessage', definition=show_PushoverMessage)
 
-# TODO: document
+
+#' Send a PushoverMessage object
+#'
+#' \code{send_PushoverMessage} sends a given \code{PushoverMessage} object to
+#' Pushover. This function is not directly called, but is used when
+#' \code{\link{send}} is called with a \code{PushoverMessage} object.
+#'
+#' @param object A \code{\link{PushoverMessage}} object
+#' @return A \code{\link{PushoverResponse}} object containing information about
+#' the server's response.
+#' @importFrom httr POST
+#' 
 send_pushovermessage <- function(object)
 {
     params <- list('message'=object@message,
@@ -267,5 +364,19 @@ send_pushovermessage <- function(object)
     # This can be determined by the caller with is.success() or similar.
     return(rsp)
 }
-setGeneric("send", function(object) standardGeneric("send"))
-setMethod("send", "PushoverMessage", send_pushovermessage)
+
+#' Send a Pushover message
+#' 
+#' \code{send} sends the given Pushover message (represented by a
+#' \code{\link{PushoverMessage}}) object
+#' 
+#' @export
+#' @param object A \code{\link{PushoverMessage}}) object
+#' @return A \code{\link{PushoverResponse}} object containing information about
+#' the server's response.
+#' @examples
+#' message <- PushoverMessage(message='Hello World', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
+#' response <- send(message)
+#' 
+setGeneric(name="send", def=function(object) standardGeneric("send"))
+setMethod(f="send", signature="PushoverMessage", definition=send_pushovermessage)

@@ -2,7 +2,7 @@
 * Methods to set user and API keys. These will remain in the session (in the right namespace). If none provided when object created, it can check these vars
     * http://www.r-bloggers.com/package-wide-variablescache-in-r-packages/
 * Replace cat/sprintf with message(), warning(), stop() where appropriate
-
+* Documentation: can I use @export for a variable?
 
 
 # TODO for release
