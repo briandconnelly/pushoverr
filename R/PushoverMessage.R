@@ -4,6 +4,8 @@ pushover_sounds <- c('bike', 'bugle', 'cashregister', 'classical', 'cosmic',
                      'alien', 'climb', 'persistent', 'echo', 'updown',
                      'pushover', 'none')
 
+priorities <- list('-1'='quiet', '0'='normal', '1'='high', '2'='emergency')
+
 # TODO: document
 PushoverMessage <- setClass('PushoverMessage',
                             slots=list(message='character',
@@ -16,7 +18,9 @@ PushoverMessage <- setClass('PushoverMessage',
                                        priority='numeric',
                                        timestamp='numeric',
                                        sound='character',
-                                       calback='character'),
+                                       callback='character',
+                                       retry='numeric',
+                                       expire='numeric'),
                             prototype=list(message=NA_character_,
                                            token=NA_character_,
                                            user=NA_character_,
@@ -27,15 +31,19 @@ PushoverMessage <- setClass('PushoverMessage',
                                            priority=0,
                                            timestamp=NA_real_,
                                            sound='pushover',
-                                           callback=NA_character_),
+                                           callback=NA_character_,
+                                           retry=60,
+                                           expire=3600),
                             validity=validate_PushoverMessage
                             )
 
 # TODO: document
 validate_PushoverMessage <- function(object)
 {
-    retval <- NULL
+    if(missing(object)) stop("Must provide object for validation")
     
+    retval <- NULL
+
     message_length <- length(object@message)
     if(message_length==0)
     {
@@ -59,7 +67,7 @@ validate_PushoverMessage <- function(object)
     {
         retval <- c(retval, "only one API token is supported")
     }
-    else if(!grepl('^[a-zA-Z0-9]{30}$', object@token))
+    else if(!is.valid_token(object@token))
     {
         retval <- c(retval, "invalid API token")
     }
@@ -86,10 +94,9 @@ validate_PushoverMessage <- function(object)
     }    
     else if(device_length==1 & !is.na(object@device))
     {
-        if(!grepl('^[a-zA-Z0-9_-]{1,25}$', object@device))
+        if(!is.valid_device(object@device))
         {
             retval <- c(retval, "invalid device name (must be up to 25 letters, numbers, _, or -)")
-            cat(paste('device name is', object@device))
         }
     }
     
@@ -165,6 +172,26 @@ validate_PushoverMessage <- function(object)
         retval <- c(retval, "only one callback URL is supported per object")
     }
     
+    length_retry <- length(object@retry)
+    if(length_retry > 1)
+    {
+        retval <- c(retval, "only one retry value is supported per object")
+    }
+    else if(object@retry < 30)
+    {
+        retval <- c(retval, "value for retry must be at least 30")
+    }
+    
+    length_expire <- length(object@expire)
+    if(length_retry > 1)
+    {
+        retval <- c(retval, "only one expire is supported per object")
+    }
+    else if(object@expire > 86400)
+    {
+        retval <- c(retval, "value for retry must be less than 86400")
+    }
+    
     if(is.null(retval)) return(TRUE)
     else return(retval)
 }
@@ -198,22 +225,26 @@ show_PushoverMessage <- function(object)
     }
     cat('\n')
     
-    cat('\tPriority:', object@priority, '\n')
+    cat(sprintf('\tPriority: %d (%s)\n', object@priority,
+                priorities[as.character(object@priority)]))
     cat('\tTime Stamp:', object@timestamp, '\n')
     cat('\tSound:', object@sound, '\n')  
+    cat('\tCallback URL:', object@callback, '\n')
+    cat(sprintf('\tRetry: %d seconds\n', object@retry))
+    cat(sprintf('\tExpire: %d seconds\n', object@expire))
 }
 setMethod('show', 'PushoverMessage', show_PushoverMessage)
 
 # TODO: document
-setGeneric("send", function(object) standardGeneric("send"))
-setMethod("send", "PushoverMessage",
-function(object)
+send_pushovermessage <- function(object)
 {
     params <- list('message'=object@message,
                    'token'=object@token,
                    'user'=object@user,
                    'priority'=object@priority,
-                   'sound'=object@sound)
+                   'sound'=object@sound,
+                   'retry'=object@retry,
+                   'expire'=object@expire)
     
     if(!is.na(object@device)) params['device'] <- object@device
     if(!is.na(object@title)) params['title'] <- object@title
@@ -232,11 +263,9 @@ function(object)
                             headers=response$headers,
                             content=content(response))
     
-    # TODO: parse the response, create and return PushoverResponse object
+    # Return the response, whether sending the message was successful or not.
+    # This can be determined by the caller with is.success() or similar.
     return(rsp)
-    
-    # check response$status, names(response), and content(response)
-})
-
-m1=PushoverMessage(message='Test Message', user='uywN7SbBsu5Kw1EkwuoKjbSd7gqYWG', token='aWQi8Mgm21ttAg8r4mo4B3DBhqez14')
-m2=PushoverMessage(message='hello', user='uywN7SbBsu5Kw1EkwuoKjbSd7gqYWG')
+}
+setGeneric("send", function(object) standardGeneric("send"))
+setMethod("send", "PushoverMessage", send_pushovermessage)

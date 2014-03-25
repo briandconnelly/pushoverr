@@ -81,4 +81,17 @@ setMethod("headers", "PushoverResponse",
 
 setGeneric("app_limit", function(object) standardGeneric("app_limit"))
 setMethod("app_limit", "PushoverResponse",
-          function(object) return(object@headers))
+          function(object) return(object@headers[['x-limit-app-limit']]))
+
+
+setGeneric("app_remaining", function(object) standardGeneric("app_remaining"))
+setMethod("app_remaining", "PushoverResponse",
+          function(object) return(object@headers[['x-limit-app-remaining']]))
+
+setGeneric("get_response_content", function(object, param) standardGeneric("get_response_content"))
+setMethod("get_response_content", "PushoverResponse",
+          function(object, param) return(object@content[[param]]))
+
+setGeneric("receipt", function(object) standardGeneric("receipt"))
+setMethod("receipt", "PushoverResponse",
+          function(object) return(get_response_content(object, 'receipt')))

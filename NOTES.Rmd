@@ -1,15 +1,17 @@
 # TODO
-* Finish send() (check return messages, etc.)
-* Helper function to easily send a message: pushover()
-* Function to check receipt status of a Message (https://pushover.net/api#receipt)
-    * https://api.pushover.net/1/receipts/(your receipt).json?token=(your app token)
-    * Function that takes a receipt code and builds a response
-        * Helper function that checks the that response
-* PushoverResponse should have a query slot that stores the original query.
-    * Or the query url at least
 * Methods to set user and API keys. These will remain in the session (in the right namespace). If none provided when object created, it can check these vars
     * http://www.r-bloggers.com/package-wide-variablescache-in-r-packages/
-* News function?
+* Replace cat/sprintf with message(), warning(), stop() where appropriate
+
+
+
+# TODO for release
+* news function?
+* build and test package
+* submit to CRAN
+* vignette? blog post?
+* submit to rbloggers?
+    * Can get RSS for specific category/tag: https://codex.wordpress.org/WordPress_Feeds#Post-specific_comment_feed
 
 For documentation
 #' @importFrom httr GET
