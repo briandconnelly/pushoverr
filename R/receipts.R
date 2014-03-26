@@ -72,40 +72,40 @@ is.acknowledged <- function(token, receipt, info=TRUE)
         {
             if(info)
             {
-                acknowledged <- get_response_content(rsp, 'acknowledged')
-                calledback <- get_response_content(rsp, 'called_back')
+                acknowledged <- content_value(rsp, 'acknowledged')
+                calledback <- content_value(rsp, 'called_back')
                 
                 ack_time <- ''
                 if(acknowledged)
                 {
-                    ack_raw <- get_response_content(rsp, 'acknowledged_at')
+                    ack_raw <- content_value(rsp, 'acknowledged_at')
                     ack_time <- as.POSIXct(as.numeric(ack_raw), origin = "1970-01-01")
                 }
 
                 callback_time <- ''
                 if(calledback)
                 {
-                    cb_raw <- get_response_content(rsp, 'called_back_at')
+                    cb_raw <- content_value(rsp, 'called_back_at')
                     callback_time <- as.POSIXct(as.numeric(cb_raw), origin = "1970-01-01")
                 }
                 
-                exp_raw <- get_response_content(rsp, 'expires_at')
+                exp_raw <- content_value(rsp, 'expires_at')
                 exp_time <- callback_time <- as.POSIXct(as.numeric(exp_raw), origin = "1970-01-01")
                 
-                ld_raw <- get_response_content(rsp, 'last_delivered_at')
+                ld_raw <- content_value(rsp, 'last_delivered_at')
                 ld_time <- callback_time <- as.POSIXct(as.numeric(ld_raw), origin = "1970-01-01")
                 
-                cat(paste('Acknowledged:', get_response_content(rsp, 'acknowledged'), '\n'))
+                cat(paste('Acknowledged:', content_value(rsp, 'acknowledged'), '\n'))
                 cat(paste('Acknowledged At:', ack_time, '\n'))
-                cat(paste('Acknowledged By:', get_response_content(rsp, 'acknowledged_by'), '\n'))
+                cat(paste('Acknowledged By:', content_value(rsp, 'acknowledged_by'), '\n'))
                 cat(paste('Last Delivered:', ld_time, '\n'))
                 cat(paste('Expires At:', exp_time, '\n'))
-                cat(paste('Called Back:', get_response_content(rsp, 'called_back'), '\n'))
+                cat(paste('Called Back:', content_value(rsp, 'called_back'), '\n'))
                 cat(paste('Called Back At:', callback_time, '\n'))
             }
             
-            acknowledged <- get_response_content(rsp, 'acknowledged')
-            calledback <- get_response_content(rsp, 'called_back')
+            acknowledged <- content_value(rsp, 'acknowledged')
+            calledback <- content_value(rsp, 'called_back')
             
             return(acknowledged | calledback)
         }

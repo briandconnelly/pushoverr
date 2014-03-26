@@ -1,19 +1,20 @@
 # TODO
+* Document PushoverResponse
+* How to work with receipts with pushover_emergency? return a list?
+* Need to use exportMethod for methods?
 * Methods to set user and API keys. These will remain in the session (in the right namespace). If none provided when object created, it can check these vars
     * http://www.r-bloggers.com/package-wide-variablescache-in-r-packages/
-* Replace cat/sprintf with message(), warning(), stop() where appropriate
-* Documentation: can I use @export for a variable?
 
+
+# If you ever talk to Pushover
+* Can they provide a token, user, receipt, request that can be used for working examples
+* API Version returned in queries
+* Validate a user/group key
 
 # TODO for release
-* Get on GitHub
-* news function?
-* build and test package
+* Put on GitHub
 * submit to CRAN
-* vignette? blog post?
+* vignette? blog post? both?
+* code demos? ?demo
 * submit to rbloggers?
     * Can get RSS for specific category/tag: https://codex.wordpress.org/WordPress_Feeds#Post-specific_comment_feed
-
-For documentation
-#' @importFrom httr GET
-#' @importFrom httr content

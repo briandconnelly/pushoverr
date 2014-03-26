@@ -12,9 +12,10 @@ yourself or your group a message).
 
 You'll need a free account with [Pushover](https://pushover.net/). Once you
 have that, log in and [register an
-application](https://pushover.net/apps/build). You'll get two codes---a **user
-key** and an **API token/key**. These are what identify you and your apps to
-Pushover. You'll pass these along to pushoverr whenever you send a message.
+application](https://pushover.net/apps/build). You should now have two
+codes---a **user key** and an **API token/key**. These are what identify you
+and your app(s) to Pushover. You'll pass these along to pushoverr whenever you
+send a message.
 
 
 ## Installation
@@ -29,9 +30,9 @@ Until then, see below for how to install via GitHub.
 
 ### Latest and Greatest (Fingers Crossed) via GitHub
 
-If you want to run the absolute latest version of pushoverr, you can use
+If you like living on the edge, you can use
 [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to
-install from GitHub. To do so:
+install the latest and greatest version of pushoverr from GitHub. To do so:
 
     library(devtools)
     install_github('briandconnelly/pushoverr')
@@ -59,7 +60,7 @@ please visit [pushoverr on
 GitHub](https://github.com/briandconnelly/pushoverr/issues).
 
 
-## Misc
+## Related Links
 * [Pushover](https://pushover.net)
     * [Terms of Service](https://pushover.net/terms)
     * [FAQ](https://pushover.net/faq)
@@ -69,4 +70,4 @@ alternate Pushover tool for R
 
 ## Disclaimer
 This package and its author are not affiliated with
-[Superblock](http://superblock.net/), creators of Pushover.
+[Superblock](http://superblock.net), creators of Pushover.

@@ -1,40 +1,41 @@
-\name{pushoverr-package}
-\alias{pushoverr-package}
-\alias{pushoverr}
 \docType{package}
-\title{
-What the package does (short line)
-~~ package title ~~
-}
+\name{pushoverr-package}
+\alias{pushoverr}
+\alias{pushoverr-package}
+\title{pushoverr: Send push notifications to iOS and Android devices using Pushover}
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+\code{pushoverr} is package for sending push notifications
+to iOS and Android devices using
+\href{https://pushover.net}{Pushover} . Messages are
+created using \code{\link{PushoverMessage}} objects, and
+responses are stored in \code{\link{PushoverResponse}}
+objects. Messages can be quickly sent using the
+\code{\link{pushover}}, \code{\link{pushover_quiet}},
+\code{\link{pushover_normal}}, \code{\link{pushover_high}},
+and \code{\link{pushover_emergency}} functions.
 }
 \details{
-\tabular{ll}{
-Package: \tab pushoverr\cr
-Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2014-03-23\cr
-License: \tab What license is it under?\cr
+For more information, browse the package index by following
+the link at the bottom of this help page. For release
+information, run \code{news(package=='pushoverr')}.
 }
-~~ An overview of how to use the package, including the most important functions ~~
+\section{Disclaimer}{
+  This package and its author are not affiliated with
+  \href{http://superblock.net}{Superblock, LLC}, creators
+  of Pushover.
 }
 \author{
-Who wrote it
-
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Brian Connelly
 }
-\references{
-~~ Literature or other references for background information ~~
-}
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
-\keyword{ package }
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+GitHub Repository:
+\link{https://github.com/briandconnelly/pushoverr}
+
+Bug Reports and Feature Requests:
+\link{https://github.com/briandconnelly/pushoverr/issues}
+
+Pushover: \link{https://pushover.net}
+
+Pushover API: \link{https://pushover.net/api}
 }
-\examples{
-~~ simple examples of the most important functions ~~
-}
+

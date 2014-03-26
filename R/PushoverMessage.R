@@ -1,10 +1,12 @@
+#' @export
 pushover_sounds <- c('bike', 'bugle', 'cashregister', 'classical', 'cosmic',
                      'falling', 'gamelan', 'incoming', 'intermission', 'magic',
                      'mechanical', 'pianobar', 'siren', 'spacealarm', 'tugboat',
                      'alien', 'climb', 'persistent', 'echo', 'updown',
                      'pushover', 'none')
 
-priorities <- list('-1'='quiet', '0'='normal', '1'='high', '2'='emergency')
+#' @export
+pushover_priorities <- list('-1'='quiet', '0'='normal', '1'='high', '2'='emergency')
 
 
 #' Validate a given PushoverMessage object
@@ -133,7 +135,7 @@ validate_PushoverMessage <- function(object)
     }
     else if(length_priority==1)
     {
-        if(!object@priority %in% c(-1,0,1,2))
+        if(!object@priority %in% as.numeric(names(pushover_priorities)))
         {
             retval <- c(retval, "invalid message priority")
         }
@@ -187,7 +189,7 @@ validate_PushoverMessage <- function(object)
 }
 
 
-#' Create a Pushover message
+#' The \code{PushoverMessage} class
 #' 
 #' \code{PushoverMessage} objects represent a Pushover message and implements
 #' all of the features available in Pushover's
@@ -195,14 +197,14 @@ validate_PushoverMessage <- function(object)
 #' used to build queries that are sent to Pushover's servers.
 #' 
 #' @export
-#' @name PushoverMessage
-#' @rdname PushoverMessage
+#' @name PushoverMessage-class
+#' @rdname PushoverMessage-class
 #' @slot message The message to be sent (max. 512 characters)
 #' @slot token The application token
 #' @slot user The user or group key to send the message to
 #' @slot device The device to send the notification to (optional)
 #' @slot title The title of the message (optional)
-#' @slot url A URL to be included in the message (optional, max. 512 characters
+#' @slot url A URL to be included in the message (optional, max. 512 characters)
 #' @slot url_title A title for the given url (optional, max. 100 characters)
 #' @slot priority The message's priority. One of: -1 (quiet), 0 (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a sound. Emergency messages require acknowledgement.
 #' @slot timestamp The time to associate with the message (default: now, format: UNIX time)
@@ -210,54 +212,93 @@ validate_PushoverMessage <- function(object)
 #' @slot callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \link{https://pushover.net/api#receipt})
 #' @slot retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
 #' @slot expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
+#' @note \code{PushoverMessage} objects can be created with \code{\link{new}}
+#' or with the \code{\link{PushoverMessage}} constructor (see Examples below).
+#' @seealso \code{\link{PushoverMessage}}
 #' @examples
+#' library(pushoverr)
+#' 
 #' # Create a PushoverMessage
 #' m1 <- new('PushoverMessage', message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
 #'
 #' # Alternate way to create a PushoverMessage
 #' m2 <- PushoverMessage(message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
-
-PushoverMessage <- setClass('PushoverMessage',
-                            slots=list(message='character',
-                                       token='character',
-                                       user='character',
-                                       device='character',
-                                       title='character',
-                                       url='character',
-                                       url_title='character',
-                                       priority='numeric',
-                                       timestamp='numeric',
-                                       sound='character',
-                                       callback='character',
-                                       retry='numeric',
-                                       expire='numeric'),
-                            prototype=list(message=NA_character_,
-                                           token=NA_character_,
-                                           user=NA_character_,
-                                           device=NA_character_,
-                                           title=NA_character_,
-                                           url=NA_character_,
-                                           url_title=NA_character_,
-                                           priority=0,
-                                           timestamp=NA_real_,
-                                           sound='pushover',
-                                           callback=NA_character_,
-                                           retry=60,
-                                           expire=3600),
-                            validity=validate_PushoverMessage
+#'
+GenPushoverMessage <- setClass('PushoverMessage',
+                               slots=list(message='character',
+                                          token='character',
+                                          user='character',
+                                          device='character',
+                                          title='character',
+                                          url='character',
+                                          url_title='character',
+                                          priority='numeric',
+                                          timestamp='numeric',
+                                          sound='character',
+                                          callback='character',
+                                          retry='numeric',
+                                          expire='numeric'),
+                               prototype=list(message=NA_character_,
+                                              token=NA_character_,
+                                              user=NA_character_,
+                                              device=NA_character_,
+                                              title=NA_character_,
+                                              url=NA_character_,
+                                              url_title=NA_character_,
+                                              priority=0,
+                                              timestamp=NA_real_,
+                                              sound='pushover',
+                                              callback=NA_character_,
+                                              retry=60,
+                                              expire=3600),
+                               validity=validate_PushoverMessage
                             )
 
 
-#' Show (print information about) a PushoverMessage object
-#'
-#' \code{show_PushoverMessage} prints information about a given
-#' \code{PushoverMessage} object. This function is automatically called when a
-#' \code{PushoverMessage} object is referenced alone, when returned from a
-#' function and not stored, or when \code{\link{show}} is called with a
-#' \code{PushoverMessage} object.
-#'
-#' @param object A \code{\link{PushoverMessage}} object
+#' Create a Pushover message
 #' 
+#' The \code{PushoverMessage} function is a constructor that creates
+#' \code{\link{PushoverMessage-class}} objects. These objects represent a
+#' Pushover message and implement all of the features available in Pushover's
+#' API (\link{https://pushover.net/api}). \code{\link{PushoverMessage-class}}
+#' objects are used to build queries that are sent to Pushover's servers.
+#' 
+#' @export
+#' @param message The message to be sent (max. 512 characters)
+#' @param token The application token
+#' @param user The user or group key to send the message to
+#' @param device The device to send the notification to (optional)
+#' @param title The title of the message (optional)
+#' @param url A URL to be included in the message (optional, max. 512 characters)
+#' @param url_title A title for the given url (optional, max. 100 characters)
+#' @param priority The message's priority. One of: -1 (quiet), 0 (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a sound. Emergency messages require acknowledgement.
+#' @param timestamp The time to associate with the message (default: now, format: UNIX time)
+#' @param sound The sound to be played when the message is received (see \code{\link{get_sounds}})
+#' @param callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \link{https://pushover.net/api#receipt})
+#' @param retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
+#' @param expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
+#' @return A PushoverMessage object
+#' @seealso \code{\link{PushoverMessage-class}}
+#' @examples
+#' library(pushoverr)
+#' 
+#' # Create a PushoverMessage
+#' m2 <- PushoverMessage(message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+#'
+PushoverMessage <- function(message=NA_character_, token=NA_character_,
+                            user=NA_character_, device=NA_character_,
+                            title=NA_character_, url=NA_character_,
+                            url_title=NA_character_, priority=0,
+                            timestamp=NA_real_, sound='pushover',
+                            callback=NA_character_, retry=60, expire=3600)
+{
+    obj <- new("PushoverMessage", message=message, token=token, user=user,
+               device=device, title=title, url=url, timestamp=timestamp,
+               sound=sound, callback=callback, retry=60, expire=3600)
+    return(obj)
+}
+
+
 show_PushoverMessage <- function(object)
 {
     cat('PushoverMessage object:\n')
@@ -287,13 +328,24 @@ show_PushoverMessage <- function(object)
     cat('\n')
     
     cat(sprintf('\tPriority: %d (%s)\n', object@priority,
-                priorities[as.character(object@priority)]))
+                pushover_priorities[as.character(object@priority)]))
     cat('\tTime Stamp:', object@timestamp, '\n')
     cat('\tSound:', object@sound, '\n')  
     cat('\tCallback URL:', object@callback, '\n')
     cat(sprintf('\tRetry: %d seconds\n', object@retry))
     cat(sprintf('\tExpire: %d seconds\n', object@expire))
 }
+#' Print information about a PushoverMessage object
+#'
+#' \code{show_PushoverMessage} prints information about a given
+#' \code{PushoverMessage} object. This function is automatically called when a
+#' \code{PushoverMessage} object is referenced alone, when returned from a
+#' function and not stored, or when \code{\link{show}} is called with a
+#' \code{PushoverMessage} object.
+#'
+#' @export
+#' @param object A \code{\link{PushoverMessage-class}} object
+#' 
 setMethod(f='show', signature='PushoverMessage', definition=show_PushoverMessage)
 
 
@@ -303,7 +355,7 @@ setMethod(f='show', signature='PushoverMessage', definition=show_PushoverMessage
 #' Pushover. This function is not directly called, but is used when
 #' \code{\link{send}} is called with a \code{PushoverMessage} object.
 #'
-#' @param object A \code{\link{PushoverMessage}} object
+#' @param object A \code{\link{PushoverMessage-class}} object
 #' @return A \code{\link{PushoverResponse}} object containing information about
 #' the server's response.
 #' @importFrom httr POST
@@ -340,18 +392,22 @@ send_pushovermessage <- function(object)
     return(rsp)
 }
 
+
+setGeneric(name="send", def=function(object) standardGeneric("send"))
 #' Send a Pushover message
 #' 
 #' \code{send} sends the given Pushover message (represented by a
-#' \code{\link{PushoverMessage}}) object
+#' \code{\link{PushoverMessage-class}}) object
 #' 
 #' @export
-#' @param object A \code{\link{PushoverMessage}}) object
+#' @aliases send
+#' @param object A \code{\link{PushoverMessage-class}} object
 #' @return A \code{\link{PushoverResponse}} object containing information about
 #' the server's response.
 #' @examples
+#' library(pushoverr)
+#' 
 #' message <- PushoverMessage(message='Hello World', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
 #' response <- send(message)
 #' 
-setGeneric(name="send", def=function(object) standardGeneric("send"))
 setMethod(f="send", signature="PushoverMessage", definition=send_pushovermessage)
