@@ -293,8 +293,9 @@ PushoverMessage <- function(message=NA_character_, token=NA_character_,
                             callback=NA_character_, retry=60, expire=3600)
 {
     obj <- new("PushoverMessage", message=message, token=token, user=user,
-               device=device, title=title, url=url, timestamp=timestamp,
-               sound=sound, callback=callback, retry=60, expire=3600)
+               device=device, title=title, url=url, url_title=url_title,
+               priority=priority, timestamp=timestamp, sound=sound,
+               callback=callback, retry=60, expire=3600)
     return(obj)
 }
 
@@ -383,7 +384,7 @@ send_pushovermessage <- function(object)
     attr(response$headers, 'class') <- 'list'
     rsp <- PushoverResponse(status=content(response)$status,
                             request=content(response)$request,
-                            status_code=response$status_code ,
+                            status_code=response$status_code,
                             headers=response$headers,
                             content=content(response))
     

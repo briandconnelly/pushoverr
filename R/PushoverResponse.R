@@ -121,7 +121,7 @@ GenPushoverResponse <- setClass('PushoverResponse',
 #'                              content=content(rsp))
 #'
 PushoverResponse <- function(status=NA_integer_, request=NA_character_,
-                             status_coe=NA_integer_, headers=NA, content=NA)
+                             status_code=NA_integer_, headers=NA, content=NA)
 {
     obj <- new("PushoverResponse", status=status, request=request,
                status_code=status_code, headers=headers, content=content)
@@ -293,4 +293,5 @@ setGeneric("receipt", function(object) standardGeneric("receipt"))
 #' }
 #' 
 setMethod("receipt", "PushoverResponse",
-          function(object) return(get_response_content(object, 'receipt')))
+          function(object) return(content_value(object, 'receipt')))
+

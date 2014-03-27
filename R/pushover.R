@@ -22,7 +22,8 @@
 #' @param callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \link{https://pushover.net/api#receipt}) (optional)
 #' @param retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
 #' @param expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
-#' @return A string containing a Pushover request token
+#' @return A list containing a Pushover request token and a receipt token for
+#' emergency priority messages
 #' @note The available sounds are listed in the `pushover_sounds` variable
 #' @examples
 #' # Send a pushover message
@@ -57,17 +58,25 @@ pushover <- function(message, token, user, device=NA_character_,
                            priority=priority, timestamp=timestamp,
                            sound=sound, callback=callback, retry=retry,
                            expire=expire)    
-    
     response <- send(msg)
     
     if(is.success(response))
     {
-        return(request(response))
+        ret <- list('request'=request(response))
+        
+        if(priority==2)
+        {
+            ret['receipt'] <- receipt(response)
+        }
+        return(ret)
     }
     else
     {
         stop(response@content$errors)
     }
+    
+    blah <- get('message', env)
+    cat(paste('the message is', blah, '\n'))
 }
 
 #' @export
@@ -112,5 +121,5 @@ pushover_emergency <- function(message, token, user, device=NA_character_,
     return(pushover(message=message, token=token, user=user, device=device,
                     title=title, url=url, url_title=url_title, priority=2,
                     timestamp=timestamp, callback=callback, sound=sound,
-                    retry=retry, exipre=expire))
+                    retry=retry, expire=expire))
 }
