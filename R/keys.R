@@ -88,7 +88,7 @@ is.valid_key <- function(token, user, device=NA)
 
 # TODO: document
 #' @export
-set_user_key <- function(user)
+set_pushover_user <- function(user)
 {
     if(missing(user)) stop('must provide user/group key')
     # This can only be checked if the API token is set. Do a regexp test?
@@ -98,17 +98,28 @@ set_user_key <- function(user)
 
 # TODO: document
 #' @export
-set_group_key <- function(group) set_user(group)
+set_pushover_group <- function(group) set_pushover_user(group)
+
+
+#' @export
+unset_pushover_user <- function()
+{
+    rm('user', envir=env)
+}
+
+#' @export
+unset_pushover_group <- function() unset_pushover_user()
+
 
 # TODO: document
 #' @export
-get_user_key <- function() return(get('user', envir=env))
-get_group_key <- function() return(get_user())
+get_pushover_user <- function() return(get('user', envir=env))
+get_pushover_group <- function() return(get_user())
 
 
 # TODO: document
 #' @export
-set_app_token <- function(token)
+set_pushover_app <- function(token)
 {
     if(missing(token)) stop('must provide application token')
     if(!is.valid_token(token)) stop('invalid application token')
@@ -116,4 +127,7 @@ set_app_token <- function(token)
 }
 
 #' @export
-get_app_token <- function() return(get('token', envir=env))
+unset_pushover_app <- function() rm('token', envir=env)
+
+#' @export
+get_pushover_app <- function() return(get('token', envir=env))

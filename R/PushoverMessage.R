@@ -49,7 +49,7 @@ validate_PushoverMessage <- function(object)
     else if(nchar(object@message) > 512)
     {
         retval <- c(retval, "invalid message length (cannot be longer than 512 characters") 
-    } 
+    }
     
     token_length <- length(object@token)
     if(token_length==0)
@@ -63,8 +63,8 @@ validate_PushoverMessage <- function(object)
     else if(!is.valid_token(object@token))
     {
         retval <- c(retval, "invalid API token")
-    }
-    
+    }        
+
     user_length <- length(object@user)
     if(user_length==0)
     {
@@ -76,9 +76,10 @@ validate_PushoverMessage <- function(object)
     }
     else if(!grepl('^[a-zA-Z0-9]{30}$', object@user))
     {
-        retval <- c(retval, "invalid user key")
+        retval <- c(retval, paste("invalid user key",object@user))
     }
-    # TODO: validate user key on server??
+    # TODO: validate user key on server??    
+    
     
     device_length <- length(object@device)
     if(device_length > 1)
@@ -217,17 +218,14 @@ validate_PushoverMessage <- function(object)
 #' @slot callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \link{https://pushover.net/api#receipt})
 #' @slot retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
 #' @slot expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
-#' @note \code{PushoverMessage} objects can be created with \code{\link{new}}
-#' or with the \code{\link{PushoverMessage}} constructor (see Examples below).
+#' @note \code{PushoverMessage} objects are created with the
+#' \code{\link{PushoverMessage}} constructor (see Examples below).
 #' @seealso \code{\link{PushoverMessage}}
 #' @examples
 #' library(pushoverr)
 #' 
 #' # Create a PushoverMessage
-#' m1 <- new('PushoverMessage', message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
-#'
-#' # Alternate way to create a PushoverMessage
-#' m2 <- PushoverMessage(message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+#' m1 <- PushoverMessage(message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
 #'
 GenPushoverMessage <- setClass('PushoverMessage',
                                slots=list(message='character',
@@ -284,24 +282,69 @@ GenPushoverMessage <- setClass('PushoverMessage',
 #' @param expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
 #' @return A PushoverMessage object
 #' @seealso \code{\link{PushoverMessage-class}}
+#' @note Pushover user/group keys and application tokens are requred for a
+#' message. They can either be specified as arguments or be set earlier with
+#' \code{\link{set_pushover_user}} and \code{\link{set_pushover_app}},
+#' respectively.
 #' @examples
 #' library(pushoverr)
 #' 
 #' # Create a PushoverMessage
-#' m2 <- PushoverMessage(message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+#' m2 <- PushoverMessage(message='Hi there',
+#'                       token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
+#'                       user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+#' 
+#' # If the app token and user key have already been set, messages can be
+#' # created with just the message argument
+#' set_pushover_user('KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+#' set_pushover_app('KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
+#' m3 <- PushoverMessage(message='so much less work!')
 #'
-PushoverMessage <- function(message=NA_character_, token=NA_character_,
-                            user=NA_character_, device=NA_character_,
-                            title=NA_character_, url=NA_character_,
-                            url_title=NA_character_, priority=0,
-                            timestamp=NA_real_, sound='pushover',
-                            callback=NA_character_, retry=60, expire=3600)
+PushoverMessage <- function(message, ...)
 {
-    obj <- new("PushoverMessage", message=message, token=token, user=user,
-               device=device, title=title, url=url, url_title=url_title,
-               priority=priority, timestamp=timestamp, sound=sound,
-               callback=callback, retry=60, expire=3600)
-    return(obj)
+    if(missing(message)) stop("must provide message")
+    
+    modified <- FALSE
+    
+    other_args <- list(...)
+    other_args[['message']] <- message
+    
+    # If the user argument is provided in ..., use it. Otherwise, see if it
+    # has been set with `set_pushover_user()`
+    if('user' %in% names(other_args))
+    {}
+    else if(exists('user', envir=env))
+    {
+        other_args[['user']] <- get_pushover_user()
+        modified <- TRUE
+    }
+    else
+    {
+        stop('must provide user key')
+    }
+
+    # See if app token was specified. If not, see if it was set with
+    # `set_pushover_app()`
+    if('token' %in% names(other_args))
+    {}
+    else if(exists('token', envir=env))
+    {
+        other_args[['token']] <- get_pushover_app()
+        modified <- TRUE
+    }
+    else
+    {
+        stop('must provide app token')
+    }
+    
+    if(modified)
+    {
+        do.call(PushoverMessage, other_args)
+    }
+    else
+    {
+        return(new("PushoverMessage", message=message, ...))
+    }
 }
 
 

@@ -24,6 +24,10 @@
 #' @param expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
 #' @return A list containing a Pushover request token and a receipt token for
 #' emergency priority messages
+#' @note Pushover user/group keys and application tokens are requred for a
+#' message. They can either be specified as arguments or be set earlier with
+#' \code{\link{set_pushover_user}} and \code{\link{set_pushover_app}},
+#' respectively.
 #' @note The available sounds are listed in the `pushover_sounds` variable
 #' @examples
 #' # Send a pushover message
@@ -34,37 +38,29 @@
 #' pushover_high(message='The sky is falling', title='Alert',
 #'               token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
 #'               user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
+#'               
+#' # User keys and app tokens can be set ahead of time
+#' set_pushover_user('KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+#' set_pushover_app('KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
+#' pushover(message='so much less work!')
 #'
 #' # Send an emergency message. Emergency messages will be re-sent until they
 #' # are acknowledged (in this case, every 60 seconds)
-#' pushover_emergency(message='PAY YOUR TAXES!',
-#'                   token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
-#'                   user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG',
-#'                   retry=60)
+#' pushover_emergency(message='TAXES ARE DUE AT MIDNIGHT!', retry=60)
 #'                              
 #' # Send a quiet message
-#' pushover_quiet(message='Pssst. Walk the dog when you wake up',
-#'               token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
-#'               user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
+#' pushover_quiet(message='Pssst. Walk the dog when you wake up')
 
-pushover <- function(message, token, user, device=NA_character_,
-                     title=NA_character_, url=NA_character_,
-                     url_title=NA_character_, priority=0, timestamp=NA_integer_,
-                     sound='pushover', callback=NA_character_, retry=60,
-                     expire=3600)
+pushover <- function(message, ...)
 {    
-    msg <- PushoverMessage(message=message, token=token, user=user, device=device,
-                           title=title, url=url, url_title=url_title,
-                           priority=priority, timestamp=timestamp,
-                           sound=sound, callback=callback, retry=retry,
-                           expire=expire)    
+    msg <- PushoverMessage(message=message, ...)    
     response <- send(msg)
     
     if(is.success(response))
     {
         ret <- list('request'=request(response))
         
-        if(priority==2)
+        if(msg@priority==2)
         {
             ret['receipt'] <- receipt(response)
         }
@@ -74,52 +70,28 @@ pushover <- function(message, token, user, device=NA_character_,
     {
         stop(response@content$errors)
     }
-    
-    blah <- get('message', env)
-    cat(paste('the message is', blah, '\n'))
 }
 
 #' @export
-pushover_quiet <- function(message, token, user, device=NA_character_,
-                           title=NA_character_, url=NA_character_,
-                           url_title=NA_character_, timestamp=NA_integer_)
+pushover_quiet <- function(message, ...)
 {
-    return(pushover(message=message, token=token, user=user, device=device,
-                    title=title, url=url, url_title=url_title, priority=-1,
-                    timestamp=timestamp, sound='none'))
+    return(pushover(message=message, priority=-1, ...))
 }
 
 #' @export
-pushover_normal <- function(message, token, user, device=NA_character_,
-                            title=NA_character_, url=NA_character_, 
-                            url_title=NA_character_, timestamp=NA_integer_,
-                            sound='pushover')
+pushover_normal <- function(message, ...)
 {
-    return(pushover(message=message, token=token, user=user, device=device,
-                    title=title, url=url, url_title=url_title, priority=0,
-                    timestamp=timestamp, sound=sound))
+    return(pushover(message=message, priority=0, ...))
 }
 
 #' @export
-pushover_high <- function(message, token, user, device=NA_character_,
-                          title=NA_character_, url=NA_character_,
-                          url_title=NA_character_, timestamp=NA_integer_,
-                          sound='pushover')
+pushover_high <- function(message, ...)
 {
-    return(pushover(message=message, token=token, user=user, device=device,
-                    title=title, url=url, url_title=url_title, priority=1,
-                    timestamp=timestamp, sound=sound))
+    return(pushover(message=message, priority=1, ...))
 }
 
 #' @export
-pushover_emergency <- function(message, token, user, device=NA_character_,
-                               title=NA_character_, url=NA_character_, 
-                               url_title=NA_character_, timestamp=NA_integer_,
-                               sound='pushover', callback=NA_character_,
-                               retry=60, expire=3600)
+pushover_emergency <- function(message, ...)
 {
-    return(pushover(message=message, token=token, user=user, device=device,
-                    title=title, url=url, url_title=url_title, priority=2,
-                    timestamp=timestamp, callback=callback, sound=sound,
-                    retry=retry, expire=expire))
+    return(pushover(message=message, priority=2, ...))
 }
