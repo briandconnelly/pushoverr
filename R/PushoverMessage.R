@@ -32,6 +32,11 @@ validate_PushoverMessage <- function(object)
     
     retval <- NULL
     
+    if(is.na(object@message))
+    {
+        retval <- c(retval, "must specify message")
+    }
+    
     message_length <- length(object@message)
     if(message_length==0)
     {

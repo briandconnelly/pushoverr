@@ -5,7 +5,8 @@
     * Add info about new functions in message documentation
     * Document new functions
     * Now, the only absolutely necessary arg to sending is the message. Handle the rest with ...?
-* Put pushoverr-package documentation back in pushoverr.R?
+        * Do this in the PushoverMessage() constructor
+        * Do this in the pushover_* helper functions
 * Should helper functions just return a Response object?
 * contents() is an R(Hmisc) thing. Rename? Or add a new method? get()?
 * function to get sounds (not from server, just from list)?

@@ -1,3 +1,8 @@
+# This environment stores user/group keys and API tokens so they don't have to
+# always be provided as arguments to messaging functions
+env <- new.env()
+
+
 #' Determine whether or not a given API token is valid
 #'
 #' \code{is.valid_token} determines whether or not a given application token
@@ -79,3 +84,36 @@ is.valid_key <- function(token, user, device=NA)
     response <- validate_key(token=token, user=user, device=device)
     return(http_status_code(response)==200 & status(response)==1)
 }
+
+
+# TODO: document
+#' @export
+set_user_key <- function(user)
+{
+    if(missing(user)) stop('must provide user/group key')
+    # This can only be checked if the API token is set. Do a regexp test?
+    #if(!is.valid_key(user)) stop('invalid user/group key')
+    assign('user', user, envir=env)
+}
+
+# TODO: document
+#' @export
+set_group_key <- function(group) set_user(group)
+
+# TODO: document
+#' @export
+get_user_key <- function() return(get('user', envir=env))
+get_group_key <- function() return(get_user())
+
+
+# TODO: document
+#' @export
+set_app_token <- function(token)
+{
+    if(missing(token)) stop('must provide application token')
+    if(!is.valid_token(token)) stop('invalid application token')
+    assign('token', token, envir=env)
+}
+
+#' @export
+get_app_token <- function() return(get('token', envir=env))
