@@ -1,7 +1,10 @@
+# keys.R
+# Functions that deal with validating, storing, and retrieving
+# user/group keys and app tokens.
+
 # This environment stores user/group keys and API tokens so they don't have to
 # always be provided as arguments to messaging functions
 env <- new.env()
-
 
 #' Determine whether or not a given API token is valid
 #'
@@ -24,7 +27,7 @@ is.valid_token <- function(token)
 }
 
 
-#' Query Pushover to determine whether or not a given user key is valid
+#' Query Pushover to determine whether or not a given user/group key is valid
 #'
 #' \code{validate_key} issues a query to Pushover to determine whether or not a
 #' given user (or group) key is valid. If a \code{device} is specified, the
@@ -85,9 +88,29 @@ is.valid_key <- function(token, user, device=NA)
     return(http_status_code(response)==200 & status(response)==1)
 }
 
-
-# TODO: document
+#' Use a Pushover user key for all subsequent queries
+#' 
+#' \code{set_pushover_user} allows a user key to be stored that will be used
+#' for all subsequent calls that require a user key (e.g.,
+#' \code{\link{pushover}}). This behavior can temporarily be overridden by
+#' providing a key as argument to the function in question.
+#' 
+#' @note The Pushover API doesn't distinguish between users and groups, so
+#' group keys can be used with functions that work with user keys.
+#' 
 #' @export
+#' @rdname set_pushover_user
+#' @argument user The user key
+#' @examples
+#' # Set the Pushover user account to use
+#' set_pushover_user('uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
+#' 
+#' # Determine whether the Pushover user account has been set
+#' if(pushover_user.isset())
+#' {
+#'     cat(paste('Pushover user has been set to', get_pushover_user()))
+#' }
+#' 
 set_pushover_user <- function(user)
 {
     if(missing(user)) stop('must provide user/group key')
@@ -96,29 +119,70 @@ set_pushover_user <- function(user)
     assign('user', user, envir=env)
 }
 
-# TODO: document
+
+#' Determine whether a user/group has been set for subsequent Pushover API calls
+#' 
+#' \code{pushover_user.isset} indicates whether or not a Pushover user/group is
+#' currently set
+#' 
+#' @rdname set_pushover_user
 #' @export
-set_pushover_group <- function(group) set_pushover_user(group)
+#' @return A boolean indicating whether a Pushover user/group is set
+#' (\code{TRUE}) or not (\code{FALSE}).
+pushover_user.isset <- function() exists('user', envir=env)
 
 
+
+#' Forget about the current user or group
+#' 
+#' \code{unset_pushover_user} removes a stored
+#' Pushover user/group, which means that a key will have to be provided to all
+#' subsequent API calls.
+#' 
+#' @note The Pushover API calls don't differentiate between users and groups
+#' (and therefore neither does \code{pushoverr}). This function will remove any
+#' user or group key that is saved.
+#' 
+#' @rdname set_pushover_user
 #' @export
+#' @examples
+#' # Forget about the current Pushover user
+#' unset_pushover_user()
 unset_pushover_user <- function()
 {
     rm('user', envir=env)
 }
 
-#' @export
-unset_pushover_group <- function() unset_pushover_user()
 
-
-# TODO: document
+#' \code{get_pushover_user} gets the key associated with the current Pushover
+#' user/group
+#' @return A string containing a Pushover user/group key
+#' @rdname set_pushover_user
 #' @export
 get_pushover_user <- function() return(get('user', envir=env))
-get_pushover_group <- function() return(get_user())
 
 
-# TODO: document
+
+#' Use a Pushover application token for all subsequent queries
+#' 
+#' \code{set_pushover_app} allows an application token to be stored that will be
+#' used for all subsequent calls that require a token (e.g.,
+#' \code{\link{pushover}}). This behavior can temporarily be overridden by
+#' providing a token as argument to the function in question.
+#' 
 #' @export
+#' @rdname set_pushover_app
+#' @argument token The application token
+#' @examples
+#' # Set the Pushover user account to use
+#' set_pushover_app('KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
+#' 
+#' # Determine whether the Pushover user account has been set
+#' if(pushover_app.isset())
+#' {
+#'     cat(paste('The Pushover app token has been set to', get_pushover_app()))
+#' }
+#' 
 set_pushover_app <- function(token)
 {
     if(missing(token)) stop('must provide application token')
@@ -126,8 +190,30 @@ set_pushover_app <- function(token)
     assign('token', token, envir=env)
 }
 
+#' Determine whether the Pushover app token has been set
+#' 
+#' \code{pushover_app.isset} determines whether or not a Pushover app has been set
+#' 
+#' @rdname set_pushover_app
+#' @export
+pushover_app.isset <- function() exists('token', envir=env)
+
+
+#' Forget about the current Pushover App
+#' 
+#' \code{unset_pushover_app} removes a stored Pushover app token, which means
+#' that a token will have to be provided to all subsequent API calls.
+#' 
+#' @rdname set_pushover_app
 #' @export
 unset_pushover_app <- function() rm('token', envir=env)
 
+
+#' Get the current pushover app token
+#' 
+#' \code{get_pushover_app} returns the token associated with the current
+#' Pushover app
+#' 
+#' @rdname set_pushover_app
 #' @export
 get_pushover_app <- function() return(get('token', envir=env))

@@ -1,3 +1,6 @@
+# receipts.R contains functions that deal with handling receipts to emergency
+# priority messages
+
 #' Query Pushover to determine whether or not a given message has been seen
 #'
 #' \code{check_receipt} issues a query to Pushover to determine whether or not

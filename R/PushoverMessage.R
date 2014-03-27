@@ -1,11 +1,4 @@
 #' @export
-pushover_sounds <- c('bike', 'bugle', 'cashregister', 'classical', 'cosmic',
-                     'falling', 'gamelan', 'incoming', 'intermission', 'magic',
-                     'mechanical', 'pianobar', 'siren', 'spacealarm', 'tugboat',
-                     'alien', 'climb', 'persistent', 'echo', 'updown',
-                     'pushover', 'none')
-
-#' @export
 pushover_priorities <- list('-1'='quiet', '0'='normal', '1'='high', '2'='emergency')
 
 
@@ -214,7 +207,7 @@ validate_PushoverMessage <- function(object)
 #' @slot url_title A title for the given url (optional, max. 100 characters)
 #' @slot priority The message's priority. One of: -1 (quiet), 0 (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a sound. Emergency messages require acknowledgement.
 #' @slot timestamp The time to associate with the message (default: now, format: UNIX time)
-#' @slot sound The sound to be played when the message is received (see \code{\link{get_sounds}})
+#' @slot sound The sound to be played when the message is received (see \code{\link{get_pushover_sounds}})
 #' @slot callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \link{https://pushover.net/api#receipt})
 #' @slot retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
 #' @slot expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
@@ -276,7 +269,7 @@ GenPushoverMessage <- setClass('PushoverMessage',
 #' @param url_title A title for the given url (optional, max. 100 characters)
 #' @param priority The message's priority. One of: -1 (quiet), 0 (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a sound. Emergency messages require acknowledgement.
 #' @param timestamp The time to associate with the message (default: now, format: UNIX time)
-#' @param sound The sound to be played when the message is received (see \code{\link{get_sounds}})
+#' @param sound The sound to be played when the message is received (see \code{\link{get_pushover_sounds}})
 #' @param callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \link{https://pushover.net/api#receipt})
 #' @param retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
 #' @param expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
@@ -313,7 +306,7 @@ PushoverMessage <- function(message, ...)
     # has been set with `set_pushover_user()`
     if('user' %in% names(other_args))
     {}
-    else if(exists('user', envir=env))
+    else if(pushover_user.isset())
     {
         other_args[['user']] <- get_pushover_user()
         modified <- TRUE
@@ -327,7 +320,7 @@ PushoverMessage <- function(message, ...)
     # `set_pushover_app()`
     if('token' %in% names(other_args))
     {}
-    else if(exists('token', envir=env))
+    else if(pushover_app.isset())
     {
         other_args[['token']] <- get_pushover_app()
         modified <- TRUE

@@ -1,10 +1,16 @@
+# pushover.R
+# Functions that deal with building and sending messages to
+# Pushover. The actual structures of the message objects and server response
+# objects, which are created and used here, are defined in PushoverMessage.R and
+# PushoverResponse.R.
+
+
 #' Send a message using Pushover
 #'
 #' \code{pushover} sends a message (push notification) to a user or group.
 #' Messages can be given different priorities, play different sounds, or require
-#' acknowledgments. A unique request token is returned.
-#'
-#' The \code{pushover_normal}, \code{pushover_quiet}, \code{pushover_high}, and
+#' acknowledgments. A unique request token is returned. The
+#' \code{pushover_normal}, \code{pushover_quiet}, \code{pushover_high}, and
 #' \code{pushover_emergency} functions send messages with those priorities.
 #'
 #' @export
@@ -18,7 +24,7 @@
 #' @param url_title A title for the given url (optional, max. 100 characters)
 #' @param priority The message's priority. One of: -1 (quiet), 0 (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a sound. Emergency messages require acknowledgement.
 #' @param timestamp The time to associate with the message (default: now, format: UNIX time)
-#' @param sound The sound to be played when the message is received (see \code{\link{get_sounds}}) (default: 'pushover')
+#' @param sound The sound to be played when the message is received (see \code{\link{get_pushover_sounds}}) (default: 'pushover')
 #' @param callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \link{https://pushover.net/api#receipt}) (optional)
 #' @param retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
 #' @param expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
@@ -33,16 +39,14 @@
 #' # Send a pushover message
 #' pushover(message='Hello World!', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
 #'          user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
-#' 
-#' # Send a message with high priority and a title
-#' pushover_high(message='The sky is falling', title='Alert',
-#'               token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
-#'               user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
 #'               
 #' # User keys and app tokens can be set ahead of time
 #' set_pushover_user('KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
 #' set_pushover_app('KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
 #' pushover(message='so much less work!')
+#' 
+#' # Send a message with high priority and a title
+#' pushover_high(message='The sky is falling', title='Alert')
 #'
 #' # Send an emergency message. Emergency messages will be re-sent until they
 #' # are acknowledged (in this case, every 60 seconds)

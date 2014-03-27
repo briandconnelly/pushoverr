@@ -1,3 +1,6 @@
+# devices.R
+# Functions that deal with querying/validating/etc. user devices
+
 #' Get a list of the user's registered devices
 #'
 #' \code{get_user_devices} queries Pushover to receive a list of the devices

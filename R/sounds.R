@@ -1,23 +1,50 @@
+# sounds.R
+# Functions and other objects that deal with the sounds played when a user
+# receives a notification.
+
+#' @export
+pushover_sounds <- c('bike', 'bugle', 'cashregister', 'classical', 'cosmic',
+                     'falling', 'gamelan', 'incoming', 'intermission', 'magic',
+                     'mechanical', 'pianobar', 'siren', 'spacealarm', 'tugboat',
+                     'alien', 'climb', 'persistent', 'echo', 'updown',
+                     'pushover', 'none')
+
+
 #' Get a list of available message sounds
 #'
-#' \code{get_sounds} queries Pushover to receive a list of the sounds that may
+#' \code{get_pushover_sounds} queries Pushover to receive a list of the sounds that may
 #' be played on a user's device when a message is received. Sounds are specified
 #' when the message is sent.
 #'
 #' @export
-#' @param token The application token
+#' @param token The application token. This argument is not needed if an
+#' application token has already been set with \code{\link{set_pushover_app}}.
 #' @return A list of available sounds and their descriptions
 #' @importFrom httr GET
 #' @examples
-#' sounds <- get_sounds(token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
+#' sounds <- get_pushover_sounds()
 #' for (s in names(sounds))
 #' {
 #'     cat(paste(s, ":", sounds[s], "\n"))
 #' }
 #' 
-get_sounds <- function(token)
+get_pushover_sounds <- function(...)
 {
-    if(missing(token)) stop("Must provide application token")
+    opt_args <- list(...)
+    token <- NA
+
+    if('token' %in% names(opt_args))
+    {
+        token <- opt_args[['token']]
+    }
+    else if(pushover_app.isset())
+    {
+        token <- get_pushover_app()
+    }
+    else
+    {
+        stop('Must provide application token')
+    }
     
     response <- GET(url='https://api.pushover.net/1/sounds.json',
                     query=list('token'=token))

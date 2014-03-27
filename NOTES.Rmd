@@ -1,7 +1,6 @@
 # TODO
 * Handle pre-set user/app tokens
     * ALL functions that take an api token should support this (e.g. is.acknowledged)
-    * Document new functions
 * Function to validate a user key with regexp. is.legal_key? Use in message validator and in set_key
 * Move pushover_sounds to env?
 * Should helper functions just return a Response object?
