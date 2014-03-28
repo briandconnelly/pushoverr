@@ -17,4 +17,5 @@ NeedsCompilation: no
 Depends:
     R (>= 3.0.0),
 Imports:
-    httr
+    httr,
+    methods
