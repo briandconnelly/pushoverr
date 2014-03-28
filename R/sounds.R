@@ -2,9 +2,6 @@
 # Functions and other objects that deal with the sounds played when a user
 # receives a notification.
 
-#' \code{pushover_sounds} is a vector containing all of the sounds that Pushover
-#' supports
-#' @export
 pushover_sounds <- c('bike', 'bugle', 'cashregister', 'classical', 'cosmic',
                      'falling', 'gamelan', 'incoming', 'intermission', 'magic',
                      'mechanical', 'pianobar', 'siren', 'spacealarm', 'tugboat',

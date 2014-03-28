@@ -25,7 +25,6 @@
 #' message. They can either be specified as arguments or be set earlier with
 #' \code{\link{set_pushover_user}} and \code{\link{set_pushover_app}},
 #' respectively.
-#' @note The available sounds are listed in the `pushover_sounds` variable
 #' @examples
 #' \dontrun{
 #' # Send a pushover message
