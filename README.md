@@ -20,7 +20,7 @@ send a message.
 
 ## Installation
 
-pushoverr hasn't yet been submitted to CRAN. Once that's been done, it'll be as
+pushoverr has been submitted to CRAN, but has not yet been approved. Once that's been done, it'll be as
 easy as running:
 
     install.packages('pushoverr')
