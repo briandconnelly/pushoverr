@@ -27,25 +27,22 @@ is.valid_token <- function(token)
 }
 
 
-#' Query Pushover to determine whether or not a given user/group key is valid
+#' Determine whether or not a given user/group key is valid
 #'
 #' \code{validate_key} issues a query to Pushover to determine whether or not a
 #' given user (or group) key is valid. If a \code{device} is specified, the
 #' query will also see if the given device is registered to that user.
 #' 
-#' \code{is.valid_key} performs the same check and returns a boolean value
-#' indicating whether the user/device is valid (\code{TRUE}) of not
-#' (\code{FALSE}).
-#' 
 #' @note To acquire a user key, create an account at \link{https://pushover.net}
 #'
 #' @export
-#' @param token A application token (e.g., 'KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
 #' @param user A user or group key (e.g., 'uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
 #' @param device A device name (e.g., 'phone')
-#' @return A \code{\link{PushoverResponse}} object containing the response from
-#' the server
-#' @aliases is.valid_key
+#' @param token A application token (e.g., 'KzGDORePK8gMaC0QOYAMyEEuzJnyUi').
+#' This argument is not necessary if one has been provided using
+#' \code{\link{set_pushover_app}}.
+#' @return \code{validate_key} returns a \code{\link{PushoverResponse}} object
+#' containing the response from the server
 #' @importFrom httr POST content
 #' @examples
 #' response <- validate_key(token='KzGDORePK8gMaC0QOYAMyEEuzJnyU',
@@ -61,10 +58,25 @@ is.valid_token <- function(token)
 #'      cat('I can send to this device!')
 #' }
 #'
-validate_key <- function(token, user, device=NA_character_)
+validate_key <- function(user, device=NA_character_, ...)
 {
-    if(missing(token)) stop("Must provide application token")
     if(missing(user)) stop("Must provide user key")
+
+    opt_args <- list(...)
+    token <- NA
+    
+    if('token' %in% names(opt_args))
+    {
+        token <- opt_args[['token']]
+    }
+    else if(pushover_app.isset())
+    {
+        token <- get_pushover_app()
+    }
+    else
+    {
+        stop('Must provide application token')
+    }
     
     params <- list('token'=token, 'user'=user)
     if(!is.na(device)) params['device'] <- device
@@ -81,9 +93,33 @@ validate_key <- function(token, user, device=NA_character_)
     return(rsp)
 }
 
+#' Determine whether a user key is valid
+#'
+#' \code{is.valid_key} returns a boolean value indicating whether the
+#' user/device is valid (\code{TRUE}) or not (\code{FALSE}).
+#'
+#' @return \code{is.valid_key} returns a boolean value indicating whether the
+#' user/device is valid (\code{TRUE}) or not (\code{FALSE}).
 #' @export
-is.valid_key <- function(token, user, device=NA)
+#' @rdname validate_key
+is.valid_key <- function(user, device=NA, ...)
 {
+    opt_args <- list(...)
+    token <- NA
+    
+    if('token' %in% names(opt_args))
+    {
+        token <- opt_args[['token']]
+    }
+    else if(pushover_app.isset())
+    {
+        token <- get_pushover_app()
+    }
+    else
+    {
+        stop('Must provide application token')
+    } 
+    
     response <- validate_key(token=token, user=user, device=device)
     return(http_status_code(response)==200 & status(response)==1)
 }

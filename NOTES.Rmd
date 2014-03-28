@@ -1,11 +1,12 @@
 # TODO
 * Handle pre-set user/app tokens
-    * ALL functions that take an api token should support this (e.g. is.acknowledged)
+    * Function to set both user and app?
 * Function to validate a user key with regexp. is.legal_key? Use in message validator and in set_key
 * Move pushover_sounds to env?
 * Should helper functions just return a Response object?
 * contents() is an R(Hmisc) thing. Rename? Or add a new method? get()?
 * function to get sounds (not from server, just from list)?
+
 
 # If you ever talk to Pushover
 * Can they provide a token, user, receipt, request that can be used for working examples?

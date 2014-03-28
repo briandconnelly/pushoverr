@@ -3,20 +3,50 @@
 
 #' Get a list of the user's registered devices
 #'
-#' \code{get_user_devices} queries Pushover to receive a list of the devices
+#' \code{get_devices} queries Pushover to receive a list of the devices
 #' given by the user (specified by their user key)
 #'
 #' @export
 #' @param token The application token
 #' @param user The user's identifier
-#' @return A vector of device names
+#' @note The token and user arguments are necessary, however they do not need
+#' to be given if they have been set with \code{\link{set_pushover_user}} and
+#' \code{\link{set_pushover_app}}, respectively.
+#' @return \code{get_devices} returns a vector of device names
 #' @examples
-#' available_devs <- get_user_devices(token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
-#'                                    user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
-get_user_devices <- function(token, user)
+#' available_devs <- get_devices(token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
+#'                               user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
+get_devices <- function(...)
 {
-    if(missing(token)) stop("Must provide application token")
-    if(missing(user)) stop("Must provide user/group key")
+    opt_args <- list(...)
+    token <- NA
+    user <- NA
+    
+    if('token' %in% names(opt_args))
+    {
+        token <- opt_args[['token']]
+    }
+    else if(pushover_app.isset())
+    {
+        token <- get_pushover_app()
+    }
+    else
+    {
+        stop('Must provide application token')
+    }
+    
+    if('user' %in% names(opt_args))
+    {
+        user <- opt_args[['user']]
+    }
+    else if(pushover_user.isset())
+    {
+        user <- get_pushover_user()
+    }
+    else
+    {
+        stop('Must provide user key')
+    }
     
     response <- validate_key(token=token, user=user)
     return(response@content$devices)
@@ -25,25 +55,59 @@ get_user_devices <- function(token, user)
 
 #' Determine whether or not a given device is registered for a user
 #'
-#' \code{is.user_device} queries Pushover to determine whether or not a given
-#' device name is registered to the given user (specified by their user key)
+#' \code{is.device} determines whether or not a given device name is registered
+#' to the given user (specified by their user key)
 #'
 #' @export
+#' @rdname get_devices
+#' @param device A device name (e.g., 'phone')
 #' @param token The application token
 #' @param user The user's identifier
-#' @param device A device name (e.g., 'phone')
-#' @return A boolean value indicating if the device is registered (\code{TRUE})
-#' or not (\code{FALSE})
-#' @seealso \code{\link{get_user_devices}}
+#' @return \code{is.device} returns a boolean value indicating if the device is
+#' registered (\code{TRUE}) or not (\code{FALSE})
+#' @note The token and user arguments are necessary, however they do not need
+#' to be given if they have been set with \code{\link{set_pushover_user}} and
+#' \code{\link{set_pushover_app}}, respectively.
 #' @examples
-#' is.user_device(token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
-#'                user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG',
-#'                device='phone')
+#' is.device(device='phone',
+#'           token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
+#'           user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
 #'                
-is.user_device <- function(token, user, device)
+is.device <- function(device, ...)
 {
     if(missing(device)) stop("Must provide device name")
-    return(device %in% get_user_devices(token, user))
+    
+    opt_args <- list(...)
+    token <- NA
+    user <- NA
+    
+    if('token' %in% names(opt_args))
+    {
+        token <- opt_args[['token']]
+    }
+    else if(pushover_app.isset())
+    {
+        token <- get_pushover_app()
+    }
+    else
+    {
+        stop('Must provide application token')
+    }
+    
+    if('user' %in% names(opt_args))
+    {
+        user <- opt_args[['user']]
+    }
+    else if(pushover_user.isset())
+    {
+        user <- get_pushover_user()
+    }
+    else
+    {
+        stop('Must provide user key')
+    }
+    
+    return(device %in% get_devices(token, user))
 }
 
 

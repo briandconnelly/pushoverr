@@ -1,7 +1,8 @@
 # receipts.R contains functions that deal with handling receipts to emergency
 # priority messages
 
-#' Query Pushover to determine whether or not a given message has been seen
+
+#' Determine whether or not an emergency message has been acknowledged
 #'
 #' \code{check_receipt} issues a query to Pushover to determine whether or not
 #' an emergency-priority message has been acknowledged and when (if applicable).
@@ -17,7 +18,6 @@
 #' message.
 #'
 #' @export
-#' @aliases is.acknowledged
 #' @param token A application token (e.g., 'KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
 #' @param receipt A message receipt (e.g., 'KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
 #' @param info \code{is.valid_receipt} will print out additional information
@@ -25,7 +25,8 @@
 #' was accessed
 #' @return A \code{\link{PushoverResponse}} object containing the response from
 #' the server
-#' @seealso \code{\link{is.acknowledged}}
+#' @note The token argument is necessary, however it does not need to be given
+#' if the application token have been set with \code{\link{set_pushover_app}}.
 #' @importFrom httr GET content
 #' @examples
 #' response <- check_receipt(token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
@@ -37,13 +38,27 @@
 #'     cat('Message has been read.\n')
 #' }
 #'
-check_receipt <- function(token, receipt)
+check_receipt <- function(receipt, ...)
 {
-    if(missing(token)) stop("Must provide application token")
     if(missing(receipt)) stop("Must provide receipt")
     
-    url <- sprintf('https://api.pushover.net/1/receipts/%s.json', receipt)
+    opt_args <- list(...)
+    token <- NA
     
+    if('token' %in% names(opt_args))
+    {
+        token <- opt_args[['token']]
+    }
+    else if(pushover_app.isset())
+    {
+        token <- get_pushover_app()
+    }
+    else
+    {
+        stop('Must provide application token')
+    }
+    
+    url <- sprintf('https://api.pushover.net/1/receipts/%s.json', receipt)
     response <- GET(url=url, query=list('token'=token))
     
     attr(response$headers, 'class') <- 'list'
@@ -63,11 +78,20 @@ check_receipt <- function(token, receipt)
     }    
 }
 
-
+#' Check to see whether or not a message has been acknowledged
+#' 
+#' \code{is.acknowledged} checks to see whether or not the given emergency
+#' message receipt has been acknowledged or not.
+#' @rdname check_receipt
+#' @param receipt A receipt key given as response to an emergency message
+#' @param token A application token (e.g., 'KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
+#' @return A boolean indicating whether the message has been acknowledged
+#' (\code{TRUE}) or not (\code{FALSE})
 #' @export
-is.acknowledged <- function(token, receipt, info=TRUE)
-{
-    rsp <- check_receipt(token, receipt)
+#' 
+is.acknowledged <- function(receipt, info=TRUE, ...)
+{    
+    rsp <- check_receipt(receipt, ...)
     
     if(!is.null(rsp))
     {
