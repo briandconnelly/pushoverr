@@ -14,9 +14,11 @@
 #' \code{pushover_emergency} functions send messages with those priorities.
 #'
 #' @export
-#' @aliases pushover pushover_normal pushover_quiet pushover_high pushover_emergency
+#' @aliases pushover pushover_normal pushover_quiet pushover_high
+#' pushover_emergency
 #' @param message The message to be sent (max. 512 characters)
-#' @param ... Any additional message parameters (see \code{\link{PushoverMessage-class}})
+#' @param ... Any additional message parameters (see
+#' \code{\link{PushoverMessage-class}})
 #' @return A list containing a Pushover request token and a receipt token for
 #' emergency priority messages
 #' @note Pushover user/group keys and application tokens are requred for a

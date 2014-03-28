@@ -200,10 +200,12 @@ setGeneric("request", function(object) standardGeneric("request"))
 #' @param object A \code{\link{PushoverResponse-class}} object
 #' @return The string request token included as response to a Pushover query
 #' 
-setMethod("request", "PushoverResponse", function(object) return(object@request))
+setMethod("request", "PushoverResponse",
+          function(object) return(object@request))
 
 
-setGeneric("http_status_code", function(object) standardGeneric("http_status_code"))
+setGeneric("http_status_code",
+           function(object) standardGeneric("http_status_code"))
 #' Return the HTTP status code returned by a Pushover API query
 #' 
 #' Get the HTTP status code returned from a Pushover API query. Successful
@@ -238,7 +240,8 @@ setMethod("headers", "PushoverResponse",
           function(object) return(object@headers))
 
 
-setGeneric("content_value", function(object, param) standardGeneric("content_value"))
+setGeneric("content_value",
+           function(object, param) standardGeneric("content_value"))
 #' Get a value from a API query response
 #' 
 #' Pushover API calls return JSON data containing parameter-value data related
@@ -280,7 +283,8 @@ setGeneric("receipt", function(object) standardGeneric("receipt"))
 #' @aliases receipt
 #' @seealso \code{\link{check_receipt}}, \code{\link{is.acknowledged}} for
 #' checking receipt status
-#' @param object A \code{\link{PushoverResponse-class}} object containing a response from Pushover following a request
+#' @param object A \code{\link{PushoverResponse-class}} object containing a
+#' response from Pushover following a request
 #' @return A string containing a unique receipt token
 #' @examples
 #' \dontrun{

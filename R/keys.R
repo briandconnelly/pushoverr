@@ -12,11 +12,13 @@ env <- new.env()
 #' is valid or not according to Pushover's specifications. It does not determine
 #' whether or not the given token is associated with an application.
 #' 
-#' @note To acquire an application token, register your token at \url{https://pushover.net/apps}
+#' @note To acquire an application token, register your token at
+#' \url{https://pushover.net/apps}
 #'
 #' @export
 #' @param token A application token (e.g., 'KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
-#' @return A boolean value indicating if the application token is valid (\code{TRUE})
+#' @return A boolean value indicating if the application token is valid
+#' (\code{TRUE})
 #' or not (\code{FALSE})
 #' @examples
 #' \dontrun{
@@ -167,7 +169,8 @@ set_pushover_app <- function(token, user=NA)
 
 #' Determine whether the Pushover app token has been set
 #' 
-#' \code{pushover_app.isset} determines whether or not a Pushover app has been set
+#' \code{pushover_app.isset} determines whether or not a Pushover app has been
+#' set
 #' 
 #' @rdname set_pushover_app
 #' @export

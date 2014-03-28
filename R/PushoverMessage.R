@@ -1,20 +1,23 @@
 #' List of the priorities available and their descriptions
 #' @export
-pushover_priorities <- list('-1'='quiet', '0'='normal', '1'='high', '2'='emergency')
+pushover_priorities <- list('-1'='quiet', '0'='normal', '1'='high',
+                            '2'='emergency')
 
 
 #' Validate a given PushoverMessage object
 #'
 #' \code{validate_PushoverMessage} determines whether or not a given
-#' \code{PushoverMessage} object has valid slot values. It does not determine whether
-#' or not the given application token or user/group keys are registered with
-#' Pushover. This second step can be done with \code{\link{validate_key}} or
-#' \code{\link{is.valid_key}}. This function is automatically called when a
+#' \code{PushoverMessage} object has valid slot values. It does not determine
+#' whether or not the given application token or user/group keys are registered
+#' with Pushover. This second step can be done with \code{\link{validate_key}}
+#' or \code{\link{is.valid_key}}. This function is automatically called when a
 #' \code{PushoverMessage} object is created or \code{\link{validObject}} is
 #' called with an existing \code{PushoverMessage} object.
 #' 
-#' @note To acquire a user key, register an account at \url{https://pushover.net}
-#' @note To acquire an application token, register your token at \url{https://pushover.net/apps}
+#' @note To acquire a user key, register an account at
+#' \url{https://pushover.net}
+#' @note To acquire an application token, register your token at
+#' \url{https://pushover.net/apps}
 #'
 #' @param object A \code{\link{PushoverMessage}} object
 #' @return A boolean value indicating if the PushoverMessage object is
@@ -42,7 +45,7 @@ validate_PushoverMessage <- function(object)
     }
     else if(nchar(object@message) > 512)
     {
-        retval <- c(retval, "invalid message length (cannot be longer than 512 characters") 
+        retval <- c(retval,"invalid message length (cannot be longer than 512 characters") 
     }
     
     token_length <- length(object@token)
@@ -204,12 +207,20 @@ validate_PushoverMessage <- function(object)
 #' @slot title The title of the message (optional)
 #' @slot url A URL to be included in the message (optional, max. 512 characters)
 #' @slot url_title A title for the given url (optional, max. 100 characters)
-#' @slot priority The message's priority. One of: -1 (quiet), 0 (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a sound. Emergency messages require acknowledgement.
-#' @slot timestamp The time to associate with the message (default: now, format: UNIX time)
-#' @slot sound The sound to be played when the message is received (see \code{\link{get_pushover_sounds}})
-#' @slot callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \url{https://pushover.net/api#receipt})
-#' @slot retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
-#' @slot expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
+#' @slot priority The message's priority. One of: -1 (quiet), 0
+#' (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a
+#' sound. Emergency messages require acknowledgement.
+#' @slot timestamp The time to associate with the message (default: now, format:
+#' UNIX time)
+#' @slot sound The sound to be played when the message is received (see
+#' \code{\link{get_pushover_sounds}})
+#' @slot callback A callback URL. For emergency priority, a POST request will be
+#' sent to this URL when the message is acknowledged (see
+#' \url{https://pushover.net/api#receipt})
+#' @slot retry The number of seconds between re-sending of an unacknowledged
+#' emergency message (default: 60, min: 30)
+#' @slot expire The number of seconds until an unacknowledged emergency message
+#' will stop being resent (default: 3600, max: 86400).
 #' @note \code{PushoverMessage} objects are created with the
 #' \code{\link{PushoverMessage}} constructor (see Examples below).
 #' @seealso \code{\link{PushoverMessage}}
@@ -218,7 +229,9 @@ validate_PushoverMessage <- function(object)
 #' library(pushoverr)
 #' 
 #' # Create a PushoverMessage
-#' m1 <- PushoverMessage(message='Hi there', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+#' m1 <- PushoverMessage(message='Hi there',
+#'                       token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
+#'                       user='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
 #' }
 #'
 GenPushoverMessage <- setClass('PushoverMessage',
@@ -262,7 +275,8 @@ GenPushoverMessage <- setClass('PushoverMessage',
 #' 
 #' @export
 #' @param message The message to be sent (max. 512 characters)
-#' @param ... Any additional message parameters (for a list of these, see object slots for \code{\link{PushoverMessage-class}})
+#' @param ... Any additional message parameters (for a list of these, see object
+#' slots for \code{\link{PushoverMessage-class}})
 #' @return A PushoverMessage object
 #' @seealso \code{\link{PushoverMessage-class}}
 #' @note Pushover user/group keys and application tokens are requred for a
@@ -336,7 +350,8 @@ PushoverMessage <- function(message, ...)
 show_PushoverMessage <- function(object)
 {
     cat('PushoverMessage object:\n')
-    cat(sprintf('\tMessage: %s (%d chars)\n', object@message, nchar(object@message)))
+    cat(sprintf('\tMessage: %s (%d chars)\n', object@message,
+                nchar(object@message)))
     cat('\tAPI Token:', object@token, '\n')
     cat('\tUser Key:', object@user, '\n')
     cat('\tDevice:', object@device, '\n')
@@ -380,7 +395,8 @@ show_PushoverMessage <- function(object)
 #' @export
 #' @param object A \code{\link{PushoverMessage-class}} object
 #' 
-setMethod(f='show', signature='PushoverMessage', definition=show_PushoverMessage)
+setMethod(f='show', signature='PushoverMessage',
+          definition=show_PushoverMessage)
 
 
 #' Send a PushoverMessage object
@@ -442,7 +458,9 @@ setGeneric(name="send", def=function(object) standardGeneric("send"))
 #' \dontrun{
 #' library(pushoverr)
 #' 
-#' message <- PushoverMessage(message='Hello World', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi', user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
+#' message <- PushoverMessage(message='Hello World',
+#'                            token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
+#'                            user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
 #' response <- send(message)
 #' }
 #' 

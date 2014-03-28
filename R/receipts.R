@@ -6,8 +6,8 @@
 #'
 #' \code{check_receipt} issues a query to Pushover to determine whether or not
 #' an emergency-priority message has been acknowledged and when (if applicable).
-#' If a callback URL was specified with the message, it will also report whether or
-#' not that callback URL was POSTed to and when.
+#' If a callback URL was specified with the message, it will also report whether
+#' or not that callback URL was POSTed to and when.
 #' 
 #' \code{is.acknowledged} returns whether a message was acknowledged
 #' (\code{TRUE}) or not (\code{FALSE}) as well as some information about when
@@ -105,21 +105,25 @@ is.acknowledged <- function(receipt, info=TRUE, ...)
                 if(acknowledged)
                 {
                     ack_raw <- content_value(rsp, 'acknowledged_at')
-                    ack_time <- as.POSIXct(as.numeric(ack_raw), origin = "1970-01-01")
+                    ack_time <- as.POSIXct(as.numeric(ack_raw),
+                                           origin="1970-01-01")
                 }
 
                 callback_time <- ''
                 if(calledback)
                 {
                     cb_raw <- content_value(rsp, 'called_back_at')
-                    callback_time <- as.POSIXct(as.numeric(cb_raw), origin = "1970-01-01")
+                    callback_time <- as.POSIXct(as.numeric(cb_raw),
+                                                origin="1970-01-01")
                 }
                 
                 exp_raw <- content_value(rsp, 'expires_at')
-                exp_time <- callback_time <- as.POSIXct(as.numeric(exp_raw), origin = "1970-01-01")
+                exp_time <- callback_time <- as.POSIXct(as.numeric(exp_raw),
+                                                        origin="1970-01-01")
                 
                 ld_raw <- content_value(rsp, 'last_delivered_at')
-                ld_time <- callback_time <- as.POSIXct(as.numeric(ld_raw), origin = "1970-01-01")
+                ld_time <- callback_time <- as.POSIXct(as.numeric(ld_raw),
+                                                       origin="1970-01-01")
                 
                 cat(paste('Acknowledged:', content_value(rsp, 'acknowledged'), '\n'))
                 cat(paste('Acknowledged At:', ack_time, '\n'))
@@ -152,8 +156,8 @@ is.acknowledged <- function(receipt, info=TRUE, ...)
 #'
 #' @export
 #' @param receipt A message receipt (e.g., 'KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
-#' @return A boolean value indicating if the message receipt is valid (\code{TRUE})
-#' or not (\code{FALSE})
+#' @return A boolean value indicating if the message receipt is valid
+#' (\code{TRUE}) or not (\code{FALSE})
 #' @seealso \code{\link{check_receipt}}
 #' @examples
 #' \dontrun{
