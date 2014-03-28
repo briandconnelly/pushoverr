@@ -2,6 +2,7 @@
 # Functions and other objects that deal with the sounds played when a user
 # receives a notification.
 
+#' \code{pushover_sounds} is a vector containing all of the sounds that Pushover supports
 #' @export
 pushover_sounds <- c('bike', 'bugle', 'cashregister', 'classical', 'cosmic',
                      'falling', 'gamelan', 'incoming', 'intermission', 'magic',
@@ -17,15 +18,16 @@ pushover_sounds <- c('bike', 'bugle', 'cashregister', 'classical', 'cosmic',
 #' when the message is sent.
 #'
 #' @export
-#' @param token The application token. This argument is not needed if an
-#' application token has already been set with \code{\link{set_pushover_app}}.
+#' @param ... An application token can be specified with \code{token}
 #' @return A list of available sounds and their descriptions
 #' @importFrom httr GET
 #' @examples
+#' \dontrun{
 #' sounds <- get_pushover_sounds()
 #' for (s in names(sounds))
 #' {
 #'     cat(paste(s, ":", sounds[s], "\n"))
+#' }
 #' }
 #' 
 get_pushover_sounds <- function(...)

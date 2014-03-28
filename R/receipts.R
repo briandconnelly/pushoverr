@@ -18,17 +18,15 @@
 #' message.
 #'
 #' @export
-#' @param token A application token (e.g., 'KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
 #' @param receipt A message receipt (e.g., 'KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
-#' @param info \code{is.valid_receipt} will print out additional information
-#' about who acknowledged the message, when, and if and when the callback URL
-#' was accessed
+#' @param ... An application token can be specified with \code{token}
 #' @return A \code{\link{PushoverResponse}} object containing the response from
 #' the server
 #' @note The token argument is necessary, however it does not need to be given
 #' if the application token have been set with \code{\link{set_pushover_app}}.
 #' @importFrom httr GET content
 #' @examples
+#' \dontrun{
 #' response <- check_receipt(token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
 #'                           receipt='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
 #'                           
@@ -36,6 +34,7 @@
 #'                    receipt='KAWXTswy4cekx6vZbHBKbCKk1c1fdf'))
 #' {
 #'     cat('Message has been read.\n')
+#' }
 #' }
 #'
 check_receipt <- function(receipt, ...)
@@ -83,10 +82,10 @@ check_receipt <- function(receipt, ...)
 #' \code{is.acknowledged} checks to see whether or not the given emergency
 #' message receipt has been acknowledged or not.
 #' @rdname check_receipt
-#' @param receipt A receipt key given as response to an emergency message
-#' @param token A application token (e.g., 'KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
-#' @return A boolean indicating whether the message has been acknowledged
-#' (\code{TRUE}) or not (\code{FALSE})
+#' @param info \code{is.acknowledged} will print out additional information
+#' about who acknowledged the message, when, and if and when the callback URL
+#' @return \code{is.acknowledged} returns a boolean indicating whether the
+#' message has been acknowledged (\code{TRUE}) or not (\code{FALSE})
 #' @export
 #' 
 is.acknowledged <- function(receipt, info=TRUE, ...)
@@ -157,7 +156,9 @@ is.acknowledged <- function(receipt, info=TRUE, ...)
 #' or not (\code{FALSE})
 #' @seealso \code{\link{check_receipt}}
 #' @examples
+#' \dontrun{
 #' is.valid_receipt(token='KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
+#' }
 #' 
 is.valid_receipt <- function(receipt)
 {

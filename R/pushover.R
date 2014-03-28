@@ -16,18 +16,7 @@
 #' @export
 #' @aliases pushover pushover_normal pushover_quiet pushover_high pushover_emergency
 #' @param message The message to be sent (max. 512 characters)
-#' @param token The application token
-#' @param user The user or group key to send the message to
-#' @param device The device to send the notification to (optional)
-#' @param title The title of the message (optional)
-#' @param url A URL to be included in the message (optional, max. 512 characters)
-#' @param url_title A title for the given url (optional, max. 100 characters)
-#' @param priority The message's priority. One of: -1 (quiet), 0 (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a sound. Emergency messages require acknowledgement.
-#' @param timestamp The time to associate with the message (default: now, format: UNIX time)
-#' @param sound The sound to be played when the message is received (see \code{\link{get_pushover_sounds}}) (default: 'pushover')
-#' @param callback A callback URL. For emergency priority, a POST request will be sent to this URL when the message is acknowledged (see \link{https://pushover.net/api#receipt}) (optional)
-#' @param retry The number of seconds between re-sending of an unacknowledged emergency message (default: 60, min: 30)
-#' @param expire The number of seconds until an unacknowledged emergency message will stop being resent (default: 3600, max: 86400).
+#' @param ... Any additional message parameters (see \code{\link{PushoverMessage-class}})
 #' @return A list containing a Pushover request token and a receipt token for
 #' emergency priority messages
 #' @note Pushover user/group keys and application tokens are requred for a
@@ -36,6 +25,7 @@
 #' respectively.
 #' @note The available sounds are listed in the `pushover_sounds` variable
 #' @examples
+#' \dontrun{
 #' # Send a pushover message
 #' pushover(message='Hello World!', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
 #'          user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
@@ -54,6 +44,7 @@
 #'                              
 #' # Send a quiet message
 #' pushover_quiet(message='Pssst. Walk the dog when you wake up')
+#' }
 
 pushover <- function(message, ...)
 {    

@@ -7,15 +7,18 @@
 #' given by the user (specified by their user key)
 #'
 #' @export
-#' @param token The application token
-#' @param user The user's identifier
+#' @param ... An app token and/or user key can be specified with the
+#' \code{token} and \code{user} aguments, respectively
 #' @note The token and user arguments are necessary, however they do not need
 #' to be given if they have been set with \code{\link{set_pushover_user}} and
 #' \code{\link{set_pushover_app}}, respectively.
 #' @return \code{get_devices} returns a vector of device names
 #' @examples
+#' \dontrun{
 #' available_devs <- get_devices(token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
 #'                               user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
+#' }
+#'
 get_devices <- function(...)
 {
     opt_args <- list(...)
@@ -61,17 +64,17 @@ get_devices <- function(...)
 #' @export
 #' @rdname get_devices
 #' @param device A device name (e.g., 'phone')
-#' @param token The application token
-#' @param user The user's identifier
 #' @return \code{is.device} returns a boolean value indicating if the device is
 #' registered (\code{TRUE}) or not (\code{FALSE})
 #' @note The token and user arguments are necessary, however they do not need
 #' to be given if they have been set with \code{\link{set_pushover_user}} and
 #' \code{\link{set_pushover_app}}, respectively.
 #' @examples
+#' \dontrun{
 #' is.device(device='phone',
 #'           token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
 #'           user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
+#' }
 #'                
 is.device <- function(device, ...)
 {
@@ -122,7 +125,9 @@ is.device <- function(device, ...)
 #' @return A boolean value indicating if the device name is valid (\code{TRUE})
 #' or not (\code{FALSE})
 #' @examples
+#' \dontrun{
 #' is.valid_device(device='phone')
+#' }
 #' 
 is.valid_device <- function(device)
 {

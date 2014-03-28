@@ -58,6 +58,7 @@ validate_PushoverResponse <- function(object)
 #' @seealso \code{\link{PushoverResponse}}
 #' 
 #' @examples 
+#' \dontrun{
 #' library(pushoverr)
 #' 
 #' # Create PushoverResponse object based on a POST to Pushover
@@ -76,6 +77,7 @@ validate_PushoverResponse <- function(object)
 #'                              request='8345bfe5fbd7d346028f2863de77c8c4',
 #'                              status_code=200,cheaders=resp$headers,
 #'                              content=content(rsp))
+#' }
 #'  
 GenPushoverResponse <- setClass('PushoverResponse',
                                 slots=list(status='numeric',
@@ -99,8 +101,6 @@ GenPushoverResponse <- setClass('PushoverResponse',
 #' from responses to Pushover queries
 #' 
 #' @export
-#' @rdname PushoverResponse-class
-#' @name PushoverResponse-class
 #' @param status The status response from Pushover 1=good, 0=problem
 #' @param request The unique identifier associated with the message
 #' @param status_code The HTTP status code returned
@@ -110,6 +110,7 @@ GenPushoverResponse <- setClass('PushoverResponse',
 #' @seealso \code{\link{PushoverResponse-class}}
 #' 
 #' @examples 
+#' \dontrun{
 #' library(pushoverr)
 #' 
 #' # Create PushoverResponse object
@@ -119,6 +120,7 @@ GenPushoverResponse <- setClass('PushoverResponse',
 #'                              request='8345bfe5fbd7d346028f2863de77c8c4',
 #'                              status_code=200,cheaders=resp$headers,
 #'                              content=content(rsp))
+#' }
 #'
 PushoverResponse <- function(status=NA_integer_, request=NA_character_,
                              status_code=NA_integer_, headers=NA, content=NA)
@@ -249,15 +251,17 @@ setGeneric("content_value", function(object, param) standardGeneric("content_val
 #' @export
 #' @aliases content_value
 #' @param object A \code{\link{PushoverResponse-class}} object
+#' @param param The name of a parameter in the response
 #' @return A string containing the value associated with the given parameter.
 #' @examples
-#' 
+#' \dontrun{
 #' # Get the acknowledged status of an emergency message
 #' message <- PushoverMessage(message='EMERGENCY!', priority=2,
 #'                            token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
 #'                            user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
 #' response <- send(message)
 #' acknowledged <- as.numeric(content_value(response, 'acknowledged'))
+#' }
 #' 
 setMethod("content_value", "PushoverResponse",
           function(object, param) return(object@content[[param]]))
@@ -269,7 +273,7 @@ setGeneric("receipt", function(object) standardGeneric("receipt"))
 #' Receipts are unique tokens returned by Pushover servers in response to
 #' emergency priority messages being sent. Receipts can be used to query whether
 #' or not the message has been acknowledged, when, and by whom. This can be done
-#' with pushoverr using either \code{\link{check_receipt}} or
+#' with \pkg{pushoverr} using either \code{\link{check_receipt}} or
 #' \code{\link{is.acknowledged}}.
 #' 
 #' @export
@@ -279,6 +283,7 @@ setGeneric("receipt", function(object) standardGeneric("receipt"))
 #' @param object A \code{\link{PushoverResponse-class}} object containing a response from Pushover following a request
 #' @return A string containing a unique receipt token
 #' @examples
+#' \dontrun{
 #' # Send an emergency message to a group, and see if it's been acknowledged
 #' msg <- PushoverMessage(mesage='Get back to work',
 #'                        token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
@@ -290,6 +295,7 @@ setGeneric("receipt", function(object) standardGeneric("receipt"))
 #'                    receipt=r))
 #' {
 #'     cat('Message has been read.\n')
+#' }
 #' }
 #' 
 setMethod("receipt", "PushoverResponse",

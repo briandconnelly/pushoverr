@@ -6,13 +6,15 @@
 \description{
 \code{pushoverr} is package for sending push notifications
 to iOS and Android devices using
-\href{https://pushover.net}{Pushover} . Messages are
-created using \code{\link{PushoverMessage}} objects, and
-responses are stored in \code{\link{PushoverResponse}}
-objects. Messages can be quickly sent using the
+\href{https://pushover.net}{Pushover}.
+Messages can be quickly sent using the
 \code{\link{pushover}}, \code{\link{pushover_quiet}},
 \code{\link{pushover_normal}}, \code{\link{pushover_high}},
 and \code{\link{pushover_emergency}} functions.
+Behind the scenes, messages are
+created using \code{\link{PushoverMessage}} objects, and
+responses are stored in \code{\link{PushoverResponse}}
+objects.
 }
 \details{
 For more information, browse the package index by following
@@ -29,13 +31,13 @@ Brian Connelly
 }
 \seealso{
 GitHub Repository:
-\link{https://github.com/briandconnelly/pushoverr}
+\url{https://github.com/briandconnelly/pushoverr}
 
 Bug Reports and Feature Requests:
-\link{https://github.com/briandconnelly/pushoverr/issues}
+\url{https://github.com/briandconnelly/pushoverr/issues}
 
-Pushover: \link{https://pushover.net}
+Pushover: \url{https://pushover.net}
 
-Pushover API: \link{https://pushover.net/api}
+Pushover API: \url{https://pushover.net/api}
 }
 
