@@ -1,3 +1,5 @@
+#' @import methods
+
 #' List of the priorities available and their descriptions
 #' @export
 pushover_priorities <- list('-1'='quiet', '0'='normal', '1'='high',
