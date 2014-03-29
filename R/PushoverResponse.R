@@ -56,6 +56,7 @@ validate_PushoverResponse <- function(object)
 #' @note \code{PushoverResponse} objects can be created with \code{\link{new}}
 #' or with the \code{\link{PushoverResponse}} constructor (see Examples below).
 #' @seealso \code{\link{PushoverResponse}}
+#' @import methods
 #' 
 #' @examples 
 #' \dontrun{

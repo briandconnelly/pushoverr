@@ -1,5 +1,3 @@
-#' @import methods
-
 #' List of the priorities available and their descriptions
 #' @export
 pushover_priorities <- list('-1'='quiet', '0'='normal', '1'='high',
@@ -226,6 +224,7 @@ validate_PushoverMessage <- function(object)
 #' @note \code{PushoverMessage} objects are created with the
 #' \code{\link{PushoverMessage}} constructor (see Examples below).
 #' @seealso \code{\link{PushoverMessage}}
+#' @import methods
 #' @examples
 #' \dontrun{
 #' library(pushoverr)
@@ -467,3 +466,4 @@ setGeneric(name="send", def=function(object) standardGeneric("send"))
 #' }
 #' 
 setMethod(f="send", signature="PushoverMessage", definition=send_pushovermessage)
+
