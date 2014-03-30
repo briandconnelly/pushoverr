@@ -20,12 +20,12 @@ send a message.
 
 ## Installation
 
-pushoverr has been submitted to CRAN, but has not yet been approved. Once that's been done, it'll be as
-easy as running:
+Installing pushoverr is as easy as running:
 
     install.packages('pushoverr')
 
-Until then, see below for notes on installing via GitHub.
+If you're interested in running the development version or previous versions,
+see the instructions below for installing from the GitHub repository.
 
 
 ### Latest and Greatest (Fingers Crossed) via GitHub
@@ -107,6 +107,7 @@ GitHub](https://github.com/briandconnelly/pushoverr/issues).
     * [API](https://pushover.net/api)
 * [NotifyR](http://cran.r-project.org/web/packages/notifyR/index.html), an
 alternate Pushover tool for R
+* [CRAN Info for pushoverr](http://cran.r-project.org/web/packages/pushoverr/index.html)
 
 ## Disclaimer
 This package and its author are not affiliated with
