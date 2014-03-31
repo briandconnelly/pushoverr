@@ -15,7 +15,10 @@ have that, log in and [register an
 application](https://pushover.net/apps/build). You should now have two
 codes---a **user key** and an **API token/key**. These are what identify you
 and your app(s) to Pushover. You'll pass these along to pushoverr whenever you
-send a message.
+send a message. You'll also need the Pushover app for
+[iOS](https://pushover.net/clients/ios) or
+[Android](https://pushover.net/clients/android) (desktop notifications coming
+soon).
 
 
 ## Installation
@@ -73,7 +76,7 @@ acknowledged. `pushoverr` provides easy methods for sending these:
 
 Or more urgently:
 
-    pushover_emergency(message='The kittens are awake, and they're angry!', user=<YOUR USER KEY>, token=<YOUR APP TOKEN>)
+    pushover_emergency(message='The kittens are awake, and they are angry!', user=<YOUR USER KEY>, token=<YOUR APP TOKEN>)
 
 Emergency messages return a receipt token that can be checked with
 `is.acknowledged()` to see whether or not it has been acknowledged.
@@ -93,6 +96,14 @@ And to temporarily use a different app token or user:
     pushover('You can get with this (app)')
     pushover('Or you can get with that (app)', token=<OTHER APP TOKEN>)
 
+
+### Example 4: Sending to a Specific Device
+
+If you have more than one device with Pushover, you can also send messages to a
+specific device:
+
+
+    pushover('If you pretend like this is important, you can walk out of the boring meeting', device='Phone')
 
 
 ## Feature Requests and Bug Reports
