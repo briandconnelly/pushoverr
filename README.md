@@ -96,6 +96,10 @@ And to temporarily use a different app token or user:
     pushover('You can get with this (app)')
     pushover('Or you can get with that (app)', token=<OTHER APP TOKEN>)
 
+*Tip*: If you'll always be using the same user key and app token, you can add
+this step to your `Rprofile` file (see `?Startup`) so that it is done
+automatically each time R is started.
+
 
 ### Example 4: Sending to a Specific Device
 
