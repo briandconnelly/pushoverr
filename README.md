@@ -27,20 +27,17 @@ Installing pushoverr is as easy as running:
 
     install.packages('pushoverr')
 
-If you're interested in running the development version or previous versions,
-see the instructions below for installing from the GitHub repository.
-
 
 ### Latest and Greatest (Fingers Crossed) via GitHub
 
-If you like living on the edge, you can use
+If you like living on the edge (or need a previous version), you can use
 [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to
 install the latest and greatest version of pushoverr from GitHub. To do so:
 
     library(devtools)
     install_github('briandconnelly/pushoverr')
 
-You'll also need to make sure that you have the the excellent
+You'll also need to make sure that you have the excellent
 [httr](http://cran.r-project.org/web/packages/httr/index.html) package, which
 makes working with web connections easy.  For an up-to-date R setup, this can
 be done by running `install.packages('httpr')`.
@@ -53,6 +50,7 @@ notifications. To begin using pushoverr, you'll need to first load the library.
 To do this, run:
 
     library(pushoverr)
+
     
 ### Example 1: Send Yourself A Message
 
@@ -117,12 +115,13 @@ GitHub](https://github.com/briandconnelly/pushoverr/issues).
 
 ## Related Links
 * [Pushover](https://pushover.net)
-    * [Terms of Service](https://pushover.net/terms)
     * [FAQ](https://pushover.net/faq)
     * [API](https://pushover.net/api)
+    * [Terms of Service](https://pushover.net/terms)
 * [NotifyR](http://cran.r-project.org/web/packages/notifyR/index.html), an
 alternate Pushover tool for R
 * [CRAN Info for pushoverr](http://cran.r-project.org/web/packages/pushoverr/index.html)
+
 
 ## Disclaimer
 This package and its author are not affiliated with

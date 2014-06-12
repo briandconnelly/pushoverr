@@ -1,3 +1,8 @@
+# pushoverr 0.1.2
+
+* Fixed small issue with user/token storage, which allowed similarly named variables outside the namespace to be used
+* pushover_* helper functions now return invisible values. Request tokens can still be saved to a variable, but will not be printed when the functions are not part of an assignment operation. The return values of `pushover_high` are visible.
+
 # pushoverr 0.1.1
 
 * Updates for CRAN submission

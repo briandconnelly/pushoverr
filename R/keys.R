@@ -164,7 +164,7 @@ set_pushover_app <- function(token, user=NA)
     
     if(!is.na(user)) set_pushover_user(user)
     
-    assign('token', token, envir=env)
+    assign('token', token, envir=env, inherits=FALSE)
 }
 
 #' Determine whether the Pushover app token has been set
@@ -176,7 +176,7 @@ set_pushover_app <- function(token, user=NA)
 #' @export
 #' @return \code{pushover_app.isset} returns a boolean indicating whether the
 #' app token has been set (\code{TRUE}) or not (\code{FALSE}).
-pushover_app.isset <- function() exists('token', envir=env)
+pushover_app.isset <- function() exists('token', envir=env, inherits=FALSE)
 
 
 #' Forget about the current Pushover App
@@ -186,7 +186,7 @@ pushover_app.isset <- function() exists('token', envir=env)
 #' 
 #' @rdname set_pushover_app
 #' @export
-unset_pushover_app <- function() rm('token', envir=env)
+unset_pushover_app <- function() rm('token', envir=env, inherits=FALSE)
 
 
 #' Get the current pushover app token
@@ -198,7 +198,7 @@ unset_pushover_app <- function() rm('token', envir=env)
 #' @export
 #' @return \code{get_pushover_app} returns a string representing the token
 #' associated with the current app (if one is set)
-get_pushover_app <- function() return(get('token', envir=env))
+get_pushover_app <- function() get('token', envir=env, inherits=FALSE)
 
 
 #' Use a Pushover user key for all subsequent queries
@@ -209,7 +209,7 @@ get_pushover_app <- function() return(get('token', envir=env))
 #' 
 #' @export
 #' @rdname set_pushover_app
-#' @argument user The user key
+#' @param user The user key
 #' @examples
 #' \dontrun{
 #' # Set the Pushover user account to use
@@ -238,7 +238,7 @@ set_pushover_user <- function(user)
         stop('invalid user/group key')
     }
     
-    assign('user', user, envir=env)
+    assign('user', user, envir=env, inherits=FALSE)
 }
 
 
@@ -252,7 +252,7 @@ set_pushover_user <- function(user)
 #' @return \code{pushover_user.isset} returns  boolean indicating whether the
 #' user/group is set
 #' (\code{TRUE}) or not (\code{FALSE}).
-pushover_user.isset <- function() exists('user', envir=env)
+pushover_user.isset <- function() exists('user', envir=env, inherits=FALSE)
 
 
 
@@ -273,10 +273,8 @@ pushover_user.isset <- function() exists('user', envir=env)
 #' # Forget about the current Pushover user
 #' unset_pushover_user()
 #' }
-unset_pushover_user <- function()
-{
-    rm('user', envir=env)
-}
+unset_pushover_user <- function() rm('user', envir=env, inherits=FALSE)
+
 
 #' \code{get_pushover_user} gets the key associated with the current Pushover
 #' user/group
@@ -284,4 +282,4 @@ unset_pushover_user <- function()
 #' user/group key
 #' @rdname set_pushover_app
 #' @export
-get_pushover_user <- function() return(get('user', envir=env))
+get_pushover_user <- function() get('user', envir=env, inherits=FALSE)

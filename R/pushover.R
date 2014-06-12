@@ -20,7 +20,8 @@
 #' @param ... Any additional message parameters (see
 #' \code{\link{PushoverMessage-class}})
 #' @return A list containing a Pushover request token and a receipt token for
-#' emergency priority messages
+#' emergency priority messages. When used outside of an assignment, these
+#' return values will not be displayed for non-emergency messages.
 #' @note Pushover user/group keys and application tokens are requred for a
 #' message. They can either be specified as arguments or be set earlier with
 #' \code{\link{set_pushover_user}} and \code{\link{set_pushover_app}},
@@ -59,8 +60,9 @@ pushover <- function(message, ...)
         if(msg@priority==2)
         {
             ret['receipt'] <- receipt(response)
+            return(ret)
         }
-        return(ret)
+        return(invisible(ret))
     }
     else
     {
@@ -71,19 +73,19 @@ pushover <- function(message, ...)
 #' @export
 pushover_quiet <- function(message, ...)
 {
-    return(pushover(message=message, priority=-1, ...))
+    return(invisible(pushover(message=message, priority=-1, ...)))
 }
 
 #' @export
 pushover_normal <- function(message, ...)
 {
-    return(pushover(message=message, priority=0, ...))
+    return(invisible(pushover(message=message, priority=0, ...)))
 }
 
 #' @export
 pushover_high <- function(message, ...)
 {
-    return(pushover(message=message, priority=1, ...))
+    return(invisible(pushover(message=message, priority=1, ...)))
 }
 
 #' @export
