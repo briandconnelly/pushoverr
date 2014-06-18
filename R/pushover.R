@@ -10,12 +10,13 @@
 #' \code{pushover} sends a message (push notification) to a user or group.
 #' Messages can be given different priorities, play different sounds, or require
 #' acknowledgments. A unique request token is returned. The
-#' \code{pushover_normal}, \code{pushover_quiet}, \code{pushover_high}, and
-#' \code{pushover_emergency} functions send messages with those priorities.
+#' \code{pushover_normal}, \code{pushover_silent}, \code{pushover_quiet},
+#' \code{pushover_high}, and \code{pushover_emergency} functions send messages
+#' with those priorities.
 #'
 #' @export
 #' @aliases pushover pushover_normal pushover_quiet pushover_high
-#' pushover_emergency
+#' pushover_emergency pushover_silent
 #' @param message The message to be sent (max. 512 characters)
 #' @param ... Any additional message parameters (see
 #' \code{\link{PushoverMessage-class}})
@@ -68,6 +69,12 @@ pushover <- function(message, ...)
     {
         stop(response@content$errors)
     }
+}
+
+#' @export
+pushover_silent <- function(message, ...)
+{
+    return(invisible(pushover(message=message, priority=-2, ...)))
 }
 
 #' @export

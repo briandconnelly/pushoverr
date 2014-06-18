@@ -209,7 +209,6 @@ get_pushover_app <- function() get('token', envir=env, inherits=FALSE)
 #' 
 #' @export
 #' @rdname set_pushover_app
-#' @param user The user key
 #' @examples
 #' \dontrun{
 #' # Set the Pushover user account to use

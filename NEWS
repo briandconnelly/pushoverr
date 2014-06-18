@@ -1,3 +1,7 @@
+# pushoverr 0.1.3
+
+* Added support for -2 priority messages ('silent'): http://updates.pushover.net/post/87000633097/api-change-to-message-priority-1-new-priority-2
+
 # pushoverr 0.1.2
 
 * Fixed small issue with user/token storage, which allowed similarly named variables outside the namespace to be used

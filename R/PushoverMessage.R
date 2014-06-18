@@ -1,7 +1,7 @@
 #' List of the priorities available and their descriptions
 #' @export
-pushover_priorities <- list('-1'='quiet', '0'='normal', '1'='high',
-                            '2'='emergency')
+pushover_priorities <- list('-2'='silent', '-1'='quiet', '0'='normal',
+                            '1'='high', '2'='emergency')
 
 
 #' Validate a given PushoverMessage object
@@ -207,7 +207,7 @@ validate_PushoverMessage <- function(object)
 #' @slot title The title of the message (optional)
 #' @slot url A URL to be included in the message (optional, max. 512 characters)
 #' @slot url_title A title for the given url (optional, max. 100 characters)
-#' @slot priority The message's priority. One of: -1 (quiet), 0
+#' @slot priority The message's priority. One of: -2 (silent), -1 (quiet), 0
 #' (normal, default), 1 (high), 2 (emergency). Quiet messages do not play a
 #' sound. Emergency messages require acknowledgement.
 #' @slot timestamp The time to associate with the message (default: now, format:
@@ -466,4 +466,3 @@ setGeneric(name="send", def=function(object) standardGeneric("send"))
 #' }
 #' 
 setMethod(f="send", signature="PushoverMessage", definition=send_pushovermessage)
-
