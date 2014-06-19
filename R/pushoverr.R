@@ -1,8 +1,9 @@
-#' pushoverr: Send push notifications to iOS and Android devices using Pushover
+#' pushoverr: Send push notifications using Pushover
 #' 
-#' \code{pushoverr} is package for sending push notifications to iOS and Android
-#' devices using \href{https://pushover.net}{Pushover}. Messages can be quickly
-#' sent using the \code{\link{pushover}}, \code{\link{pushover_silent}}, 
+#' \code{pushoverr} is package for sending push notifications to mobile devices
+#' (iOS and Android) and the desktop using
+#' \href{https://pushover.net}{Pushover}. Messages can be quickly sent using the
+#' \code{\link{pushover}}, \code{\link{pushover_silent}},
 #' \code{\link{pushover_quiet}}, \code{\link{pushover_normal}},
 #' \code{\link{pushover_high}}, and \code{\link{pushover_emergency}} functions.
 #' Behind the scenes, messages are created using \code{\link{PushoverMessage}}
