@@ -14,7 +14,7 @@ BugReports: https://github.com/briandconnelly/pushoverr/issues
 ByteCompile: no
 NeedsCompilation: no
 Depends:
-    R (>= 3.0.0),
+    R (>= 3.0.0)
 Imports:
     httr,
     methods

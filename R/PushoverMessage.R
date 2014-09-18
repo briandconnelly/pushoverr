@@ -409,7 +409,6 @@ setMethod(f='show', signature='PushoverMessage',
 #' @param object A \code{\link{PushoverMessage-class}} object
 #' @return A \code{\link{PushoverResponse}} object containing information about
 #' the server's response.
-#' @importFrom httr POST
 #' 
 send_pushovermessage <- function(object)
 {

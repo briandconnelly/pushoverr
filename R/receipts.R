@@ -24,7 +24,6 @@
 #' the server
 #' @note The token argument is necessary, however it does not need to be given
 #' if the application token have been set with \code{\link{set_pushover_app}}.
-#' @importFrom httr GET content
 #' @examples
 #' \dontrun{
 #' response <- check_receipt(token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',

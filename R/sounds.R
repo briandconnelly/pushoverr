@@ -18,7 +18,6 @@ pushover_sounds <- c('bike', 'bugle', 'cashregister', 'classical', 'cosmic',
 #' @export
 #' @param ... An application token can be specified with \code{token}
 #' @return A list of available sounds and their descriptions
-#' @importFrom httr GET
 #' @examples
 #' \dontrun{
 #' sounds <- get_pushover_sounds()

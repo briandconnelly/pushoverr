@@ -46,7 +46,6 @@ is.valid_token <- function(token)
 #' \code{\link{set_pushover_app}}.
 #' @return \code{validate_key} returns a \code{\link{PushoverResponse}} object
 #' containing the response from the server
-#' @importFrom httr POST content
 #' @examples
 #' \dontrun{
 #' response <- validate_key(token='KzGDORePK8gMaC0QOYAMyEEuzJnyU',

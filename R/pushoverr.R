@@ -22,4 +22,5 @@
 #' @seealso Bug Reports and Feature Requests: \url{https://github.com/briandconnelly/pushoverr/issues}
 #' @seealso Pushover: \url{https://pushover.net}
 #' @seealso Pushover API: \url{https://pushover.net/api}
+#' @import httr
 NULL
