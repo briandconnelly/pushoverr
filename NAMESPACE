@@ -2,6 +2,7 @@
 
 export(PushoverMessage)
 export(PushoverResponse)
+export(cancel_receipt)
 export(check_receipt)
 export(get_devices)
 export(get_pushover_app)

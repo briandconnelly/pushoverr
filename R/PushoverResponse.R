@@ -63,7 +63,7 @@ validate_PushoverResponse <- function(object)
 #' library(pushoverr)
 #' 
 #' # Create PushoverResponse object based on a POST to Pushover
-#' response <- POST(url="https://api.pushover.net:443/1/messages.json",
+#' response <- POST(url="https://api.pushover.net/1/messages.json",
 #'                  body=params)
 #' response <- new("PushoverResponse", status=1,
 #'                 request='8345bfe5fbd7d346028f2863de77c8c4',
@@ -72,7 +72,7 @@ validate_PushoverResponse <- function(object)
 #'                 content=content(rsp))
 #'
 #' # Create PushoverResponse object using constructor
-#' response <- POST(url="https://api.pushover.net:443/1/messages.json",
+#' response <- POST(url="https://api.pushover.net/1/messages.json",
 #'                  body=params)
 #' response <- PushoverResponse(status=1,
 #'                              request='8345bfe5fbd7d346028f2863de77c8c4',
@@ -115,7 +115,7 @@ GenPushoverResponse <- setClass('PushoverResponse',
 #' library(pushoverr)
 #' 
 #' # Create PushoverResponse object
-#' response <- POST(url="https://api.pushover.net:443/1/messages.json",
+#' response <- POST(url="https://api.pushover.net/1/messages.json",
 #'                  body=params)
 #' response <- PushoverResponse(status=1,
 #'                              request='8345bfe5fbd7d346028f2863de77c8c4',

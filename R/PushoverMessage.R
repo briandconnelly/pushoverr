@@ -427,7 +427,7 @@ send_pushovermessage <- function(object)
     if(!is.na(object@timestamp)) params['timestamp'] <- object@timestamp
     if(!is.na(object@callback)) params['callback'] <- object@callback
     
-    response <- POST(url="https://api.pushover.net:443/1/messages.json",
+    response <- POST(url="https://api.pushover.net/1/messages.json",
                      body=params)
     
     attr(response$headers, 'class') <- 'list'
