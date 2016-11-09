@@ -113,23 +113,3 @@ is.device <- function(device, ...)
     return(device %in% get_devices(token, user))
 }
 
-
-#' Determine whether or not a given device name is valid
-#'
-#' \code{is.valid_device} determines whether or not a given device name is valid
-#' or not according to Pushover's specifications. It does not determine whether
-#' or not the given device is registered to a user.
-#'
-#' @export
-#' @param device A device name (e.g., 'phone')
-#' @return A boolean value indicating if the device name is valid (\code{TRUE})
-#' or not (\code{FALSE})
-#' @examples
-#' \dontrun{
-#' is.valid_device(device='phone')
-#' }
-#' 
-is.valid_device <- function(device)
-{
-    return(grepl('^[a-zA-Z0-9_-]{1,25}$', device))
-}

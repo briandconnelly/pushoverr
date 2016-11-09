@@ -1,102 +1,127 @@
-# pushover.R
-# Functions that deal with building and sending messages to
-# Pushover. The actual structures of the message objects and server response
-# objects, which are created and used here, are defined in PushoverMessage.R and
-# PushoverResponse.R.
-
-
 #' Send a message using Pushover
 #'
 #' \code{pushover} sends a message (push notification) to a user or group.
 #' Messages can be given different priorities, play different sounds, or require
-#' acknowledgments. A unique request token is returned. The
-#' \code{pushover_normal}, \code{pushover_silent}, \code{pushover_quiet},
-#' \code{pushover_high}, and \code{pushover_emergency} functions send messages
-#' with those priorities.
+#' acknowledgments. The \code{pushover_normal}, \code{pushover_silent},
+#' \code{pushover_quiet}, \code{pushover_high}, and \code{pushover_emergency}
+#' functions send messages with those priorities.
 #'
+#' @param message The message to be sent (max. 1024 characters)
+#' @param title (optional) The message's title
+#' @param priority Message priority (-2: silent, -1: quiet, 0: normal (default), 1: high, 2: emergency)
+#' @param user user/group key (see \code{\link{set_pushover_user}})
+#' @param app application token (see \code{\link{set_pushover_app}})
+#' @param device (optional) name of the device(s) to send message to. Defaults to all devices.
+#' @param sound (optional) name of the sound to play (see \url{https://pushover.net/api#sounds})
+#' @param url (optional) supplementary URL to display with message
+#' @param url_title (optional) title to show for supplementary URL
+#' @param retry (optional) how often (in seconds) to repeat emergency priority messages (min: 30 seconds; default: 60 seconds)
+#' @param expire (optional) how long (in seconds) emergency priority messages will be retried (max: 86400 seconds; default: 3600 seconds)
+#' @param callback (optional) callback URL to be visited (HTTP POST) once an emergency priority message has been acknowledged
+#' @param timestamp (optional) a Unix timestamp containing the date and time to display to the user instead of the time at which the message was received
+#'
+#' @return an invisible list containing a \code{status} (1 = success), a unique request ID (\code{request}), and the raw \code{\link[httr]{response}} object (\code{raw}). Messages with emergency priority (2) will also contain a \code{receipt}. Unsuccessful messages will also contain a list of error messages (\code{errors}).
 #' @export
-#' @aliases pushover pushover_normal pushover_quiet pushover_high
-#' pushover_emergency pushover_silent
-#' @param message The message to be sent (max. 512 characters)
-#' @param ... Any additional message parameters (see
-#' \code{\link{PushoverMessage-class}})
-#' @return A list containing a Pushover request token and a receipt token for
-#' emergency priority messages. When used outside of an assignment, these
-#' return values will not be displayed for non-emergency messages.
-#' @note Pushover user/group keys and application tokens are requred for a
-#' message. They can either be specified as arguments or be set earlier with
-#' \code{\link{set_pushover_user}} and \code{\link{set_pushover_app}},
-#' respectively.
+#'
 #' @examples
 #' \dontrun{
-#' # Send a pushover message
-#' pushover(message='Hello World!', token='KzGDORePK8gMaC0QOYAMyEEuzJnyUi',
-#'          user='uQiRzpo4DXghDmr9QzzfQu27cmVRsG')
-#'               
-#' # User keys and app tokens can be set ahead of time
-#' set_pushover_user('KAWXTswy4cekx6vZbHBKbCKk1c1fdf')
-#' set_pushover_app('KzGDORePK8gMaC0QOYAMyEEuzJnyUi')
-#' pushover(message='so much less work!')
-#' 
-#' # Send a message with high priority and a title
-#' pushover_high(message='The sky is falling', title='Alert')
-#'
-#' # Send an emergency message. Emergency messages will be re-sent until they
-#' # are acknowledged (in this case, every 60 seconds)
-#' pushover_emergency(message='TAXES ARE DUE AT MIDNIGHT!', retry=60)
-#'                              
-#' # Send a quiet message
-#' pushover_quiet(message='Pssst. Walk the dog when you wake up')
+#' TODO
 #' }
+pushover <- function(message,
+                     title = NULL,
+                     priority = 0,
+                     user = get_pushover_user(),
+                     app = get_pushover_app(),
+                     device = NULL,
+                     sound = NULL,
+                     url = NULL,
+                     url_title = NULL,
+                     retry = 60, 
+                     expire = 3600,
+                     callback = NULL,
+                     timestamp = NULL) {
 
-pushover <- function(message, ...)
-{    
-    msg <- PushoverMessage(message=message, ...)    
-    response <- send(msg)
+    assertthat::assert_that(nchar(message) <= 1024)
+    assertthat::assert_that(assertthat::is.number(priority) && priority %in% c(-2, -1, 0, 1, 2))
+    assertthat::assert_that(assertthat::is.count(retry) && retry >= 30)
+    assertthat::assert_that(assertthat::is.count(expire) && expire <= 86400)
     
-    if(is.success(response))
-    {
-        ret <- list('request'=request(response))
-        
-        if(msg@priority==2)
-        {
-            ret['receipt'] <- receipt(response)
-            return(ret)
-        }
-        return(invisible(ret))
+    params <- list("token" = app,
+                   "user" = user,
+                   "message" = message,
+                   "priority" = priority,
+                   "retry" = retry,
+                   "expire" = expire)
+    
+    # TODO: handle ... from helper functions
+
+    if(!is.null(device)) {
+        assertthat::assert_that(all(is.valid_device(device)))
+        params["device"] <- paste0(device, collapse = ",")
     }
-    else
-    {
-        stop(response@content$errors)
+    
+    if (!is.null(title)) {
+        assertthat::assert_that(nchar(title) <= 250)
+        params["title"] <- title
     }
+    
+    if (!is.null(url_title)) {
+        assertthat::assert_that(nchar(url_title) <= 100)
+        params["url_title"] <- url_title
+    }
+    
+    if (!is.null(timestamp)) {
+        assertthat::assert_that(assertthat::is.count(timestamp))
+        params["timestamp"] <- timestamp
+    }
+    
+    if (!is.null(sound)) {
+        assertthat::assert_that(assertthat::is.scalar(sound) && is.pushover_sound(sound))
+        params["sound"] <- sound
+    }
+    
+    if (!is.null(callback)) {
+        # TODO: validate callback. Docs don't say what character limit is for this
+        params["callback"] <- callback
+    }
+    
+    response <- httr::POST(url = "https://api.pushover.net/1/messages.json",
+                           body = params)
+    httr::stop_for_status(response)
+    
+    rval <- httr::content(response)
+    rval$raw <- response
+    class(rval) <- c("pushover", "list")
+    
+    invisible(rval)
 }
 
-#' @export
-pushover_silent <- function(message, ...)
-{
-    return(invisible(pushover(message=message, priority=-2, ...)))
-}
 
 #' @export
-pushover_quiet <- function(message, ...)
-{
-    return(invisible(pushover(message=message, priority=-1, ...)))
+pushover_silent <- function(message, ...) {
+    pushover(message = message, priority = -2, ...)
 }
 
-#' @export
-pushover_normal <- function(message, ...)
-{
-    return(invisible(pushover(message=message, priority=0, ...)))
-}
 
 #' @export
-pushover_high <- function(message, ...)
-{
-    return(invisible(pushover(message=message, priority=1, ...)))
+pushover_quiet <- function(message, ...) {
+    pushover(message = message, priority = -1, ...)
 }
 
+
 #' @export
-pushover_emergency <- function(message, ...)
-{
-    return(pushover(message=message, priority=2, ...))
+pushover_normal <- function(message, ...) {
+    pushover(message = message, priority = 0, ...)
+}
+
+
+#' @export
+pushover_high <- function(message, ...) {
+    pushover(message = message, priority = 1, ...)
+}
+
+
+#' @export
+pushover_emergency <- function(message, ...) {
+    pushover(message = message, priority = 2, ...)
 }
