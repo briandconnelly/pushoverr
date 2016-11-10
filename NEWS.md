@@ -2,12 +2,14 @@
 
 * Reimplemented core functionality. No longer using S4 objects.
     * Removed `PushoverMessage` class
+    * Lots of source file reorganization
 * User/group and application keys are now stored in environment variables instead of a package-specific environment, which makes it easier to store keys in .Renviron
-* `is.valid_token` is deprecated in favor of `is.valid_app`
-* `validate_key` is deprecated in favor of `validate_user`
 * added `is.valid_pushover_sound` function to validate sound arguments
 * added `get_pushover_limits` function to retrieve application message limit and usage information
-* Lots of source file reorganization
+* several functions have been deprecated
+    * `cancel_receipt` is deprecated in favor of `cancel_retries`
+    * `is.valid_token` is deprecated in favor of `is.valid_app`
+    * `validate_key` is deprecated in favor of `validate_user`
 
 # pushoverr 0.1.4
 

@@ -64,6 +64,9 @@ get_pushover_app <- function(ask = interactive()) {
 #' @rdname set_pushover_app
 #' @export
 unset_pushover_app <- function() {
+    if (!pushover_app.isset()) {
+        message("PUSHOVER_APP is not set")
+    }
     Sys.unsetenv("PUSHOVER_APP")
 }
 
@@ -73,5 +76,5 @@ unset_pushover_app <- function() {
 #' the application token is set (\code{TRUE}) or not (\code{FALSE}).
 #' @export
 pushover_app.isset <- function() {
-    !identical(Sys.getenv("PUSHOVER_APP"), "")
+    nchar(Sys.getenv("PUSHOVER_APP")) > 0
 }

@@ -17,15 +17,22 @@
 #' @param url_title (optional) title to show for supplementary URL
 #' @param retry (optional) how often (in seconds) to repeat emergency priority messages (min: 30 seconds; default: 60 seconds)
 #' @param expire (optional) how long (in seconds) emergency priority messages will be retried (max: 86400 seconds; default: 3600 seconds)
-#' @param callback (optional) callback URL to be visited (HTTP POST) once an emergency priority message has been acknowledged
+#' @param callback (optional) callback URL to be visited (HTTP POST) once an emergency priority message has been acknowledged (\href{https://pushover.net/api#receipt}{details})
 #' @param timestamp (optional) a Unix timestamp containing the date and time to display to the user instead of the time at which the message was received
 #'
-#' @return an invisible list containing a \code{status} (1 = success), a unique request ID (\code{request}), and the raw \code{\link[httr]{response}} object (\code{raw}). Messages with emergency priority (2) will also contain a \code{receipt}. Unsuccessful messages will also contain a list of error messages (\code{errors}).
+#' @return an invisible list containing the following fields:
+#' \itemize{
+#'     \item \code{status}: request status (1 = success)
+#'     \item \code{request}: unique request ID
+#'     \item \code{raw}: the raw \code{\link[httr]{response}} object
+#'     \item \code{receipt}: a receipt ID (only for emergency priority messages)
+#'     \item \code{errors}: a list of error messages (only for unsuccessful requests)
+#' }
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' TODO
+#' pushover(message = "Hola Mundo!")
 #' }
 pushover <- function(message,
                      title = NULL,
@@ -97,30 +104,35 @@ pushover <- function(message,
 }
 
 
+#' @rdname pushover
 #' @export
 pushover_silent <- function(message, ...) {
     pushover(message = message, priority = -2, ...)
 }
 
 
+#' @rdname pushover
 #' @export
 pushover_quiet <- function(message, ...) {
     pushover(message = message, priority = -1, ...)
 }
 
 
+#' @rdname pushover
 #' @export
 pushover_normal <- function(message, ...) {
     pushover(message = message, priority = 0, ...)
 }
 
 
+#' @rdname pushover
 #' @export
 pushover_high <- function(message, ...) {
     pushover(message = message, priority = 1, ...)
 }
 
 
+#' @rdname pushover
 #' @export
 pushover_emergency <- function(message, ...) {
     pushover(message = message, priority = 2, ...)

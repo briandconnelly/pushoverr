@@ -34,7 +34,7 @@ set_pushover_user <- function(user = NULL, ask = interactive()) {
         if (ask && interactive()) {
             message("PUSHOVER_USER is not set and user/group key not provided (see ?pushoverr for details)")
             in_user = readline("Please enter your user/group key: ")
-            # TODO: validate input
+            # TODO: validate input?
             Sys.setenv("PUSHOVER_USER" = in_user)
         }
         else {
@@ -66,6 +66,9 @@ get_pushover_user <- function(ask = interactive()) {
 #' @rdname set_pushover_user
 #' @export
 unset_pushover_user <- function() {
+    if (!pushover_user.isset()) {
+        message("PUSHOVER_USER is not set")
+    }
     Sys.unsetenv("PUSHOVER_USER")
 }
 
@@ -75,5 +78,5 @@ unset_pushover_user <- function() {
 #' the user/group is set (\code{TRUE}) or not (\code{FALSE}).
 #' @export
 pushover_user.isset <- function() {
-    !identical(Sys.getenv("PUSHOVER_USER"), "")
+    nchar(Sys.getenv("PUSHOVER_USER")) > 0
 }
