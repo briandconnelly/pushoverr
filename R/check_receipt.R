@@ -1,10 +1,9 @@
-# TODO: delete
-# Sample receipt "rbf6q3da2hsbm3qunhh6w4u6bfzkvz"
-# API Docs: https://pushover.net/api#receipt
-
 #' Check whether an emergency priority message was received
-#' 
-#' \code{check_receipt} TODO.
+#'
+#' \code{check_receipt} checks the status of an emergency priority message,
+#' receiving information about whether and by whom it was acknowledged,
+#' when the message was last delivered, whether a callback URL was visited,
+#' and more.
 #'
 #' @param receipt receipt ID from sending an emergency message
 #' @param app application token (see \code{\link{set_pushover_app}})
@@ -35,14 +34,14 @@
 #' }
 check_receipt <- function(receipt, app = get_pushover_app()) {
     assertthat::assert_that(assertthat::is.scalar(receipt))
-    # TODO: validate (regexp) receipt?
-    
+    assertthat::assert_that(is.valid_receipt(receipt = receipt))
+
     query_url <- sprintf("https://api.pushover.net/1/receipts/%s.json", receipt)
     response <- httr::GET(url = query_url, query = list(token = app))
     httr::stop_for_status(response)
 
-    rval <- httr::content(response)                                             
-    rval$raw <- response                                                        
+    rval <- httr::content(response)
+    rval$raw <- response
     class(rval) <- c("pushover", "list")
     rval
 }
@@ -52,7 +51,7 @@ check_receipt <- function(receipt, app = get_pushover_app()) {
 #' @description \code{is.acknowledged} returns a logical value indicating whether the emergency message was acknowledged (\code{TRUE}) or not (\code{FALSE}).
 #' @export
 is.acknowledged <- function(receipt, app = get_pushover_app()) {
-    assertthat::assert_that(assertthat::is.scalar(receipt))
     rsp <- check_receipt(receipt = receipt, app = app)
     rsp$acknowledged == 1
 }
+

@@ -1,10 +1,7 @@
 #' Determine whether or not a given user/group key is valid
 #' 
-#' \code{validate_user} determines whether or not the given user or group is
-#' valid (i.e., an actual user or group). \code{validate_group} is an alias.
-#' 
-#' \code{validate_token} is deprecated in favor of \code{validate_user}, and
-#' \code{is.valid_key} is deprecated in favor of \code{is.valid_user}.
+#' @description \code{validate_user} determines whether or not the given user or
+#' group is valid (i.e., a registered user or group).
 #'
 #' @param user user/group key to validate
 #' @param app application token (see \code{\link{set_pushover_app}})
@@ -37,40 +34,43 @@ validate_user <- function(user, app = get_pushover_app(), device = NULL) {
                            body = params)
     httr::stop_for_status(response)
 
-    # TODO: check the status of the response, handle errors appropriately.
-    
     rval <- httr::content(response)
     rval$raw <- response
     class(rval) <- c("pushover", "list")
-    
+
     rval
 }
 
 
 #' @rdname validate_user
+#' @description \code{validate_group} is an alias for \code{validate_user}
 #' @export
 validate_group <- validate_user
 
 
 #' @rdname validate_user
+#' @description \code{is.valid_key} is deprecated in favor of
+#' \code{is.valid_user}
 #' @export
 validate_key <- function(user, device = NA_character_, ...) {
     message("validate_key() is deprecated. Please use validate_user() or validate_group() instead.")
-    
+
     opt_args <- list(...)
     app <- ifelse("token" %in% names(opt_args),
                   opt_args[["token"]],
                   get_pushover_app())
-    
+
     if (is.na(device)) {
-        device = NULL
+        device <- NULL
     }
-    
+
     validate_user(user = user, app = app, device = device)
 }
 
 
 #' @rdname validate_user
+#' @description \code{is.valid_user} indicates whether or not a given user ID
+#' is registered with Pushover
 #' @export
 is.valid_user <- function(user, app = get_pushover_app(), device = NULL) {
     rval <- validate_user(user = user, app = app, device = device)
@@ -79,26 +79,26 @@ is.valid_user <- function(user, app = get_pushover_app(), device = NULL) {
 
 
 #' @rdname validate_user
+#' @description \code{is.valid_group} is an alias for \code{is.valid_user}
 #' @export
 is.valid_group <- is.valid_user
 
 
 #' @rdname validate_user
+#' @description \code{is.valid_key} is deprecated in favor of \code{is.valid_user} or \code{is.valid_group}
 #' @export
 is.valid_key <- function(user, device = NA, ...) {
     message("is.valid_key() is deprecated. Please use is.valid_user() or is.valid_group() instead.")
-    
+
     opt_args <- list(...)
     app <- ifelse("token" %in% names(opt_args),
                   opt_args[["token"]],
                   get_pushover_app())
-    
+
     if (is.na(device)) {
-        device = NULL
-    }   
-    
+        device <- NULL
+    }
+
     is.valid_user(user = user, app = app, device = device)
 }
 
-
-# TODO is.valid_device?

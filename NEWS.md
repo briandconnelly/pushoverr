@@ -1,7 +1,7 @@
 # pushoverr 0.9.90
 
 * Reimplemented core functionality. No longer using S4 objects.
-    * Removed `PushoverMessage` class
+    * Removed `PushoverMessage` and `PushoverResponse` classes
     * Lots of source file reorganization
 * User/group and application keys are now stored in environment variables instead of a package-specific environment, which makes it easier to store keys in .Renviron
 * added `is.valid_pushover_sound` function to validate sound arguments

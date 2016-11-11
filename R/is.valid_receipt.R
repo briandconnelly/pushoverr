@@ -17,5 +17,5 @@
 #' }
 #' 
 is.valid_receipt <- function(receipt) {
-    grepl('^[a-zA-Z0-9]{30}$', receipt)
+    grepl("^[a-zA-Z0-9]{30}$", receipt)
 }

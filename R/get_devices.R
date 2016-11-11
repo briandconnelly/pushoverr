@@ -1,5 +1,5 @@
 #' Get a list of the user's registered devices
-#' 
+#'
 #' \code{get_devices} queries the Pushover API for a list of the devices that
 #' have been registered by the given user
 #'
@@ -17,7 +17,7 @@
 get_devices <- function(user = get_pushover_user(), app = get_pushover_app()) {
     assertthat::assert_that(assertthat::is.scalar(user))
     assertthat::assert_that(assertthat::is.scalar(app))
-    
+
     result <- validate_user(user = user, app = app)
     unlist(result$devices)
 }
@@ -30,11 +30,11 @@ get_devices <- function(user = get_pushover_user(), app = get_pushover_app()) {
 #' @return \code{is.device} returns a logical value for each of the given
 #' devices that indicates whether (\code{TRUE}) or not (\code{FALSE}) that
 #' device is registered to the given user.
-#' @export 
+#' @export
 #' @examples
 #' \dontrun{
 #' is.device(device = "phone")
-#' }           
+#' }
 is.device <- function(device,
                       user = get_pushover_user(),
                       app = get_pushover_app()) {

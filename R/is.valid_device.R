@@ -5,7 +5,7 @@
 #' 
 #' @note \code{is.valid_device} only determines whether a device name is valid.
 #' It does not determine whether that device is actually registered (see:
-#' \code{\link{TODO}}).
+#' \code{\link{is.device}}).
 #'
 #' @param device one or more device names (e.g., "phone", c("phone", "tablet"))
 #'
@@ -14,9 +14,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' TODO
-#' }
+#' is.valid_device("my_phone")
 #'
 is.valid_device <- function(device) {
     grepl("^[a-zA-Z0-9_-]{1,25}$", device)

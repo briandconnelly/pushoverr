@@ -4,7 +4,7 @@
 #' is valid or not according to Pushover's specifications. It does not determine
 #' whether or not the given token is associated with an application.
 #' 
-#' @note To acquire an application token, register your token at
+#' @note To acquire an application token, create an app at
 #' \url{https://pushover.net/apps}
 #'
 #' @param token A application token (e.g., "KzGDORePK8gMaC0QOYAMyEEuzJnyUi")
@@ -13,9 +13,7 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
 #' is.valid_app(token = "KzGDORePK8gMaC0QOYAMyEEuzJnyU")
-#' }
 #' 
 is.valid_app <- function(token) {
     grepl("^[a-zA-Z0-9]{30}$", token)
@@ -23,6 +21,7 @@ is.valid_app <- function(token) {
 
 
 #' @rdname is.valid_app
+#' @description \code{is.valid_token} is deprecated in favor of \code{is.valid_app}
 #' @export
 is.valid_token <- function(token) {
     message("is.valid_token() is deprecated. Please use is.valid_app() instead.")

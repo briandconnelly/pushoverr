@@ -17,7 +17,7 @@
 #'
 #' @param token The application token to be used. If none is provided, a prompt
 #' will request the token (interactive sessions only).
-#' @param ask Whether or not to ask for the token if none is provided. Note 
+#' @param ask Whether or not to ask for the token if none is provided. Note
 #' that this option only works in interactive sessions.
 #'
 #' @export
@@ -30,7 +30,7 @@ set_pushover_app <- function(token = NULL, ask = interactive()) {
     if (is.null(token)) {
         if (ask && interactive()) {
             message("PUSHOVER_APP is not set, and application token not provided (see ?pushoverr for details)")
-            in_token = readline("Please enter your application token: ")
+            in_token <- readline("Please enter your application token: ")
             # TODO: validate input
             Sys.setenv("PUSHOVER_APP" = in_token)
         }
@@ -56,7 +56,7 @@ get_pushover_app <- function(ask = interactive()) {
     if (!pushover_app.isset()) {
         set_pushover_app(ask = ask)
     }
-    
+
     Sys.getenv("PUSHOVER_APP")
 }
 

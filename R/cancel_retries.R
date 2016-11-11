@@ -1,8 +1,7 @@
 #' Cancel retries for an emergency priority notification
-#' 
+#'
 #' \code{cancel_retries} stops Pushover from sending repeat messages for
-#' un-acknowledged emergency priority notifications. \code{cancel_receipt},
-#' which provides the same functionality, is deprecated.
+#' un-acknowledged emergency priority notifications.
 #'
 #' @param receipt The receipt from sending an emergency message
 #' @param app application token (see \code{\link{set_pushover_app}})
@@ -25,18 +24,19 @@ cancel_retries <- function(receipt, app = get_pushover_app()) {
     query_url <- sprintf("https://api.pushover.net/1/receipts/%s/cancel.json", receipt)
     response <- httr::POST(url = query_url, body = list("token" = app))
     httr::stop_for_status(response)
-    
-    rval <- httr::content(response)                                             
-    rval$raw <- response                                                        
+
+    rval <- httr::content(response)
+    rval$raw <- response
     class(rval) <- c("pushover", "list")
     rval
 }
 
 #' @rdname cancel_retries
+#' @description \code{cancel_receipt} is deprecated in favor of \code{cancel_retries}
 #' @export
 cancel_receipt <- function(receipt, ...) {
     message("cancel_receipt() is deprecated. Please use cancel_retries() instead.")
-    
+
     opt_args <- list(...)
     app <- ifelse("token" %in% names(opt_args),
                   opt_args[["token"]],

@@ -33,7 +33,7 @@ set_pushover_user <- function(user = NULL, ask = interactive()) {
     if (is.null(user)) {
         if (ask && interactive()) {
             message("PUSHOVER_USER is not set and user/group key not provided (see ?pushoverr for details)")
-            in_user = readline("Please enter your user/group key: ")
+            in_user <- readline("Please enter your user/group key: ")
             # TODO: validate input?
             Sys.setenv("PUSHOVER_USER" = in_user)
         }
@@ -80,3 +80,4 @@ unset_pushover_user <- function() {
 pushover_user.isset <- function() {
     nchar(Sys.getenv("PUSHOVER_USER")) > 0
 }
+

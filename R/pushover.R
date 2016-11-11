@@ -43,7 +43,7 @@ pushover <- function(message,
                      sound = NULL,
                      url = NULL,
                      url_title = NULL,
-                     retry = 60, 
+                     retry = 60,
                      expire = 3600,
                      callback = NULL,
                      timestamp = NULL) {
@@ -52,54 +52,52 @@ pushover <- function(message,
     assertthat::assert_that(assertthat::is.number(priority) && priority %in% c(-2, -1, 0, 1, 2))
     assertthat::assert_that(assertthat::is.count(retry) && retry >= 30)
     assertthat::assert_that(assertthat::is.count(expire) && expire <= 86400)
-    
+
     params <- list("token" = app,
                    "user" = user,
                    "message" = message,
                    "priority" = priority,
                    "retry" = retry,
                    "expire" = expire)
-    
-    # TODO: handle ... from helper functions
 
-    if(!is.null(device)) {
+    if (!is.null(device)) {
         assertthat::assert_that(all(is.valid_device(device)))
         params["device"] <- paste0(device, collapse = ",")
     }
-    
+
     if (!is.null(title)) {
         assertthat::assert_that(nchar(title) <= 250)
-        params["title"] <- title
+        params$title <- title
     }
-    
+
     if (!is.null(url_title)) {
         assertthat::assert_that(nchar(url_title) <= 100)
-        params["url_title"] <- url_title
+        params$url_title <- url_title
     }
-    
+
     if (!is.null(timestamp)) {
         assertthat::assert_that(assertthat::is.count(timestamp))
-        params["timestamp"] <- timestamp
+        params$timestamp <- timestamp
     }
-    
+
     if (!is.null(sound)) {
         assertthat::assert_that(assertthat::is.scalar(sound) && is.pushover_sound(sound))
-        params["sound"] <- sound
+        params$sound <- sound
     }
-    
+
     if (!is.null(callback)) {
-        # TODO: validate callback. Docs don't say what character limit is for this
-        params["callback"] <- callback
+        # Docs don't say what character limit is, so not validating
+        params$callback <- callback
     }
-    
+
     response <- httr::POST(url = "https://api.pushover.net/1/messages.json",
                            body = params)
     httr::stop_for_status(response)
-    
+
     rval <- httr::content(response)
     rval$raw <- response
     class(rval) <- c("pushover", "list")
-    
+
     invisible(rval)
 }
 
