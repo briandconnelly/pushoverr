@@ -12,6 +12,6 @@
 get_pushover_sounds <- function(app = get_pushover_app()) {
     response <- httr::GET(url = "https://api.pushover.net/1/sounds.json",
                           query = list(token = app))
-    httr::stop_for_status(response)
+    stop_for_pushover_status(response)
     httr::content(response)$sounds
 }

@@ -23,7 +23,7 @@
 cancel_retries <- function(receipt, app = get_pushover_app()) {
     query_url <- sprintf("https://api.pushover.net/1/receipts/%s/cancel.json", receipt)
     response <- httr::POST(url = query_url, body = list("token" = app))
-    httr::stop_for_status(response)
+    stop_for_pushover_status(response)
 
     rval <- httr::content(response)
     rval$raw <- response

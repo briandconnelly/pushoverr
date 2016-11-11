@@ -32,7 +32,7 @@ validate_user <- function(user, app = get_pushover_app(), device = NULL) {
 
     response <- httr::POST(url = "https://api.pushover.net/1/users/validate.json",
                            body = params)
-    httr::stop_for_status(response)
+    stop_for_pushover_status(response)
 
     rval <- httr::content(response)
     rval$raw <- response

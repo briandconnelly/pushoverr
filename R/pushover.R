@@ -92,7 +92,7 @@ pushover <- function(message,
 
     response <- httr::POST(url = "https://api.pushover.net/1/messages.json",
                            body = params)
-    httr::stop_for_status(response)
+    stop_for_pushover_status(response)
 
     rval <- httr::content(response)
     rval$raw <- response
