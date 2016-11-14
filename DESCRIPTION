@@ -16,6 +16,5 @@ Depends:
     R (>= 3.0.0)
 Imports:
     assertthat,
-    httr,
-    methods
+    httr
 RoxygenNote: 5.0.1

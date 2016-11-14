@@ -2,6 +2,13 @@
 #' 
 #' \code{get_pushover_limits} retrieves the message usage and limit information
 #' for the given application.
+#' 
+#' @note This information can alternatively be gotten by examining the headers
+#' in the response to previous API calls. Look for headers
+#' \code{x-limit-app-limit}, \code{x-limit-app-remaining}, and
+#' \code{x-limit-app-reset}. For example, if \code{x} stores the response from a
+#' \code{\link{pushover}} call, \code{httr::headers(x$raw)} will return all of
+#' the headers included in the response.
 #'
 #' @param app application token (see \code{\link{set_pushover_app}})
 #'

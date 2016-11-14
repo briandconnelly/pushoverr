@@ -54,4 +54,3 @@ is.acknowledged <- function(receipt, app = get_pushover_app()) {
     rsp <- check_receipt(receipt = receipt, app = app)
     rsp$acknowledged == 1
 }
-

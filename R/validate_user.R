@@ -101,4 +101,3 @@ is.valid_key <- function(user, device = NA, ...) {
 
     is.valid_user(user = user, app = app, device = device)
 }
-

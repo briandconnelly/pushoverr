@@ -11,8 +11,8 @@
 stop_for_pushover_status <- function(x) {
     code <- httr::status_code(x)
     response <- httr::content(x)
-    
-    if (code == 200 && response$status == 1) {
+
+    if (response$status == 1 && floor(code / 100) == 2) {
         return(invisible(x))
     }
     else {
