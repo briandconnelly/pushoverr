@@ -25,7 +25,7 @@ soon).
 
 Installing pushoverr is as easy as running:
 
-    install.packages('pushoverr')
+    install.packages("pushoverr")
 
 
 ### Latest and Greatest (Fingers Crossed) via GitHub
@@ -34,14 +34,14 @@ If you like living on the edge (or need a previous version), you can use
 [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to
 install the latest and greatest version of pushoverr from GitHub. To do so:
 
-    if(!require('devtools')) install.packages('devtools')
+    if(!require("devtools")) install.packages("devtools")
     library(devtools)
-    install_github('briandconnelly/pushoverr')
+    install_github("briandconnelly/pushoverr")
 
 You'll also need to make sure that you have the excellent
 [httr](http://cran.r-project.org/web/packages/httr/index.html) package, which
 makes working with web connections easy.  For an up-to-date R setup, this can
-be done by running `install.packages('httpr')`.
+be done by running `install.packages("httr")`.
 
 
 ## Using pushoverr
@@ -58,7 +58,7 @@ To do this, run:
 In order to send a message, you'll need to have your user key and an app token.
 Then:
 
-    pushover(message='Mr. Watson--come here--I want to see you.', user=<YOUR USER KEY>, token=<YOUR APP TOKEN>)
+    pushover(message = 'Mr. Watson--come here--I want to see you.', user = <YOUR USER KEY>, token = <YOUR APP TOKEN>)
 
 Within just a few seconds, your phone/tablet/watch/whatever should be abuzz
 with this historic message.
@@ -71,11 +71,11 @@ without playing a sound, high priority messages arrive with a reddish
 background, and emergency messages arrive and repeat until they've been
 acknowledged. `pushoverr` provides easy methods for sending these:
 
-    pushover_quiet(message='The kittens are sleeping', user=<YOUR USER KEY>, token=<YOUR APP TOKEN>)
+    pushover_quiet(message = 'The kittens are sleeping', user=<YOUR USER KEY>, token=<YOUR APP TOKEN>)
 
 Or more urgently:
 
-    pushover_emergency(message='The kittens are awake, and they are angry!', user=<YOUR USER KEY>, token=<YOUR APP TOKEN>)
+    pushover_emergency(message = 'The kittens are awake, and they are angry!', user=<YOUR USER KEY>, token=<YOUR APP TOKEN>)
 
 Emergency messages return a receipt token that can be checked with
 `is.acknowledged()` to see whether or not it has been acknowledged.
@@ -121,10 +121,10 @@ GitHub](https://github.com/briandconnelly/pushoverr/issues).
     * [Terms of Service](https://pushover.net/terms)
 * [NotifyR](http://cran.r-project.org/web/packages/notifyR/index.html), an
 alternate Pushover tool for R
-* [CRAN Info for pushoverr](http://cran.r-project.org/web/packages/pushoverr/index.html)
+* [CRAN Info for pushoverr](https://cran.r-project.org/web/packages/pushoverr/index.html)
 
 
 ## Disclaimer
 This package and its author are not affiliated with
-[Superblock](http://superblock.net), developers of Pushover.
+[Superblock](https://superblock.net), developers of Pushover.
 
