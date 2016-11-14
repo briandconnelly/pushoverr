@@ -1,13 +1,14 @@
-#' Manage group memberships
+#' Manage group subscriptions
 #' 
-#' @description \code{group_add_user} adds a user to a group. Optionally, a
-#' device can be specified on which that user will receive notifications.
+#' These functions manage a user's membershop in a Pushover delivery group
 #'
+#' @param cmd The group subscription command to execute
 #' @param group group key
 #' @param user user key
 #' @param app application token (see \code{\link{set_pushover_app}})
 #' @param device (optional) device name to receive messages (defaults to all devices)
 #' @param memo (optional) memo about the user
+#' @param ... Specific arguments for the given group subscription command
 #'
 #' @return An invisible list containing the following fields:
 #' \itemize{
@@ -17,6 +18,26 @@
 #' }
 #' @export
 #'
+group_subscription <- function(cmd, ...) {
+    opt_args <- list(...)
+
+    query_url <- sprintf("https://api.pushover.net/1/groups/%s/%s.json",
+                         opt_args$group, cmd)
+
+    response <- httr::POST(url = query_url, body = opt_args)
+    stop_for_pushover_status(response)
+
+    rval <- httr::content(response)
+    rval$raw <- response
+    class(rval) <- c("pushover", "list")
+
+    invisible(rval)
+}
+
+#' @rdname group_subscription
+#' @description \code{group_add_user} adds a user to a group. Optionally, a
+#' device can be specified on which that user will receive notifications
+#' @export
 #' @examples
 #' \dontrun{
 #' group_add_user(group = "gznej3rKEVAvPUxu9vvNnqpmZpokzF",
@@ -25,12 +46,12 @@
 #' }
 group_add_user <- function(group, user, app = get_pushover_app(), device = NULL,
                            memo = NULL) {
-    group_subscription_cmd(cmd = "add_user", group = group, user = user,
-                           token = app, device = device, memo = memo)
+    group_subscription(cmd = "add_user", group = group, user = user,
+                       token = app, device = device, memo = memo)
 }
 
 
-#' @rdname group_add_user
+#' @rdname group_subscription
 #' @description \code{group_delete_user} removes a user from a group 
 #' @export
 #' @examples
@@ -40,12 +61,12 @@ group_add_user <- function(group, user, app = get_pushover_app(), device = NULL,
 #' }
 group_delete_user <- function(group, user, app = get_pushover_app(),
                               device = NULL, memo = NULL) {
-    group_subscription_cmd(cmd = "delete_user", group = group, user = user,
-                           token = app, device = device, memo = memo)
+    group_subscription(cmd = "delete_user", group = group, user = user,
+                       token = app, device = device, memo = memo)
 }
 
 
-#' @rdname group_add_user
+#' @rdname group_subscription
 #' @description \code{group_disable_user} temporarily disables a user from
 #' receiving group notifications. 
 #' @export
@@ -56,12 +77,12 @@ group_delete_user <- function(group, user, app = get_pushover_app(),
 #' }
 group_disable_user <- function(group, user, app = get_pushover_app(),
                                device = NULL, memo = NULL) {
-    group_subscription_cmd(cmd = "disable_user", group = group, user = user,
-                           token = app, device = device, memo = memo)
+    group_subscription(cmd = "disable_user", group = group, user = user,
+                       token = app, device = device, memo = memo)
 }
 
 
-#' @rdname group_add_user
+#' @rdname group_subscription
 #' @description \code{group_enable_user} re-enables a user to receive group
 #' notifications for a group
 #' @export
@@ -72,6 +93,6 @@ group_disable_user <- function(group, user, app = get_pushover_app(),
 #' }
 group_enable_user <- function(group, user, app = get_pushover_app(),
                               device = NULL, memo = NULL) {
-    group_subscription_cmd(cmd = "enable_user", group = group, user = user,
-                           token = app, device = device, memo = memo)
+    group_subscription(cmd = "enable_user", group = group, user = user,
+                       token = app, device = device, memo = memo)
 }
