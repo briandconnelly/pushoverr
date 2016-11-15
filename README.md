@@ -7,7 +7,7 @@
 Got some R code that takes a while to complete?
 Enough time to take a little walk or go get a coffee, but maybe not long enough to go home for the day?
 pushoverr is an R package that allows you to send push notifications via [Pushover](https://pushover.net/) to your mobile devices (iOS or Android) or desktop.
-Now you'll be able to easily let yourself know when it's done (or whenever else you want to send yourself or your group a message).
+Now you'll be able to easily let yourself or your group know when it's done.
 
 
 ## Prerequisites
