@@ -1,16 +1,18 @@
 # pushoverr
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![BSD License](https://img.shields.io/badge/license-BSD-brightgreen.svg)](https://opensource.org/licenses/BSD-2-Clause)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pushoverr)](https://cran.r-project.org/package=pushoverr)
 
-Got some R code that takes a while to complete? Enough time to take a little walk or go get a coffee, but maybe not long enough to go home for the day?
+Got some R code that takes a while to complete?
+Enough time to take a little walk or go get a coffee, but maybe not long enough to go home for the day?
 pushoverr is an R package that allows you to send push notifications via [Pushover](https://pushover.net/) to your mobile devices (iOS or Android) or desktop.
 Now you'll be able to easily let yourself know when it's done (or whenever else you want to send yourself or your group a message).
 
 
 ## Prerequisites
 
-You'll need a free account with [Pushover](https://pushover.net/).
+You'll need an account with [Pushover](https://pushover.net/).
 Once you have that, log in and [register an application](https://pushover.net/apps/build).
 You should now have two codes---a **user key** and an **API token/key**.
 These are what identify you and your app(s) to Pushover.

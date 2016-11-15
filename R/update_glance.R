@@ -34,7 +34,7 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
                           user = get_pushover_user(), app = get_pushover_app(),
                           device = NULL, ...) {
 
-    if(is.null(c(title, text, subtext, count, percent))) {
+    if (is.null(c(title, text, subtext, count, percent))) {
         stop("Must provide at least one of the following arguments: title, text, subtext, count, percent", call. = FALSE)
     }
     assertthat::assert_that(assertthat::is.scalar(user))
@@ -46,27 +46,27 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
         assertthat::assert_that(nchar(title) <= 100)
         params$title <- title
     }
-    
+
     if (!is.null(text)) {
         assertthat::assert_that(nchar(text) <= 100)
         params$text <- text
     }
-    
+
     if (!is.null(subtext)) {
         assertthat::assert_that(nchar(subtext) <= 100)
         params$subtext <- subtext
     }
-    
+
     if (!is.null(count)) {
         assertthat::assert_that(assertthat::is.number(count))
         params$count <- count
     }
-    
+
     if (!is.null(percent)) {
         assertthat::assert_that(assertthat::is.number(percent) && percent >= 0 && percent <= 100)
         params$percent <- percent
     }
-    
+
     if (!is.null(device)) {
         assertthat::assert_that(assertthat::is.scalar(device))
         params$device <- device
