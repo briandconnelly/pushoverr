@@ -79,3 +79,18 @@ unset_pushover_user <- function() {
 pushover_user.isset <- function() {
     nchar(Sys.getenv("PUSHOVER_USER")) > 0
 }
+
+
+#' @rdname set_pushover_user
+#' @export
+set_pushover_group <- set_pushover_user
+
+
+#' @rdname set_pushover_user
+#' @export
+get_pushover_group <- get_pushover_user
+
+
+#' @rdname set_pushover_user
+#' @export
+unset_pushover_group <- unset_pushover_user
