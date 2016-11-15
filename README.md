@@ -3,25 +3,19 @@
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pushoverr)](https://cran.r-project.org/package=pushoverr)
 
-Got some R code that takes a while to complete? Enough time to take a little
-walk or go get a coffee, but maybe not long enough to go home for the day?
-pushoverr is an R package that allows you to send push notifications via
-[Pushover](https://pushover.net/) to your mobile devices (iOS or Android) or
-desktop. Now you'll be able to easily let yourself know when it's done (or
-whenever else you want to send yourself or your group a message).
+Got some R code that takes a while to complete? Enough time to take a little walk or go get a coffee, but maybe not long enough to go home for the day?
+pushoverr is an R package that allows you to send push notifications via [Pushover](https://pushover.net/) to your mobile devices (iOS or Android) or desktop.
+Now you'll be able to easily let yourself know when it's done (or whenever else you want to send yourself or your group a message).
 
 
 ## Prerequisites
 
-You'll need a free account with [Pushover](https://pushover.net/). Once you
-have that, log in and [register an
-application](https://pushover.net/apps/build). You should now have two
-codes---a **user key** and an **API token/key**. These are what identify you
-and your app(s) to Pushover. You'll pass these along to pushoverr whenever you
-send a message. You'll also need the Pushover app for
-[iOS](https://pushover.net/clients/ios) or
-[Android](https://pushover.net/clients/android) (desktop notifications coming
-soon).
+You'll need a free account with [Pushover](https://pushover.net/).
+Once you have that, log in and [register an application](https://pushover.net/apps/build).
+You should now have two codes---a **user key** and an **API token/key**.
+These are what identify you and your app(s) to Pushover.
+You'll pass these along to pushoverr whenever you send a message.
+You'll also need the Pushover app for [iOS](https://pushover.net/clients/ios), [Android](https://pushover.net/clients/android), or your [desktop](https://pushover.net/clients/desktop).
 
 
 ## Installation
@@ -33,24 +27,20 @@ Installing pushoverr is as easy as running:
 
 ### Latest and Greatest (Fingers Crossed) via GitHub
 
-If you like living on the edge (or need a previous version), you can use
-[devtools](http://cran.r-project.org/web/packages/devtools/index.html) to
-install the latest and greatest version of pushoverr from GitHub. To do so:
+If you like living on the edge (or need a previous version), you can use [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to install the latest and greatest version of pushoverr from GitHub.
+To do so:
 
     if(!require("devtools")) install.packages("devtools")
-    library(devtools)
-    install_github("briandconnelly/pushoverr")
+    devtools::install_github("briandconnelly/pushoverr")
 
-You'll also need to make sure that you have the excellent
-[httr](http://cran.r-project.org/web/packages/httr/index.html) package, which
-makes working with web connections easy.  For an up-to-date R setup, this can
-be done by running `install.packages("httr")`.
+You'll also need to make sure that you have the excellent [httr](http://cran.r-project.org/web/packages/httr/index.html) package, which makes working with web connections easy.
+For an up-to-date R setup, this can be done by running `install.packages("httr")`.
 
 
 ## Using pushoverr
 
-Now that pushoverr's been installed, you're ready to start pushing some
-notifications. To begin using pushoverr, you'll need to first load the library.
+Now that pushoverr's been installed, you're ready to start pushing some notifications.
+To begin using pushoverr, you'll need to first load the library.
 To do this, run:
 
     library(pushoverr)
@@ -61,60 +51,63 @@ To do this, run:
 In order to send a message, you'll need to have your user key and an app token.
 Then:
 
-    pushover(message = 'Mr. Watson--come here--I want to see you.', user = <YOUR USER KEY>, token = <YOUR APP TOKEN>)
+    pushover(message = "Mr. Watson--come here--I want to see you.", user = <YOUR USER KEY>, app = <YOUR APP TOKEN>)
 
-Within just a few seconds, your phone/tablet/watch/whatever should be abuzz
-with this historic message.
+Within just a few seconds, your phone/tablet/watch/whatever should be abuzz with this historic message.
+Using other arguments to `pushover`, you can configure other aspects of your message, including sounds, links, and message priorities.
 
 
 ### Example 2: Send Yourself an Important Message
 
-Pushoverr provides message different message priorities. Quiet messages arrive
-without playing a sound, high priority messages arrive with a reddish
-background, and emergency messages arrive and repeat until they've been
-acknowledged. `pushoverr` provides easy methods for sending these:
+Pushoverr provides message different message priorities.
+Quiet messages arrive without playing a sound, high priority messages arrive with a reddish background, and emergency messages arrive and repeat until they've been acknowledged.
+`pushoverr` provides easy methods for sending these:
 
-    pushover_quiet(message = 'The kittens are sleeping', user=<YOUR USER KEY>, token=<YOUR APP TOKEN>)
+    pushover_quiet(message = "The kittens are sleeping", user = <YOUR USER KEY>, app = <YOUR APP TOKEN>)
 
 Or more urgently:
 
-    pushover_emergency(message = 'The kittens are awake, and they are angry!', user=<YOUR USER KEY>, token=<YOUR APP TOKEN>)
+    pushover_emergency(message = "The kittens are awake, and they are ANGRY!", user = <YOUR USER KEY>, app = <YOUR APP TOKEN>)
 
-Emergency messages return a receipt token that can be checked with
-`is.acknowledged()` to see whether or not it has been acknowledged.
+Emergency messages return a receipt token that can be checked with `is.acknowledged()` to see whether or not it has been seen.
 
 
 ### Example 3: Saving Your Credentials
 
-Remembering to include your user key and app token every time you send a
-message is a big hassle. You can set these once and use them for all subsequent
-messages:
+By default, pushoverr will prompt you for your key and app token when needed and save them for all subsequent commands.
+You can directly tell pushoverr your key and token using `set_pushover_user` and `set_pushover_app`:
 
-    set_pushover_app(token=<YOUR APP TOKEN>, user=<YOUR USER KEY>)
-    pushover('I can now send so many more messages!')
+    set_pushover_user(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
+    set_pushover_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 
-And to temporarily use a different app token or user:
+pushoverr will forget these as soon as you end your session, so you'll have to re-run these commands each time you restart R.
 
-    pushover('You can get with this (app)')
-    pushover('Or you can get with that (app)', token=<OTHER APP TOKEN>)
+Alternatively, you can store your keys in your `.Renviron` (see `?.Renviron` for details).
 
-*Tip*: If you'll always be using the same user key and app token, you can add
-this step to your `Rprofile` file (see `?Startup`) so that it is done
-automatically each time R is started.
+    PUSHOVER_USER = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG"
+    PUSHOVER_APP= "azGDORePK8gMaC0QOYAMyEEuzJnyUi"
+
+With this approach, your keys will be set whenever you use R.
+pushoverr will use these keys by default, but they can easily be overridden by supplying different values as arguments.
 
 
 ### Example 4: Sending to a Specific Device
 
-If you have more than one device with Pushover, you can also send messages to a
-specific device:
+If you have more than one device using Pushover, you can also send messages to a specific device:
+
+    pushover(message = "If you pretend like this is important, you can walk out of the boring meeting", device = "Phone")
 
 
-    pushover('If you pretend like this is important, you can walk out of the boring meeting', device='Phone')
+### Example 5: Results on your Wrist
+
+Pushover can now show data on constantly-updated screens like your smartwatch or lock screen (where supported).
+Using `update_glance`, you can push short text messages, numbers, and percentages to your watch right from within R.
+
+    update_glance(count = 88)
 
 
 ## Feature Requests and Bug Reports
-For all feature requests and bug reports, visit [pushoverr on
-GitHub](https://github.com/briandconnelly/pushoverr/issues).
+For all feature requests and bug reports, visit [pushoverr on GitHub](https://github.com/briandconnelly/pushoverr/issues).
 
 
 ## Related Links
@@ -122,15 +115,15 @@ GitHub](https://github.com/briandconnelly/pushoverr/issues).
     * [FAQ](https://pushover.net/faq)
     * [API](https://pushover.net/api)
     * [Terms of Service](https://pushover.net/terms)
-* [NotifyR](http://cran.r-project.org/web/packages/notifyR/index.html), an
-alternate Pushover tool for R
+* [NotifyR](http://cran.r-project.org/web/packages/notifyR/index.html), an alternate Pushover tool for R (no longer maintained?)
 * [CRAN Info for pushoverr](https://cran.r-project.org/web/packages/pushoverr/index.html)
+* [RPushbullet](https://github.com/eddelbuettel/rpushbullet), an R interface for [Pushbullet](https://www.pushbullet.com), a similar (and larger) service.
 
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
+By participating in this project you agree to abide by its terms.
 
 
 ## Disclaimer
-This package and its author are not affiliated with
-[Superblock](https://superblock.net), developers of Pushover.
+This package and its author are not affiliated with [Superblock](https://superblock.net), developers of Pushover.
 
