@@ -79,4 +79,3 @@ unset_pushover_user <- function() {
 pushover_user.isset <- function() {
     nchar(Sys.getenv("PUSHOVER_USER")) > 0
 }
-

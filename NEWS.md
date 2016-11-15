@@ -17,6 +17,7 @@
     * `group_rename` renames a group
     * `group_add_user` and `group_remove_user` adds or removes a user from a group
     * `group_disable_user` and `group_enable_user` temporarily disable and re-enable a user's group membership
+* Project now has a Contributer Code of Conduct
 
 # pushoverr 0.1.4
 
