@@ -11,9 +11,8 @@
 #' used in future sessions. Similarly, \code{unset_pushover_app} will only
 #' unset the app token for the current session.
 #' 
-#' @note Your application's token can be found after logging on to \url{https://pushover.net}
-#' 
-#' @details TODO description of how Pushover application tokens work
+#' @details To receive an application token, register a new application after
+#' logging in to your account on\url{https://pushover.net/apps}.
 #'
 #' @param token The application token to be used. If none is provided, a prompt
 #' will request the token (interactive sessions only).
@@ -31,7 +30,6 @@ set_pushover_app <- function(token = NULL, ask = interactive()) {
         if (ask && interactive()) {
             message("PUSHOVER_APP is not set, and application token not provided (see ?pushoverr for details)")
             in_token <- readline("Please enter your application token: ")
-            # TODO: validate input
             Sys.setenv("PUSHOVER_APP" = in_token)
         }
         else {

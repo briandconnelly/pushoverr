@@ -1,5 +1,8 @@
 # pushoverr
 
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pushoverr)](https://cran.r-project.org/package=pushoverr)
+
 Got some R code that takes a while to complete? Enough time to take a little
 walk or go get a coffee, but maybe not long enough to go home for the day?
 pushoverr is an R package that allows you to send push notifications via
@@ -52,7 +55,7 @@ To do this, run:
 
     library(pushoverr)
 
-    
+
 ### Example 1: Send Yourself A Message
 
 In order to send a message, you'll need to have your user key and an app token.
@@ -122,6 +125,9 @@ GitHub](https://github.com/briandconnelly/pushoverr/issues).
 * [NotifyR](http://cran.r-project.org/web/packages/notifyR/index.html), an
 alternate Pushover tool for R
 * [CRAN Info for pushoverr](https://cran.r-project.org/web/packages/pushoverr/index.html)
+
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 
 ## Disclaimer

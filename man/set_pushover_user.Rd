@@ -45,10 +45,9 @@ session. If a different value is specified in .Renviron, that value will be
 used in future sessions. Similarly, \code{unset_pushover_user} will only
 unset the user or group for the current session.
 
-TODO description of how pushover user/group keys work
-}
-\note{
-Your user key can be found after logging on to \url{https://pushover.net}
+User keys can be found within the settings of the Pushover app or
+by logging in to \url{https://pushover.net}. Group keys can be found after
+creating a delivery group in your account on \url{https://pushover.net}.
 }
 \examples{
 \dontrun{

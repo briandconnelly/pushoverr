@@ -43,10 +43,8 @@ session. If a different value is specified in .Renviron, that value will be
 used in future sessions. Similarly, \code{unset_pushover_app} will only
 unset the app token for the current session.
 
-TODO description of how Pushover application tokens work
-}
-\note{
-Your application's token can be found after logging on to \url{https://pushover.net}
+To receive an application token, register a new application after
+logging in to your account on\url{https://pushover.net/apps}.
 }
 \examples{
 \dontrun{

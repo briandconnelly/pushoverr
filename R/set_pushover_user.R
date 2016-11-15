@@ -14,9 +14,9 @@
 #' used in future sessions. Similarly, \code{unset_pushover_user} will only
 #' unset the user or group for the current session.
 #' 
-#' @note Your user key can be found after logging on to \url{https://pushover.net}
-#' 
-#' @details TODO description of how pushover user/group keys work
+#' @details User keys can be found within the settings of the Pushover app or
+#' by logging in to \url{https://pushover.net}. Group keys can be found after
+#' creating a delivery group in your account on \url{https://pushover.net}.
 #'
 #' @param user The user or group key to be used. If none is provided, a prompt
 #' will request the key.
@@ -34,7 +34,6 @@ set_pushover_user <- function(user = NULL, ask = interactive()) {
         if (ask && interactive()) {
             message("PUSHOVER_USER is not set and user/group key not provided (see ?pushoverr for details)")
             in_user <- readline("Please enter your user/group key: ")
-            # TODO: validate input?
             Sys.setenv("PUSHOVER_USER" = in_user)
         }
         else {
