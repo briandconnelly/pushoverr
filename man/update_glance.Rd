@@ -4,25 +4,27 @@
 \alias{update_glance}
 \title{Update a Pushover glance data}
 \usage{
-update_glance(user = get_pushover_user(), app = get_pushover_app(),
+update_glance(title = NULL, text = NULL, subtext = NULL, count = NULL,
+  percent = NULL, user = get_pushover_user(), app = get_pushover_app(),
   device = NULL, ...)
 }
 \arguments{
+\item{title}{(optional) a description of the data being shown, such as "Widgets Sold" (max. 100 characters)}
+
+\item{text}{(optional) the main line of data, used on most screens (max. 100 characters)}
+
+\item{subtext}{(optional) a second line of data (max. 100 characters)}
+
+\item{count}{(optional) integer value shown on smaller screens; useful for simple counts}
+
+\item{percent}{(optional) integer percent value (0..100) shown on some screens as a progress bar/circle}
+
 \item{user}{user/group key (see \code{\link{set_pushover_user}})}
 
 \item{app}{application token (see \code{\link{set_pushover_app}})}
 
 \item{device}{(optional) name of the device(s) to send message to. Defaults
 to all devices.}
-
-\item{...}{Values for glance data fields. Must provide at least one of:
-\itemize{
-    \item \code{title}: a description of the data being shown, such as "Widgets Sold" (max. 100 characters)
-    \item \code{text}: the main line of data, used on most screens (max. 100 characters)
-    \item \code{subtext}: a second line of data (max. 100 characters)
-    \item \code{count}: integer value shown on smaller screens; useful for simple counts
-    \item \code{percent}: integer percent value (0..100) shown on some screens as a progress bar/circle
-}}
 }
 \value{
 an invisible list containing the following fields:
@@ -35,7 +37,9 @@ an invisible list containing the following fields:
 }
 \description{
 Glances allow you to push small pieces of data to a frequently-updated screen
-such as a smartwatch or a lock screen.
+such as a smartwatch or a lock screen. At least one of the \code{title},
+\code{text}, \code{subtext}, \code{count}, or \code{percent} arguments must
+be specified.
 }
 \note{
 Glances are currently in beta, and features may change.
