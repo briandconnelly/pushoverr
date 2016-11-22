@@ -21,7 +21,30 @@
 group_subscription <- function(cmd, ...) {
     opt_args <- list(...)
 
-    # TODO: validate args in ...: group, user, app, device, memo
+    if ("group" %in% names(opt_args)) {
+        assertthat::assert_that(assertthat::is.scalar(opt_args[["group"]]),
+                                is.valid_group(opt_args[["group"]]))
+    }
+
+    if ("user" %in% names(opt_args)) {
+        assertthat::assert_that(assertthat::is.scalar(opt_args[["user"]]),
+                                is.valid_user(opt_args[["user"]]))
+    }
+
+    if ("token" %in% names(opt_args)) {
+        assertthat::assert_that(assertthat::is.scalar(opt_args[["token"]]),
+                                is.valid_app(opt_args[["token"]]))
+    }
+
+    if ("device" %in% names(opt_args)) {
+        assertthat::assert_that(assertthat::is.scalar(opt_args[["device"]]),
+                                is.valid_device(opt_args[["device"]]))
+    }
+
+    if ("memo" %in% names(opt_args)) {
+        assertthat::assert_that(assertthat::is.scalar(opt_args[["memo"]]),
+                                nchar(opt_args[["memo"]]) <= 200)
+    }
 
     query_url <- sprintf("https://api.pushover.net/1/groups/%s/%s.json",
                          opt_args$group, cmd)
