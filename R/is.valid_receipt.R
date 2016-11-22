@@ -4,7 +4,7 @@
 #' is valid or not according to Pushover's specifications. It does not determine
 #' whether or not the given receipt actually exists.
 #' 
-#' @description Receipt IDs are 30-character strings containing letters and
+#' @description Receipts are 30-character strings containing letters and
 #' numbers ([A-Za-z0-9])
 #'
 #' @export
@@ -18,4 +18,8 @@
 #' 
 is.valid_receipt <- function(receipt) {
     grepl("^[a-zA-Z0-9]{30}$", receipt)
+}
+
+assertthat::on_failure(is.valid_receipt) <- function(call, env) {
+    "Invalid Pushover message receipt. Receipts are 30-character strings containing letters and numbers."
 }

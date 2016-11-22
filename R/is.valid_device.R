@@ -19,3 +19,7 @@
 is.valid_device <- function(device) {
     grepl("^[a-zA-Z0-9_-]{1,25}$", device)
 }
+
+assertthat::on_failure(is.valid_device) <- function(call, env) {
+    "Invalid Pushover devnice name. Valid names contain up to 25 characters, including letters, numbers, _, and -."
+}

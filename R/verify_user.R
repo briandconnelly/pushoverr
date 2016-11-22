@@ -26,12 +26,13 @@
 #' verify_user(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
 #' }
 verify_user <- function(user, app = get_pushover_app(), device = NULL) {
-    assertthat::assert_that(assertthat::is.scalar(user))
-    assertthat::assert_that(assertthat::is.scalar(app))
+    assertthat::assert_that(assertthat::is.scalar(user), is.valid_user(user))
+    assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
 
     params <- list("token" = app, "user" = user)
     if (!is.null(device)) {
-        assertthat::assert_that(assertthat::is.scalar(device))
+        assertthat::assert_that(assertthat::is.scalar(device),
+                                is.valid_device(device))
         params$device <- device
     }
 

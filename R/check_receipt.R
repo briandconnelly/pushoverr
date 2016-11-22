@@ -33,8 +33,8 @@
 #' is.acknowledged(receipt = msg1$receipt)
 #' }
 check_receipt <- function(receipt, app = get_pushover_app()) {
-    assertthat::assert_that(assertthat::is.scalar(receipt))
-    assertthat::assert_that(is.valid_receipt(receipt = receipt))
+    assertthat::assert_that(assertthat::is.scalar(receipt),
+                            is.valid_receipt(receipt = receipt))
 
     query_url <- sprintf("https://api.pushover.net/1/receipts/%s.json", receipt)
     response <- httr::GET(url = query_url, query = list(token = app))

@@ -37,23 +37,26 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
     if (is.null(c(title, text, subtext, count, percent))) {
         stop("Must provide at least one of the following arguments: title, text, subtext, count, percent", call. = FALSE)
     }
-    assertthat::assert_that(assertthat::is.scalar(user))
-    assertthat::assert_that(assertthat::is.scalar(app))
+    assertthat::assert_that(assertthat::is.scalar(user), is.valid_user(user))
+    assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
 
     params <- list("token" = app, "user" = user)
 
     if (!is.null(title)) {
-        assertthat::assert_that(nchar(title) <= 100)
+        assertthat::assert_that(assertthat::is.scalar(title),
+                                nchar(title) <= 100)
         params$title <- title
     }
 
     if (!is.null(text)) {
-        assertthat::assert_that(nchar(text) <= 100)
+        assertthat::assert_that(assertthat::is.scalar(text),
+                                nchar(text) <= 100)
         params$text <- text
     }
 
     if (!is.null(subtext)) {
-        assertthat::assert_that(nchar(subtext) <= 100)
+        assertthat::assert_that(assertthat::is.scalar(subtext),
+                                nchar(subtext) <= 100)
         params$subtext <- subtext
     }
 
@@ -63,12 +66,13 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
     }
 
     if (!is.null(percent)) {
-        assertthat::assert_that(assertthat::is.number(percent) && percent >= 0 && percent <= 100)
+        assertthat::assert_that(assertthat::is.number(percent), percent >= 0, percent <= 100)
         params$percent <- percent
     }
 
     if (!is.null(device)) {
-        assertthat::assert_that(assertthat::is.scalar(device))
+        assertthat::assert_that(assertthat::is.scalar(device),
+                                is.valid_device(device))
         params$device <- device
     }
 

@@ -7,16 +7,20 @@
 #' @note To acquire an application token, create an app at
 #' \url{https://pushover.net/apps}
 #'
-#' @param token A application token (e.g., "KzGDORePK8gMaC0QOYAMyEEuzJnyUi")
+#' @param token A application token (e.g., "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 #' @return A logical value indicating whether the application token is valid
 #' (\code{TRUE}) or not (\code{FALSE})
 #'
 #' @export
 #' @examples
-#' is.valid_app(token = "KzGDORePK8gMaC0QOYAMyEEuzJnyU")
+#' is.valid_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 #' 
 is.valid_app <- function(token) {
     grepl("^[a-zA-Z0-9]{30}$", token)
+}
+
+assertthat::on_failure(is.valid_app) <- function(call, env) {
+    "Invalid Pushover application token. Tokens are 30 characters long and contain letters and numbers (e.g., azGDORePK8gMaC0QOYAMyEEuzJnyUi)."
 }
 
 

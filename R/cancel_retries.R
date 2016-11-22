@@ -21,6 +21,9 @@
 #' cancel_retries(receipt = msg1$receipt)
 #' }
 cancel_retries <- function(receipt, app = get_pushover_app()) {
+    assertthat::assert_that(assertthat::is.scalar(receipt),
+                            is.valid_receipt(receipt))
+
     query_url <- sprintf("https://api.pushover.net/1/receipts/%s/cancel.json",
                          receipt)
     response <- httr::POST(url = query_url, body = list("token" = app))
@@ -38,6 +41,7 @@ cancel_retries <- function(receipt, app = get_pushover_app()) {
 #' @export
 cancel_receipt <- function(receipt, ...) {
     message("cancel_receipt() is deprecated. Please use cancel_retries() instead.")
+    assertthat::assert_that(is.valid_receipt(receipt))
 
     opt_args <- list(...)
     app <- ifelse("token" %in% names(opt_args),

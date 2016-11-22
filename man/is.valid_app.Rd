@@ -10,7 +10,7 @@ is.valid_app(token)
 is.valid_token(token)
 }
 \arguments{
-\item{token}{A application token (e.g., "KzGDORePK8gMaC0QOYAMyEEuzJnyUi")}
+\item{token}{A application token (e.g., "azGDORePK8gMaC0QOYAMyEEuzJnyUi")}
 }
 \value{
 A logical value indicating whether the application token is valid
@@ -28,7 +28,7 @@ To acquire an application token, create an app at
 \url{https://pushover.net/apps}
 }
 \examples{
-is.valid_app(token = "KzGDORePK8gMaC0QOYAMyEEuzJnyU")
+is.valid_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 
 }
 

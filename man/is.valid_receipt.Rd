@@ -14,7 +14,7 @@ A boolean value for each given message receipt ID indicating whether
 that receipt ID is valid (\code{TRUE}) or not (\code{FALSE})
 }
 \description{
-Receipt IDs are 30-character strings containing letters and
+Receipts are 30-character strings containing letters and
 numbers ([A-Za-z0-9])
 }
 \details{

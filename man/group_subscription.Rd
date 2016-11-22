@@ -13,14 +13,11 @@ group_subscription(cmd, ...)
 group_add_user(group, user, app = get_pushover_app(), device = NULL,
   memo = NULL)
 
-group_delete_user(group, user, app = get_pushover_app(), device = NULL,
-  memo = NULL)
+group_delete_user(group, user, app = get_pushover_app())
 
-group_disable_user(group, user, app = get_pushover_app(), device = NULL,
-  memo = NULL)
+group_disable_user(group, user, app = get_pushover_app())
 
-group_enable_user(group, user, app = get_pushover_app(), device = NULL,
-  memo = NULL)
+group_enable_user(group, user, app = get_pushover_app())
 }
 \arguments{
 \item{cmd}{The group subscription command to execute}
