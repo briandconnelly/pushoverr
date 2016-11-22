@@ -4,9 +4,10 @@
 [![BSD License](https://img.shields.io/badge/license-BSD-brightgreen.svg)](https://opensource.org/licenses/BSD-2-Clause)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pushoverr)](https://cran.r-project.org/package=pushoverr)
 
+pushoverr allows you to send push notifications to mobile devices or the desktop using [Pushover](https://pushover.net/).
+These notifications can display job status, results, scraped web data, or any other text or numeric data.
 Got some R code that takes a while to complete?
 Enough time to take a little walk or go get a coffee, but maybe not long enough to go home for the day?
-pushoverr is an R package that allows you to send push notifications via [Pushover](https://pushover.net/) to your mobile devices (iOS or Android) or desktop.
 Now you'll be able to easily let yourself or your group know when it's done.
 
 
@@ -29,14 +30,11 @@ Installing pushoverr is as easy as running:
 
 ### Latest and Greatest (Fingers Crossed) via GitHub
 
-If you like living on the edge (or need a previous version), you can use [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to install the latest and greatest version of pushoverr from GitHub.
+You can use [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to install the development version of pushoverr from GitHub.
 To do so:
 
     if(!require("devtools")) install.packages("devtools")
     devtools::install_github("briandconnelly/pushoverr")
-
-You'll also need to make sure that you have the excellent [httr](http://cran.r-project.org/web/packages/httr/index.html) package, which makes working with web connections easy.
-For an up-to-date R setup, this can be done by running `install.packages("httr")`.
 
 
 ## Using pushoverr
@@ -59,22 +57,7 @@ Within just a few seconds, your phone/tablet/watch/whatever should be abuzz with
 Using other arguments to `pushover`, you can configure other aspects of your message, including sounds, links, and message priorities.
 
 
-### Example 2: Send Yourself an Important Message
-
-Pushoverr provides message different message priorities.
-Quiet messages arrive without playing a sound, high priority messages arrive with a reddish background, and emergency messages arrive and repeat until they've been acknowledged.
-`pushoverr` provides easy methods for sending these:
-
-    pushover_quiet(message = "The kittens are sleeping", user = <YOUR USER KEY>, app = <YOUR APP TOKEN>)
-
-Or more urgently:
-
-    pushover_emergency(message = "The kittens are awake, and they are ANGRY!", user = <YOUR USER KEY>, app = <YOUR APP TOKEN>)
-
-Emergency messages return a receipt token that can be checked with `is.acknowledged()` to see whether or not it has been seen.
-
-
-### Example 3: Saving Your Credentials
+### Saving your Credentials
 
 By default, pushoverr will prompt you for your key and app token when needed and save them for all subsequent commands.
 You can directly tell pushoverr your key and token using `set_pushover_user` and `set_pushover_app`:
@@ -93,14 +76,32 @@ With this approach, your keys will be set whenever you use R.
 pushoverr will use these keys by default, but they can easily be overridden by supplying different values as arguments.
 
 
-### Example 4: Sending to a Specific Device
+### Example 2: Send Yourself an Important Message
+
+Pushoverr provides message different message priorities.
+Quiet messages arrive without playing a sound, high priority messages arrive with a reddish background, and emergency messages arrive and repeat until they've been acknowledged.
+`pushoverr` provides easy methods for sending these:
+
+    pushover_quiet(message = "The kittens are sleeping")
+
+Or more urgently:
+
+    pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
+
+Emergency messages return a receipt token that can be checked with `is.acknowledged()` to see whether or not it has been seen.
+
+    msg <- pushover_emergency(message = "The freezer is currently at -71 C!")
+    is.acknowledged(receipt = msg$receipt)
+
+
+### Example 3: Sending to a Specific Device
 
 If you have more than one device using Pushover, you can also send messages to a specific device:
 
     pushover(message = "If you pretend like this is important, you can walk out of the boring meeting", device = "Phone")
 
 
-### Example 5: Results on your Wrist
+### Example 4: Results on your Wrist
 
 Pushover can now show data on constantly-updated screens like your smartwatch or lock screen (where supported).
 Using `update_glance`, you can push short text messages, numbers, and percentages to your watch right from within R.
