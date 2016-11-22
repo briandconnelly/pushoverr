@@ -25,6 +25,6 @@ group_rename <- function(group, name, app = get_pushover_app()) {
     query_url <- sprintf("https://api.pushover.net/1/groups/%s/rename.json",
                          group)
 
-    invisible(pushover_api(verb = "POST", url = query_url,
-                           body = list("token" = app, "name" = name)))
+    pushover_api(verb = "POST", url = query_url, visible = FALSE,
+                 body = list("token" = app, "name" = name))
 }

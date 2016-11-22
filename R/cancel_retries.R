@@ -26,8 +26,8 @@ cancel_retries <- function(receipt, app = get_pushover_app()) {
 
     query_url <- sprintf("https://api.pushover.net/1/receipts/%s/cancel.json",
                          receipt)
-    invisible(pushover_api(verb = "POST", url = query_url,
-                           body = list("token" = app)))
+    pushover_api(verb = "POST", url = query_url, visible = FALSE,
+                 body = list("token" = app))
 
 }
 

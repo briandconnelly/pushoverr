@@ -4,12 +4,14 @@
 \alias{pushover_api}
 \title{Issue a command using the Pushover API}
 \usage{
-pushover_api(verb, url, ...)
+pushover_api(verb, url, visible = TRUE, ...)
 }
 \arguments{
 \item{verb}{The http method to use}
 
 \item{url}{The URL to visit}
+
+\item{visible}{Whether or not the result should be visible (default: \code{TRUE})}
 
 \item{...}{Any additional parameters to be passed to \code{\link[httr]{VERB}}}
 }

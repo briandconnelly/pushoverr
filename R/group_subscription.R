@@ -48,7 +48,8 @@ group_subscription <- function(cmd, ...) {
 
     query_url <- sprintf("https://api.pushover.net/1/groups/%s/%s.json",
                          opt_args$group, cmd)
-    invisible(pushover_api(verb = "POST", url = query_url, body = opt_args))
+    pushover_api(verb = "POST", url = query_url, visible = FALSE,
+                 body = opt_args)
 }
 
 #' @rdname group_subscription

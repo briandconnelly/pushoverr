@@ -94,9 +94,10 @@ pushover <- function(message,
         params$callback <- callback
     }
 
-    invisible(pushover_api(verb = "POST",
-                           url = "https://api.pushover.net/1/messages.json",
-                           body = params))
+    pushover_api(verb = "POST",
+                 url = "https://api.pushover.net/1/messages.json",
+                 visible = FALSE,
+                 body = params)
 }
 
 

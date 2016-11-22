@@ -7,6 +7,7 @@
 #'
 #' @param verb The http method to use
 #' @param url The URL to visit
+#' @param visible Whether or not the result should be visible (default: \code{TRUE})
 #' @param ... Any additional parameters to be passed to \code{\link[httr]{VERB}}
 #'
 #' @return a list containing the following fields and any other fields related
@@ -24,12 +25,14 @@
 #'              url = "https://api.pushover.net/1/sounds.json",
 #'              query = list(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi"))
 #' }
-pushover_api <- function(verb, url, ...) {
+pushover_api <- function(verb, url, visible = TRUE, ...) {
     response <- httr::VERB(verb = verb, url = url, ...)
     stop_for_pushover_status(response)
 
     rval <- httr::content(response)
     rval$raw <- response
     class(rval) <- c("pushover", "list")
-    rval
+
+    if (visible) rval
+    else invisible(rval)
 }

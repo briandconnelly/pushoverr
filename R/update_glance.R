@@ -76,7 +76,8 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
         params$device <- device
     }
 
-    invisible(pushover_api(verb = "POST",
-                           url = "https://api.pushover.net/1/glances.json",
-                           body = params))
+    pushover_api(verb = "POST",
+                 url = "https://api.pushover.net/1/glances.json",
+                 visible = FALSE,
+                 body = params)
 }
