@@ -30,7 +30,7 @@ Installing pushoverr is as easy as running:
 
 ### Latest and Greatest (Fingers Crossed) via GitHub
 
-You can use [devtools](http://cran.r-project.org/web/packages/devtools/index.html) to install the development version of pushoverr from GitHub.
+You can use [devtools](https://cran.r-project.org/package=devtools) to install the development version of pushoverr from GitHub.
 To do so:
 
     if(!require("devtools")) install.packages("devtools")
@@ -128,8 +128,7 @@ For all feature requests and bug reports, visit [pushoverr on GitHub](https://gi
     * [FAQ](https://pushover.net/faq)
     * [API](https://pushover.net/api)
     * [Terms of Service](https://pushover.net/terms)
-* [NotifyR](http://cran.r-project.org/web/packages/notifyR/index.html), an alternate Pushover tool for R (no longer maintained?)
-* [CRAN Info for pushoverr](https://cran.r-project.org/web/packages/pushoverr/index.html)
+* [NotifyR](https://cran.r-project.org/package=notifyR)), an alternate Pushover tool for R (no longer maintained?)
 * [RPushbullet](https://github.com/eddelbuettel/rpushbullet), an R interface for [Pushbullet](https://www.pushbullet.com), a similar (and larger) service.
 
 

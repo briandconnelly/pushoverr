@@ -1,3 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^CONDUCT\.md$
+cran-comments.md
+^\.travis\.yml$
