@@ -111,7 +111,14 @@ Note that these updates should be done infrequently---no more than once every 20
 If you encounter problems, WatchOS resets this limit overnight.
 
 
+## Features Not Supported
+
+pushoverr currently does not support [subscriptions](https://pushover.net/api/subscriptions), [licensing](https://pushover.net/api/licensing) (I don't use Pushover in this context, so I can't test these features), or the [open client API](https://pushover.net/api/client).
+If you'd like to see these features supported, please submit an [issue](https://github.com/briandconnelly/pushoverr/issues) or a pull request.
+
+
 ## Feature Requests and Bug Reports
+
 For all feature requests and bug reports, visit [pushoverr on GitHub](https://github.com/briandconnelly/pushoverr/issues).
 
 
