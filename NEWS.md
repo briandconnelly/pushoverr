@@ -6,7 +6,7 @@
 * several functions have been deprecated
     * `cancel_receipt` is deprecated in favor of `cancel_retries`
     * `is.valid_token` is deprecated in favor of `is.valid_app`
-    * `validate_key` is deprecated in favor of `validate_user`
+    * `validate_key` is deprecated in favor of `verify_user`
 * User/group and application keys are now stored in environment variables instead of a package-specific environment, which makes it easier to store keys in .Renviron
 * added support for the glances API (e.g., for smartwatches) via `update_glance()`
 * added `is.valid_pushover_sound` function to validate sound arguments

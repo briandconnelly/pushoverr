@@ -34,6 +34,7 @@ cancel_retries <- function(receipt, app = get_pushover_app()) {
 
 #' @rdname cancel_retries
 #' @description \code{cancel_receipt} is deprecated in favor of \code{cancel_retries}
+#' @param ... Additional arguments (no longer used)
 #' @export
 cancel_receipt <- function(receipt, ...) {
     message("cancel_receipt() is deprecated. Please use cancel_retries() instead.")

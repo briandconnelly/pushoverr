@@ -107,6 +107,9 @@ Using `update_glance`, you can push short text messages, numbers, and percentage
 
     update_glance(count = 88)
 
+Note that these updates should be done infrequently---no more than once every 20 minutes or so---or WatchOS will stop processing updates to promote battery life.
+If you encounter problems, WatchOS resets this limit overnight.
+
 
 ## Feature Requests and Bug Reports
 For all feature requests and bug reports, visit [pushoverr on GitHub](https://github.com/briandconnelly/pushoverr/issues).
@@ -122,8 +125,10 @@ For all feature requests and bug reports, visit [pushoverr on GitHub](https://gi
 * [RPushbullet](https://github.com/eddelbuettel/rpushbullet), an R interface for [Pushbullet](https://www.pushbullet.com), a similar (and larger) service.
 
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
-By participating in this project you agree to abide by its terms.
+## Code of Conduct
+
+This project is released with a [Contributor Code of Conduct](CONDUCT.md).
+By participating in this project, you agree to abide by its terms.
 
 
 ## Disclaimer

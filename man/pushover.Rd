@@ -50,6 +50,8 @@ pushover_emergency(message, ...)
 \item{callback}{(optional) callback URL to be visited (HTTP POST) once an emergency priority message has been acknowledged (\href{https://pushover.net/api#receipt}{details})}
 
 \item{timestamp}{(optional) a Unix timestamp containing the date and time to display to the user instead of the time at which the message was received}
+
+\item{...}{Additional arguments to pass to \code{pushover()}}
 }
 \value{
 an invisible list containing the following fields:

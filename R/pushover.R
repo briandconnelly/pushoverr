@@ -103,6 +103,7 @@ pushover <- function(message,
 
 
 #' @rdname pushover
+#' @param ... Additional arguments to pass to \code{pushover()}
 #' @export
 pushover_silent <- function(message, ...) {
     pushover(message = message, priority = -2, ...)

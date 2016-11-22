@@ -32,7 +32,7 @@
 update_glance <- function(title = NULL, text = NULL, subtext = NULL,
                           count = NULL, percent = NULL,
                           user = get_pushover_user(), app = get_pushover_app(),
-                          device = NULL, ...) {
+                          device = NULL) {
 
     if (is.null(c(title, text, subtext, count, percent))) {
         stop("Must provide at least one of the following arguments: title, text, subtext, count, percent", call. = FALSE)

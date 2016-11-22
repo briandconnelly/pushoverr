@@ -13,6 +13,8 @@ cancel_receipt(receipt, ...)
 \item{receipt}{The receipt from sending an emergency message}
 
 \item{app}{application token (see \code{\link{set_pushover_app}})}
+
+\item{...}{Additional arguments (no longer used)}
 }
 \value{
 a list containing the following fields:

@@ -6,7 +6,7 @@ Date: 2016-11-09
 Authors@R: c(person(family="Connelly", given="Brian", email="bdc@bconnelly.net",
                     role=c("aut", "cre")))
 Maintainer: Brian Connelly <bdc@bconnelly.net>
-Description: A package for sending push notifications to mobile devices or the desktop using Pushover
+Description: pushoverr allows you to send push notifications to mobile devices or the desktop using Pushover. These notifications can display job status, results, scraped web data, or any other text or numeric data.
 License: BSD_2_clause + file LICENSE
 URL: https://github.com/briandconnelly/pushoverr
 BugReports: https://github.com/briandconnelly/pushoverr/issues
