@@ -37,13 +37,7 @@ check_receipt <- function(receipt, app = get_pushover_app()) {
                             is.valid_receipt(receipt = receipt))
 
     query_url <- sprintf("https://api.pushover.net/1/receipts/%s.json", receipt)
-    response <- httr::GET(url = query_url, query = list(token = app))
-    stop_for_pushover_status(response)
-
-    rval <- httr::content(response)
-    rval$raw <- response
-    class(rval) <- c("pushover", "list")
-    rval
+    pushover_api(verb = "GET", url = query_url, query = list(token = app))
 }
 
 

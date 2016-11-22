@@ -36,15 +36,9 @@ verify_user <- function(user, app = get_pushover_app(), device = NULL) {
         params$device <- device
     }
 
-    response <- httr::POST(url = "https://api.pushover.net/1/users/validate.json",
-                           body = params)
-    stop_for_pushover_status(response)
-
-    rval <- httr::content(response)
-    rval$raw <- response
-    class(rval) <- c("pushover", "list")
-
-    rval
+    pushover_api(verb = "POST",
+                 url = "https://api.pushover.net/1/users/validate.json",
+                 body = params)
 }
 
 

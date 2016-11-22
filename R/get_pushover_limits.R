@@ -29,14 +29,7 @@
 #' }
 get_pushover_limits <- function(app = get_pushover_app()) {
     assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
-
-    response <- httr::GET(url = "https://api.pushover.net/1/apps/limits.json",
-                          query = list(token = app))
-    stop_for_pushover_status(response)
-
-    rval <- httr::content(response)
-    rval$raw <- response
-    class(rval) <- c("pushover", "list")
-
-    rval
+    pushover_api(verb = "GET",
+                 url = "https://api.pushover.net/1/apps/limits.json",
+                 query = list(token = app))
 }

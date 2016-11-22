@@ -12,8 +12,8 @@
 get_pushover_sounds <- function(app = get_pushover_app()) {
     assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
 
-    response <- httr::GET(url = "https://api.pushover.net/1/sounds.json",
-                          query = list(token = app))
-    stop_for_pushover_status(response)
-    httr::content(response)$sounds
+    response <- pushover_api(verb = "GET",
+                             url = "https://api.pushover.net/1/sounds.json",
+                             query = list(token = app))
+    response$sounds
 }

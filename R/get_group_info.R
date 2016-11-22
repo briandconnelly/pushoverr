@@ -21,12 +21,5 @@ get_group_info <- function(group, app = get_pushover_app()) {
     assertthat::assert_that(is.valid_group(group))
 
     query_url <- sprintf("https://api.pushover.net/1/groups/%s.json", group)
-    response <- httr::GET(url = query_url, query = list(token = app))
-    stop_for_pushover_status(response)
-
-    rval <- httr::content(response)
-    rval$raw <- response
-    class(rval) <- c("pushover", "list")
-
-    rval
+    pushover_api(verb = "GET", url = query_url, query = list(token = app))
 }

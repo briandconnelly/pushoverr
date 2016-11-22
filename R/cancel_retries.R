@@ -6,7 +6,7 @@
 #' @param receipt The receipt from sending an emergency message
 #' @param app application token (see \code{\link{set_pushover_app}})
 #'
-#' @return a list containing the following fields:
+#' @return an invisible list containing the following fields:
 #' \itemize{
 #'     \item \code{status}: request status (1 = success)
 #'     \item \code{request}: unique request ID
@@ -26,13 +26,9 @@ cancel_retries <- function(receipt, app = get_pushover_app()) {
 
     query_url <- sprintf("https://api.pushover.net/1/receipts/%s/cancel.json",
                          receipt)
-    response <- httr::POST(url = query_url, body = list("token" = app))
-    stop_for_pushover_status(response)
+    invisible(pushover_api(verb = "POST", url = query_url,
+                           body = list("token" = app)))
 
-    rval <- httr::content(response)
-    rval$raw <- response
-    class(rval) <- c("pushover", "list")
-    rval
 }
 
 #' @rdname cancel_retries

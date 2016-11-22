@@ -94,15 +94,9 @@ pushover <- function(message,
         params$callback <- callback
     }
 
-    response <- httr::POST(url = "https://api.pushover.net/1/messages.json",
-                           body = params)
-    stop_for_pushover_status(response)
-
-    rval <- httr::content(response)
-    rval$raw <- response
-    class(rval) <- c("pushover", "list")
-
-    invisible(rval)
+    invisible(pushover_api(verb = "POST",
+                           url = "https://api.pushover.net/1/messages.json",
+                           body = params))
 }
 
 

@@ -17,7 +17,7 @@ cancel_receipt(receipt, ...)
 \item{...}{Additional arguments (no longer used)}
 }
 \value{
-a list containing the following fields:
+an invisible list containing the following fields:
 \itemize{
     \item \code{status}: request status (1 = success)
     \item \code{request}: unique request ID

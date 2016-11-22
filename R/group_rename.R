@@ -22,16 +22,9 @@ group_rename <- function(group, name, app = get_pushover_app()) {
     assertthat::assert_that(assertthat::is.scalar(name), is.character(name))
     assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
 
-    params <- list("token" = app, "name" = name)
-
     query_url <- sprintf("https://api.pushover.net/1/groups/%s/rename.json",
                          group)
-    response <- httr::POST(query_url, body = params)
-    stop_for_pushover_status(response)
 
-    rval <- httr::content(response)
-    rval$raw <- response
-    class(rval) <- c("pushover", "list")
-
-    invisible(rval)
+    invisible(pushover_api(verb = "POST", url = query_url,
+                           body = list("token" = app, "name" = name)))
 }

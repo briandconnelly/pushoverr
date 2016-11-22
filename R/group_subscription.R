@@ -48,15 +48,7 @@ group_subscription <- function(cmd, ...) {
 
     query_url <- sprintf("https://api.pushover.net/1/groups/%s/%s.json",
                          opt_args$group, cmd)
-
-    response <- httr::POST(url = query_url, body = opt_args)
-    stop_for_pushover_status(response)
-
-    rval <- httr::content(response)
-    rval$raw <- response
-    class(rval) <- c("pushover", "list")
-
-    invisible(rval)
+    invisible(pushover_api(verb = "POST", url = query_url, body = opt_args))
 }
 
 #' @rdname group_subscription
@@ -86,7 +78,7 @@ group_add_user <- function(group, user, app = get_pushover_app(), device = NULL,
 #' }
 group_delete_user <- function(group, user, app = get_pushover_app()) {
     group_subscription(cmd = "delete_user", group = group, user = user,
-                       token = app, device = NULL, memo = NULL)
+                       token = app)
 }
 
 
@@ -101,7 +93,7 @@ group_delete_user <- function(group, user, app = get_pushover_app()) {
 #' }
 group_disable_user <- function(group, user, app = get_pushover_app()) {
     group_subscription(cmd = "disable_user", group = group, user = user,
-                       token = app, device = NULL, memo = NULL)
+                       token = app)
 }
 
 
@@ -116,5 +108,5 @@ group_disable_user <- function(group, user, app = get_pushover_app()) {
 #' }
 group_enable_user <- function(group, user, app = get_pushover_app()) {
     group_subscription(cmd = "enable_user", group = group, user = user,
-                       token = app, device = NULL, memo = NULL)
+                       token = app)
 }
