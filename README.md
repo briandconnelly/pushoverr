@@ -2,6 +2,7 @@
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![BSD License](https://img.shields.io/badge/license-BSD-brightgreen.svg)](https://opensource.org/licenses/BSD-2-Clause)
+[![Travis-CI Build Status](https://travis-ci.org/briandconnelly/pushoverr.svg?branch=master)](https://travis-ci.org/briandconnelly/pushoverr)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pushoverr)](https://cran.r-project.org/package=pushoverr)
 
 pushoverr allows you to send push notifications to mobile devices or the desktop using [Pushover](https://pushover.net/).
@@ -54,6 +55,9 @@ Then:
     pushover(message = "Mr. Watson--come here--I want to see you.", user = <YOUR USER KEY>, app = <YOUR APP TOKEN>)
 
 Within just a few seconds, your phone/tablet/watch/whatever should be abuzz with this historic message.
+
+![Our first notification message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message1.png)
+
 Using other arguments to `pushover`, you can configure other aspects of your message, including sounds, links, and message priorities.
 
 
@@ -88,6 +92,8 @@ Or more urgently:
 
     pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
 
+![An emergency notification message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message2.png)
+
 Emergency messages return a receipt token that can be checked with `is.acknowledged()` to see whether or not it has been seen.
 
     msg <- pushover_emergency(message = "The freezer is currently at -71 C!")
@@ -107,6 +113,8 @@ Pushover can now show data on constantly-updated screens like your smartwatch or
 Using `update_glance`, you can push short text messages, numbers, and percentages to your watch right from within R.
 
     update_glance(count = 88)
+
+![Showing a count notification on an Apple Watch](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/watch1.png)
 
 Note that these updates should be done infrequently---no more than once every 20 minutes or so---or WatchOS will stop processing updates to promote battery life.
 If you encounter problems, WatchOS resets this limit overnight.
