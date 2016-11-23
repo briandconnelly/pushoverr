@@ -136,7 +136,8 @@ For all feature requests and bug reports, visit [pushoverr on GitHub](https://gi
     * [FAQ](https://pushover.net/faq)
     * [API](https://pushover.net/api)
     * [Terms of Service](https://pushover.net/terms)
-* [NotifyR](https://cran.r-project.org/package=notifyR)), an alternate Pushover tool for R (no longer maintained?)
+* [R Phone Home: Notifications with pushoverr](http://bconnelly.net/2016/11/R-phone-home/), blog post about using pushoverr
+* [NotifyR](https://cran.r-project.org/package=notifyR), an alternate Pushover tool for R (no longer maintained?)
 * [RPushbullet](https://github.com/eddelbuettel/rpushbullet), an R interface for [Pushbullet](https://www.pushbullet.com), a similar (and larger) service.
 
 
