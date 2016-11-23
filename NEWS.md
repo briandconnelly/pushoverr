@@ -1,4 +1,4 @@
-# pushoverr 0.9.90
+# pushoverr 1.0.0
 
 * Reimplemented core functionality. No longer using S4 objects.
     * Removed `PushoverMessage` and `PushoverResponse` classes
