@@ -5,7 +5,7 @@
 [![Travis-CI Build Status](https://travis-ci.org/briandconnelly/pushoverr.svg?branch=master)](https://travis-ci.org/briandconnelly/pushoverr)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pushoverr)](https://cran.r-project.org/package=pushoverr)
 
-pushoverr allows you to send push notifications to mobile devices or the desktop using [Pushover](https://pushover.net/).
+pushoverr allows you to send push notifications from R to mobile devices or the desktop using [Pushover](https://pushover.net/).
 These notifications can display job status, results, scraped web data, or any other text or numeric data.
 Got some R code that takes a while to complete?
 Enough time to take a little walk or go get a coffee, but maybe not long enough to go home for the day?
