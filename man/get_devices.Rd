@@ -39,4 +39,3 @@ get_devices(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG", app = "azGDORePK8gMaC0QOYAM
 is.device(device = "phone")
 }
 }
-

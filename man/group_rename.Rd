@@ -30,4 +30,3 @@ group_rename(group = "gznej3rKEVAvPUxu9vvNnqpmZpokzF",
              name = "Coffee Party")
 }
 }
-

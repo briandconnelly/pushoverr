@@ -20,4 +20,3 @@ Test whether the given sound is supported for Pushover messages
 is.pushover_sound("cosmic")
 
 }
-

@@ -26,4 +26,3 @@ It does not determine whether that device is actually registered (see:
 is.valid_device("my_phone")
 
 }
-

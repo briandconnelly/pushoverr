@@ -38,4 +38,3 @@ pushover_api(verb = "GET",
              query = list(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi"))
 }
 }
-

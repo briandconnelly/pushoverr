@@ -1,8 +1,8 @@
 Package: pushoverr
 Type: Package
 Title: Send Push Notifications using Pushover
-Version: 1.0.0
-Date: 2016-11-22
+Version: 1.0.1.9000
+Date: 2020-04-04
 Authors@R: c(person(family="Connelly", given="Brian", email="bdc@bconnelly.net",
                     role=c("aut", "cre")))
 Description: Send push notifications to mobile devices or the desktop using Pushover. These notifications can display job status, results, scraped web data, or any other text or numeric data.
@@ -15,5 +15,7 @@ Depends:
     R (>= 3.0.0)
 Imports:
     assertthat,
-    httr
-RoxygenNote: 5.0.1
+    httr,
+    ggplot2,
+    graphics
+RoxygenNote: 7.1.0

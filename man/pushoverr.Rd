@@ -27,9 +27,7 @@ at the bottom of this help page. For release information, run
  This package and its author are not affiliated with
 \href{https://superblock.net}{Superblock, LLC}, creators of Pushover.
 }
-\author{
-Brian Connelly
-}
+
 \seealso{
 GitHub Repository: \url{https://github.com/briandconnelly/pushoverr}
 
@@ -39,4 +37,6 @@ Pushover: \url{https://pushover.net}
 
 Pushover API: \url{https://pushover.net/api}
 }
-
+\author{
+Brian Connelly
+}

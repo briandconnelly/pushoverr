@@ -28,4 +28,3 @@ is.valid_receipt(receipt = "KAWXTswy4cekx6vZbHBKbCKk1c1fdf")
 }
 
 }
-
