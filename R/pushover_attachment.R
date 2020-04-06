@@ -1,4 +1,4 @@
-#' Send a message using Pushover
+#' Send a message using Pushover with picture attachment
 #'
 #' \code{pushover_attachment} sends a message (push notification) to a user or group.
 #' Messages can be given different priorities, play different sounds, or require
@@ -57,7 +57,37 @@ pushover_attachment <- function(message,
                             priority %in% c(-2, -1, 0, 1, 2))
     assertthat::assert_that(assertthat::is.count(retry), retry >= 30)
     assertthat::assert_that(assertthat::is.count(expire), expire <= 86400)
-
+    assertthat::assert_that(file.info(attachment)$size<=2621440)
+    
+    supported_images <- data.frame(
+        stringsAsFactors = FALSE,
+        check.names = FALSE,
+        file_ext = c("jpg", "jpeg",
+                     "png", "bmp", "gif", "tif", "tiff", "svg"),
+        `Content-Type` = c(
+            "image/jpeg",
+            "image/jpeg",
+            "image/png",
+            "image/bmp",
+            "image/gif",
+            "image/tiff",
+            "image/tiff",
+            "image/svg+xml"
+        )
+    )
+    
+    assertthat::assert_that(tolower(tools::file_ext(attachment)) %in% c("jpg","jpeg","png","bmp","gif","tif","tiff","svg"))
+     
+    # jpg - image/jpeg
+    # jpeg - image/jpeg
+    # png - image/png
+    # bmp - image/bmp
+    # gif - image/gif
+    # tif - image/tiff
+    # tiff - image/tiff
+    # svg - image/svg+xml
+    # 
+    #     
     params <- list("token" = app,
                    "user" = user,
                    "message" = message,
@@ -66,7 +96,7 @@ pushover_attachment <- function(message,
                    "retry" = retry,
                    "expire" = expire,
                    "filename" = attachment,
-                   "Content-Type" = "image/png"
+                   "Content-Type" = supported_images[supported_images$file_ext==tolower(tools::file_ext(attachment)),]$`Content-Type`
                    )
 
     if (!is.null(device)) {

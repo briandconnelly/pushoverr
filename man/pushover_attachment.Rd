@@ -2,7 +2,7 @@
 % Please edit documentation in R/pushover_attachment.R
 \name{pushover_attachment}
 \alias{pushover_attachment}
-\title{Send a message using Pushover}
+\title{Send a message using Pushover with picture attachment}
 \usage{
 pushover_attachment(
   message,

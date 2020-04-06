@@ -90,6 +90,7 @@ ggpushover <- function(message,
            dpi=dpi,
            limitsize=limitsize, ...)
     
+    assertthat::assert_that(file.info(ftmp)$size<=2621440)
     
     params <- list("token" = app,
                    "user" = user,
