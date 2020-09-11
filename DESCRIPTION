@@ -18,4 +18,4 @@ Imports:
     httr,
     ggplot2,
     graphics
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
