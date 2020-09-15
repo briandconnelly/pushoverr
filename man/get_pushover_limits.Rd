@@ -37,4 +37,3 @@ the headers included in the response.
 lims <- get_pushover_limits(app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 }
 }
-

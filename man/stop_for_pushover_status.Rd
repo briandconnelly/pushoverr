@@ -16,4 +16,3 @@ If request was successful, the response (invisibly).
 Examines a response from a Pushover API call for errors. If there were
 errors, execution is stopped, and an error message is shown.
 }
-

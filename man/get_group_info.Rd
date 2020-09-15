@@ -29,4 +29,3 @@ Get information about a Pushover group
 get_group_info(group = "gznej3rKEVAvPUxu9vvNnqpmZpokzF")
 }
 }
-

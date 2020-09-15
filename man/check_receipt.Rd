@@ -47,4 +47,3 @@ check_recepit(receipt = msg1$receipt)
 is.acknowledged(receipt = msg1$receipt)
 }
 }
-

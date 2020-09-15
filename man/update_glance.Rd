@@ -4,9 +4,16 @@
 \alias{update_glance}
 \title{Update a Pushover glance data}
 \usage{
-update_glance(title = NULL, text = NULL, subtext = NULL, count = NULL,
-  percent = NULL, user = get_pushover_user(), app = get_pushover_app(),
-  device = NULL)
+update_glance(
+  title = NULL,
+  text = NULL,
+  subtext = NULL,
+  count = NULL,
+  percent = NULL,
+  user = get_pushover_user(),
+  app = get_pushover_app(),
+  device = NULL
+)
 }
 \arguments{
 \item{title}{(optional) a description of the data being shown, such as "Widgets Sold" (max. 100 characters)}
@@ -49,4 +56,3 @@ Glances are currently in beta, and features may change.
 update_glance(count = 37)
 }
 }
-

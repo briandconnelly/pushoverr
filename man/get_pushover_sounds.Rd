@@ -20,4 +20,3 @@ Get a list of sounds available for Pushover notifications
 get_pushover_sounds(app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 }
 }
-

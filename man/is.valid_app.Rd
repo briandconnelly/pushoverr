@@ -31,4 +31,3 @@ To acquire an application token, create an app at
 is.valid_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 
 }
-
