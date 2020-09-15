@@ -148,5 +148,5 @@ By participating in this project, you agree to abide by its terms.
 
 
 ## Disclaimer
-This package and its author are not affiliated with [Superblock](https://superblock.net), developers of Pushover.
+This package and its author are not affiliated with [Pushover](https://pushover.net).
 

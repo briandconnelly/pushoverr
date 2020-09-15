@@ -76,7 +76,7 @@ pushover_attachment <- function(message,
         )
     )
     
-    assertthat::assert_that(tolower(tools::file_ext(attachment)) %in% c("jpg","jpeg","png","bmp","gif","tif","tiff","svg"))
+    assertthat::assert_that(tolower(tools::file_ext(attachment)) %in% supported_images$file_ext)
      
     # jpg - image/jpeg
     # jpeg - image/jpeg
