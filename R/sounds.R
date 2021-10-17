@@ -3,5 +3,5 @@ pushover_sounds <- c(
   "falling", "gamelan", "incoming", "intermission", "magic",
   "mechanical", "pianobar", "siren", "spacealarm",
   "tugboat", "alien", "climb", "persistent", "echo",
-  "updown", "pushover", "none"
+  "updown", "vibrate", "none"
 )

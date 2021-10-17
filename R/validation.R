@@ -113,7 +113,9 @@ assertthat::on_failure(is.valid_group) <- function(call, env) {
 
 #' @rdname validation
 #'
-#' @description `is.valid_sound()`
+#' @description `is.valid_sound()` checks whether or not a given sound is
+#' supported by Pushover. See <https://pushover.net/api#sounds> for a complete
+#' list.
 #' @param sound a string containing a sound name
 #'
 #' @return `is.valid_sound()` returns a logical value indicating whether or not
