@@ -32,7 +32,7 @@ get_pushover_limits <- function(app = get_pushover_app()) {
     assertthat::is.scalar(app),
     is.valid_app(app)
   )
-  
+
   pushover_api(
     verb = "GET",
     url = "https://api.pushover.net/1/apps/limits.json",
