@@ -20,9 +20,15 @@
 #' )
 #' }
 group_rename <- function(group, name, app = get_pushover_app()) {
-  assertthat::assert_that(assertthat::is.scalar(group), is.valid_group(group))
-  assertthat::assert_that(assertthat::is.scalar(name), is.character(name))
-  assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
+  assertthat::assert_that(
+    assertthat::is.scalar(group),
+    is.valid_group(group),
+    assertthat::is.scalar(name),
+    is.character(name),
+    assertthat::noNA(name),
+    assertthat::is.scalar(app),
+    is.valid_app(app)
+  )
 
   query_url <- sprintf(
     "https://api.pushover.net/1/groups/%s/rename.json",

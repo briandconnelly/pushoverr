@@ -47,15 +47,19 @@ pushover <- function(message,
                      expire = 3600,
                      callback = NULL,
                      timestamp = NULL) {
-  assertthat::assert_that(nchar(message) <= 1024)
-  assertthat::assert_that(assertthat::is.scalar(user), is.valid_user(user))
-  assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
   assertthat::assert_that(
+    nchar(message) <= 1024,
+    assertthat::is.scalar(user),
+    is.valid_user(user),
+    assertthat::is.scalar(app),
+    is.valid_app(app),
     assertthat::is.number(priority),
-    priority %in% c(-2, -1, 0, 1, 2)
+    priority %in% c(-2, -1, 0, 1, 2),
+    assertthat::is.count(retry),
+    retry >= 30,
+    assertthat::is.count(expire),
+    expire <= 86400
   )
-  assertthat::assert_that(assertthat::is.count(retry), retry >= 30)
-  assertthat::assert_that(assertthat::is.count(expire), expire <= 86400)
 
   params <- list(
     "token" = app,

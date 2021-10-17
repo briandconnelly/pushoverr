@@ -17,7 +17,7 @@
 #'     \item `acknowledged_by_device`: name of the device on which the first user acknowledged the notification
 #'     \item `last_delivered_at`: Unix timestamp of when the notification was last acknowledged, or `0`
 #'     \item `expired`: whether (`1`) or not (`0`) the notification has expired
-#'     \item `expires_at`: Unix timestamp indicating when the notificaion will no longer be retried
+#'     \item `expires_at`: Unix timestamp indicating when the notification will no longer be retried
 #'     \item `called_back`: whether (`1`) or not (`0`) the callback URL has been visited
 #'     \item `called_back_at`: Unix timestamp indicating when the callback URL was visited
 #'     \item `request`: unique request ID
