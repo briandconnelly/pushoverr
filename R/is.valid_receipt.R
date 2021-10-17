@@ -5,7 +5,7 @@
 #' whether or not the given receipt actually exists.
 #'
 #' @description Receipts are 30-character strings containing letters and
-#' numbers ([A-Za-z0-9])
+#' numbers (\[A-Za-z0-9\])
 #'
 #' @export
 #' @param receipt A message receipt (e.g., `"KAWXTswy4cekx6vZbHBKbCKk1c1fdf"`)

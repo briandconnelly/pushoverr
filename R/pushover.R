@@ -12,7 +12,7 @@
 #' @param user user/group key (see [`set_pushover_user()`])
 #' @param app application token (see [`set_pushover_app()`])
 #' @param device (optional) name of the device(s) to send message to. Defaults to all devices.
-#' @param sound (optional) name of the sound to play (see [https://pushover.net/api#sounds])
+#' @param sound (optional) name of the sound to play (see <https://pushover.net/api#sounds>)
 #' @param url (optional) supplementary URL to display with message
 #' @param url_title (optional) title to show for supplementary URL
 #' @param retry (optional) how often (in seconds) to repeat emergency priority messages (min: 30 seconds; default: 60 seconds)

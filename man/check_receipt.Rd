@@ -24,7 +24,7 @@ a list containing the following fields:
 \item \code{acknowledged_by_device}: name of the device on which the first user acknowledged the notification
 \item \code{last_delivered_at}: Unix timestamp of when the notification was last acknowledged, or \code{0}
 \item \code{expired}: whether (\code{1}) or not (\code{0}) the notification has expired
-\item \code{expires_at}: Unix timestamp indicating when the notificaion will no longer be retried
+\item \code{expires_at}: Unix timestamp indicating when the notification will no longer be retried
 \item \code{called_back}: whether (\code{1}) or not (\code{0}) the callback URL has been visited
 \item \code{called_back_at}: Unix timestamp indicating when the callback URL was visited
 \item \code{request}: unique request ID

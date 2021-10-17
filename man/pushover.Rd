@@ -48,7 +48,7 @@ pushover_emergency(message, ...)
 
 \item{device}{(optional) name of the device(s) to send message to. Defaults to all devices.}
 
-\item{sound}{(optional) name of the sound to play (see \link{https://pushover.net/api#sounds})}
+\item{sound}{(optional) name of the sound to play (see \url{https://pushover.net/api#sounds})}
 
 \item{url}{(optional) supplementary URL to display with message}
 

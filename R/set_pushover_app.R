@@ -12,7 +12,7 @@
 #' unset the app token for the current session.
 #'
 #' @details To receive an application token, register a new application after
-#' logging in to your account at [https://pushover.net/apps].
+#' logging in to your account at <https://pushover.net/apps>.
 #'
 #' @param token The application token to be used. If none is provided, a prompt
 #' will request the token (interactive sessions only).

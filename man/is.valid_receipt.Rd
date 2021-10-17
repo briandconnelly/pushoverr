@@ -15,7 +15,7 @@ or not that receipt ID is valid
 }
 \description{
 Receipts are 30-character strings containing letters and
-numbers (\link{A-Za-z0-9})
+numbers ([A-Za-z0-9])
 }
 \details{
 \code{is.valid_receipt()} determines whether or not a given message receipt

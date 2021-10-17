@@ -44,7 +44,7 @@ used in future sessions. Similarly, \code{unset_pushover_app()} will only
 unset the app token for the current session.
 
 To receive an application token, register a new application after
-logging in to your account at \link{https://pushover.net/apps}.
+logging in to your account at \url{https://pushover.net/apps}.
 }
 \examples{
 \dontrun{

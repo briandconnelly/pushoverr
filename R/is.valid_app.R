@@ -5,7 +5,7 @@
 #' whether or not the given token is associated with an application.
 #'
 #' @note To acquire an application token, create an app at
-#' [https://pushover.net/apps]
+#' <https://pushover.net/apps>
 #'
 #' @param token A application token (e.g., `"azGDORePK8gMaC0QOYAMyEEuzJnyUi"`)
 #' @return A logical value indicating whether or not the application token is
@@ -20,13 +20,4 @@ is.valid_app <- function(token) {
 
 assertthat::on_failure(is.valid_app) <- function(call, env) {
   "Invalid Pushover application token. Tokens are 30 characters long and contain letters and numbers (e.g., 'azGDORePK8gMaC0QOYAMyEEuzJnyUi')."
-}
-
-
-#' @rdname is.valid_app
-#' @description \code{is.valid_token} is deprecated in favor of \code{is.valid_app}
-#' @export
-is.valid_token <- function(token) {
-  rlang::inform("is.valid_token() is deprecated. Please use is.valid_app() instead.")
-  is.valid_app(token)
 }

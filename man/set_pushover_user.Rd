@@ -55,8 +55,8 @@ used in future sessions. Similarly, \code{unset_pushover_user()} will only
 unset the user or group for the current session.
 
 User keys can be found within the settings of the Pushover app or
-by logging in to \link{https://pushover.net}. Group keys can be found after
-creating a delivery group in your account on \link{https://pushover.net}.
+by logging in to \url{https://pushover.net}. Group keys can be found after
+creating a delivery group in your account on \url{https://pushover.net}.
 }
 \examples{
 \dontrun{

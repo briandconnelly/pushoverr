@@ -15,8 +15,8 @@
 #' unset the user or group for the current session.
 #'
 #' @details User keys can be found within the settings of the Pushover app or
-#' by logging in to [https://pushover.net]. Group keys can be found after
-#' creating a delivery group in your account on [https://pushover.net].
+#' by logging in to <https://pushover.net>. Group keys can be found after
+#' creating a delivery group in your account on <https://pushover.net>.
 #'
 #' @param user The user or group key to be used. If none is provided, a prompt
 #' will request the key.
