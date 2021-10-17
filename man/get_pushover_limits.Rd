@@ -12,12 +12,12 @@ get_pushover_limits(app = get_pushover_app())
 \value{
 A list containing messaging usage for the given app. Fields include:
 \itemize{
-    \item \code{limit}: Number of messages allowed per month
-    \item \code{remaining}: Number of remaining messages in current month
-    \item \code{reset}: Unix timestamp indicating when message count is reset
-    \item \code{status}: request status (1 = success)
-    \item \code{request}: unique request ID
-    \item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{limit}: Number of messages allowed per month
+\item \code{remaining}: Number of remaining messages in current month
+\item \code{reset}: Unix timestamp indicating when message count is reset
+\item \code{status}: request status (1 = success)
+\item \code{request}: unique request ID
+\item \code{raw}: the raw \code{\link[httr]{response}} object
 }
 }
 \description{
@@ -37,4 +37,3 @@ the headers included in the response.
 lims <- get_pushover_limits(app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 }
 }
-

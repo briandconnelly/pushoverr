@@ -4,9 +4,16 @@
 \alias{update_glance}
 \title{Update a Pushover glance data}
 \usage{
-update_glance(title = NULL, text = NULL, subtext = NULL, count = NULL,
-  percent = NULL, user = get_pushover_user(), app = get_pushover_app(),
-  device = NULL)
+update_glance(
+  title = NULL,
+  text = NULL,
+  subtext = NULL,
+  count = NULL,
+  percent = NULL,
+  user = get_pushover_user(),
+  app = get_pushover_app(),
+  device = NULL
+)
 }
 \arguments{
 \item{title}{(optional) a description of the data being shown, such as "Widgets Sold" (max. 100 characters)}
@@ -29,10 +36,10 @@ to all devices.}
 \value{
 an invisible list containing the following fields:
 \itemize{
-    \item \code{status}: request status (1 = success)
-    \item \code{request}: unique request ID
-    \item \code{raw}: the raw \code{\link[httr]{response}} object
-    \item \code{errors}: a list of error messages (only for unsuccessful requests)
+\item \code{status}: request status (1 = success)
+\item \code{request}: unique request ID
+\item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{errors}: a list of error messages (only for unsuccessful requests)
 }
 }
 \description{
@@ -49,4 +56,3 @@ Glances are currently in beta, and features may change.
 update_glance(count = 37)
 }
 }
-

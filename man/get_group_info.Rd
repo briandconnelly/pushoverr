@@ -14,11 +14,11 @@ get_group_info(group, app = get_pushover_app())
 \value{
 A list containing information for the given group. Fields include:
 \itemize{
-    \item \code{name}: the group's name
-    \item \code{users}: list containing information about each user in the group
-    \item \code{status}: request status (1 = success)
-    \item \code{request}: unique request ID
-    \item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{name}: the group's name
+\item \code{users}: list containing information about each user in the group
+\item \code{status}: request status (1 = success)
+\item \code{request}: unique request ID
+\item \code{raw}: the raw \code{\link[httr]{response}} object
 }
 }
 \description{
@@ -29,4 +29,3 @@ Get information about a Pushover group
 get_group_info(group = "gznej3rKEVAvPUxu9vvNnqpmZpokzF")
 }
 }
-

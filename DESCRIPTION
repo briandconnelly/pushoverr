@@ -23,4 +23,5 @@ Imports:
 ByteCompile: no
 Encoding: UTF-8
 NeedsCompilation: no
-RoxygenNote: 5.0.1
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2

@@ -16,8 +16,8 @@ data to their watches using \code{\link{update_glance}}.
 To use pushoverr, you will first need your \emph{user key} and an
 \emph{application token}. The user key can be found within the settings of
 the app (e.g., \code{uQiRzpo4DXghDmr9QzzfQu27cmVRsG}) or by logging in to
-\url{https://pushover.net}. To receive an application token, register a new
-application after logging in to \url{https://pushover.net/apps}.
+\link{https://pushover.net}. To receive an application token, register a new
+application after logging in to \link{https://pushover.net/apps}.
 
 For more information, browse the package index by following the link
 at the bottom of this help page. For release information, run
@@ -27,16 +27,16 @@ at the bottom of this help page. For release information, run
  This package and its author are not affiliated with
 \href{https://superblock.net}{Superblock, LLC}, creators of Pushover.
 }
+
+\seealso{
+\href{https://github.com/briandconnelly/pushoverr}{GitHub Repository}
+
+\href{https://github.com/briandconnelly/pushoverr/issues}{Bug Reports and Feature Requests}
+
+\href{https://pushover.net}{Pushover}
+
+\href{https://pushover.net/api}{Pushover API}
+}
 \author{
 Brian Connelly
 }
-\seealso{
-GitHub Repository: \url{https://github.com/briandconnelly/pushoverr}
-
-Bug Reports and Feature Requests: \url{https://github.com/briandconnelly/pushoverr/issues}
-
-Pushover: \url{https://pushover.net}
-
-Pushover API: \url{https://pushover.net/api}
-}
-

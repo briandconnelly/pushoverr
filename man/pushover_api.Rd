@@ -19,10 +19,10 @@ pushover_api(verb, url, visible = TRUE, ...)
 a list containing the following fields and any other fields related
 to the specific API call:
 \itemize{
-    \item \code{status}: request status (1 = success)
-    \item \code{request}: unique request ID
-    \item \code{raw}: the raw \code{\link[httr]{response}} object
-    \item \code{errors}: a list of error messages (only for unsuccessful requests)
+\item \code{status}: request status (1 = success)
+\item \code{request}: unique request ID
+\item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{errors}: a list of error messages (only for unsuccessful requests)
 }
 }
 \description{
@@ -33,9 +33,10 @@ functions. In most instances, more specific functions should be used (e.g.,
 }
 \examples{
 \dontrun{
-pushover_api(verb = "GET",
-             url = "https://api.pushover.net/1/sounds.json",
-             query = list(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi"))
+pushover_api(
+  verb = "GET",
+  url = "https://api.pushover.net/1/sounds.json",
+  query = list(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
+)
 }
 }
-

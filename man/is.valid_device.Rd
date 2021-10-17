@@ -24,6 +24,4 @@ It does not determine whether that device is actually registered (see:
 }
 \examples{
 is.valid_device("my_phone")
-
 }
-

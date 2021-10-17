@@ -29,6 +29,4 @@ To acquire an application token, create an app at
 }
 \examples{
 is.valid_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
-
 }
-

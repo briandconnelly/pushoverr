@@ -16,9 +16,9 @@ group_rename(group, name, app = get_pushover_app())
 \value{
 An invisible list containing the following fields:
 \itemize{
-    \item \code{status}: request status (1 = success)
-    \item \code{request}: unique request ID
-    \item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{status}: request status (1 = success)
+\item \code{request}: unique request ID
+\item \code{raw}: the raw \code{\link[httr]{response}} object
 }
 }
 \description{
@@ -26,8 +26,9 @@ Rename a delivery group
 }
 \examples{
 \dontrun{
-group_rename(group = "gznej3rKEVAvPUxu9vvNnqpmZpokzF",
-             name = "Coffee Party")
+group_rename(
+  group = "gznej3rKEVAvPUxu9vvNnqpmZpokzF",
+  name = "Coffee Party"
+)
 }
 }
-

@@ -2,17 +2,28 @@
 % Please edit documentation in R/pushover.R
 \name{pushover}
 \alias{pushover}
-\alias{pushover_emergency}
-\alias{pushover_high}
-\alias{pushover_normal}
-\alias{pushover_quiet}
 \alias{pushover_silent}
+\alias{pushover_quiet}
+\alias{pushover_normal}
+\alias{pushover_high}
+\alias{pushover_emergency}
 \title{Send a message using Pushover}
 \usage{
-pushover(message, title = NULL, priority = 0, user = get_pushover_user(),
-  app = get_pushover_app(), device = NULL, sound = NULL, url = NULL,
-  url_title = NULL, retry = 60, expire = 3600, callback = NULL,
-  timestamp = NULL)
+pushover(
+  message,
+  title = NULL,
+  priority = 0,
+  user = get_pushover_user(),
+  app = get_pushover_app(),
+  device = NULL,
+  sound = NULL,
+  url = NULL,
+  url_title = NULL,
+  retry = 60,
+  expire = 3600,
+  callback = NULL,
+  timestamp = NULL
+)
 
 pushover_silent(message, ...)
 
@@ -56,11 +67,11 @@ pushover_emergency(message, ...)
 \value{
 an invisible list containing the following fields:
 \itemize{
-    \item \code{status}: request status (1 = success)
-    \item \code{request}: unique request ID
-    \item \code{raw}: the raw \code{\link[httr]{response}} object
-    \item \code{receipt}: a receipt ID (only for emergency priority messages)
-    \item \code{errors}: a list of error messages (only for unsuccessful requests)
+\item \code{status}: request status (1 = success)
+\item \code{request}: unique request ID
+\item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{receipt}: a receipt ID (only for emergency priority messages)
+\item \code{errors}: a list of error messages (only for unsuccessful requests)
 }
 }
 \description{
@@ -75,4 +86,3 @@ functions send messages with those priorities.
 pushover(message = "Hola Mundo!")
 }
 }
-

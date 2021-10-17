@@ -18,6 +18,4 @@ Test whether the given sound is supported for Pushover messages
 }
 \examples{
 is.pushover_sound("cosmic")
-
 }
-
