@@ -3,7 +3,7 @@
 #' \code{is.valid_receipt} determines whether or not a given message receipt
 #' is valid or not according to Pushover's specifications. It does not determine
 #' whether or not the given receipt actually exists.
-#' 
+#'
 #' @description Receipts are 30-character strings containing letters and
 #' numbers ([A-Za-z0-9])
 #'
@@ -15,11 +15,11 @@
 #' \dontrun{
 #' is.valid_receipt(receipt = "KAWXTswy4cekx6vZbHBKbCKk1c1fdf")
 #' }
-#' 
+#'
 is.valid_receipt <- function(receipt) {
-    grepl("^[a-zA-Z0-9]{30}$", receipt)
+  grepl("^[a-zA-Z0-9]{30}$", receipt)
 }
 
 assertthat::on_failure(is.valid_receipt) <- function(call, env) {
-    "Invalid Pushover message receipt. Receipts are 30-character strings containing letters and numbers."
+  "Invalid Pushover message receipt. Receipts are 30-character strings containing letters and numbers."
 }

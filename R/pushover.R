@@ -47,57 +47,64 @@ pushover <- function(message,
                      expire = 3600,
                      callback = NULL,
                      timestamp = NULL) {
+  assertthat::assert_that(nchar(message) <= 1024)
+  assertthat::assert_that(assertthat::is.scalar(user), is.valid_user(user))
+  assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
+  assertthat::assert_that(
+    assertthat::is.number(priority),
+    priority %in% c(-2, -1, 0, 1, 2)
+  )
+  assertthat::assert_that(assertthat::is.count(retry), retry >= 30)
+  assertthat::assert_that(assertthat::is.count(expire), expire <= 86400)
 
-    assertthat::assert_that(nchar(message) <= 1024)
-    assertthat::assert_that(assertthat::is.scalar(user), is.valid_user(user))
-    assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
-    assertthat::assert_that(assertthat::is.number(priority),
-                            priority %in% c(-2, -1, 0, 1, 2))
-    assertthat::assert_that(assertthat::is.count(retry), retry >= 30)
-    assertthat::assert_that(assertthat::is.count(expire), expire <= 86400)
+  params <- list(
+    "token" = app,
+    "user" = user,
+    "message" = message,
+    "priority" = priority,
+    "retry" = retry,
+    "expire" = expire
+  )
 
-    params <- list("token" = app,
-                   "user" = user,
-                   "message" = message,
-                   "priority" = priority,
-                   "retry" = retry,
-                   "expire" = expire)
+  if (!is.null(device)) {
+    assertthat::assert_that(all(is.valid_device(device)))
+    params["device"] <- paste0(device, collapse = ",")
+  }
 
-    if (!is.null(device)) {
-        assertthat::assert_that(all(is.valid_device(device)))
-        params["device"] <- paste0(device, collapse = ",")
-    }
+  if (!is.null(title)) {
+    assertthat::assert_that(nchar(title) <= 250)
+    params$title <- title
+  }
 
-    if (!is.null(title)) {
-        assertthat::assert_that(nchar(title) <= 250)
-        params$title <- title
-    }
+  if (!is.null(url_title)) {
+    assertthat::assert_that(nchar(url_title) <= 100)
+    params$url_title <- url_title
+  }
 
-    if (!is.null(url_title)) {
-        assertthat::assert_that(nchar(url_title) <= 100)
-        params$url_title <- url_title
-    }
+  if (!is.null(timestamp)) {
+    assertthat::assert_that(assertthat::is.count(timestamp))
+    params$timestamp <- timestamp
+  }
 
-    if (!is.null(timestamp)) {
-        assertthat::assert_that(assertthat::is.count(timestamp))
-        params$timestamp <- timestamp
-    }
+  if (!is.null(sound)) {
+    assertthat::assert_that(
+      assertthat::is.scalar(sound),
+      is.pushover_sound(sound)
+    )
+    params$sound <- sound
+  }
 
-    if (!is.null(sound)) {
-        assertthat::assert_that(assertthat::is.scalar(sound),
-                                is.pushover_sound(sound))
-        params$sound <- sound
-    }
+  if (!is.null(callback)) {
+    # Docs don't say what character limit is, so not validating
+    params$callback <- callback
+  }
 
-    if (!is.null(callback)) {
-        # Docs don't say what character limit is, so not validating
-        params$callback <- callback
-    }
-
-    pushover_api(verb = "POST",
-                 url = "https://api.pushover.net/1/messages.json",
-                 visible = FALSE,
-                 body = params)
+  pushover_api(
+    verb = "POST",
+    url = "https://api.pushover.net/1/messages.json",
+    visible = FALSE,
+    body = params
+  )
 }
 
 
@@ -105,33 +112,33 @@ pushover <- function(message,
 #' @param ... Additional arguments to pass to \code{pushover()}
 #' @export
 pushover_silent <- function(message, ...) {
-    pushover(message = message, priority = -2, ...)
+  pushover(message = message, priority = -2, ...)
 }
 
 
 #' @rdname pushover
 #' @export
 pushover_quiet <- function(message, ...) {
-    pushover(message = message, priority = -1, ...)
+  pushover(message = message, priority = -1, ...)
 }
 
 
 #' @rdname pushover
 #' @export
 pushover_normal <- function(message, ...) {
-    pushover(message = message, priority = 0, ...)
+  pushover(message = message, priority = 0, ...)
 }
 
 
 #' @rdname pushover
 #' @export
 pushover_high <- function(message, ...) {
-    pushover(message = message, priority = 1, ...)
+  pushover(message = message, priority = 1, ...)
 }
 
 
 #' @rdname pushover
 #' @export
 pushover_emergency <- function(message, ...) {
-    pushover(message = message, priority = 2, ...)
+  pushover(message = message, priority = 2, ...)
 }

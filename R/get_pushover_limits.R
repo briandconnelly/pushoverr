@@ -1,8 +1,8 @@
 #' Get usage and limit information for Pushover applications
-#' 
+#'
 #' \code{get_pushover_limits} retrieves the message usage and limit information
 #' for the given application.
-#' 
+#'
 #' @note This information can alternatively be gotten by examining the headers
 #' in the response to previous API calls. Look for headers
 #' \code{x-limit-app-limit}, \code{x-limit-app-remaining}, and
@@ -28,8 +28,10 @@
 #' lims <- get_pushover_limits(app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 #' }
 get_pushover_limits <- function(app = get_pushover_app()) {
-    assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
-    pushover_api(verb = "GET",
-                 url = "https://api.pushover.net/1/apps/limits.json",
-                 query = list(token = app))
+  assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
+  pushover_api(
+    verb = "GET",
+    url = "https://api.pushover.net/1/apps/limits.json",
+    query = list(token = app)
+  )
 }

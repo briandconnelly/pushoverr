@@ -1,5 +1,5 @@
 #' User and group verification
-#' 
+#'
 #' @description \code{verify_user} determines whether or not the given user or
 #' group is registered with Pushover, returning information about that user.
 #'
@@ -26,19 +26,23 @@
 #' verify_user(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
 #' }
 verify_user <- function(user, app = get_pushover_app(), device = NULL) {
-    assertthat::assert_that(assertthat::is.scalar(user), is.valid_user(user))
-    assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
+  assertthat::assert_that(assertthat::is.scalar(user), is.valid_user(user))
+  assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))
 
-    params <- list("token" = app, "user" = user)
-    if (!is.null(device)) {
-        assertthat::assert_that(assertthat::is.scalar(device),
-                                is.valid_device(device))
-        params$device <- device
-    }
+  params <- list("token" = app, "user" = user)
+  if (!is.null(device)) {
+    assertthat::assert_that(
+      assertthat::is.scalar(device),
+      is.valid_device(device)
+    )
+    params$device <- device
+  }
 
-    pushover_api(verb = "POST",
-                 url = "https://api.pushover.net/1/users/validate.json",
-                 body = params)
+  pushover_api(
+    verb = "POST",
+    url = "https://api.pushover.net/1/users/validate.json",
+    body = params
+  )
 }
 
 
@@ -50,8 +54,8 @@ verify_user <- function(user, app = get_pushover_app(), device = NULL) {
 #' given user or group is registered.
 #' @export
 is.registered_user <- function(user, app = get_pushover_app(), device = NULL) {
-    rval <- verify_user(user = user, app = app, device = device)
-    rval$status == 1
+  rval <- verify_user(user = user, app = app, device = device)
+  rval$status == 1
 }
 
 
@@ -67,18 +71,19 @@ verify_group <- verify_user
 #' @param ... Additional arguments (no longer used)
 #' @export
 validate_key <- function(user, device = NA_character_, ...) {
-    message("validate_key() is deprecated. Please use verify_user() or verify_group() instead.")
+  message("validate_key() is deprecated. Please use verify_user() or verify_group() instead.")
 
-    opt_args <- list(...)
-    app <- ifelse("token" %in% names(opt_args),
-                  opt_args[["token"]],
-                  get_pushover_app())
+  opt_args <- list(...)
+  app <- ifelse("token" %in% names(opt_args),
+    opt_args[["token"]],
+    get_pushover_app()
+  )
 
-    if (is.na(device)) {
-        device <- NULL
-    }
+  if (is.na(device)) {
+    device <- NULL
+  }
 
-    verify_user(user = user, app = app, device = device)
+  verify_user(user = user, app = app, device = device)
 }
 
 
@@ -91,16 +96,17 @@ is.registered_group <- is.registered_user
 #' @description \code{is.valid_key} is deprecated in favor of \code{is.registered_user} or \code{is.registered_group}
 #' @export
 is.valid_key <- function(user, device = NA, ...) {
-    message("is.valid_key() is deprecated. Please use is.registered_user() or is.registered_group() instead.")
+  message("is.valid_key() is deprecated. Please use is.registered_user() or is.registered_group() instead.")
 
-    opt_args <- list(...)
-    app <- ifelse("token" %in% names(opt_args),
-                  opt_args[["token"]],
-                  get_pushover_app())
+  opt_args <- list(...)
+  app <- ifelse("token" %in% names(opt_args),
+    opt_args[["token"]],
+    get_pushover_app()
+  )
 
-    if (is.na(device)) {
-        device <- NULL
-    }
+  if (is.na(device)) {
+    device <- NULL
+  }
 
-    is.registered_user(user = user, app = app, device = device)
+  is.registered_user(user = user, app = app, device = device)
 }

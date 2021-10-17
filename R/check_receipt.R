@@ -33,11 +33,13 @@
 #' is.acknowledged(receipt = msg1$receipt)
 #' }
 check_receipt <- function(receipt, app = get_pushover_app()) {
-    assertthat::assert_that(assertthat::is.scalar(receipt),
-                            is.valid_receipt(receipt = receipt))
+  assertthat::assert_that(
+    assertthat::is.scalar(receipt),
+    is.valid_receipt(receipt = receipt)
+  )
 
-    query_url <- sprintf("https://api.pushover.net/1/receipts/%s.json", receipt)
-    pushover_api(verb = "GET", url = query_url, query = list(token = app))
+  query_url <- sprintf("https://api.pushover.net/1/receipts/%s.json", receipt)
+  pushover_api(verb = "GET", url = query_url, query = list(token = app))
 }
 
 
@@ -45,6 +47,6 @@ check_receipt <- function(receipt, app = get_pushover_app()) {
 #' @description \code{is.acknowledged} returns a logical value indicating whether the emergency message was acknowledged (\code{TRUE}) or not (\code{FALSE}).
 #' @export
 is.acknowledged <- function(receipt, app = get_pushover_app()) {
-    rsp <- check_receipt(receipt = receipt, app = app)
-    rsp$acknowledged == 1
+  rsp <- check_receipt(receipt = receipt, app = app)
+  rsp$acknowledged == 1
 }
