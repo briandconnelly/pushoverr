@@ -10,8 +10,8 @@ is.pushover_sound(x)
 \item{x}{a string containing a sound name}
 }
 \value{
-A logical value indicating whether the given sound is supported
-by Pushover (\code{TRUE}) or not (\code{FALSE})
+A logical value indicating whether or not the given sound is
+supported by Pushover
 }
 \description{
 Test whether the given sound is supported for Pushover messages

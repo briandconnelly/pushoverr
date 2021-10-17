@@ -10,14 +10,14 @@ is.valid_app(token)
 is.valid_token(token)
 }
 \arguments{
-\item{token}{A application token (e.g., "azGDORePK8gMaC0QOYAMyEEuzJnyUi")}
+\item{token}{A application token (e.g., \code{"azGDORePK8gMaC0QOYAMyEEuzJnyUi"})}
 }
 \value{
-A logical value indicating whether the application token is valid
-(\code{TRUE}) or not (\code{FALSE})
+A logical value indicating whether or not the application token is
+valid
 }
 \description{
-\code{is.valid_app} determines whether or not a given application token
+\code{is.valid_app()} determines whether or not a given application token
 is valid or not according to Pushover's specifications. It does not determine
 whether or not the given token is associated with an application.
 
@@ -25,7 +25,7 @@ whether or not the given token is associated with an application.
 }
 \note{
 To acquire an application token, create an app at
-\url{https://pushover.net/apps}
+\link{https://pushover.net/apps}
 }
 \examples{
 is.valid_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
