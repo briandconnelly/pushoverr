@@ -2,13 +2,13 @@
 #'
 #' @param group group key
 #' @param name new group name
-#' @param app application token (see \code{\link{set_pushover_app}})
+#' @param app application token (see [`set_pushover_app()`])
 #'
 #' @return An invisible list containing the following fields:
 #' \itemize{
-#'     \item \code{status}: request status (1 = success)
-#'     \item \code{request}: unique request ID
-#'     \item \code{raw}: the raw \code{\link[httr]{response}} object
+#'     \item `status`: request status (`1` = success)
+#'     \item `request`: unique request ID
+#'     \item `raw`: the raw [httr::response] object
 #' }
 #' @export
 #'

@@ -1,20 +1,20 @@
 #' Manage group subscriptions
 #'
-#' These functions manage a user's membershop in a Pushover delivery group
+#' These functions manage a user's membership in a Pushover delivery group
 #'
 #' @param cmd The group subscription command to execute
 #' @param group group key
 #' @param user user key
-#' @param app application token (see \code{\link{set_pushover_app}})
+#' @param app application token (see [`set_pushover_app()`])
 #' @param device (optional) device name to receive messages (defaults to all devices)
 #' @param memo (optional) memo about the user
 #' @param ... Specific arguments for the given group subscription command
 #'
 #' @return An invisible list containing the following fields:
 #' \itemize{
-#'     \item \code{status}: request status (1 = success)
-#'     \item \code{request}: unique request ID
-#'     \item \code{raw}: the raw \code{\link[httr]{response}} object
+#'     \item `status`: request status (1 = success)
+#'     \item `request`: unique request ID
+#'     \item `raw`: the raw [httr::response] object
 #' }
 #' @export
 #'
@@ -67,7 +67,7 @@ group_subscription <- function(cmd, ...) {
 }
 
 #' @rdname group_subscription
-#' @description \code{group_add_user} adds a user to a group. Optionally, a
+#' @description `group_add_user()` adds a user to a group. Optionally, a
 #' device can be specified on which that user will receive notifications
 #' @export
 #' @examples
@@ -88,7 +88,7 @@ group_add_user <- function(group, user, app = get_pushover_app(), device = NULL,
 
 
 #' @rdname group_subscription
-#' @description \code{group_delete_user} removes a user from a group
+#' @description `group_delete_user()` removes a user from a group
 #' @export
 #' @examples
 #' \dontrun{
@@ -106,7 +106,7 @@ group_delete_user <- function(group, user, app = get_pushover_app()) {
 
 
 #' @rdname group_subscription
-#' @description \code{group_disable_user} temporarily disables a user from
+#' @description `group_disable_user()` temporarily disables a user from
 #' receiving group notifications.
 #' @export
 #' @examples
@@ -125,7 +125,7 @@ group_disable_user <- function(group, user, app = get_pushover_app()) {
 
 
 #' @rdname group_subscription
-#' @description \code{group_enable_user} re-enables a user to receive group
+#' @description `group_enable_user()` re-enables a user to receive group
 #' notifications for a group
 #' @export
 #' @examples

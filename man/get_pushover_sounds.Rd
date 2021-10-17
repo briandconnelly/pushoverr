@@ -7,7 +7,7 @@
 get_pushover_sounds(app = get_pushover_app())
 }
 \arguments{
-\item{app}{application token (see \code{\link{set_pushover_app}})}
+\item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 }
 \value{
 A list of available sounds and their descriptions.

@@ -33,7 +33,7 @@ group_enable_user(group, user, app = get_pushover_app())
 
 \item{user}{user key}
 
-\item{app}{application token (see \code{\link{set_pushover_app}})}
+\item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 
 \item{device}{(optional) device name to receive messages (defaults to all devices)}
 
@@ -44,21 +44,21 @@ An invisible list containing the following fields:
 \itemize{
 \item \code{status}: request status (1 = success)
 \item \code{request}: unique request ID
-\item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{raw}: the raw \link[httr:response]{httr::response} object
 }
 }
 \description{
-These functions manage a user's membershop in a Pushover delivery group
+These functions manage a user's membership in a Pushover delivery group
 
-\code{group_add_user} adds a user to a group. Optionally, a
+\code{group_add_user()} adds a user to a group. Optionally, a
 device can be specified on which that user will receive notifications
 
-\code{group_delete_user} removes a user from a group
+\code{group_delete_user()} removes a user from a group
 
-\code{group_disable_user} temporarily disables a user from
+\code{group_disable_user()} temporarily disables a user from
 receiving group notifications.
 
-\code{group_enable_user} re-enables a user to receive group
+\code{group_enable_user()} re-enables a user to receive group
 notifications for a group
 }
 \examples{

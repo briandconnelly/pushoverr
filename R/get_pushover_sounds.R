@@ -1,6 +1,6 @@
 #' Get a list of sounds available for Pushover notifications
 #'
-#' @param app application token (see \code{\link{set_pushover_app}})
+#' @param app application token (see [`set_pushover_app()`])
 #'
 #' @return A list of available sounds and their descriptions.
 #' @export

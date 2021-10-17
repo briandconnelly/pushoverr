@@ -9,16 +9,16 @@ get_group_info(group, app = get_pushover_app())
 \arguments{
 \item{group}{group key}
 
-\item{app}{application token (see \code{\link{set_pushover_app}})}
+\item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 }
 \value{
 A list containing information for the given group. Fields include:
 \itemize{
 \item \code{name}: the group's name
 \item \code{users}: list containing information about each user in the group
-\item \code{status}: request status (1 = success)
+\item \code{status}: request status (\code{1} = success)
 \item \code{request}: unique request ID
-\item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{raw}: the raw \link[httr:response]{httr::response} object
 }
 }
 \description{
