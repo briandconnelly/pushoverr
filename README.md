@@ -36,7 +36,9 @@ whenever you send a message. You’ll also need the Pushover app for
 
 Installing pushoverr is as easy as running:
 
-    install.packages("pushoverr")
+``` r
+install.packages("pushoverr")
+```
 
 Alternately, you can install the development version of pushoverr from
 [GitHub](https://github.com/) with:
@@ -52,14 +54,22 @@ Now that pushoverr’s been installed, you’re ready to start pushing some
 notifications. To begin using pushoverr, you’ll need to first load the
 library. To do this, run:
 
-    library(pushoverr)
+``` r
+library(pushoverr)
+```
 
 ### Example 1: Send Yourself A Message
 
 In order to send a message, you’ll need to have your user key and an app
 token. Then:
 
-    pushover(message = "Mr. Watson--come here--I want to see you.", user = <YOUR USER KEY>, app = <YOUR APP TOKEN>)
+``` r
+pushover(
+  message = "Mr. Watson--come here--I want to see you.",
+  user = <YOUR USER KEY>,
+  app = <YOUR APP TOKEN>
+)
+```
 
 Within just a few seconds, your phone/tablet/watch/whatever should be
 abuzz with this historic message.
@@ -77,8 +87,10 @@ needed and save them for all subsequent commands. You can directly tell
 pushoverr your key and token using `set_pushover_user` and
 `set_pushover_app`:
 
-    set_pushover_user(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
-    set_pushover_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
+``` r
+set_pushover_user(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
+set_pushover_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
+```
 
 pushoverr will forget these as soon as you end your session, so you’ll
 have to re-run these commands each time you restart R.
@@ -86,8 +98,10 @@ have to re-run these commands each time you restart R.
 Alternatively, you can store your keys in your `.Renviron` (see
 `?.Renviron` for details).
 
-    PUSHOVER_USER = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG"
-    PUSHOVER_APP= "azGDORePK8gMaC0QOYAMyEEuzJnyUi"
+``` r
+PUSHOVER_USER = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG"
+PUSHOVER_APP= "azGDORePK8gMaC0QOYAMyEEuzJnyUi"
+```
 
 With this approach, your keys will be set whenever you use R. pushoverr
 will use these keys by default, but they can easily be overridden by
@@ -101,11 +115,15 @@ reddish background, and emergency messages arrive and repeat until
 they’ve been acknowledged. `pushoverr` provides easy methods for sending
 these:
 
-    pushover_quiet(message = "The kittens are sleeping")
+``` r
+pushover_quiet(message = "The kittens are sleeping")
+```
 
 Or more urgently:
 
-    pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
+``` r
+pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
+```
 
 ![An emergency notification
 message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message2.png)
@@ -113,15 +131,22 @@ message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/READM
 Emergency messages return a receipt token that can be checked with
 `is.acknowledged()` to see whether or not it has been seen.
 
-    msg <- pushover_emergency(message = "The freezer is currently at -71 C!")
-    is.acknowledged(receipt = msg$receipt)
+``` r
+msg <- pushover_emergency(message = "The freezer is currently at -71 C!")
+is.acknowledged(receipt = msg$receipt)
+```
 
 ### Example 3: Sending to a Specific Device
 
 If you have more than one device using Pushover, you can also send
 messages to a specific device:
 
-    pushover(message = "If you pretend like this is important, you can walk out of the boring meeting", device = "Phone")
+``` r
+pushover(
+  message = "If you pretend like this is important, you can walk out of the boring meeting",
+  device = "Phone"
+)
+```
 
 ### Example 4: Results on your Wrist
 
@@ -130,7 +155,9 @@ smartwatch or lock screen (where supported). Using `update_glance`, you
 can push short text messages, numbers, and percentages to your watch
 right from within R.
 
-    update_glance(count = 88)
+``` r
+update_glance(count = 88)
+```
 
 ![Showing a count notification on an Apple
 Watch](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/watch1.png)
