@@ -6,6 +6,7 @@
 \alias{is.valid_receipt}
 \alias{is.valid_user}
 \alias{is.valid_group}
+\alias{is.valid_sound}
 \title{Validate Pushover values}
 \usage{
 is.valid_app(token)
@@ -17,6 +18,8 @@ is.valid_receipt(receipt)
 is.valid_user(user)
 
 is.valid_group(group)
+
+is.valid_sound(sound)
 }
 \arguments{
 \item{token}{A application token (e.g., \code{"azGDORePK8gMaC0QOYAMyEEuzJnyUi"})}
@@ -29,6 +32,8 @@ is.valid_group(group)
 \item{user}{user/group key to verify (e.g., \code{"uQiRzpo4DXghDmr9QzzfQu27cmVRsG"})}
 
 \item{group}{user/group key to verify (e.g., \code{"gznej3rKEVAvPUxu9vvNnqpmZpokzF"})}
+
+\item{sound}{a string containing a sound name}
 }
 \value{
 A logical value indicating whether or not the application token is
@@ -42,6 +47,9 @@ receipt ID indicating whether or not that receipt ID is valid.
 
 A logical value indicating whether or not the given user/group key is
 valid.
+
+\code{is.valid_sound()} returns a logical value indicating whether or not
+the given sound is supported by Pushover.
 }
 \description{
 \code{is.valid_app()} determines whether or not a given application
@@ -61,6 +69,8 @@ determine whether or not the given receipt actually exists. Receipts are
 \code{is.valid_user()} and \code{is.valid_group()} determine whether
 or not a given user/group key is valid. They do not determine whether or not
 the key is registered with Pushover.
+
+\code{is.valid_sound()}
 }
 \note{
 To acquire an application token, create an app at
@@ -76,6 +86,7 @@ is.valid_receipt(receipt = "KAWXTswy4cekx6vZbHBKbCKk1c1fdf")
 \dontrun{
 is.valid_user("uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
 }
+is.valid_sound("cosmic")
 }
 \seealso{
 \code{\link[=verify_user]{verify_user()}} and \code{\link[=verify_group]{verify_group()}} determine whether or not

@@ -73,7 +73,7 @@ assertthat::on_failure(is.valid_receipt) <- function(call, env) {
 
 
 #' @rdname validation
-#' 
+#'
 #' @description `is.valid_user()` and `is.valid_group()` determine whether
 #' or not a given user/group key is valid. They do not determine whether or not
 #' the key is registered with Pushover.
@@ -108,4 +108,24 @@ is.valid_group <- function(group) {
 
 assertthat::on_failure(is.valid_group) <- function(call, env) {
   "Invalid Pushover user/group key. Keys are 30 characters long and contain letters and numbers (e.g., 'gznej3rKEVAvPUxu9vvNnqpmZpokzF')."
+}
+
+
+#' @rdname validation
+#'
+#' @description `is.valid_sound()`
+#' @param sound a string containing a sound name
+#'
+#' @return `is.valid_sound()` returns a logical value indicating whether or not
+#' the given sound is supported by Pushover.
+#' @export
+#'
+#' @examples
+#' is.valid_sound("cosmic")
+is.valid_sound <- function(sound) {
+  sound %in% pushover_sounds
+}
+
+assertthat::on_failure(is.valid_sound) <- function(call, env) {
+  "Sound not supported by Pushover"
 }
