@@ -2,19 +2,14 @@
 % Please edit documentation in R/cancel_retries.R
 \name{cancel_retries}
 \alias{cancel_retries}
-\alias{cancel_receipt}
 \title{Cancel retries for an emergency priority notification}
 \usage{
 cancel_retries(receipt, app = get_pushover_app())
-
-cancel_receipt(receipt, ...)
 }
 \arguments{
 \item{receipt}{The receipt from sending an emergency message}
 
-\item{app}{application token (see \code{\link{set_pushover_app}})}
-
-\item{...}{Additional arguments (no longer used)}
+\item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 }
 \value{
 an invisible list containing the following fields:
@@ -22,14 +17,12 @@ an invisible list containing the following fields:
 \item \code{status}: request status (1 = success)
 \item \code{request}: unique request ID
 \item \code{errors}: a list of error messages (only for unsuccessful requests)
-\item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{raw}: the raw \link[httr:response]{httr::response} object
 }
 }
 \description{
-\code{cancel_retries} stops Pushover from sending repeat messages for
+\code{cancel_retries()} stops Pushover from sending repeat messages for
 un-acknowledged emergency priority notifications.
-
-\code{cancel_receipt} is deprecated in favor of \code{cancel_retries}
 }
 \examples{
 \dontrun{
