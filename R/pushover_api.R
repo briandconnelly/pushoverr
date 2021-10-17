@@ -1,22 +1,22 @@
 #' Issue a command using the Pushover API
 #'
-#' \code{pushover_api} allows commands to be issued using the Pushover API.
+#' `pushover_api()` allows commands to be issued using the Pushover API.
 #' This is a generic function that is meant to be used by higher level
 #' functions. In most instances, more specific functions should be used (e.g.,
-#' \code{\link{pushover}}).
+#' [`pushover()`]).
 #'
 #' @param verb The http method to use
 #' @param url The URL to visit
-#' @param visible Whether or not the result should be visible (default: \code{TRUE})
-#' @param ... Any additional parameters to be passed to \code{\link[httr]{VERB}}
+#' @param visible Whether or not the result should be visible (default: `TRUE`)
+#' @param ... Any additional parameters to be passed to [httr::VERB]
 #'
 #' @return a list containing the following fields and any other fields related
 #' to the specific API call:
 #' \itemize{
-#'     \item \code{status}: request status (1 = success)
-#'     \item \code{request}: unique request ID
-#'     \item \code{raw}: the raw \code{\link[httr]{response}} object
-#'     \item \code{errors}: a list of error messages (only for unsuccessful requests)
+#'     \item `status`: request status (`1` = success)
+#'     \item `request`: unique request ID
+#'     \item `raw`: the raw [httr::response] object
+#'     \item `errors`: a list of error messages (only for unsuccessful requests)
 #' }
 #' @export
 #' @examples

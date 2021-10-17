@@ -1,18 +1,18 @@
 #' Set, get, and unset the Pushover application token
 #'
-#' \code{set_pushover_app} sets the Pushover application token to be used in
-#' subsequent commands, \code{get_pushover_app} gets the application token
-#' that is currently set, and \code{unset_pushover_app} unsets the token.
-#' \code{pushover_app.isset} indicates whether or not the application token
+#' `set_pushover_app()` sets the Pushover application token to be used in
+#' subsequent commands, `get_pushover_app()` gets the application token
+#' that is currently set, and `unset_pushover_app()` unsets the token.
+#' `pushover_app.isset()` indicates whether or not the application token
 #' is set.
 #'
-#' \code{set_pushover_app} only sets the Pushover app token for the current
-#' session. If a different value is specified in .Renviron, that value will be
-#' used in future sessions. Similarly, \code{unset_pushover_app} will only
+#' `set_pushover_app()` only sets the Pushover app token for the current
+#' session. If a different value is specified in `.Renviron`, that value will be
+#' used in future sessions. Similarly, `unset_pushover_app()` will only
 #' unset the app token for the current session.
 #'
 #' @details To receive an application token, register a new application after
-#' logging in to your account on\url{https://pushover.net/apps}.
+#' logging in to your account at [https://pushover.net/apps].
 #'
 #' @param token The application token to be used. If none is provided, a prompt
 #' will request the token (interactive sessions only).
@@ -44,8 +44,8 @@ set_pushover_app <- function(token = NULL, ask = interactive()) {
 
 
 #' @rdname set_pushover_app
-#' @return \code{get_pushover_app} returns a string containing the current
-#' application token. If the token is not set but \code{ask} is \code{TRUE},
+#' @return `get_pushover_app()` returns a string containing the current
+#' application token. If the token is not set but `ask` is `TRUE`,
 #' the user will be prompted for a token.
 #' @export
 get_pushover_app <- function(ask = interactive()) {
@@ -68,8 +68,8 @@ unset_pushover_app <- function() {
 
 
 #' @rdname set_pushover_app
-#' @return \code{pushover_user.isset} returns a logical value indicating whether
-#' the application token is set (\code{TRUE}) or not (\code{FALSE}).
+#' @return `pushover_user.isset()` returns a logical value indicating whether
+#' or not the application token is set.
 #' @export
 pushover_app.isset <- function() {
   nchar(Sys.getenv("PUSHOVER_APP")) > 0

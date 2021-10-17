@@ -55,9 +55,8 @@ verify_group <- verify_user
 #' @rdname verify_user
 #' @description `is.registered_user()` indicates whether or not a given user ID
 #' is registered with Pushover
-#' @return `is.registered_user()` and `is.registered_group()` return a
-#' logical value indicating whether (`TRUE`) or not (`FALSE`) the
-#' given user or group is registered.
+#' @return `is.registered_user()` and `is.registered_group()` return a logical
+#' value indicating whether or not the given user or group is registered.
 #' @export
 is.registered_user <- function(user, app = get_pushover_app(), device = NULL) {
   rval <- verify_user(user = user, app = app, device = device)

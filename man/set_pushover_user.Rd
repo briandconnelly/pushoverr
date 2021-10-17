@@ -32,31 +32,31 @@ will request the key.}
 this only works for interactive sessions.}
 }
 \value{
-\code{get_pushover_user} returns a string containing the current
+\code{get_pushover_user()} returns a string containing the current
 user or group key
 
-\code{pushover_user.isset} returns a logical value indicating whether
-the user/group is set (\code{TRUE}) or not (\code{FALSE}).
+\code{pushover_user.isset()} returns a logical value indicating whether
+or not the user/group is set.
 }
 \description{
-\code{set_pushover_user} sets the Pushover user or group key to be used in
-subsequent commands, \code{get_pushover_user} gets the user or group key
-that is currently set, and \code{unset_pushover_user} unsets the key.
-\code{pushover_user.isset} indicates whether or not the user/group key has
+\code{set_pushover_user()} sets the Pushover user or group key to be used in
+subsequent commands, \code{get_pushover_user()} gets the user or group key
+that is currently set, and \code{unset_pushover_user()} unsets the key.
+\code{pushover_user.isset()} indicates whether or not the user/group key has
 been set.
 }
 \details{
-\code{set_pushover_group}, \code{get_pushover_group}, and
-\code{unset_pushover_group} are aliases for these functions.
+\code{set_pushover_group()}, \code{get_pushover_group()}, and
+\code{unset_pushover_group()} are aliases for these functions.
 
-\code{set_pushover_user} only sets the Pushover user or group for the current
-session. If a different value is specified in .Renviron, that value will be
-used in future sessions. Similarly, \code{unset_pushover_user} will only
+\code{set_pushover_user()} only sets the Pushover user or group for the current
+session. If a different value is specified in \code{.Renviron}, that value will be
+used in future sessions. Similarly, \code{unset_pushover_user()} will only
 unset the user or group for the current session.
 
 User keys can be found within the settings of the Pushover app or
-by logging in to \url{https://pushover.net}. Group keys can be found after
-creating a delivery group in your account on \url{https://pushover.net}.
+by logging in to \link{https://pushover.net}. Group keys can be found after
+creating a delivery group in your account on \link{https://pushover.net}.
 }
 \examples{
 \dontrun{

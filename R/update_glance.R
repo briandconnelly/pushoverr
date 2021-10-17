@@ -1,8 +1,8 @@
 #' Update a Pushover glance data
 #'
 #' Glances allow you to push small pieces of data to a frequently-updated screen
-#' such as a smartwatch or a lock screen. At least one of the \code{title},
-#' \code{text}, \code{subtext}, \code{count}, or \code{percent} arguments must
+#' such as a smartwatch or a lock screen. At least one of the `title`,
+#' `text`, `subtext`, `count`, or `percent` arguments must
 #' be specified.
 #'
 #' @note Glances are currently in beta, and features may change.
@@ -11,17 +11,17 @@
 #' @param subtext (optional) a second line of data (max. 100 characters)
 #' @param count (optional) integer value shown on smaller screens; useful for simple counts
 #' @param percent (optional) integer percent value (0..100) shown on some screens as a progress bar/circle
-#' @param user user/group key (see \code{\link{set_pushover_user}})
-#' @param app application token (see \code{\link{set_pushover_app}})
+#' @param user user/group key (see [`set_pushover_user()`])
+#' @param app application token (see [`set_pushover_app()`])
 #' @param device (optional) name of the device(s) to send message to. Defaults
 #' to all devices.
 #'
 #' @return an invisible list containing the following fields:
 #' \itemize{
-#'     \item \code{status}: request status (1 = success)
-#'     \item \code{request}: unique request ID
-#'     \item \code{raw}: the raw \code{\link[httr]{response}} object
-#'     \item \code{errors}: a list of error messages (only for unsuccessful requests)
+#'     \item `status`: request status (`1` = success)
+#'     \item `request`: unique request ID
+#'     \item `raw`: the raw [httr::response] object
+#'     \item `errors`: a list of error messages (only for unsuccessful requests)
 #' }
 #' @export
 #'

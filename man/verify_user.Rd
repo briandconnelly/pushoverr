@@ -33,9 +33,8 @@ the following fields:
 \item \code{raw}: the raw \link[httr:response]{httr::response} object
 }
 
-\code{is.registered_user()} and \code{is.registered_group()} return a
-logical value indicating whether (\code{TRUE}) or not (\code{FALSE}) the
-given user or group is registered.
+\code{is.registered_user()} and \code{is.registered_group()} return a logical
+value indicating whether or not the given user or group is registered.
 }
 \description{
 \code{verify_user()} determines whether or not the given user or

@@ -26,9 +26,9 @@ update_glance(
 
 \item{percent}{(optional) integer percent value (0..100) shown on some screens as a progress bar/circle}
 
-\item{user}{user/group key (see \code{\link{set_pushover_user}})}
+\item{user}{user/group key (see \code{\link[=set_pushover_user]{set_pushover_user()}})}
 
-\item{app}{application token (see \code{\link{set_pushover_app}})}
+\item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 
 \item{device}{(optional) name of the device(s) to send message to. Defaults
 to all devices.}
@@ -36,9 +36,9 @@ to all devices.}
 \value{
 an invisible list containing the following fields:
 \itemize{
-\item \code{status}: request status (1 = success)
+\item \code{status}: request status (\code{1} = success)
 \item \code{request}: unique request ID
-\item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{raw}: the raw \link[httr:response]{httr::response} object
 \item \code{errors}: a list of error messages (only for unsuccessful requests)
 }
 }

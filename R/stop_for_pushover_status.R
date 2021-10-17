@@ -3,7 +3,7 @@
 #' Examines a response from a Pushover API call for errors. If there were
 #' errors, execution is stopped, and an error message is shown.
 #'
-#' @param x a \code{\link[httr]{response}} object returned by an API call
+#' @param x an [httr::response] object returned by an API call
 #'
 #' @return If request was successful, the response (invisibly).
 #' @export

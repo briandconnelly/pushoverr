@@ -10,7 +10,7 @@
 #' @param token A application token (e.g., `"azGDORePK8gMaC0QOYAMyEEuzJnyUi"`)
 #' @return A logical value indicating whether or not the application token is
 #' valid
-#' 
+#'
 #' @export
 #' @examples
 #' is.valid_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")

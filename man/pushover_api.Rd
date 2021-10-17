@@ -13,23 +13,23 @@ pushover_api(verb, url, visible = TRUE, ...)
 
 \item{visible}{Whether or not the result should be visible (default: \code{TRUE})}
 
-\item{...}{Any additional parameters to be passed to \code{\link[httr]{VERB}}}
+\item{...}{Any additional parameters to be passed to \link[httr:VERB]{httr::VERB}}
 }
 \value{
 a list containing the following fields and any other fields related
 to the specific API call:
 \itemize{
-\item \code{status}: request status (1 = success)
+\item \code{status}: request status (\code{1} = success)
 \item \code{request}: unique request ID
-\item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{raw}: the raw \link[httr:response]{httr::response} object
 \item \code{errors}: a list of error messages (only for unsuccessful requests)
 }
 }
 \description{
-\code{pushover_api} allows commands to be issued using the Pushover API.
+\code{pushover_api()} allows commands to be issued using the Pushover API.
 This is a generic function that is meant to be used by higher level
 functions. In most instances, more specific functions should be used (e.g.,
-\code{\link{pushover}}).
+\code{\link[=pushover]{pushover()}}).
 }
 \examples{
 \dontrun{

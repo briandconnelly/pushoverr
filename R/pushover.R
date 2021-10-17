@@ -1,32 +1,32 @@
 #' Send a message using Pushover
 #'
-#' \code{pushover} sends a message (push notification) to a user or group.
+#' `pushover()` sends a message (push notification) to a user or group.
 #' Messages can be given different priorities, play different sounds, or require
-#' acknowledgments. The \code{pushover_normal}, \code{pushover_silent},
-#' \code{pushover_quiet}, \code{pushover_high}, and \code{pushover_emergency}
-#' functions send messages with those priorities.
+#' acknowledgments.
+#' `pushover_normal()`, `pushover_silent`, `pushover_quiet`, `pushover_high`,
+#' and `pushover_emergency` functions send messages with those priorities.
 #'
 #' @param message The message to be sent (max. 1024 characters)
 #' @param title (optional) The message's title
-#' @param priority Message priority (-2: silent, -1: quiet, 0: normal (default), 1: high, 2: emergency)
-#' @param user user/group key (see \code{\link{set_pushover_user}})
-#' @param app application token (see \code{\link{set_pushover_app}})
+#' @param priority Message priority (`-2`: silent, `-1`: quiet, `0`: normal (default), `1`: high, `2`: emergency)
+#' @param user user/group key (see [`set_pushover_user()`])
+#' @param app application token (see [`set_pushover_app()`])
 #' @param device (optional) name of the device(s) to send message to. Defaults to all devices.
-#' @param sound (optional) name of the sound to play (see \url{https://pushover.net/api#sounds})
+#' @param sound (optional) name of the sound to play (see [https://pushover.net/api#sounds])
 #' @param url (optional) supplementary URL to display with message
 #' @param url_title (optional) title to show for supplementary URL
 #' @param retry (optional) how often (in seconds) to repeat emergency priority messages (min: 30 seconds; default: 60 seconds)
 #' @param expire (optional) how long (in seconds) emergency priority messages will be retried (max: 86400 seconds; default: 3600 seconds)
-#' @param callback (optional) callback URL to be visited (HTTP POST) once an emergency priority message has been acknowledged (\href{https://pushover.net/api#receipt}{details})
+#' @param callback (optional) callback URL to be visited (HTTP POST) once an emergency priority message has been acknowledged ([details](https://pushover.net/api#receipt))
 #' @param timestamp (optional) a Unix timestamp containing the date and time to display to the user instead of the time at which the message was received
 #'
 #' @return an invisible list containing the following fields:
 #' \itemize{
-#'     \item \code{status}: request status (1 = success)
-#'     \item \code{request}: unique request ID
-#'     \item \code{raw}: the raw \code{\link[httr]{response}} object
-#'     \item \code{receipt}: a receipt ID (only for emergency priority messages)
-#'     \item \code{errors}: a list of error messages (only for unsuccessful requests)
+#'     \item `status`: request status (1 = success)
+#'     \item `request`: unique request ID
+#'     \item `raw`: the raw [httr::response] object
+#'     \item `receipt`: a receipt ID (only for emergency priority messages)
+#'     \item `errors`: a list of error messages (only for unsuccessful requests)
 #' }
 #' @export
 #'
@@ -109,7 +109,7 @@ pushover <- function(message,
 
 
 #' @rdname pushover
-#' @param ... Additional arguments to pass to \code{pushover()}
+#' @param ... Additional arguments to pass to `pushover()`
 #' @export
 pushover_silent <- function(message, ...) {
   pushover(message = message, priority = -2, ...)
