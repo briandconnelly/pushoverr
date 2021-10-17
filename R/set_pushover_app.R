@@ -28,15 +28,15 @@
 set_pushover_app <- function(token = NULL, ask = interactive()) {
   if (is.null(token)) {
     if (ask && interactive()) {
-      message("PUSHOVER_APP is not set, and application token not provided (see ?pushoverr for details)")
+      rlang::inform("PUSHOVER_APP is not set, and application token not provided (see ?pushoverr for details)")
       in_token <- readline("Please enter your application token: ")
       Sys.setenv("PUSHOVER_APP" = in_token)
     } else {
-      stop("Set Pushover application token by providing value for argument 'app' or setting PUSHOVER_APP See ?pushoverr for details.", call. = FALSE)
+      rlang::abort("Set Pushover application token by providing value for argument 'app' or setting PUSHOVER_APP See ?pushoverr for details.", call. = FALSE)
     }
   } else {
     if (identical(Sys.getenv("PUSHOVER_APP"), token)) {
-      message(sprintf("Pushover app was already set to '%s'", token))
+      rlang::inform(sprintf("Pushover app was already set to '%s'", token))
     }
     Sys.setenv("PUSHOVER_APP" = token)
   }
@@ -61,7 +61,7 @@ get_pushover_app <- function(ask = interactive()) {
 #' @export
 unset_pushover_app <- function() {
   if (!pushover_app.isset()) {
-    message("PUSHOVER_APP is not set")
+    rlang::inform("PUSHOVER_APP is not set")
   }
   Sys.unsetenv("PUSHOVER_APP")
 }

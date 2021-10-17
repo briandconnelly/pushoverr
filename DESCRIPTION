@@ -19,7 +19,8 @@ Depends:
     R (>= 3.0.0)
 Imports:
     assertthat,
-    httr
+    httr,
+    rlang
 ByteCompile: no
 Encoding: UTF-8
 NeedsCompilation: no

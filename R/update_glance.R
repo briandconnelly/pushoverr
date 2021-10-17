@@ -34,7 +34,7 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
                           user = get_pushover_user(), app = get_pushover_app(),
                           device = NULL) {
   if (is.null(c(title, text, subtext, count, percent))) {
-    stop("Must provide at least one of the following arguments: title, text, subtext, count, percent", call. = FALSE)
+    rlang::abort("Must provide at least one of the following arguments: title, text, subtext, count, percent", call. = FALSE)
   }
   assertthat::assert_that(assertthat::is.scalar(user), is.valid_user(user))
   assertthat::assert_that(assertthat::is.scalar(app), is.valid_app(app))

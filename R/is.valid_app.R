@@ -27,6 +27,6 @@ assertthat::on_failure(is.valid_app) <- function(call, env) {
 #' @description \code{is.valid_token} is deprecated in favor of \code{is.valid_app}
 #' @export
 is.valid_token <- function(token) {
-  message("is.valid_token() is deprecated. Please use is.valid_app() instead.")
+  rlang::inform("is.valid_token() is deprecated. Please use is.valid_app() instead.")
   is.valid_app(token)
 }

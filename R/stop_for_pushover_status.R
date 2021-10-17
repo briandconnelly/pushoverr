@@ -19,6 +19,6 @@ stop_for_pushover_status <- function(x) {
       "%s - %s", httr::http_status(code)$message,
       paste0(response$errors, collapse = "; ")
     )
-    stop(msg, call. = FALSE)
+    rlang::abort(msg, call. = FALSE)
   }
 }
