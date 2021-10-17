@@ -4,6 +4,12 @@
 # pushoverr
 
 <!-- badges: start -->
+
+[![Codecov test
+coverage](https://codecov.io/gh/briandconnelly/pushoverr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/briandconnelly/pushoverr?branch=master)
+[![R-CMD-check](https://github.com/briandconnelly/pushoverr/workflows/R-CMD-check/badge.svg)](https://github.com/briandconnelly/pushoverr/actions)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/pushoverr)](https://CRAN.R-project.org/package=pushoverr)
 <!-- badges: end -->
 
 pushoverr allows you to send push notifications from R to mobile devices
