@@ -1,12 +1,12 @@
 #' Get a list of the user's registered devices
 #'
-#' \code{get_devices} queries the Pushover API for a list of the devices that
+#' `get_devices()` queries the Pushover API for a list of the devices that
 #' have been registered by the given user
 #'
-#' @param user Pushover user key (see \code{\link{set_pushover_user}})
-#' @param app Pushover application token (see \code{\link{set_pushover_app}})
+#' @param user Pushover user key (see [`set_pushover_user()`])
+#' @param app Pushover application token (see [`set_pushover_app()`])
 #'
-#' @return \code{get_devices} returns a list of device names registered by the
+#' @return `get_devices()` returns a list of device names registered by the
 #' given user
 #' @export
 #'
@@ -24,12 +24,12 @@ get_devices <- function(user = get_pushover_user(), app = get_pushover_app()) {
 
 
 #' @rdname get_devices
-#' @description \code{is.device} determines whether the given device is
+#' @description `is.device()` determines whether the given device is
 #' registered to the given user
 #' @param device The name of a device
-#' @return \code{is.device} returns a logical value for each of the given
-#' devices that indicates whether (\code{TRUE}) or not (\code{FALSE}) that
-#' device is registered to the given user.
+#' @return `is.device()` returns a logical value for each of the given
+#' devices that indicates whether or not that device is registered to the given
+#' user.
 #' @export
 #' @examples
 #' \dontrun{
