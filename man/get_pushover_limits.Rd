@@ -7,21 +7,19 @@
 get_pushover_limits(app = get_pushover_app())
 }
 \arguments{
-\item{app}{application token (see \code{\link{set_pushover_app}})}
+\item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 }
 \value{
 A list containing messaging usage for the given app. Fields include:
 \itemize{
-    \item \code{limit}: Number of messages allowed per month
-    \item \code{remaining}: Number of remaining messages in current month
-    \item \code{reset}: Unix timestamp indicating when message count is reset
-    \item \code{status}: request status (1 = success)
-    \item \code{request}: unique request ID
-    \item \code{raw}: the raw \code{\link[httr]{response}} object
+\item \code{limit}: Number of messages allowed per month
+\item \code{remaining}: Number of remaining messages in current month
+\item \code{reset}: Unix timestamp indicating when message count is reset
+\item \verb{status\}: request status (}1\verb{= success) \\item}request\verb{: unique request ID \\item }raw`: the raw \link[httr:response]{httr::response} object
 }
 }
 \description{
-\code{get_pushover_limits} retrieves the message usage and limit information
+\code{get_pushover_limits()} retrieves the message usage and limit information
 for the given application.
 }
 \note{
@@ -29,7 +27,7 @@ This information can alternatively be gotten by examining the headers
 in the response to previous API calls. Look for headers
 \code{x-limit-app-limit}, \code{x-limit-app-remaining}, and
 \code{x-limit-app-reset}. For example, if \code{x} stores the response from a
-\code{\link{pushover}} call, \code{httr::headers(x$raw)} will return all of
+\code{\link[=pushover]{pushover()}} call, \code{httr::headers(x$raw)} will return all of
 the headers included in the response.
 }
 \examples{
@@ -37,4 +35,3 @@ the headers included in the response.
 lims <- get_pushover_limits(app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 }
 }
-

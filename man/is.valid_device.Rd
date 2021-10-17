@@ -7,23 +7,22 @@
 is.valid_device(device)
 }
 \arguments{
-\item{device}{one or more device names (e.g., "phone", c("phone", "tablet"))}
+\item{device}{one or more device names (e.g., \code{"phone"},
+\code{c("phone", "tablet")})}
 }
 \value{
-Logical value(s) indicating whether the corresponding device name is
-valid (\code{TRUE}) or not (\code{FALSE})
+Logical value(s) indicating whether or not the corresponding device
+name is valid
 }
 \description{
 Valid device names are strings up to 25 characters long and can include
 letters, numbers, _, and -.
 }
 \note{
-\code{is.valid_device} only determines whether a device name is valid.
+\code{is.valid_device()} only determines whether a device name is valid.
 It does not determine whether that device is actually registered (see:
-\code{\link{is.device}}).
+\code{\link[=is.device]{is.device()}}.
 }
 \examples{
 is.valid_device("my_phone")
-
 }
-

@@ -2,17 +2,28 @@
 % Please edit documentation in R/pushover.R
 \name{pushover}
 \alias{pushover}
-\alias{pushover_emergency}
-\alias{pushover_high}
-\alias{pushover_normal}
-\alias{pushover_quiet}
 \alias{pushover_silent}
+\alias{pushover_quiet}
+\alias{pushover_normal}
+\alias{pushover_high}
+\alias{pushover_emergency}
 \title{Send a message using Pushover}
 \usage{
-pushover(message, title = NULL, priority = 0, user = get_pushover_user(),
-  app = get_pushover_app(), device = NULL, sound = NULL, url = NULL,
-  url_title = NULL, retry = 60, expire = 3600, callback = NULL,
-  timestamp = NULL)
+pushover(
+  message,
+  title = NULL,
+  priority = 0,
+  user = get_pushover_user(),
+  app = get_pushover_app(),
+  device = NULL,
+  sound = NULL,
+  url = NULL,
+  url_title = NULL,
+  retry = 60,
+  expire = 3600,
+  callback = NULL,
+  timestamp = NULL
+)
 
 pushover_silent(message, ...)
 
@@ -29,11 +40,11 @@ pushover_emergency(message, ...)
 
 \item{title}{(optional) The message's title}
 
-\item{priority}{Message priority (-2: silent, -1: quiet, 0: normal (default), 1: high, 2: emergency)}
+\item{priority}{Message priority (\code{-2}: silent, \code{-1}: quiet, \code{0}: normal (default), \code{1}: high, \code{2}: emergency)}
 
-\item{user}{user/group key (see \code{\link{set_pushover_user}})}
+\item{user}{user/group key (see \code{\link[=set_pushover_user]{set_pushover_user()}})}
 
-\item{app}{application token (see \code{\link{set_pushover_app}})}
+\item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 
 \item{device}{(optional) name of the device(s) to send message to. Defaults to all devices.}
 
@@ -56,23 +67,22 @@ pushover_emergency(message, ...)
 \value{
 an invisible list containing the following fields:
 \itemize{
-    \item \code{status}: request status (1 = success)
-    \item \code{request}: unique request ID
-    \item \code{raw}: the raw \code{\link[httr]{response}} object
-    \item \code{receipt}: a receipt ID (only for emergency priority messages)
-    \item \code{errors}: a list of error messages (only for unsuccessful requests)
+\item \code{status}: request status (1 = success)
+\item \code{request}: unique request ID
+\item \code{raw}: the raw \link[httr:response]{httr::response} object
+\item \code{receipt}: a receipt ID (only for emergency priority messages)
+\item \code{errors}: a list of error messages (only for unsuccessful requests)
 }
 }
 \description{
-\code{pushover} sends a message (push notification) to a user or group.
+\code{pushover()} sends a message (push notification) to a user or group.
 Messages can be given different priorities, play different sounds, or require
-acknowledgments. The \code{pushover_normal}, \code{pushover_silent},
-\code{pushover_quiet}, \code{pushover_high}, and \code{pushover_emergency}
-functions send messages with those priorities.
+acknowledgments.
+\code{pushover_normal()}, \code{pushover_silent}, \code{pushover_quiet}, \code{pushover_high},
+and \code{pushover_emergency} functions send messages with those priorities.
 }
 \examples{
 \dontrun{
 pushover(message = "Hola Mundo!")
 }
 }
-

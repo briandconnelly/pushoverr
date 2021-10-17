@@ -7,7 +7,7 @@
 stop_for_pushover_status(x)
 }
 \arguments{
-\item{x}{a \code{\link[httr]{response}} object returned by an API call}
+\item{x}{an \link[httr:response]{httr::response} object returned by an API call}
 }
 \value{
 If request was successful, the response (invisibly).
@@ -16,4 +16,3 @@ If request was successful, the response (invisibly).
 Examines a response from a Pushover API call for errors. If there were
 errors, execution is stopped, and an error message is shown.
 }
-

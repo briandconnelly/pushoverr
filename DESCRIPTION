@@ -1,19 +1,32 @@
-Package: pushoverr
 Type: Package
+Package: pushoverr
 Title: Send Push Notifications using Pushover
 Version: 1.0.0
 Date: 2016-11-22
-Authors@R: c(person(family="Connelly", given="Brian", email="bdc@bconnelly.net",
-                    role=c("aut", "cre")))
-Description: Send push notifications to mobile devices or the desktop using Pushover. These notifications can display job status, results, scraped web data, or any other text or numeric data.
+Authors@R: 
+    person(given = "Brian",
+           family = "Connelly",
+           role = c("aut", "cre"),
+           email = "bdc@bconnelly.net",
+	   comment = c(ORCID = "0000-0002-9948-0379"))
+Description: Send push notifications to mobile devices or the desktop
+    using Pushover. These notifications can display job status, results,
+    scraped web data, or any other text or numeric data.
 License: BSD_2_clause + file LICENSE
 URL: https://github.com/briandconnelly/pushoverr
 BugReports: https://github.com/briandconnelly/pushoverr/issues
-ByteCompile: no
-NeedsCompilation: no
 Depends:
     R (>= 3.0.0)
 Imports:
     assertthat,
-    httr
-RoxygenNote: 5.0.1
+    httr,
+    rlang
+ByteCompile: no
+Encoding: UTF-8
+NeedsCompilation: no
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Suggests: 
+    covr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

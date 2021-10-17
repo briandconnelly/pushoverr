@@ -7,7 +7,7 @@
 get_pushover_sounds(app = get_pushover_app())
 }
 \arguments{
-\item{app}{application token (see \code{\link{set_pushover_app}})}
+\item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 }
 \value{
 A list of available sounds and their descriptions.
@@ -20,4 +20,3 @@ Get a list of sounds available for Pushover notifications
 get_pushover_sounds(app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 }
 }
-

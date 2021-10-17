@@ -4,9 +4,16 @@
 \alias{update_glance}
 \title{Update a Pushover glance data}
 \usage{
-update_glance(title = NULL, text = NULL, subtext = NULL, count = NULL,
-  percent = NULL, user = get_pushover_user(), app = get_pushover_app(),
-  device = NULL)
+update_glance(
+  title = NULL,
+  text = NULL,
+  subtext = NULL,
+  count = NULL,
+  percent = NULL,
+  user = get_pushover_user(),
+  app = get_pushover_app(),
+  device = NULL
+)
 }
 \arguments{
 \item{title}{(optional) a description of the data being shown, such as "Widgets Sold" (max. 100 characters)}
@@ -19,9 +26,9 @@ update_glance(title = NULL, text = NULL, subtext = NULL, count = NULL,
 
 \item{percent}{(optional) integer percent value (0..100) shown on some screens as a progress bar/circle}
 
-\item{user}{user/group key (see \code{\link{set_pushover_user}})}
+\item{user}{user/group key (see \code{\link[=set_pushover_user]{set_pushover_user()}})}
 
-\item{app}{application token (see \code{\link{set_pushover_app}})}
+\item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 
 \item{device}{(optional) name of the device(s) to send message to. Defaults
 to all devices.}
@@ -29,10 +36,10 @@ to all devices.}
 \value{
 an invisible list containing the following fields:
 \itemize{
-    \item \code{status}: request status (1 = success)
-    \item \code{request}: unique request ID
-    \item \code{raw}: the raw \code{\link[httr]{response}} object
-    \item \code{errors}: a list of error messages (only for unsuccessful requests)
+\item \code{status}: request status (\code{1} = success)
+\item \code{request}: unique request ID
+\item \code{raw}: the raw \link[httr:response]{httr::response} object
+\item \code{errors}: a list of error messages (only for unsuccessful requests)
 }
 }
 \description{
@@ -49,4 +56,3 @@ Glances are currently in beta, and features may change.
 update_glance(count = 37)
 }
 }
-
