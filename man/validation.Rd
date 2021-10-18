@@ -70,7 +70,9 @@ determine whether or not the given receipt actually exists. Receipts are
 or not a given user/group key is valid. They do not determine whether or not
 the key is registered with Pushover.
 
-\code{is.valid_sound()}
+\code{is.valid_sound()} checks whether or not a given sound is
+supported by Pushover. See \url{https://pushover.net/api#sounds} for a complete
+list.
 }
 \note{
 To acquire an application token, create an app at

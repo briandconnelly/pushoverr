@@ -48,10 +48,12 @@ pushover <- function(message,
                      callback = NULL,
                      timestamp = NULL) {
   assertthat::assert_that(
+    assertthat::is.string(message),
+    nchar(message) > 0,
     nchar(message) <= 1024,
-    assertthat::is.scalar(user),
+    assertthat::is.string(user),
     is.valid_user(user),
-    assertthat::is.scalar(app),
+    assertthat::is.string(app),
     is.valid_app(app),
     assertthat::is.number(priority),
     priority %in% c(-2, -1, 0, 1, 2),
@@ -76,12 +78,20 @@ pushover <- function(message,
   }
 
   if (!is.null(title)) {
-    assertthat::assert_that(nchar(title) <= 250)
+    assertthat::assert_that(
+      assertthat::is.string(title),
+      assertthat::noNA(title),
+      nchar(title) <= 250
+    )
     params$title <- title
   }
 
   if (!is.null(url_title)) {
-    assertthat::assert_that(nchar(url_title) <= 100)
+    assertthat::assert_that(
+      assertthat::is.string(utl_title),
+      assertthat::noNA(url_title),
+      nchar(url_title) <= 100
+    )
     params$url_title <- url_title
   }
 
@@ -92,7 +102,7 @@ pushover <- function(message,
 
   if (!is.null(sound)) {
     assertthat::assert_that(
-      assertthat::is.scalar(sound),
+      assertthat::is.string(sound),
       is.valid_sound(sound)
     )
     params$sound <- sound
