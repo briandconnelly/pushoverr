@@ -28,9 +28,14 @@ valid_call <- function(message = "Hello",
   )
 }
 
+random_string <- function(n) {
+  paste0(sample(c(LETTERS, letters, 0:9), n, replace = TRUE), collapse = "")
+}
+
 test_that("input validation works", {
   # Message should be a non-empty scalar string
   expect_error(valid_call(message = ""))
+  expect_error(valid_call(message = random_string(1025)))
   expect_error(valid_call(message = NA_character_))
   expect_error(valid_call(message = 21))
   expect_error(valid_call(message = c("msg 1", "msg 2")))
@@ -56,14 +61,23 @@ test_that("input validation works", {
   expect_error(valid_call(user = 21))
   expect_error(valid_call(user = c("uQiRzpo4DXghDmr9QzzfQu27cmVRsG", "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")))
 
-  # app should be a non-empty scalar string
-  # TODO
+  # app should be a non-empty scalar string, length 30
+  expect_error(valid_call(app = ""))
+  expect_error(valid_call(app = NA_character_))
+  expect_error(valid_call(app = 21))
+  expect_error(valid_call(app = random_string(12)))
 
-  # device should be a non-empty string with 1+ items
-  # TODO
+  # device should be a non-empty string, length [1,25]
+  expect_error(valid_call(device = ""))
+  expect_error(valid_call(device = NA_character_))
+  expect_error(valid_call(device = 21))
+  expect_error(valid_call(device = random_string(26)))
 
   # sound should be a non-empty scalar string
-  # TODO
+  expect_error(valid_call(sound = ""))
+  expect_error(valid_call(sound = NA_character_))
+  expect_error(valid_call(sound = 21))
+  expect_error(valid_call(sound = "notasound"))
 
   # TODO: others
 })

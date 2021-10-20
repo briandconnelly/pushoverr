@@ -40,7 +40,7 @@ assertthat::on_failure(is.valid_app) <- function(call, env) {
 #' @examples
 #' is.valid_device("my_phone")
 is.valid_device <- function(device) {
-  grepl("^[a-zA-Z0-9_-]{1,25}$", device)
+  is.character(device) && grepl("^[a-zA-Z0-9_-]{1,25}$", device)
 }
 
 assertthat::on_failure(is.valid_device) <- function(call, env) {
