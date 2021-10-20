@@ -15,7 +15,6 @@ test_that("input validation (is.valid_app)", {
 })
 
 test_that("input validation (is.valid_device)", {
-  expect_false(is.valid_device(21))
   expect_false(is.valid_device(NA_character_))
   expect_false(is.valid_device(""))
   expect_false(is.valid_device(paste0(LETTERS, collapse = "")))

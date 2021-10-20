@@ -70,7 +70,6 @@ test_that("input validation works", {
   # device should be a non-empty string, length [1,25]
   expect_error(valid_call(device = ""))
   expect_error(valid_call(device = NA_character_))
-  expect_error(valid_call(device = 21))
   expect_error(valid_call(device = random_string(26)))
 
   # sound should be a non-empty scalar string
