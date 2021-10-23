@@ -56,12 +56,10 @@ group_subscription <- function(cmd, ...) {
     )
   }
 
-  query_url <- sprintf(
-    "https://api.pushover.net/1/groups/%s/%s.json",
-    opt_args$group, cmd
-  )
   pushover_api(
-    verb = "POST", url = query_url, visible = FALSE,
+    verb = "POST",
+    url = glue("https://api.pushover.net/1/groups/{opt_args$group}/{cmd}.json"),
+    visible = FALSE,
     body = opt_args
   )
 }

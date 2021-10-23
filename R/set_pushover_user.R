@@ -32,15 +32,15 @@
 set_pushover_user <- function(user = NULL, ask = interactive()) {
   if (is.null(user)) {
     if (ask && interactive()) {
-      rlang::inform("PUSHOVER_USER is not set and user/group key not provided (see ?pushoverr for details)")
+      inform("PUSHOVER_USER is not set and user/group key not provided (see ?pushoverr for details)")
       in_user <- readline("Please enter your user/group key: ")
       Sys.setenv("PUSHOVER_USER" = in_user)
     } else {
-      rlang::abort("Set Pushover user key by providing value for argument 'user' or setting PUSHOVER_USER. See ?pushoverr for details.", call. = FALSE)
+      cli::cli_abort("Set Pushover user key by providing value for argument {.arg user} or setting {.envvar PUSHOVER_USER}. See {.code pushoverr} for details.")
     }
   } else {
     if (identical(Sys.getenv("PUSHOVER_USER"), user)) {
-      rlang::inform(sprintf("Pushover user was already set to '%s'", user))
+      cli::cli_alert_info("Pushover user was already set to {.code {user}}")
     }
     Sys.setenv("PUSHOVER_USER" = user)
   }
@@ -64,7 +64,7 @@ get_pushover_user <- function(ask = interactive()) {
 #' @export
 unset_pushover_user <- function() {
   if (!pushover_user.isset()) {
-    rlang::inform("PUSHOVER_USER is not set")
+    cli::cli_alert_info("{.envvar PUSHOVER_USER} is not set")
   }
   Sys.unsetenv("PUSHOVER_USER")
 }
@@ -75,7 +75,7 @@ unset_pushover_user <- function() {
 #' or not the user/group is set.
 #' @export
 pushover_user.isset <- function() {
-  nchar(Sys.getenv("PUSHOVER_USER")) > 0
+  !is.na(Sys.getenv("PUSHOVER_USER", NA_character_))
 }
 
 

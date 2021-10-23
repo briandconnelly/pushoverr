@@ -88,7 +88,7 @@ pushover <- function(message,
 
   if (!is.null(url_title)) {
     assertthat::assert_that(
-      assertthat::is.string(utl_title),
+      assertthat::is.string(url_title),
       assertthat::noNA(url_title),
       nchar(url_title) <= 100
     )

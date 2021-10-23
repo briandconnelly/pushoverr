@@ -15,10 +15,6 @@ stop_for_pushover_status <- function(x) {
   if (response$status == 1 && floor(code / 100) == 2) {
     return(invisible(x))
   } else {
-    msg <- sprintf(
-      "%s - %s", httr::http_status(code)$message,
-      paste0(response$errors, collapse = "; ")
-    )
-    rlang::abort(msg, call. = FALSE)
+    cli::cli_abort("{httr::http_status(code)$message} - {paste0(response$errors, collapse = '; ')}")
   }
 }

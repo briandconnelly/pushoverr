@@ -16,7 +16,7 @@
 #' @examples
 #' is.valid_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 is.valid_app <- function(token) {
-  grepl("^[a-zA-Z0-9]{30}$", token)
+  grepl("^[a-zA-Z0-9]{30}$", token %||% "")
 }
 
 assertthat::on_failure(is.valid_app) <- function(call, env) {
@@ -40,7 +40,7 @@ assertthat::on_failure(is.valid_app) <- function(call, env) {
 #' @examples
 #' is.valid_device("my_phone")
 is.valid_device <- function(device) {
-  grepl("^[a-zA-Z0-9_-]{1,25}$", device)
+  grepl("^[a-zA-Z0-9_-]{1,25}$", device %||% "")
 }
 
 assertthat::on_failure(is.valid_device) <- function(call, env) {
@@ -64,7 +64,7 @@ assertthat::on_failure(is.valid_device) <- function(call, env) {
 #' }
 #'
 is.valid_receipt <- function(receipt) {
-  grepl("^[a-zA-Z0-9]{30}$", receipt)
+  grepl("^[a-zA-Z0-9]{30}$", receipt %||% "")
 }
 
 assertthat::on_failure(is.valid_receipt) <- function(call, env) {
@@ -92,7 +92,7 @@ assertthat::on_failure(is.valid_receipt) <- function(call, env) {
 #' is.valid_user("uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
 #' }
 is.valid_user <- function(user) {
-  grepl("^[a-zA-Z0-9]{30}$", user)
+  grepl("^[a-zA-Z0-9]{30}$", user %||% "")
 }
 
 assertthat::on_failure(is.valid_user) <- function(call, env) {
@@ -103,7 +103,7 @@ assertthat::on_failure(is.valid_user) <- function(call, env) {
 #' @rdname validation
 #' @export
 is.valid_group <- function(group) {
-  grepl("^[a-zA-Z0-9]{30}$", group)
+  grepl("^[a-zA-Z0-9]{30}$", group %||% "")
 }
 
 assertthat::on_failure(is.valid_group) <- function(call, env) {
@@ -125,7 +125,7 @@ assertthat::on_failure(is.valid_group) <- function(call, env) {
 #' @examples
 #' is.valid_sound("cosmic")
 is.valid_sound <- function(sound) {
-  sound %in% pushover_sounds
+  (sound %||% "nosound") %in% pushover_sounds
 }
 
 assertthat::on_failure(is.valid_sound) <- function(call, env) {

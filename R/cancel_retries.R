@@ -26,12 +26,10 @@ cancel_retries <- function(receipt, app = get_pushover_app()) {
     is.valid_receipt(receipt)
   )
 
-  query_url <- sprintf(
-    "https://api.pushover.net/1/receipts/%s/cancel.json",
-    receipt
-  )
   pushover_api(
-    verb = "POST", url = query_url, visible = FALSE,
+    verb = "POST",
+    url = glue("https://api.pushover.net/1/receipts/{receipt}/cancel.json"),
+    visible = FALSE,
     body = list("token" = app)
   )
 }

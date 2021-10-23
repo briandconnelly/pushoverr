@@ -38,8 +38,11 @@ check_receipt <- function(receipt, app = get_pushover_app()) {
     is.valid_receipt(receipt = receipt)
   )
 
-  query_url <- sprintf("https://api.pushover.net/1/receipts/%s.json", receipt)
-  pushover_api(verb = "GET", url = query_url, query = list(token = app))
+  pushover_api(
+    verb = "GET",
+    url = glue("https://api.pushover.net/1/receipts/{receipt}.json"),
+    query = list(token = app)
+  )
 }
 
 
