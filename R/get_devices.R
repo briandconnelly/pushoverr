@@ -28,19 +28,19 @@ get_devices <- function(user = get_pushover_user(), app = get_pushover_app()) {
 
 
 #' @rdname get_devices
-#' @description `is.device()` determines whether the given device is
+#' @description `is.registered_device()` determines whether the given device is
 #' registered to the given user
 #' @param device The name of a device
-#' @return `is.device()` returns a logical value for each of the given
-#' devices that indicates whether or not that device is registered to the given
-#' user.
+#' @return `is.registered_ device()` returns a logical value for each of the
+#' given devices that indicates whether or not that device is registered to the
+#' given user.
 #' @export
 #' @examples
 #' \dontrun{
-#' is.device(device = "phone")
+#' is.registered_device(device = "phone")
 #' }
-is.device <- function(device,
-                      user = get_pushover_user(),
-                      app = get_pushover_app()) {
+is.registered_device <- function(device,
+                                 user = get_pushover_user(),
+                                 app = get_pushover_app()) {
   device %in% get_devices(user = user, app = app)
 }

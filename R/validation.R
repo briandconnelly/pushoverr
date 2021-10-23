@@ -28,7 +28,7 @@ assertthat::on_failure(is.valid_app) <- function(call, env) {
 #' @description `is.valid_device()` only determines whether a device name is
 #' valid. Valid device names are strings up to 25 characters long and can
 #' include letters, numbers, _, and -. It does not determine whether that device
-#' is actually registered (see: [`is.device()`].
+#' is actually registered (see: [`is.registered_device()`].
 #'
 #' @param device one or more device names (e.g., `"phone"`,
 #' `c("phone", "tablet")`)

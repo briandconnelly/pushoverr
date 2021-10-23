@@ -59,7 +59,7 @@ determine whether or not the given token is associated with an application.
 \code{is.valid_device()} only determines whether a device name is
 valid. Valid device names are strings up to 25 characters long and can
 include letters, numbers, _, and -. It does not determine whether that device
-is actually registered (see: \code{\link[=is.device]{is.device()}}.
+is actually registered (see: \code{\link[=is.registered_device]{is.registered_device()}}.
 
 \code{is.valid_receipt()} determines whether or not a given message
 receipt is valid or not according to Pushover's specifications. It does not
