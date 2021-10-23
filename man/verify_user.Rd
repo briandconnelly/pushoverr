@@ -20,7 +20,8 @@ is.registered_group(user, app = get_pushover_app(), device = NULL)
 
 \item{app}{application token (see \code{\link{set_pushover_app}})}
 
-\item{device}{(optional) device to verify If supplied the device must be registered to the given user's account.}
+\item{device}{(optional) device to verify If supplied the device must be
+registered to the given user's account.}
 }
 \value{
 \code{verify_user()} and \code{verify_group()} return a list containing

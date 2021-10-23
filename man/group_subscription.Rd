@@ -35,7 +35,8 @@ group_enable_user(group, user, app = get_pushover_app())
 
 \item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 
-\item{device}{(optional) device name to receive messages (defaults to all devices)}
+\item{device}{(optional) device name to receive messages (defaults to all
+devices)}
 
 \item{memo}{(optional) memo about the user}
 }

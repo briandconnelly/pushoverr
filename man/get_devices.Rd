@@ -37,7 +37,10 @@ registered to the given user
 }
 \examples{
 \dontrun{
-get_devices(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG", app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
+get_devices(
+  user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG",
+  app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi"
+)
 }
 \dontrun{
 is.registered_device(device = "phone")

@@ -36,31 +36,41 @@ pushover_high(message, ...)
 pushover_emergency(message, ...)
 }
 \arguments{
-\item{message}{The message to be sent (max. 1024 characters)}
+\item{message}{The message to be sent (max. 1024 characters). Messages use
+\code{\link[glue:glue]{glue::glue()}} for formatting and interpolation.}
 
-\item{title}{(optional) The message's title}
+\item{title}{(optional) The message's title. Titles use \code{\link[glue:glue]{glue::glue()}} for
+formatting and interpolation.}
 
-\item{priority}{Message priority (\code{-2}: silent, \code{-1}: quiet, \code{0}: normal (default), \code{1}: high, \code{2}: emergency)}
+\item{priority}{Message priority (\code{-2}: silent, \code{-1}: quiet, \code{0}: normal
+(default), \code{1}: high, \code{2}: emergency)}
 
 \item{user}{user/group key (see \code{\link[=set_pushover_user]{set_pushover_user()}})}
 
 \item{app}{application token (see \code{\link[=set_pushover_app]{set_pushover_app()}})}
 
-\item{device}{(optional) name of the device(s) to send message to. Defaults to all devices.}
+\item{device}{(optional) name of the device(s) to send message to. Defaults
+to all devices.}
 
-\item{sound}{(optional) name of the sound to play (see \url{https://pushover.net/api#sounds})}
+\item{sound}{(optional) name of the sound to play (see
+\url{https://pushover.net/api#sounds})}
 
 \item{url}{(optional) supplementary URL to display with message}
 
 \item{url_title}{(optional) title to show for supplementary URL}
 
-\item{retry}{(optional) how often (in seconds) to repeat emergency priority messages (min: 30 seconds; default: 60 seconds)}
+\item{retry}{(optional) how often (in seconds) to repeat emergency priority
+messages (min: 30 seconds; default: 60 seconds)}
 
-\item{expire}{(optional) how long (in seconds) emergency priority messages will be retried (max: 86400 seconds; default: 3600 seconds)}
+\item{expire}{(optional) how long (in seconds) emergency priority messages
+will be retried (max: 86400 seconds; default: 3600 seconds)}
 
-\item{callback}{(optional) callback URL to be visited (HTTP POST) once an emergency priority message has been acknowledged (\href{https://pushover.net/api#receipt}{details})}
+\item{callback}{(optional) callback URL to be visited (HTTP POST) once an
+emergency priority message has been acknowledged
+(\href{https://pushover.net/api#receipt}{details})}
 
-\item{timestamp}{(optional) a Unix timestamp containing the date and time to display to the user instead of the time at which the message was received}
+\item{timestamp}{(optional) a Unix timestamp containing the date and time to
+display to the user instead of the time at which the message was received}
 
 \item{...}{Additional arguments to pass to \code{pushover()}}
 }

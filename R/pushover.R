@@ -6,8 +6,10 @@
 #' `pushover_normal()`, `pushover_silent`, `pushover_quiet`, `pushover_high`,
 #' and `pushover_emergency` functions send messages with those priorities.
 #'
-#' @param message The message to be sent (max. 1024 characters)
-#' @param title (optional) The message's title
+#' @param message The message to be sent (max. 1024 characters). Messages use
+#' [glue::glue()] for formatting and interpolation.
+#' @param title (optional) The message's title. Titles use [glue::glue()] for
+#' formatting and interpolation.
 #' @param priority Message priority (`-2`: silent, `-1`: quiet, `0`: normal
 #' (default), `1`: high, `2`: emergency)
 #' @param user user/group key (see [`set_pushover_user()`])
@@ -74,7 +76,7 @@ pushover <- function(message,
   params <- list(
     "token" = app,
     "user" = user,
-    "message" = message,
+    "message" = glue(message),
     "priority" = priority,
     "retry" = retry,
     "expire" = expire
@@ -91,7 +93,7 @@ pushover <- function(message,
       assertthat::noNA(title),
       nchar(title) <= 250
     )
-    params$title <- title
+    params$title <- glue(title)
   }
 
   if (!is.null(url_title)) {
