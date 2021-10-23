@@ -159,15 +159,18 @@ and <code>pushover_emergency</code> functions send messages with those prioritie
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>message</th>
-      <td><p>The message to be sent (max. 1024 characters)</p></td>
+      <td><p>The message to be sent (max. 1024 characters). Messages use
+<code><a href='https://glue.tidyverse.org/reference/glue.html'>glue::glue()</a></code> for formatting and interpolation.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>(optional) The message's title</p></td>
+      <td><p>(optional) The message's title. Titles use <code><a href='https://glue.tidyverse.org/reference/glue.html'>glue::glue()</a></code> for
+formatting and interpolation.</p></td>
     </tr>
     <tr>
       <th>priority</th>
-      <td><p>Message priority (<code>-2</code>: silent, <code>-1</code>: quiet, <code>0</code>: normal (default), <code>1</code>: high, <code>2</code>: emergency)</p></td>
+      <td><p>Message priority (<code>-2</code>: silent, <code>-1</code>: quiet, <code>0</code>: normal
+(default), <code>1</code>: high, <code>2</code>: emergency)</p></td>
     </tr>
     <tr>
       <th>user</th>
@@ -179,11 +182,13 @@ and <code>pushover_emergency</code> functions send messages with those prioritie
     </tr>
     <tr>
       <th>device</th>
-      <td><p>(optional) name of the device(s) to send message to. Defaults to all devices.</p></td>
+      <td><p>(optional) name of the device(s) to send message to. Defaults
+to all devices.</p></td>
     </tr>
     <tr>
       <th>sound</th>
-      <td><p>(optional) name of the sound to play (see <a href='https://pushover.net/api#sounds'>https://pushover.net/api#sounds</a>)</p></td>
+      <td><p>(optional) name of the sound to play (see
+<a href='https://pushover.net/api#sounds'>https://pushover.net/api#sounds</a>)</p></td>
     </tr>
     <tr>
       <th>url</th>
@@ -195,19 +200,24 @@ and <code>pushover_emergency</code> functions send messages with those prioritie
     </tr>
     <tr>
       <th>retry</th>
-      <td><p>(optional) how often (in seconds) to repeat emergency priority messages (min: 30 seconds; default: 60 seconds)</p></td>
+      <td><p>(optional) how often (in seconds) to repeat emergency priority
+messages (min: 30 seconds; default: 60 seconds)</p></td>
     </tr>
     <tr>
       <th>expire</th>
-      <td><p>(optional) how long (in seconds) emergency priority messages will be retried (max: 86400 seconds; default: 3600 seconds)</p></td>
+      <td><p>(optional) how long (in seconds) emergency priority messages
+will be retried (max: 86400 seconds; default: 3600 seconds)</p></td>
     </tr>
     <tr>
       <th>callback</th>
-      <td><p>(optional) callback URL to be visited (HTTP POST) once an emergency priority message has been acknowledged (<a href='https://pushover.net/api#receipt'>details</a>)</p></td>
+      <td><p>(optional) callback URL to be visited (HTTP POST) once an
+emergency priority message has been acknowledged
+(<a href='https://pushover.net/api#receipt'>details</a>)</p></td>
     </tr>
     <tr>
       <th>timestamp</th>
-      <td><p>(optional) a Unix timestamp containing the date and time to display to the user instead of the time at which the message was received</p></td>
+      <td><p>(optional) a Unix timestamp containing the date and time to
+display to the user instead of the time at which the message was received</p></td>
     </tr>
     <tr>
       <th>...</th>
