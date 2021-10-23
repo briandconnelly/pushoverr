@@ -8,17 +8,25 @@
 #'
 #' @param message The message to be sent (max. 1024 characters)
 #' @param title (optional) The message's title
-#' @param priority Message priority (`-2`: silent, `-1`: quiet, `0`: normal (default), `1`: high, `2`: emergency)
+#' @param priority Message priority (`-2`: silent, `-1`: quiet, `0`: normal
+#' (default), `1`: high, `2`: emergency)
 #' @param user user/group key (see [`set_pushover_user()`])
 #' @param app application token (see [`set_pushover_app()`])
-#' @param device (optional) name of the device(s) to send message to. Defaults to all devices.
-#' @param sound (optional) name of the sound to play (see <https://pushover.net/api#sounds>)
+#' @param device (optional) name of the device(s) to send message to. Defaults
+#' to all devices.
+#' @param sound (optional) name of the sound to play (see
+#' <https://pushover.net/api#sounds>)
 #' @param url (optional) supplementary URL to display with message
 #' @param url_title (optional) title to show for supplementary URL
-#' @param retry (optional) how often (in seconds) to repeat emergency priority messages (min: 30 seconds; default: 60 seconds)
-#' @param expire (optional) how long (in seconds) emergency priority messages will be retried (max: 86400 seconds; default: 3600 seconds)
-#' @param callback (optional) callback URL to be visited (HTTP POST) once an emergency priority message has been acknowledged ([details](https://pushover.net/api#receipt))
-#' @param timestamp (optional) a Unix timestamp containing the date and time to display to the user instead of the time at which the message was received
+#' @param retry (optional) how often (in seconds) to repeat emergency priority
+#' messages (min: 30 seconds; default: 60 seconds)
+#' @param expire (optional) how long (in seconds) emergency priority messages
+#' will be retried (max: 86400 seconds; default: 3600 seconds)
+#' @param callback (optional) callback URL to be visited (HTTP POST) once an
+#' emergency priority message has been acknowledged
+#' ([details](https://pushover.net/api#receipt))
+#' @param timestamp (optional) a Unix timestamp containing the date and time to
+#' display to the user instead of the time at which the message was received
 #'
 #' @return an invisible list containing the following fields:
 #' \itemize{

@@ -6,7 +6,8 @@
 #' @param group group key
 #' @param user user key
 #' @param app application token (see [`set_pushover_app()`])
-#' @param device (optional) device name to receive messages (defaults to all devices)
+#' @param device (optional) device name to receive messages (defaults to all
+#' devices)
 #' @param memo (optional) memo about the user
 #' @param ... Specific arguments for the given group subscription command
 #'

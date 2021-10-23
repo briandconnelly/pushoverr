@@ -59,7 +59,9 @@ test_that("input validation works", {
   expect_error(valid_call(user = ""))
   expect_error(valid_call(user = NA_character_))
   expect_error(valid_call(user = 21))
-  expect_error(valid_call(user = c("uQiRzpo4DXghDmr9QzzfQu27cmVRsG", "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")))
+  expect_error(valid_call(
+    user = c("uQiRzpo4DXghDmr9QzzfQu27cmVRsG", "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
+  ))
 
   # app should be a non-empty scalar string, length 30
   expect_error(valid_call(app = ""))

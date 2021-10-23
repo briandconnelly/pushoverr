@@ -5,7 +5,8 @@
 #'
 #' @param user user/group key to verify
 #' @param app application token (see [`set_pushover_app`])
-#' @param device (optional) device to verify If supplied the device must be registered to the given user's account.
+#' @param device (optional) device to verify If supplied the device must be
+#' registered to the given user's account.
 #'
 #' @return `verify_user()` and `verify_group()` return a list containing
 #' the following fields:

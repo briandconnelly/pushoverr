@@ -12,7 +12,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_devices(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG", app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
+#' get_devices(
+#'   user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG",
+#'   app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi"
+#' )
 #' }
 get_devices <- function(user = get_pushover_user(), app = get_pushover_app()) {
   assertthat::assert_that(
