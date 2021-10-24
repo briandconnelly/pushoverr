@@ -23,17 +23,11 @@ group_subscription <- function(cmd, ...) {
   opt_args <- list(...)
 
   if ("group" %in% names(opt_args)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(opt_args[["group"]]),
-      is.valid_group(opt_args[["group"]])
-    )
+    assert_valid_group(opt_args[["group"]])
   }
 
   if ("user" %in% names(opt_args)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(opt_args[["user"]]),
-      is.valid_user(opt_args[["user"]])
-    )
+    assert_valid_user(opt_args[["user"]])
   }
 
   if ("token" %in% names(opt_args)) {

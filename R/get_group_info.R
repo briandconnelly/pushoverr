@@ -18,7 +18,7 @@
 #' get_group_info(group = "gznej3rKEVAvPUxu9vvNnqpmZpokzF")
 #' }
 get_group_info <- function(group, app = get_pushover_app()) {
-  assertthat::assert_that(is.valid_group(group))
+  assert_valid_group(group)
 
   pushover_api(
     verb = "GET",

@@ -18,13 +18,10 @@
 #' )
 #' }
 get_devices <- function(user = get_pushover_user(), app = get_pushover_app()) {
-  assert_valid_app(app)
-  assertthat::assert_that(
-    assertthat::is.scalar(user),
-    is.valid_user(user)
+  result <- verify_user(
+    user = assert_valid_user(user),
+    app = assert_valid_app(app)
   )
-
-  result <- verify_user(user = user, app = app)
   unlist(result$devices)
 }
 

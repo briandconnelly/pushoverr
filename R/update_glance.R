@@ -36,10 +36,8 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
   if (is.null(c(title, text, subtext, count, percent))) {
     cli::cli_abort("Must provide at least one of the following arguments: {.arg title}, {.arg text}, {.arg subtext}, {.arg count}, {.arg percent}")
   }
-  assertthat::assert_that(
-    assertthat::is.scalar(user),
-    is.valid_user(user)
-  )
+
+  assert_valid_user(user)
   assert_valid_app(app)
 
   params <- list("token" = app, "user" = user)

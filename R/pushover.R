@@ -61,8 +61,6 @@ pushover <- function(message,
     assertthat::is.string(message),
     nchar(message) > 0,
     nchar(message) <= 1024,
-    assertthat::is.string(user),
-    is.valid_user(user),
     assertthat::is.number(priority),
     priority %in% c(-2, -1, 0, 1, 2),
     assertthat::is.count(retry),
@@ -70,6 +68,7 @@ pushover <- function(message,
     assertthat::is.count(expire),
     expire <= 86400
   )
+  assert_valid_user(user)
   assert_valid_app(app)
 
   params <- list(
