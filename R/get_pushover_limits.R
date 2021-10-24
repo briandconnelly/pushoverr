@@ -28,9 +28,9 @@
 #' lims <- get_pushover_limits(app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 #' }
 get_pushover_limits <- function(app = get_pushover_app()) {
+  assert_valid_app(app)
   assertthat::assert_that(
-    assertthat::is.scalar(app),
-    is.valid_app(app)
+    assertthat::is.scalar(app)
   )
 
   pushover_api(

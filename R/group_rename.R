@@ -25,10 +25,9 @@ group_rename <- function(group, name, app = get_pushover_app()) {
     is.valid_group(group),
     assertthat::is.scalar(name),
     is.character(name),
-    assertthat::noNA(name),
-    assertthat::is.scalar(app),
-    is.valid_app(app)
+    assertthat::noNA(name)
   )
+  assert_valid_app(app)
 
   pushover_api(
     verb = "POST",

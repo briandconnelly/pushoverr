@@ -29,10 +29,9 @@
 verify_user <- function(user, app = get_pushover_app(), device = NULL) {
   assertthat::assert_that(
     assertthat::is.scalar(user),
-    is.valid_user(user),
-    assertthat::is.scalar(app),
-    is.valid_app(app)
+    is.valid_user(user)
   )
+  assert_valid_app(app)
 
   params <- list("token" = app, "user" = user)
   if (!is.null(device)) {

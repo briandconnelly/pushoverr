@@ -38,10 +38,9 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
   }
   assertthat::assert_that(
     assertthat::is.scalar(user),
-    is.valid_user(user),
-    assertthat::is.scalar(app),
-    is.valid_app(app)
+    is.valid_user(user)
   )
+  assert_valid_app(app)
 
   params <- list("token" = app, "user" = user)
 

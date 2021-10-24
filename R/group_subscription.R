@@ -37,10 +37,7 @@ group_subscription <- function(cmd, ...) {
   }
 
   if ("token" %in% names(opt_args)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(opt_args[["token"]]),
-      is.valid_app(opt_args[["token"]])
-    )
+    assert_valid_app(opt_args[["token"]])
   }
 
   if ("device" %in% names(opt_args)) {
