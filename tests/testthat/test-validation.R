@@ -1,12 +1,3 @@
-test_that("input validation (is.valid_receipt)", {
-  expect_false(is.valid_receipt(21))
-  expect_false(is.valid_receipt(NA_character_))
-  expect_false(is.valid_receipt(""))
-  expect_false(is.valid_receipt(NULL))
-  expect_false(is.valid_receipt(paste0(LETTERS, collapse = "")))
-  expect_error(assertthat::assert_that(is.valid_receipt(NA_character_)))
-})
-
 test_that("input validation (is.valid_user)", {
   expect_false(is.valid_user(21))
   expect_false(is.valid_user(NA_character_))

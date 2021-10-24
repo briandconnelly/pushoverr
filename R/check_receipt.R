@@ -33,10 +33,8 @@
 #' is.acknowledged(receipt = msg1$receipt)
 #' }
 check_receipt <- function(receipt, app = get_pushover_app()) {
-  assertthat::assert_that(
-    assertthat::is.scalar(receipt),
-    is.valid_receipt(receipt = receipt)
-  )
+  assert_valid_receipt(receipt)
+  assert_valid_app(app)
 
   pushover_api(
     verb = "GET",
