@@ -41,10 +41,7 @@ group_subscription <- function(cmd, ...) {
   }
 
   if ("device" %in% names(opt_args)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(opt_args[["device"]]),
-      is.valid_device(opt_args[["device"]])
-    )
+    assert_valid_device(opt_args[["device"]])
   }
 
   if ("memo" %in% names(opt_args)) {

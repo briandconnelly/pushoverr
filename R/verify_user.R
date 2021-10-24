@@ -31,15 +31,14 @@ verify_user <- function(user, app = get_pushover_app(), device = NULL) {
     assertthat::is.scalar(user),
     is.valid_user(user)
   )
-  assert_valid_app(app)
 
-  params <- list("token" = app, "user" = user)
+  params <- list(
+    "token" = assert_valid_app(app),
+    "user" = user
+  )
+
   if (!is.null(device)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(device),
-      is.valid_device(device)
-    )
-    params$device <- device
+    params$device <- assert_valid_device(device)
   }
 
   pushover_api(

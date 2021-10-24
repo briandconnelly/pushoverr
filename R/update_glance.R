@@ -83,10 +83,7 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
   }
 
   if (!is.null(device)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(device),
-      is.valid_device(device)
-    )
+    assert_valid_device(device)
     params$device <- device
   }
 

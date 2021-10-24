@@ -3,7 +3,7 @@
 \name{check_valid_app}
 \alias{check_valid_app}
 \alias{test_valid_app}
-\title{Validate Pushover values}
+\title{Validate Pushover app token values}
 \usage{
 check_valid_app(x, ...)
 

@@ -1,30 +1,6 @@
 #' @rdname validation
 #' @title Validate Pushover values
-#'
-#' @description `is.valid_device()` only determines whether a device name is
-#' valid. Valid device names are strings up to 25 characters long and can
-#' include letters, numbers, _, and -. It does not determine whether that device
-#' is actually registered (see: [`is.registered_device()`].
-#'
-#' @param device one or more device names (e.g., `"phone"`,
-#' `c("phone", "tablet")`)
-#'
-#' @return `is.valid_device()` returns logical a value indicating whether or not
-#' the corresponding device name is valid
-#' @export
-#'
-#' @examples
-#' is.valid_device("my_phone")
-is.valid_device <- function(device) {
-  grepl("^[a-zA-Z0-9_-]{1,25}$", device %||% "")
-}
-
-assertthat::on_failure(is.valid_device) <- function(call, env) {
-  "Invalid Pushover device name. Valid names contain up to 25 characters, including letters, numbers, _, and -."
-}
-
-
-#' @rdname validation
+#' 
 #' @description `is.valid_receipt()` determines whether or not a given message
 #' receipt is valid or not according to Pushover's specifications. It does not
 #' determine whether or not the given receipt actually exists. Receipts are

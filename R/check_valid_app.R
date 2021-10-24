@@ -1,5 +1,5 @@
 #' @rdname check_valid_app
-#' @title Validate Pushover values
+#' @title Validate Pushover app token values
 #'
 #' @description `check_valid_app()` determines whether or not a given
 #' application token is valid or not according to Pushover's specifications. It

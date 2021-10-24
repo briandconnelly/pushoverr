@@ -1,20 +1,3 @@
-test_that("input validation (is.valid_device)", {
-  expect_false(is.valid_device(NA_character_))
-  expect_false(is.valid_device(""))
-  expect_false(is.valid_device(NULL))
-  expect_false(is.valid_device(paste0(LETTERS, collapse = "")))
-  expect_error(assertthat::assert_that(is.valid_device(NA_character_)))
-
-  expect_true(is.valid_device("my_phone"))
-  expect_true(
-    all(
-      is.valid_device(
-        c("my_phone", "my_tablet")
-      )
-    )
-  )
-})
-
 test_that("input validation (is.valid_receipt)", {
   expect_false(is.valid_receipt(21))
   expect_false(is.valid_receipt(NA_character_))

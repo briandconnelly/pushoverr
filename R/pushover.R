@@ -82,7 +82,8 @@ pushover <- function(message,
   )
 
   if (!is.null(device)) {
-    assertthat::assert_that(all(is.valid_device(device)))
+    # TODO: handle >1 device
+    assert_valid_device(device)
     params["device"] <- paste0(device, collapse = ",")
   }
 
