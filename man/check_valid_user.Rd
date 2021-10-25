@@ -34,7 +34,9 @@ the key is registered with Pushover.
 }
 \examples{
 check_valid_user("uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
+check_valid_user("gznej3rKEVAvPUxu9vvNnqpmZpokzF")
 test_valid_user("uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
+test_valid_group("gznej3rKEVAvPUxu9vvNnqpmZpokzF")
 }
 \seealso{
 \code{\link[=verify_user]{verify_user()}} and \code{\link[=verify_group]{verify_group()}} determine whether or not

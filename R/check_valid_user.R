@@ -28,6 +28,8 @@ check_valid_user <- function(x, ...) {
 
 #' @rdname check_valid_user
 #' @export
+#' @examples
+#' check_valid_user("gznej3rKEVAvPUxu9vvNnqpmZpokzF")
 check_valid_group <- check_valid_user
 
 
@@ -41,6 +43,8 @@ test_valid_user <- checkmate::makeTestFunction(check_valid_user)
 
 #' @rdname check_valid_user
 #' @export
+#' @examples 
+#' test_valid_group("gznej3rKEVAvPUxu9vvNnqpmZpokzF")
 test_valid_group <- test_valid_user
 
 
