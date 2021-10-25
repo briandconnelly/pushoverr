@@ -17,7 +17,7 @@
 #'     \item `errors`: a list of error messages (only for unsuccessful requests)
 #'     \item `raw`: the raw [httr::response] object
 #' }
-#' @seealso [`is.valid_user`] and [`is.valid_group`] to
+#' @seealso [`check_valid_user`] and [`check_valid_group`] to
 #' determine whether or not a user key has valid formatting, but is not
 #' necessarily registered.
 #' @export
