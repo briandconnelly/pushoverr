@@ -43,41 +43,23 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
   params <- list("token" = app, "user" = user)
 
   if (!is.null(title)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(title),
-      nchar(title) <= 100
-    )
-    params$title <- title
+    params$title <- checkmate::assert_string(title)
   }
 
   if (!is.null(text)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(text),
-      nchar(text) <= 100
-    )
-    params$text <- text
+    params$text <- checkmate::assert_string(text)
   }
 
   if (!is.null(subtext)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(subtext),
-      nchar(subtext) <= 100
-    )
-    params$subtext <- subtext
+    params$subtext <- checkmate::assert_string(subtext)
   }
 
   if (!is.null(count)) {
-    assertthat::assert_that(assertthat::is.number(count))
-    params$count <- count
+    params$count <- checkmate::check_number(count)
   }
 
   if (!is.null(percent)) {
-    assertthat::assert_that(
-      assertthat::is.number(percent),
-      percent >= 0,
-      percent <= 100
-    )
-    params$percent <- percent
+    params$percent <- checkmate::check_number(percent, lower = 0, upper = 100)
   }
 
   if (!is.null(device)) {

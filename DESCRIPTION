@@ -18,7 +18,6 @@ BugReports: https://github.com/briandconnelly/pushoverr/issues
 Depends:
     R (>= 3.0.0)
 Imports:
-    assertthat,
     checkmate,
     cli,
     glue,

@@ -57,19 +57,13 @@ pushover <- function(message,
                      expire = 3600,
                      callback = NULL,
                      timestamp = NULL) {
-  assertthat::assert_that(
-    assertthat::is.string(message),
-    nchar(message) > 0,
-    nchar(message) <= 1024,
-    assertthat::is.number(priority),
-    priority %in% c(-2, -1, 0, 1, 2),
-    assertthat::is.count(retry),
-    retry >= 30,
-    assertthat::is.count(expire),
-    expire <= 86400
-  )
+  checkmate::assert_string(message, min.chars = 1)
+  checkmate::assert_true(nchar(message) <= 1024)
+  checkmate::assert_choice(priority, -2:2)
   assert_valid_user(user)
   assert_valid_app(app)
+  checkmate::assert_integerish(retry, lower = 30)
+  checkmate::assert_integerish(expire, upper = 86400)
 
   params <- list(
     "token" = app,
@@ -87,26 +81,19 @@ pushover <- function(message,
   }
 
   if (!is.null(title)) {
-    assertthat::assert_that(
-      assertthat::is.string(title),
-      assertthat::noNA(title),
-      nchar(title) <= 250
-    )
+    checkmate::assert_string(title)
+    checkmate::assert_true(nchar(title) <= 250)
     params$title <- glue(title)
   }
 
   if (!is.null(url_title)) {
-    assertthat::assert_that(
-      assertthat::is.string(url_title),
-      assertthat::noNA(url_title),
-      nchar(url_title) <= 100
-    )
+    checkmate::assert_string(url_title)
+    checkmate::assert_true(nchar(url_title) <= 100)
     params$url_title <- url_title
   }
 
   if (!is.null(timestamp)) {
-    assertthat::assert_that(assertthat::is.count(timestamp))
-    params$timestamp <- timestamp
+    params$timestamp <- checkmate::assert_count(timestamp)
   }
 
   if (!is.null(sound)) {

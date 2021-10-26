@@ -39,10 +39,8 @@ group_subscription <- function(cmd, ...) {
   }
 
   if ("memo" %in% names(opt_args)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(opt_args[["memo"]]),
-      nchar(opt_args[["memo"]]) <= 200
-    )
+    # Max length is 200 (inclusive)
+    checkmate::assert_string(opt_args[["memo"]])
   }
 
   pushover_api(
