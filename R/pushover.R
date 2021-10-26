@@ -110,10 +110,7 @@ pushover <- function(message,
   }
 
   if (!is.null(sound)) {
-    assertthat::assert_that(
-      is.valid_sound(sound)
-    )
-    params$sound <- sound
+    params$sound <- assert_valid_sound(sound)
   }
 
   if (!is.null(callback)) {

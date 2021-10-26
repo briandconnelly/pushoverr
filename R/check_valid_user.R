@@ -43,7 +43,7 @@ test_valid_user <- checkmate::makeTestFunction(check_valid_user)
 
 #' @rdname check_valid_user
 #' @export
-#' @examples 
+#' @examples
 #' test_valid_group("gznej3rKEVAvPUxu9vvNnqpmZpokzF")
 test_valid_group <- test_valid_user
 
