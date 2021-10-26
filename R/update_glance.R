@@ -36,58 +36,34 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
   if (is.null(c(title, text, subtext, count, percent))) {
     cli::cli_abort("Must provide at least one of the following arguments: {.arg title}, {.arg text}, {.arg subtext}, {.arg count}, {.arg percent}")
   }
-  assertthat::assert_that(
-    assertthat::is.scalar(user),
-    is.valid_user(user),
-    assertthat::is.scalar(app),
-    is.valid_app(app)
-  )
+
+  assert_valid_user(user)
+  assert_valid_app(app)
 
   params <- list("token" = app, "user" = user)
 
   if (!is.null(title)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(title),
-      nchar(title) <= 100
-    )
-    params$title <- title
+    params$title <- checkmate::assert_string(title)
   }
 
   if (!is.null(text)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(text),
-      nchar(text) <= 100
-    )
-    params$text <- text
+    params$text <- checkmate::assert_string(text)
   }
 
   if (!is.null(subtext)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(subtext),
-      nchar(subtext) <= 100
-    )
-    params$subtext <- subtext
+    params$subtext <- checkmate::assert_string(subtext)
   }
 
   if (!is.null(count)) {
-    assertthat::assert_that(assertthat::is.number(count))
-    params$count <- count
+    params$count <- checkmate::check_number(count)
   }
 
   if (!is.null(percent)) {
-    assertthat::assert_that(
-      assertthat::is.number(percent),
-      percent >= 0,
-      percent <= 100
-    )
-    params$percent <- percent
+    params$percent <- checkmate::check_number(percent, lower = 0, upper = 100)
   }
 
   if (!is.null(device)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(device),
-      is.valid_device(device)
-    )
+    assert_valid_device(device)
     params$device <- device
   }
 

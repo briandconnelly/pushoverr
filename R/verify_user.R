@@ -17,7 +17,7 @@
 #'     \item `errors`: a list of error messages (only for unsuccessful requests)
 #'     \item `raw`: the raw [httr::response] object
 #' }
-#' @seealso [`is.valid_user`] and [`is.valid_group`] to
+#' @seealso [`check_valid_user`] and [`check_valid_group`] to
 #' determine whether or not a user key has valid formatting, but is not
 #' necessarily registered.
 #' @export
@@ -27,20 +27,13 @@
 #' verify_user(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
 #' }
 verify_user <- function(user, app = get_pushover_app(), device = NULL) {
-  assertthat::assert_that(
-    assertthat::is.scalar(user),
-    is.valid_user(user),
-    assertthat::is.scalar(app),
-    is.valid_app(app)
+  params <- list(
+    "token" = assert_valid_app(app),
+    "user" = assert_valid_user(user)
   )
 
-  params <- list("token" = app, "user" = user)
   if (!is.null(device)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(device),
-      is.valid_device(device)
-    )
-    params$device <- device
+    params$device <- assert_valid_device(device)
   }
 
   pushover_api(

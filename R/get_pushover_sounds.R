@@ -10,10 +10,7 @@
 #' get_pushover_sounds(app = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 #' }
 get_pushover_sounds <- function(app = get_pushover_app()) {
-  assertthat::assert_that(
-    assertthat::is.scalar(app),
-    is.valid_app(app)
-  )
+  assert_valid_app(app)
 
   response <- pushover_api(
     verb = "GET",

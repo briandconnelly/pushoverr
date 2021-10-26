@@ -1,0 +1,25 @@
+test_that("X_valid_sound functions work as expected", {
+  expect_true(is.character(check_valid_sound(21)))
+  expect_true(is.character(check_valid_sound(NA_character_)))
+  expect_true(is.character(check_valid_sound(NULL)))
+  expect_true(is.character(check_valid_sound("")))
+  expect_true(is.character(check_valid_sound("notasound")))
+  expect_true(check_valid_sound(sample(pushover_sounds, 1)))
+  expect_true(is.character(check_valid_sound(sample(pushover_sounds, 2))))
+
+
+  expect_false(test_valid_sound(21))
+  expect_false(test_valid_sound(NA_character_))
+  expect_false(test_valid_sound(NULL))
+  expect_false(test_valid_sound(""))
+  expect_false(test_valid_sound("notasound"))
+  expect_true(test_valid_sound(sample(pushover_sounds, 1)))
+  expect_false(test_valid_sound(sample(pushover_sounds, 2)))
+
+  expect_error(assert_valid_sound(21))
+  expect_error(assert_valid_sound(NA_character_))
+  expect_error(assert_valid_sound(NULL))
+  expect_error(assert_valid_sound(""))
+  expect_error(assert_valid_sound("notasound"))
+  expect_error(assert_valid_sound(sample(pushover_sounds, 2)))
+})

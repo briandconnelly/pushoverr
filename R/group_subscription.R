@@ -23,38 +23,24 @@ group_subscription <- function(cmd, ...) {
   opt_args <- list(...)
 
   if ("group" %in% names(opt_args)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(opt_args[["group"]]),
-      is.valid_group(opt_args[["group"]])
-    )
+    assert_valid_group(opt_args[["group"]])
   }
 
   if ("user" %in% names(opt_args)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(opt_args[["user"]]),
-      is.valid_user(opt_args[["user"]])
-    )
+    assert_valid_user(opt_args[["user"]])
   }
 
   if ("token" %in% names(opt_args)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(opt_args[["token"]]),
-      is.valid_app(opt_args[["token"]])
-    )
+    assert_valid_app(opt_args[["token"]])
   }
 
   if ("device" %in% names(opt_args)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(opt_args[["device"]]),
-      is.valid_device(opt_args[["device"]])
-    )
+    assert_valid_device(opt_args[["device"]])
   }
 
   if ("memo" %in% names(opt_args)) {
-    assertthat::assert_that(
-      assertthat::is.scalar(opt_args[["memo"]]),
-      nchar(opt_args[["memo"]]) <= 200
-    )
+    # Max length is 200 (inclusive)
+    checkmate::assert_string(opt_args[["memo"]])
   }
 
   pushover_api(
