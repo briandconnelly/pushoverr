@@ -138,6 +138,7 @@ and <code>pushover_emergency</code> functions send messages with those prioritie
   sound <span class='op'>=</span> <span class='cn'>NULL</span>,
   url <span class='op'>=</span> <span class='cn'>NULL</span>,
   url_title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"html"</span>, <span class='st'>"monospace"</span><span class='op'>)</span>,
   retry <span class='op'>=</span> <span class='fl'>60</span>,
   expire <span class='op'>=</span> <span class='fl'>3600</span>,
   callback <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -197,6 +198,12 @@ to all devices.</p></td>
     <tr>
       <th>url_title</th>
       <td><p>(optional) title to show for supplementary URL</p></td>
+    </tr>
+    <tr>
+      <th>format</th>
+      <td><p>Message formatting. If <code>html</code> (default), messages can include a
+<a href='https://pushover.net/api#html'>limited subset</a> of HTML formatting. If
+<code>monospace</code>, text is formatted using monospace font.</p></td>
     </tr>
     <tr>
       <th>retry</th>
