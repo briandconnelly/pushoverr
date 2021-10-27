@@ -39,8 +39,8 @@ group_subscription <- function(cmd, ...) {
   }
 
   if ("memo" %in% names(opt_args)) {
-    # Max length is 200 (inclusive)
     checkmate::assert_string(opt_args[["memo"]])
+    checkmate::assert_true(nchar(opt_args[["memo"]]) <= 200)
   }
 
   pushover_api(

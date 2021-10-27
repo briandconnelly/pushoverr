@@ -19,6 +19,7 @@ pushover(
   sound = NULL,
   url = NULL,
   url_title = NULL,
+  format = c("html", "monospace"),
   retry = 60,
   expire = 3600,
   callback = NULL,
@@ -58,6 +59,10 @@ to all devices.}
 \item{url}{(optional) supplementary URL to display with message}
 
 \item{url_title}{(optional) title to show for supplementary URL}
+
+\item{format}{Message formatting. If \code{html} (default), messages can include a
+\href{https://pushover.net/api#html}{limited subset} of HTML formatting. If
+\code{monospace}, text is formatted using monospace font.}
 
 \item{retry}{(optional) how often (in seconds) to repeat emergency priority
 messages (min: 30 seconds; default: 60 seconds)}

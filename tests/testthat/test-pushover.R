@@ -7,6 +7,7 @@ valid_call <- function(message = "Hello",
                        sound = NULL,
                        url = NULL,
                        url_title = NULL,
+                       format = "html",
                        retry = 60,
                        expire = 3600,
                        callback = NULL,
@@ -21,6 +22,7 @@ valid_call <- function(message = "Hello",
     sound = sound,
     url = url,
     url_title = url_title,
+    format = format,
     retry = retry,
     expire = expire,
     callback = callback,
@@ -80,5 +82,45 @@ test_that("input validation works", {
   expect_error(valid_call(sound = 21))
   expect_error(valid_call(sound = "notasound"))
 
-  # TODO: others
+  # If specified, url should be a string with <= 512 chars
+  expect_error(valid_call(url = ""))
+  expect_error(valid_call(url = NA_character_))
+  expect_error(valid_call(url = 21))
+  expect_error(valid_call(url = random_string(513)))
+
+  # If specified, url should be a string with <= 100 chars
+  expect_error(valid_call(url_title = ""))
+  expect_error(valid_call(url_title = NA_character_))
+  expect_error(valid_call(url_title = 21))
+  expect_error(valid_call(url_title = random_string(101)))
+
+  # Format should be either 'html' or 'monospace'
+  expect_error(valid_call(format = ""))
+  expect_error(valid_call(format = NA_character_))
+  expect_error(valid_call(format = NULL))
+  expect_error(valid_call(format = 21))
+  expect_error(valid_call(format = "word"))
+
+  # Retry is an integer >= 30
+  expect_error(valid_call(retry = 20))
+  expect_error(valid_call(retry = FALSE))
+  expect_error(valid_call(retry = NA_integer_))
+  expect_error(valid_call(retry = 34.56789))
+  expect_error(valid_call(retry = 60, expire = 45))
+
+  # Expire is an integer <= 10800
+  expect_error(valid_call(retry = 10801))
+  expect_error(valid_call(retry = FALSE))
+  expect_error(valid_call(retry = NA_integer_))
+  expect_error(valid_call(retry = 123.456789))
+
+  # Callback is a string (length limit unknown)
+  expect_error(valid_call(callback = ""))
+  expect_error(valid_call(callback = NA_character_))
+  expect_error(valid_call(callback = 21))
+
+  # Timestamp is a count
+  expect_error(valid_call(timestamp = -1))
+  expect_error(valid_call(callback = NA_integer_))
+  expect_error(valid_call(callback = 21.214142))
 })

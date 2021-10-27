@@ -20,6 +20,9 @@
 #' <https://pushover.net/api#sounds>)
 #' @param url (optional) supplementary URL to display with message
 #' @param url_title (optional) title to show for supplementary URL
+#' @param format Message formatting. If `html` (default), messages can include a
+#' [limited subset](https://pushover.net/api#html) of HTML formatting. If
+#' `monospace`, text is formatted using monospace font.
 #' @param retry (optional) how often (in seconds) to repeat emergency priority
 #' messages (min: 30 seconds; default: 60 seconds)
 #' @param expire (optional) how long (in seconds) emergency priority messages
@@ -53,6 +56,7 @@ pushover <- function(message,
                      sound = NULL,
                      url = NULL,
                      url_title = NULL,
+                     format = c("html", "monospace"),
                      retry = 60,
                      expire = 3600,
                      callback = NULL,
@@ -62,8 +66,10 @@ pushover <- function(message,
   checkmate::assert_choice(priority, -2:2)
   assert_valid_user(user)
   assert_valid_app(app)
-  checkmate::assert_integerish(retry, lower = 30)
-  checkmate::assert_integerish(expire, upper = 86400)
+  format <- arg_match(format)
+  checkmate::assert_integerish(retry, lower = 30, any.missing = FALSE)
+  checkmate::assert_integerish(expire, upper = 10800, any.missing = FALSE)
+  checkmate::assert(retry <= expire)
 
   params <- list(
     "token" = app,
@@ -74,6 +80,12 @@ pushover <- function(message,
     "expire" = expire
   )
 
+  if (format == "html") {
+    params$html <- 1
+  } else if (format == "monospace") {
+    params$monospace <- 1
+  }
+
   if (!is.null(device)) {
     # TODO: handle >1 device
     assert_valid_device(device)
@@ -81,13 +93,19 @@ pushover <- function(message,
   }
 
   if (!is.null(title)) {
-    checkmate::assert_string(title)
+    checkmate::assert_string(title, min.chars = 1)
     checkmate::assert_true(nchar(title) <= 250)
     params$title <- glue(title)
   }
 
+  if (!is.null(url)) {
+    checkmate::assert_string(url, min.chars = 1)
+    checkmate::assert_true(nchar(url) <= 512)
+    params$url <- url
+  }
+
   if (!is.null(url_title)) {
-    checkmate::assert_string(url_title)
+    checkmate::assert_string(url_title, min.chars = 1)
     checkmate::assert_true(nchar(url_title) <= 100)
     params$url_title <- url_title
   }
@@ -101,7 +119,8 @@ pushover <- function(message,
   }
 
   if (!is.null(callback)) {
-    # Docs don't say what character limit is, so not validating
+    # Docs don't say what character limit is
+    checkmate::assert_string(callback, min.chars = 1)
     params$callback <- callback
   }
 
