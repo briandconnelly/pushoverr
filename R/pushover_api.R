@@ -41,3 +41,20 @@ pushover_api <- function(verb, url, visible = TRUE, ...) {
     invisible(rval)
   }
 }
+
+#' @noRd
+#' @description `stop_for_pushover_status()` examines a response from a Pushover
+#' API call for errors. If there were errors, execution is stopped, and an error
+#' message is shown.
+#' @param x an [httr::response] object returned by an API call
+#' @return `x` (invisibly) if successful
+stop_for_pushover_status <- function(x) {
+  code <- httr::status_code(x)
+  response <- httr::content(x)
+  
+  if (response$status == 1 && floor(code / 100) == 2) {
+    return(invisible(x))
+  } else {
+    cli::cli_abort("{httr::http_status(code)$message} - {paste0(response$errors, collapse = '; ')}")
+  }
+}
