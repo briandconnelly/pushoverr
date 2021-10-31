@@ -132,6 +132,7 @@ and <code>pushover_emergency</code> functions send messages with those prioritie
   <span class='va'>message</span>,
   title <span class='op'>=</span> <span class='cn'>NULL</span>,
   priority <span class='op'>=</span> <span class='fl'>0</span>,
+  attachment <span class='op'>=</span> <span class='cn'>NULL</span>,
   user <span class='op'>=</span> <span class='fu'><a href='set_pushover_user.html'>get_pushover_user</a></span><span class='op'>(</span><span class='op'>)</span>,
   app <span class='op'>=</span> <span class='fu'><a href='set_pushover_app.html'>get_pushover_app</a></span><span class='op'>(</span><span class='op'>)</span>,
   device <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -172,6 +173,11 @@ formatting and interpolation.</p></td>
       <th>priority</th>
       <td><p>Message priority (<code>-2</code>: silent, <code>-1</code>: quiet, <code>0</code>: normal
 (default), <code>1</code>: high, <code>2</code>: emergency)</p></td>
+    </tr>
+    <tr>
+      <th>attachment</th>
+      <td><p>Path of file attachment to include. File must be image
+format (bmp, jpg, png, tif) and no larger than 2.6 MB.</p></td>
     </tr>
     <tr>
       <th>user</th>
