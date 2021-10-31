@@ -5,9 +5,8 @@
 #' functions. In most instances, more specific functions should be used (e.g.,
 #' [`pushover()`]).
 #'
-#' @param verb The http method to use
-#' @param url The URL to visit
-#' @param ... Any additional parameters to be passed to [httr::VERB]
+#' @inheritParams httr::VERB
+#' @inheritDotParams httr::VERB
 #'
 #' @return a list containing the following fields and any other fields related
 #' to the specific API call:
