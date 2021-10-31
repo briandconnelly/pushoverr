@@ -13,6 +13,7 @@ pushover(
   message,
   title = NULL,
   priority = 0,
+  attachment = NULL,
   user = get_pushover_user(),
   app = get_pushover_app(),
   device = NULL,
@@ -45,6 +46,9 @@ formatting and interpolation.}
 
 \item{priority}{Message priority (\code{-2}: silent, \code{-1}: quiet, \code{0}: normal
 (default), \code{1}: high, \code{2}: emergency)}
+
+\item{attachment}{Path of file attachment to include. File must be image
+format (bmp, jpg, png, tif) and no larger than 2.6 MB.}
 
 \item{user}{user/group key (see \code{\link[=set_pushover_user]{set_pushover_user()}})}
 

@@ -12,6 +12,8 @@
 #' formatting and interpolation.
 #' @param priority Message priority (`-2`: silent, `-1`: quiet, `0`: normal
 #' (default), `1`: high, `2`: emergency)
+#' @param attachment Path of file attachment to include. File must be image
+#' format (bmp, jpg, png, tif) and no larger than 2.6 MB.
 #' @param user user/group key (see [`set_pushover_user()`])
 #' @param app application token (see [`set_pushover_app()`])
 #' @param device (optional) name of the device(s) to send message to. Defaults
@@ -50,6 +52,7 @@
 pushover <- function(message,
                      title = NULL,
                      priority = 0,
+                     attachment = NULL,
                      user = get_pushover_user(),
                      app = get_pushover_app(),
                      device = NULL,
@@ -63,22 +66,36 @@ pushover <- function(message,
                      timestamp = NULL) {
   checkmate::assert_string(message, min.chars = 1)
   checkmate::assert_true(nchar(message) <= 1024)
-  checkmate::assert_choice(priority, -2:2)
-  assert_valid_user(user)
-  assert_valid_app(app)
   format <- arg_match(format)
-  checkmate::assert_integerish(retry, lower = 30, any.missing = FALSE)
-  checkmate::assert_integerish(expire, upper = 10800, any.missing = FALSE)
   checkmate::assert(retry <= expire)
 
   params <- list(
-    "token" = app,
-    "user" = user,
+    "token" = assert_valid_app(app),
+    "user" = assert_valid_user(user),
     "message" = glue(message),
-    "priority" = priority,
-    "retry" = retry,
-    "expire" = expire
+    "priority" = checkmate::assert_choice(priority, -2:2),
+    "retry" = checkmate::assert_integerish(
+      retry,
+      lower = 30,
+      any.missing = FALSE
+    ),
+    "expire" = checkmate::assert_integerish(
+      expire,
+      upper = 10800,
+      any.missing = FALSE
+    )
   )
+
+  if (!is.null(attachment)) {
+    checkmate::check_file_exists(
+      attachment,
+      access = "r",
+      extension = c("bmp", "gif", "jpg", "jpeg", "png", "tif", "tiff")
+    )
+    checkmate::check_true(file.size(attachment) <= 2621440)
+
+    params$attachment <- httr::upload_file(attachment)
+  }
 
   if (format == "html") {
     params$html <- 1
