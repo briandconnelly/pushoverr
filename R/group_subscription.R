@@ -43,11 +43,12 @@ group_subscription <- function(cmd, ...) {
     checkmate::assert_true(nchar(opt_args[["memo"]]) <= 200)
   }
 
-  pushover_api(
-    verb = "POST",
-    url = glue("https://api.pushover.net/1/groups/{opt_args$group}/{cmd}.json"),
-    visible = FALSE,
-    body = opt_args
+  invisible(
+    pushover_api(
+      verb = "POST",
+      url = glue("https://api.pushover.net/1/groups/{opt_args$group}/{cmd}.json"),
+      body = opt_args
+    )
   )
 }
 

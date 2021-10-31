@@ -24,10 +24,11 @@ group_rename <- function(group, name, app = get_pushover_app()) {
   checkmate::assert_string(name)
   assert_valid_app(app)
 
-  pushover_api(
-    verb = "POST",
-    url = glue("https://api.pushover.net/1/groups/{group}/rename.json"),
-    visible = FALSE,
-    body = list("token" = app, "name" = name)
+  invisible(
+    pushover_api(
+      verb = "POST",
+      url = glue("https://api.pushover.net/1/groups/{group}/rename.json"),
+      body = list("token" = app, "name" = name)
+    )
   )
 }

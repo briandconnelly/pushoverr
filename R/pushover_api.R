@@ -7,7 +7,6 @@
 #'
 #' @param verb The http method to use
 #' @param url The URL to visit
-#' @param visible Whether or not the result should be visible (default: `TRUE`)
 #' @param ... Any additional parameters to be passed to [httr::VERB]
 #'
 #' @return a list containing the following fields and any other fields related
@@ -27,7 +26,7 @@
 #'   query = list(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 #' )
 #' }
-pushover_api <- function(verb, url, visible = TRUE, ...) {
+pushover_api <- function(verb, url, ...) {
   response <- httr::VERB(verb = verb, url = url, ...)
   stop_for_pushover_status(response)
 
@@ -35,11 +34,7 @@ pushover_api <- function(verb, url, visible = TRUE, ...) {
   rval$raw <- response
   class(rval) <- c("pushover", "list")
 
-  if (visible) {
-    rval
-  } else {
-    invisible(rval)
-  }
+  rval
 }
 
 #' @noRd
@@ -51,7 +46,7 @@ pushover_api <- function(verb, url, visible = TRUE, ...) {
 stop_for_pushover_status <- function(x) {
   code <- httr::status_code(x)
   response <- httr::content(x)
-  
+
   if (response$status == 1 && floor(code / 100) == 2) {
     return(invisible(x))
   } else {
