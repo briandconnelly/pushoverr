@@ -1,6 +1,6 @@
 Type: Package
 Package: pushoverr
-Title: Send Push Notifications using Pushover
+Title: Send Push Notifications using 'Pushover'
 Version: 1.0.0.9000
 Date: 2016-11-22
 Authors@R: 
@@ -10,8 +10,9 @@ Authors@R:
            email = "bdc@bconnelly.net",
 	   comment = c(ORCID = "0000-0002-9948-0379"))
 Description: Send push notifications to mobile devices or the desktop
-    using Pushover. These notifications can display job status, results,
-    scraped web data, or any other text or numeric data.
+    using 'Pushover' <https://pushover.net>. These notifications can display
+    things such as results, job status, plots, or any other text or numeric
+    data.
 License: BSD_2_clause + file LICENSE
 URL: https://github.com/briandconnelly/pushoverr
 BugReports: https://github.com/briandconnelly/pushoverr/issues
