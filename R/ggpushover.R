@@ -1,6 +1,6 @@
 #' Send a message with an attached plot
 #'
-#' @description `ggpushover()` sends a [ggplot2] plot and message to your
+#' @description `ggpushover()` sends a \link[ggplot2]{ggplot2} plot and message to your
 #' devices as a push notification
 #'
 #' @param plot Plot to save, defaults to last plot displayed

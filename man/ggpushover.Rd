@@ -54,7 +54,7 @@ an invisible list containing the following fields:
 }
 }
 \description{
-\code{ggpushover()} sends a \link{ggplot2} plot and message to your
+\code{ggpushover()} sends a \link[ggplot2]{ggplot2} plot and message to your
 devices as a push notification
 }
 \examples{
