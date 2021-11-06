@@ -1,6 +1,7 @@
 valid_call <- function(message = "Hello",
                        title = NULL,
                        priority = 0,
+                       attachment = NULL,
                        user = get_pushover_user(),
                        app = get_pushover_app(),
                        device = NULL,
@@ -16,6 +17,7 @@ valid_call <- function(message = "Hello",
     message = message,
     title = title,
     priority = priority,
+    attachment = attachment,
     user = user,
     app = app,
     device = device,
@@ -42,11 +44,12 @@ test_that("input validation works", {
   expect_error(valid_call(message = 21))
   expect_error(valid_call(message = c("msg 1", "msg 2")))
 
-  # Title should be a scalar string. Empty is ok.
+  # Title should be a scalar string <= 250 chars. Empty is ok.
   expect_error(valid_call(title = NA_character_))
   expect_error(valid_call(title = 21))
   expect_error(valid_call(title = TRUE))
   expect_error(valid_call(title = c("msg 1", "msg 2")))
+  expect_error(valid_call(title = random_string(251)))
 
   # priority should be an integer in [-2,2]
   expect_error(valid_call(priority = NULL))
@@ -56,6 +59,12 @@ test_that("input validation works", {
   expect_error(valid_call(priority = -3))
   expect_error(valid_call(priority = 0.1))
   expect_error(valid_call(priority = 3))
+  
+  # attachment must be a file
+  expect_error(valid_call(attachment = NA_character_))
+  expect_error(valid_call(attachment = ""))
+  expect_error(valid_call(attachment = 3))
+  expect_error(valid_call(attachment = "/blah/notafile.jpg"))
 
   # user should be a non-empty scalar string
   expect_error(valid_call(user = ""))

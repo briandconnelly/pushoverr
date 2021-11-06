@@ -87,7 +87,7 @@ pushover <- function(message,
   )
 
   if (!is.null(attachment)) {
-    checkmate::check_file_exists(
+    checkmate::assert_file_exists(
       attachment,
       access = "r",
       extension = c("bmp", "gif", "jpg", "jpeg", "png", "tif", "tiff")
