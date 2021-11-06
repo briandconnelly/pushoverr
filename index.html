@@ -139,18 +139,22 @@
 <p><img src="https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message2.png" alt="An emergency notification message"></p>
 <p>Emergency messages return a receipt token that can be checked with <code><a href="reference/check_receipt.html">is.acknowledged()</a></code> to see whether or not it has been seen.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pushover.html">pushover_emergency</a></span><span class="op">(</span>message <span class="op">=</span> <span class="st">"The freezer is currently at -71 C!"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">temp</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">71</span>
+<span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pushover.html">pushover_emergency</a></span><span class="op">(</span>message <span class="op">=</span> <span class="st">"The freezer is currently at {temp} C!"</span><span class="op">)</span>
 <span class="fu"><a href="reference/check_receipt.html">is.acknowledged</a></span><span class="op">(</span>receipt <span class="op">=</span> <span class="va">msg</span><span class="op">$</span><span class="va">receipt</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="example-3-sending-to-a-specific-device" class="section level3">
+<div id="example-3-sending-an-image" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-3-sending-to-a-specific-device" class="anchor"></a>Example 3: Sending to a Specific Device</h3>
-<p>If you have more than one device using Pushover, you can also send messages to a specific device:</p>
+<a href="#example-3-sending-an-image" class="anchor"></a>Example 3: Sending an Image</h3>
+<p>Images such as plots can also be sent as attachments.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/pushover.html">pushover</a></span><span class="op">(</span>
-  message <span class="op">=</span> <span class="st">"If you pretend like this is important, you can walk out of the boring meeting"</span>,
-  device <span class="op">=</span> <span class="st">"Phone"</span>
+  message <span class="op">=</span> <span class="st">"Look at those gentoos!"</span>,
+  attachment <span class="op">=</span> <span class="st">"penguins.png"</span>
 <span class="op">)</span></code></pre></div>
+<p><img src="https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message_plot.png" alt="Message with plot"></p>
+<p>The full-size image can be seen in the app.</p>
+<p><img src="https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/messages.png" alt="Messages"></p>
 </div>
 <div id="example-4-results-on-your-wrist" class="section level3">
 <h3 class="hasAnchor">
