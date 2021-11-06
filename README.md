@@ -80,6 +80,17 @@ message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/READM
 Using other arguments to `pushover`, you can configure other aspects of
 your message, including sounds, links, and message priorities.
 
+The `message` and `title` arguments are evaluated with
+[`glue()`](https://glue.tidyverse.org/reference/glue.html), so you can
+add more context:
+
+``` r
+pushover(message = "Don't forget... {praise::praise()}")
+```
+
+![Glue-ified
+message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message3.png)
+
 ### Saving your Credentials
 
 By default, pushoverr will prompt you for your key and app token when
@@ -122,7 +133,7 @@ pushover_quiet(message = "The kittens are sleeping")
 Or more urgently:
 
 ``` r
-pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
+msg <- pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
 ```
 
 ![An emergency notification
@@ -132,8 +143,6 @@ Emergency messages return a receipt token that can be checked with
 `is.acknowledged()` to see whether or not it has been seen.
 
 ``` r
-temp <- -71
-msg <- pushover_emergency(message = "The freezer is currently at {temp} C!")
 is.acknowledged(receipt = msg$receipt)
 ```
 

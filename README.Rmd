@@ -83,6 +83,14 @@ Within just a few seconds, your phone/tablet/watch/whatever should be abuzz with
 
 Using other arguments to `pushover`, you can configure other aspects of your message, including sounds, links, and message priorities.
 
+The `message` and `title` arguments are evaluated with [`glue()`](https://glue.tidyverse.org/reference/glue.html), so you can add more context:
+
+```{r eval=FALSE}
+pushover(message = "Don't forget... {praise::praise()}")
+```
+
+![Glue-ified message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message3.png)
+
 
 ### Saving your Credentials
 
@@ -120,7 +128,7 @@ pushover_quiet(message = "The kittens are sleeping")
 Or more urgently:
 
 ```{r eval=FALSE}
-pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
+msg <- pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
 ```
 
 ![An emergency notification message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message2.png)
@@ -128,8 +136,6 @@ pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
 Emergency messages return a receipt token that can be checked with `is.acknowledged()` to see whether or not it has been seen.
 
 ```{r eval=FALSE}
-temp <- -71
-msg <- pushover_emergency(message = "The freezer is currently at {temp} C!")
 is.acknowledged(receipt = msg$receipt)
 ```
 
