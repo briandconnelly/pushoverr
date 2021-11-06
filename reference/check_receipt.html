@@ -44,7 +44,8 @@
 receiving information about whether and by whom it was acknowledged,
 when the message was last delivered, whether a callback URL was visited,
 and more.
-is.acknowledged() returns a logical value indicating whether or not the emergency message was acknowledged." />
+is.acknowledged() returns a logical value indicating whether
+or not the emergency message was acknowledged." />
 
 
 
@@ -125,7 +126,8 @@ is.acknowledged() returns a logical value indicating whether or not the emergenc
 receiving information about whether and by whom it was acknowledged,
 when the message was last delivered, whether a callback URL was visited,
 and more.</p>
-<p><code>is.acknowledged()</code> returns a logical value indicating whether or not the emergency message was acknowledged.</p>
+<p><code>is.acknowledged()</code> returns a logical value indicating whether
+or not the emergency message was acknowledged.</p>
     </div>
 
     <pre class="usage"><span class='fu'>check_receipt</span><span class='op'>(</span><span class='va'>receipt</span>, app <span class='op'>=</span> <span class='fu'><a href='set_pushover_app.html'>get_pushover_app</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
@@ -149,15 +151,23 @@ and more.</p>
 
     <p>a list containing the following fields:</p><ul>
 <li><p><code>status</code>: request status (<code>1</code> = success)</p></li>
-<li><p><code>acknowledged</code>: number indicating whether (<code>1</code>) or not (<code>0</code>) notification has been acknowledged</p></li>
-<li><p><code>acknowledged_at</code>: Unix timestamp indicating when notification was acknowledged, or 0</p></li>
-<li><p><code>acknowledged_by</code>: key of the user who first acknowledged the notification, or <code>""</code></p></li>
-<li><p><code>acknowledged_by_device</code>: name of the device on which the first user acknowledged the notification</p></li>
-<li><p><code>last_delivered_at</code>: Unix timestamp of when the notification was last acknowledged, or <code>0</code></p></li>
+<li><p><code>acknowledged</code>: number indicating whether (<code>1</code>) or not (<code>0</code>)
+notification has been acknowledged</p></li>
+<li><p><code>acknowledged_at</code>: Unix timestamp indicating when notification was
+acknowledged, or 0</p></li>
+<li><p><code>acknowledged_by</code>: key of the user who first acknowledged the
+notification, or <code>""</code></p></li>
+<li><p><code>acknowledged_by_device</code>: name of the device on which the first
+user acknowledged the notification</p></li>
+<li><p><code>last_delivered_at</code>: Unix timestamp of when the notification was
+last acknowledged, or <code>0</code></p></li>
 <li><p><code>expired</code>: whether (<code>1</code>) or not (<code>0</code>) the notification has expired</p></li>
-<li><p><code>expires_at</code>: Unix timestamp indicating when the notification will no longer be retried</p></li>
-<li><p><code>called_back</code>: whether (<code>1</code>) or not (<code>0</code>) the callback URL has been visited</p></li>
-<li><p><code>called_back_at</code>: Unix timestamp indicating when the callback URL was visited</p></li>
+<li><p><code>expires_at</code>: Unix timestamp indicating when the notification will
+no longer be retried</p></li>
+<li><p><code>called_back</code>: whether (<code>1</code>) or not (<code>0</code>) the callback URL has been
+visited</p></li>
+<li><p><code>called_back_at</code>: Unix timestamp indicating when the callback URL
+was visited</p></li>
 <li><p><code>request</code>: unique request ID</p></li>
 <li><p><code>errors</code>: a list of error messages (only for unsuccessful requests)</p></li>
 <li><p><code>raw</code>: the raw <a href='https://httr.r-lib.org/reference/response.html'>httr::response</a> object</p></li>
