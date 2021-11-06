@@ -16,15 +16,19 @@ update_glance(
 )
 }
 \arguments{
-\item{title}{(optional) a description of the data being shown, such as "Widgets Sold" (max. 100 characters)}
+\item{title}{(optional) a description of the data being shown, such as
+"Widgets Sold" (max. 100 characters)}
 
-\item{text}{(optional) the main line of data, used on most screens (max. 100 characters)}
+\item{text}{(optional) the main line of data, used on most screens (max. 100
+characters)}
 
 \item{subtext}{(optional) a second line of data (max. 100 characters)}
 
-\item{count}{(optional) integer value shown on smaller screens; useful for simple counts}
+\item{count}{(optional) integer value shown on smaller screens; useful for
+simple counts}
 
-\item{percent}{(optional) integer percent value (0..100) shown on some screens as a progress bar/circle}
+\item{percent}{(optional) integer percent value (0..100) shown on some
+screens as a progress bar/circle}
 
 \item{user}{user/group key (see \code{\link[=set_pushover_user]{set_pushover_user()}})}
 

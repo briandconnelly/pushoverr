@@ -18,15 +18,23 @@ is.acknowledged(receipt, app = get_pushover_app())
 a list containing the following fields:
 \itemize{
 \item \code{status}: request status (\code{1} = success)
-\item \code{acknowledged}: number indicating whether (\code{1}) or not (\code{0}) notification has been acknowledged
-\item \code{acknowledged_at}: Unix timestamp indicating when notification was acknowledged, or 0
-\item \code{acknowledged_by}: key of the user who first acknowledged the notification, or \code{""}
-\item \code{acknowledged_by_device}: name of the device on which the first user acknowledged the notification
-\item \code{last_delivered_at}: Unix timestamp of when the notification was last acknowledged, or \code{0}
+\item \code{acknowledged}: number indicating whether (\code{1}) or not (\code{0})
+notification has been acknowledged
+\item \code{acknowledged_at}: Unix timestamp indicating when notification was
+acknowledged, or 0
+\item \code{acknowledged_by}: key of the user who first acknowledged the
+notification, or \code{""}
+\item \code{acknowledged_by_device}: name of the device on which the first
+user acknowledged the notification
+\item \code{last_delivered_at}: Unix timestamp of when the notification was
+last acknowledged, or \code{0}
 \item \code{expired}: whether (\code{1}) or not (\code{0}) the notification has expired
-\item \code{expires_at}: Unix timestamp indicating when the notification will no longer be retried
-\item \code{called_back}: whether (\code{1}) or not (\code{0}) the callback URL has been visited
-\item \code{called_back_at}: Unix timestamp indicating when the callback URL was visited
+\item \code{expires_at}: Unix timestamp indicating when the notification will
+no longer be retried
+\item \code{called_back}: whether (\code{1}) or not (\code{0}) the callback URL has been
+visited
+\item \code{called_back_at}: Unix timestamp indicating when the callback URL
+was visited
 \item \code{request}: unique request ID
 \item \code{errors}: a list of error messages (only for unsuccessful requests)
 \item \code{raw}: the raw \link[httr:response]{httr::response} object
@@ -38,7 +46,8 @@ receiving information about whether and by whom it was acknowledged,
 when the message was last delivered, whether a callback URL was visited,
 and more.
 
-\code{is.acknowledged()} returns a logical value indicating whether or not the emergency message was acknowledged.
+\code{is.acknowledged()} returns a logical value indicating whether
+or not the emergency message was acknowledged.
 }
 \examples{
 \dontrun{
