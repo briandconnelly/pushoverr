@@ -128,21 +128,29 @@ pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
 Emergency messages return a receipt token that can be checked with `is.acknowledged()` to see whether or not it has been seen.
 
 ```{r eval=FALSE}
-msg <- pushover_emergency(message = "The freezer is currently at -71 C!")
+temp <- -71
+msg <- pushover_emergency(message = "The freezer is currently at {temp} C!")
 is.acknowledged(receipt = msg$receipt)
 ```
 
 
-### Example 3: Sending to a Specific Device
+### Example 3: Sending an Image
 
-If you have more than one device using Pushover, you can also send messages to a specific device:
+Images such as plots can also be sent as attachments.
 
 ```{r eval=FALSE}
 pushover(
-  message = "If you pretend like this is important, you can walk out of the boring meeting",
-  device = "Phone"
+  message = "Look at those gentoos!",
+  attachment = "penguins.png"
 )
 ```
+
+![Message with plot](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message_plot.png)
+
+The full-size image can be seen in the app.
+
+![Messages](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/messages.png)
+
 
 ### Example 4: Results on your Wrist
 
