@@ -59,7 +59,7 @@ test_that("input validation works", {
   expect_error(valid_call(priority = -3))
   expect_error(valid_call(priority = 0.1))
   expect_error(valid_call(priority = 3))
-  
+
   # attachment must be a file
   expect_error(valid_call(attachment = NA_character_))
   expect_error(valid_call(attachment = ""))

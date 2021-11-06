@@ -7,9 +7,9 @@
 \alias{pushover_app.isset}
 \title{Set, get, and unset the Pushover application token}
 \usage{
-set_pushover_app(token = NULL, ask = interactive())
+set_pushover_app(token = NULL, ask = is_interactive())
 
-get_pushover_app(ask = interactive())
+get_pushover_app(ask = is_interactive())
 
 unset_pushover_app()
 

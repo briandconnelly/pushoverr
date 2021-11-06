@@ -41,5 +41,6 @@ get_devices <- function(user = get_pushover_user(), app = get_pushover_app()) {
 is.registered_device <- function(device,
                                  user = get_pushover_user(),
                                  app = get_pushover_app()) {
+  checkmate::assert_string(device, min.chars = 1)
   device %in% get_devices(user = user, app = app)
 }

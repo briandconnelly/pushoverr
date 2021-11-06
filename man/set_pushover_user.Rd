@@ -10,17 +10,17 @@
 \alias{unset_pushover_group}
 \title{Set, get, and unset the Pushover user/group key}
 \usage{
-set_pushover_user(user = NULL, ask = interactive())
+set_pushover_user(user = NULL, ask = is_interactive())
 
-get_pushover_user(ask = interactive())
+get_pushover_user(ask = is_interactive())
 
 unset_pushover_user()
 
 pushover_user.isset()
 
-set_pushover_group(user = NULL, ask = interactive())
+set_pushover_group(user = NULL, ask = is_interactive())
 
-get_pushover_group(ask = interactive())
+get_pushover_group(ask = is_interactive())
 
 unset_pushover_group()
 }

@@ -4,9 +4,9 @@
 \name{pushoverr-package}
 \alias{pushoverr}
 \alias{pushoverr-package}
-\title{pushoverr: Send Push Notifications using Pushover}
+\title{pushoverr: Send Push Notifications using 'Pushover'}
 \description{
-Send push notifications to mobile devices or the desktop using Pushover. These notifications can display job status, results, scraped web data, or any other text or numeric data.
+Send push notifications to mobile devices or the desktop using 'Pushover' <https://pushover.net>. These notifications can display things such as results, job status, plots, or any other text or numeric data.
 }
 \seealso{
 Useful links:

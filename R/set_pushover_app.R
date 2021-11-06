@@ -25,9 +25,9 @@
 #' \dontrun{
 #' set_pushover_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 #' }
-set_pushover_app <- function(token = NULL, ask = interactive()) {
+set_pushover_app <- function(token = NULL, ask = is_interactive()) {
   if (is.null(token)) {
-    if (ask && interactive()) {
+    if (ask && is_interactive()) {
       inform("PUSHOVER_APP is not set, and application token not provided (see ?pushoverr for details)")
       in_token <- readline("Please enter your application token: ")
       Sys.setenv("PUSHOVER_APP" = in_token)
@@ -48,7 +48,7 @@ set_pushover_app <- function(token = NULL, ask = interactive()) {
 #' application token. If the token is not set but `ask` is `TRUE`,
 #' the user will be prompted for a token.
 #' @export
-get_pushover_app <- function(ask = interactive()) {
+get_pushover_app <- function(ask = is_interactive()) {
   if (!pushover_app.isset()) {
     set_pushover_app(ask = ask)
   }

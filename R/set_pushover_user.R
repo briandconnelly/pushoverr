@@ -29,9 +29,9 @@
 #' \dontrun{
 #' set_pushover_user(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
 #' }
-set_pushover_user <- function(user = NULL, ask = interactive()) {
+set_pushover_user <- function(user = NULL, ask = is_interactive()) {
   if (is.null(user)) {
-    if (ask && interactive()) {
+    if (ask && is_interactive()) {
       inform("PUSHOVER_USER is not set and user/group key not provided (see ?pushoverr for details)")
       in_user <- readline("Please enter your user/group key: ")
       Sys.setenv("PUSHOVER_USER" = in_user)
@@ -51,7 +51,7 @@ set_pushover_user <- function(user = NULL, ask = interactive()) {
 #' @return `get_pushover_user()` returns a string containing the current
 #' user or group key
 #' @export
-get_pushover_user <- function(ask = interactive()) {
+get_pushover_user <- function(ask = is_interactive()) {
   if (!pushover_user.isset()) {
     set_pushover_user(ask = ask)
   }
