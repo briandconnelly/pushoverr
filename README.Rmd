@@ -104,7 +104,8 @@ set_pushover_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 
 pushoverr will forget these as soon as you end your session, so you'll have to re-run these commands each time you restart R.
 
-Alternatively, you can store your keys in your `.Renviron` (see `?.Renviron` for details).
+Alternatively, you can store your keys in your `.Renviron`.
+If you have [usethis](https://usethis.r-lib.org/), run `usethis::edit_r_environ()`.
 
 ```{r eval=FALSE}
 PUSHOVER_USER = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG"
