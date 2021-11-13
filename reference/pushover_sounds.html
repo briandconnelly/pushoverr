@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>User and group verification — verify_user • pushoverr</title>
+<title>Sounds for push notifications — pushover_sounds • pushoverr</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,8 @@
 
 
 
-<meta property="og:title" content="User and group verification — verify_user" />
-<meta property="og:description" content="verify_user() determines whether or not the given user or
-group is registered with Pushover, returning information about that user.
-verify_group() is an alias for verify_user()
-is.registered_user() indicates whether or not a given user ID
-is registered with Pushover" />
+<meta property="og:title" content="Sounds for push notifications — pushover_sounds" />
+<meta property="og:description" content="pushover_sounds is a list of sound names supported by Pushover" />
 
 
 
@@ -115,69 +111,23 @@ is registered with Pushover" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>User and group verification</h1>
-    <small class="dont-index">Source: <a href='https://github.com/briandconnelly/pushoverr/blob/master/R/verify_user.R'><code>R/verify_user.R</code></a></small>
-    <div class="hidden name"><code>verify_user.Rd</code></div>
+    <h1>Sounds for push notifications</h1>
+    <small class="dont-index">Source: <a href='https://github.com/briandconnelly/pushoverr/blob/master/R/pushover_sounds.R'><code>R/pushover_sounds.R</code></a></small>
+    <div class="hidden name"><code>pushover_sounds.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>verify_user()</code> determines whether or not the given user or
-group is registered with Pushover, returning information about that user.</p>
-<p><code>verify_group()</code> is an alias for <code>verify_user()</code></p>
-<p><code>is.registered_user()</code> indicates whether or not a given user ID
-is registered with Pushover</p>
+    <p><code>pushover_sounds</code> is a list of sound names supported by Pushover</p>
     </div>
 
-    <pre class="usage"><span class='fu'>verify_user</span><span class='op'>(</span><span class='va'>user</span>, app <span class='op'>=</span> <span class='fu'><a href='set_pushover_app.html'>get_pushover_app</a></span><span class='op'>(</span><span class='op'>)</span>, device <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+    <pre class="usage"><span class='va'>pushover_sounds</span></pre>
 
-<span class='fu'>verify_group</span><span class='op'>(</span><span class='va'>user</span>, app <span class='op'>=</span> <span class='fu'><a href='set_pushover_app.html'>get_pushover_app</a></span><span class='op'>(</span><span class='op'>)</span>, device <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>is.registered_user</span><span class='op'>(</span><span class='va'>user</span>, app <span class='op'>=</span> <span class='fu'><a href='set_pushover_app.html'>get_pushover_app</a></span><span class='op'>(</span><span class='op'>)</span>, device <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-<span class='fu'>is.registered_group</span><span class='op'>(</span><span class='va'>user</span>, app <span class='op'>=</span> <span class='fu'><a href='set_pushover_app.html'>get_pushover_app</a></span><span class='op'>(</span><span class='op'>)</span>, device <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <p><code>pushover_sounds</code> is an object of class character of length 22 (i.e.,
+a list of strings)</p>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>user</th>
-      <td><p>user/group key to verify</p></td>
-    </tr>
-    <tr>
-      <th>app</th>
-      <td><p>application token (see <code><a href='set_pushover_app.html'>set_pushover_app</a></code>)</p></td>
-    </tr>
-    <tr>
-      <th>device</th>
-      <td><p>(optional) device to verify If supplied the device must be
-registered to the given user's account.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>verify_user()</code> and <code>verify_group()</code> return a list containing
-the following fields:</p><ul>
-<li><p><code>status</code>: request status (<code>1</code> = success)</p></li>
-<li><p><code>devices</code>: a list of the user's devices</p></li>
-<li><p><code>request</code>: unique request ID</p></li>
-<li><p><code>errors</code>: a list of error messages (only for unsuccessful requests)</p></li>
-<li><p><code>raw</code>: the raw <a href='https://httr.r-lib.org/reference/response.html'>httr::response</a> object</p></li>
-</ul>
-
-<p><code>is.registered_user()</code> and <code>is.registered_group()</code> return a logical
-value indicating whether or not the given user or group is registered.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code>check_valid_user</code> and <code>check_valid_group</code> to
-determine whether or not a user key has valid formatting, but is not
-necessarily registered.</p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'><span class='fu'>verify_user</span><span class='op'>(</span>user <span class='op'>=</span> <span class='st'>"uQiRzpo4DXghDmr9QzzfQu27cmVRsG"</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
-</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
