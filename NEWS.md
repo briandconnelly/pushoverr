@@ -1,4 +1,18 @@
-# pushoverr (development version)
+# pushoverr 1.1.0 (2021-11-13)
+
+## New Features
+
+* Messages now support image attachments
+* Messages now support basic HTML formatting and monospace text
+
+## Breaking Changes
+
+* Version 1.0.0 exposed a lot of internal functions that aren't needed for everyday use. These are no longer exported.
+
+## Under the Hood Changes
+
+* Using {checkmate} for input validation instead of {assertthat}
+* Added unit testing with {testthat}
 
 
 # pushoverr 1.0.0
