@@ -11,6 +11,7 @@ Send push notifications to mobile devices or the desktop using 'Pushover' <https
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://briandconnelly.github.io/pushoverr/}
   \item \url{https://github.com/briandconnelly/pushoverr}
   \item Report bugs at \url{https://github.com/briandconnelly/pushoverr/issues}
 }
