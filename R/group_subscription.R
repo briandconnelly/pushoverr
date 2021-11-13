@@ -1,8 +1,9 @@
-#' Manage group subscriptions
+#' @rdname group_subscription
+#' @title Manage group subscriptions
 #'
-#' These functions manage a user's membership in a Pushover delivery group
+#' @description These functions manage a user's membership in a Pushover
+#' delivery group
 #'
-#' @param cmd The group subscription command to execute
 #' @param group group key
 #' @param user user key
 #' @param app application token (see [`set_pushover_app()`])
@@ -18,40 +19,7 @@
 #'     \item `raw`: the raw [httr::response] object
 #' }
 #'
-group_subscription <- function(cmd, ...) {
-  opt_args <- list(...)
 
-  if ("group" %in% names(opt_args)) {
-    assert_valid_group(opt_args[["group"]])
-  }
-
-  if ("user" %in% names(opt_args)) {
-    assert_valid_user(opt_args[["user"]])
-  }
-
-  if ("token" %in% names(opt_args)) {
-    assert_valid_app(opt_args[["token"]])
-  }
-
-  if ("device" %in% names(opt_args)) {
-    assert_valid_device(opt_args[["device"]])
-  }
-
-  if ("memo" %in% names(opt_args)) {
-    checkmate::assert_string(opt_args[["memo"]])
-    checkmate::assert_true(nchar(opt_args[["memo"]]) <= 200)
-  }
-
-  invisible(
-    pushover_api(
-      verb = "POST",
-      url = glue("https://api.pushover.net/1/groups/{opt_args$group}/{cmd}.json"),
-      body = opt_args
-    )
-  )
-}
-
-#' @rdname group_subscription
 #' @description `group_add_user()` adds a user to a group. Optionally, a
 #' device can be specified on which that user will receive notifications
 #' @export
@@ -124,5 +92,39 @@ group_enable_user <- function(group, user, app = get_pushover_app()) {
   group_subscription(
     cmd = "enable_user", group = group, user = user,
     token = app
+  )
+}
+
+
+group_subscription <- function(cmd, ...) {
+  opt_args <- list(...)
+
+  if ("group" %in% names(opt_args)) {
+    assert_valid_group(opt_args[["group"]])
+  }
+
+  if ("user" %in% names(opt_args)) {
+    assert_valid_user(opt_args[["user"]])
+  }
+
+  if ("token" %in% names(opt_args)) {
+    assert_valid_app(opt_args[["token"]])
+  }
+
+  if ("device" %in% names(opt_args)) {
+    assert_valid_device(opt_args[["device"]])
+  }
+
+  if ("memo" %in% names(opt_args)) {
+    checkmate::assert_string(opt_args[["memo"]])
+    checkmate::assert_true(nchar(opt_args[["memo"]]) <= 200)
+  }
+
+  invisible(
+    pushover_api(
+      verb = "POST",
+      url = glue("https://api.pushover.net/1/groups/{opt_args$group}/{cmd}.json"),
+      body = opt_args
+    )
   )
 }
