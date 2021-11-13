@@ -4,7 +4,6 @@
 \alias{set_pushover_user}
 \alias{get_pushover_user}
 \alias{unset_pushover_user}
-\alias{pushover_user.isset}
 \alias{set_pushover_group}
 \alias{get_pushover_group}
 \alias{unset_pushover_group}
@@ -15,8 +14,6 @@ set_pushover_user(user = NULL, ask = is_interactive())
 get_pushover_user(ask = is_interactive())
 
 unset_pushover_user()
-
-pushover_user.isset()
 
 set_pushover_group(user = NULL, ask = is_interactive())
 
@@ -33,17 +30,13 @@ this only works for interactive sessions.}
 }
 \value{
 \code{get_pushover_user()} returns a string containing the current
-user or group key
-
-\code{pushover_user.isset()} returns a logical value indicating whether
-or not the user/group is set.
+user or group key or an empty string if not set. If the user is not set but
+\code{ask} is \code{TRUE}, the user will be prompted for a key.
 }
 \description{
 \code{set_pushover_user()} sets the Pushover user or group key to be used in
 subsequent commands, \code{get_pushover_user()} gets the user or group key
 that is currently set, and \code{unset_pushover_user()} unsets the key.
-\code{pushover_user.isset()} indicates whether or not the user/group key has
-been set.
 }
 \details{
 \code{set_pushover_group()}, \code{get_pushover_group()}, and

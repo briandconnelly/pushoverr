@@ -3,8 +3,6 @@
 #' `set_pushover_user()` sets the Pushover user or group key to be used in
 #' subsequent commands, `get_pushover_user()` gets the user or group key
 #' that is currently set, and `unset_pushover_user()` unsets the key.
-#' `pushover_user.isset()` indicates whether or not the user/group key has
-#' been set.
 #'
 #' `set_pushover_group()`, `get_pushover_group()`, and
 #' `unset_pushover_group()` are aliases for these functions.
@@ -49,7 +47,8 @@ set_pushover_user <- function(user = NULL, ask = is_interactive()) {
 
 #' @rdname set_pushover_user
 #' @return `get_pushover_user()` returns a string containing the current
-#' user or group key
+#' user or group key or an empty string if not set. If the user is not set but
+#' `ask` is `TRUE`, the user will be prompted for a key.
 #' @export
 get_pushover_user <- function(ask = is_interactive()) {
   if (!pushover_user.isset()) {
@@ -70,10 +69,10 @@ unset_pushover_user <- function() {
 }
 
 
+#' @noRd
 #' @rdname set_pushover_user
 #' @return `pushover_user.isset()` returns a logical value indicating whether
 #' or not the user/group is set.
-#' @export
 pushover_user.isset <- function() {
   !is.na(Sys.getenv("PUSHOVER_USER", NA_character_))
 }

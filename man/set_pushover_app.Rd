@@ -4,7 +4,6 @@
 \alias{set_pushover_app}
 \alias{get_pushover_app}
 \alias{unset_pushover_app}
-\alias{pushover_app.isset}
 \title{Set, get, and unset the Pushover application token}
 \usage{
 set_pushover_app(token = NULL, ask = is_interactive())
@@ -12,8 +11,6 @@ set_pushover_app(token = NULL, ask = is_interactive())
 get_pushover_app(ask = is_interactive())
 
 unset_pushover_app()
-
-pushover_app.isset()
 }
 \arguments{
 \item{token}{The application token to be used. If none is provided, a prompt
@@ -26,16 +23,11 @@ that this option only works in interactive sessions.}
 \code{get_pushover_app()} returns a string containing the current
 application token. If the token is not set but \code{ask} is \code{TRUE},
 the user will be prompted for a token.
-
-\code{pushover_user.isset()} returns a logical value indicating whether
-or not the application token is set.
 }
 \description{
 \code{set_pushover_app()} sets the Pushover application token to be used in
 subsequent commands, \code{get_pushover_app()} gets the application token
 that is currently set, and \code{unset_pushover_app()} unsets the token.
-\code{pushover_app.isset()} indicates whether or not the application token
-is set.
 }
 \details{
 \code{set_pushover_app()} only sets the Pushover app token for the current

@@ -21,8 +21,6 @@ reference:
   - set_pushover_app
   - set_pushover_user
   - set_pushover_group
-  - pushover_app.isset
-  - pushover_user.isset
   - unset_pushover_app
   - unset_pushover_user
   - unset_pushover_group

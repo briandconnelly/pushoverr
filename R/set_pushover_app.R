@@ -3,8 +3,6 @@
 #' `set_pushover_app()` sets the Pushover application token to be used in
 #' subsequent commands, `get_pushover_app()` gets the application token
 #' that is currently set, and `unset_pushover_app()` unsets the token.
-#' `pushover_app.isset()` indicates whether or not the application token
-#' is set.
 #'
 #' `set_pushover_app()` only sets the Pushover app token for the current
 #' session. If a different value is specified in `.Renviron`, that value will be
@@ -67,10 +65,10 @@ unset_pushover_app <- function() {
 }
 
 
+#' @noRd
 #' @rdname set_pushover_app
 #' @return `pushover_user.isset()` returns a logical value indicating whether
 #' or not the application token is set.
-#' @export
 pushover_app.isset <- function() {
   !is.na(Sys.getenv("PUSHOVER_APP", NA_character_))
 }
