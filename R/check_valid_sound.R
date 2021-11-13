@@ -1,3 +1,4 @@
+#' @noRd
 #' @rdname check_valid_sound
 #' @title Validate Pushover sound values
 #'
@@ -10,7 +11,6 @@
 #'
 #' @return `check_valid_sound()` returns `TRUE` if the given value is a valid
 #' Pushover sound or a string containing an error message otherwise.
-#' @export
 #'
 #' @examples
 #' check_valid_sound("cosmic")
@@ -19,10 +19,10 @@ check_valid_sound <- function(x, ...) {
 }
 
 
+#' @noRd
 #' @rdname check_valid_sound
 #' @return `test_valid_sound()` returns a logical value indicating whether the
 #' given value is a valid Pushover sound.
-#' @export
 #' @examples
 #' test_valid_sound("cashregister")
 test_valid_sound <- checkmate::makeTestFunction(check_valid_sound)
@@ -35,17 +35,3 @@ test_valid_sound <- checkmate::makeTestFunction(check_valid_sound)
 #' @examples
 #' assert_valid_sound("spacealarm")
 assert_valid_sound <- checkmate::makeAssertionFunction(check_valid_sound)
-
-
-#' @rdname check_valid_sound
-#' @description `pushover_sounds` is a list of sound names supported by Pushover
-#' @format `pushover_sounds` is an object of class character of length 22 (i.e.,
-#' a list of strings)
-#' @export
-pushover_sounds <- c(
-  "bike", "bugle", "cashregister", "classical", "cosmic",
-  "falling", "gamelan", "incoming", "intermission", "magic",
-  "mechanical", "pianobar", "siren", "spacealarm",
-  "tugboat", "alien", "climb", "persistent", "echo",
-  "updown", "vibrate", "none"
-)

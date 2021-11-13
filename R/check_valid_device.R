@@ -1,3 +1,4 @@
+#' @noRd
 #' @rdname check_valid_device
 #' @title Validate Pushover device name values
 #'
@@ -11,7 +12,6 @@
 #'
 #' @return `check_valid_device()` returns `TRUE` if the given value is a valid
 #' Pushover device name or a string containing an error message otherwise
-#' @export
 #'
 #' @examples
 #' check_valid_device("phone")
@@ -32,10 +32,10 @@ check_valid_device <- function(x, ...) {
 }
 
 
+#' @noRd
 #' @rdname check_valid_device
 #' @return `test_valid_device()` returns a logical value indicating whether the
 #' given value is a valid Pushover device name.
-#' @export
 #' @examples
 #' test_valid_device("tablet")
 test_valid_device <- checkmate::makeTestFunction(check_valid_device)

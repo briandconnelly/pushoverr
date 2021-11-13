@@ -1,3 +1,4 @@
+#' @noRd
 #' @rdname check_valid_app
 #' @title Validate Pushover app token values
 #'
@@ -11,7 +12,6 @@
 #'
 #' @return `check_valid_app()` returns `TRUE` if the given value is a valid
 #' Pushover app token or a string containing an error message otherwise
-#' @export
 #'
 #' @examples
 #' check_valid_app("azGDORePK8gMaC0QOYAMyEEuzJnyUi")
@@ -25,10 +25,10 @@ check_valid_app <- function(x, ...) {
 }
 
 
+#' @noRd
 #' @rdname check_valid_app
 #' @return `test_valid_app()` returns a logical value indicating whether the
 #' given value is a valid Pushover app token
-#' @export
 #' @examples
 #' test_valid_app("azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 test_valid_app <- checkmate::makeTestFunction(check_valid_app)

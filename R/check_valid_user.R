@@ -1,3 +1,4 @@
+#' @noRd
 #' @rdname check_valid_user
 #' @title Validate Pushover user and group values
 #'
@@ -13,7 +14,6 @@
 #'
 #' @return `check_valid_user()` returns `TRUE` if the given value is a valid
 #' Pushover receipt ID or a string containing an error message otherwise.
-#' @export
 #'
 #' @examples
 #' check_valid_user("uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
@@ -26,23 +26,25 @@ check_valid_user <- function(x, ...) {
   )
 }
 
+
+#' @noRd
 #' @rdname check_valid_user
-#' @export
 #' @examples
 #' check_valid_user("gznej3rKEVAvPUxu9vvNnqpmZpokzF")
 check_valid_group <- check_valid_user
 
 
+#' @noRd
 #' @rdname check_valid_user
 #' @return `test_valid_user()` and `test_valid_group()` return a logical value
 #' indicating whether the given value is a valid user/group key.
-#' @export
 #' @examples
 #' test_valid_user("uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
 test_valid_user <- checkmate::makeTestFunction(check_valid_user)
 
+
+#' @noRd
 #' @rdname check_valid_user
-#' @export
 #' @examples
 #' test_valid_group("gznej3rKEVAvPUxu9vvNnqpmZpokzF")
 test_valid_group <- test_valid_user

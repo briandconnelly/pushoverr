@@ -1,3 +1,4 @@
+#' @noRd
 #' @rdname check_valid_receipt
 #' @title Validate Pushover receipt ID values
 #'
@@ -11,7 +12,6 @@
 #'
 #' @return `check_valid_receipt()` returns `TRUE` if the given value is a valid
 #' Pushover receipt ID or a string containing an error message otherwise.
-#' @export
 #'
 #' @examples
 #' check_valid_receipt("KAWXTswy4cekx6vZbHBKbCKk1c1fdf")
@@ -25,10 +25,10 @@ check_valid_receipt <- function(x, ...) {
 }
 
 
+#' @noRd
 #' @rdname check_valid_receipt
 #' @return `test_valid_receipt()` returns a logical value indicating whether the
 #' given value is a valid Pushover receipt ID.
-#' @export
 #' @examples
 #' test_valid_receipt("KAWXTswy4cekx6vZbHBKbCKk1c1fdf")
 test_valid_receipt <- checkmate::makeTestFunction(check_valid_receipt)
