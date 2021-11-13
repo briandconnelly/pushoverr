@@ -124,8 +124,8 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-sending-messages" class="hasAnchor"><a href="#section-sending-messages" class="anchor"></a>Sending Messages</h2>
+          <p class="section-desc"><p>These functions allow you to send messages your devices</p></p>
         </th>
       </tr>
       
@@ -136,9 +136,9 @@
       <tr>
         
         <td>
-          <p><code><a href="cancel_retries.html">cancel_retries()</a></code> </p>
+          <p><code><a href="pushover.html">pushover()</a></code> <code><a href="pushover.html">pushover_silent()</a></code> <code><a href="pushover.html">pushover_quiet()</a></code> <code><a href="pushover.html">pushover_normal()</a></code> <code><a href="pushover.html">pushover_high()</a></code> <code><a href="pushover.html">pushover_emergency()</a></code> </p>
         </td>
-        <td><p>Cancel retries for an emergency priority notification</p></td>
+        <td><p>Send a message using Pushover</p></td>
       </tr><tr>
         
         <td>
@@ -148,52 +148,29 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="get_devices.html">get_devices()</a></code> <code><a href="get_devices.html">is.registered_device()</a></code> </p>
+          <p><code><a href="cancel_retries.html">cancel_retries()</a></code> </p>
         </td>
-        <td><p>Get a list of the user's registered devices</p></td>
+        <td><p>Cancel retries for an emergency priority notification</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="get_group_info.html">get_group_info()</a></code> </p>
+          <p><code><a href="update_glance.html">update_glance()</a></code> </p>
         </td>
-        <td><p>Get information about a Pushover group</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_pushover_limits.html">get_pushover_limits()</a></code> </p>
-        </td>
-        <td><p>Get usage and limit information for Pushover applications</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_pushover_sounds.html">get_pushover_sounds()</a></code> </p>
-        </td>
-        <td><p>Get a list of sounds available for Pushover notifications</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="group_rename.html">group_rename()</a></code> </p>
-        </td>
-        <td><p>Rename a delivery group</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="group_subscription.html">group_subscription()</a></code> <code><a href="group_subscription.html">group_add_user()</a></code> <code><a href="group_subscription.html">group_delete_user()</a></code> <code><a href="group_subscription.html">group_disable_user()</a></code> <code><a href="group_subscription.html">group_enable_user()</a></code> </p>
-        </td>
-        <td><p>Manage group subscriptions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pushover.html">pushover()</a></code> <code><a href="pushover.html">pushover_silent()</a></code> <code><a href="pushover.html">pushover_quiet()</a></code> <code><a href="pushover.html">pushover_normal()</a></code> <code><a href="pushover.html">pushover_high()</a></code> <code><a href="pushover.html">pushover_emergency()</a></code> </p>
-        </td>
-        <td><p>Send a message using Pushover</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pushover_api.html">pushover_api()</a></code> </p>
-        </td>
-        <td><p>Issue a command using the Pushover API</p></td>
-      </tr><tr>
+        <td><p>Update a Pushover glance data</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-configuration" class="hasAnchor"><a href="#section-configuration" class="anchor"></a>Configuration</h2>
+          <p class="section-desc"><p>These functions help you configure your R environment for using Pushover</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="set_pushover_app.html">set_pushover_app()</a></code> <code><a href="set_pushover_app.html">get_pushover_app()</a></code> <code><a href="set_pushover_app.html">unset_pushover_app()</a></code> <code><a href="set_pushover_app.html">pushover_app.isset()</a></code> </p>
@@ -205,12 +182,87 @@
           <p><code><a href="set_pushover_user.html">set_pushover_user()</a></code> <code><a href="set_pushover_user.html">get_pushover_user()</a></code> <code><a href="set_pushover_user.html">unset_pushover_user()</a></code> <code><a href="set_pushover_user.html">pushover_user.isset()</a></code> <code><a href="set_pushover_user.html">set_pushover_group()</a></code> <code><a href="set_pushover_user.html">get_pushover_group()</a></code> <code><a href="set_pushover_user.html">unset_pushover_group()</a></code> </p>
         </td>
         <td><p>Set, get, and unset the Pushover user/group key</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-pushover-api-info" class="hasAnchor"><a href="#section-pushover-api-info" class="anchor"></a>Pushover API Info</h2>
+          <p class="section-desc"><p>Retrieve information about message limits and available values</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="get_pushover_limits.html">get_pushover_limits()</a></code> </p>
+        </td>
+        <td><p>Get usage and limit information for Pushover applications</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="update_glance.html">update_glance()</a></code> </p>
+          <p><code><a href="get_pushover_sounds.html">get_pushover_sounds()</a></code> </p>
         </td>
-        <td><p>Update a Pushover glance data</p></td>
+        <td><p>Get a list of sounds available for Pushover notifications</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-managing-group-subscriptions" class="hasAnchor"><a href="#section-managing-group-subscriptions" class="anchor"></a>Managing Group Subscriptions</h2>
+          <p class="section-desc"><p>These functions manage a user’s membership in a Pushover delivery group</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="get_group_info.html">get_group_info()</a></code> </p>
+        </td>
+        <td><p>Get information about a Pushover group</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="group_rename.html">group_rename()</a></code> </p>
+        </td>
+        <td><p>Rename a delivery group</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="group_subscription.html">group_add_user()</a></code> <code><a href="group_subscription.html">group_delete_user()</a></code> <code><a href="group_subscription.html">group_disable_user()</a></code> <code><a href="group_subscription.html">group_enable_user()</a></code> </p>
+        </td>
+        <td><p>Manage group subscriptions</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-extending-pushoverr" class="hasAnchor"><a href="#section-extending-pushoverr" class="anchor"></a>Extending pushoverr</h2>
+          <p class="section-desc"><p>Functions that allow you to work more directly with the Pushover API and check values</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="pushover_api.html">pushover_api()</a></code> </p>
+        </td>
+        <td><p>Issue a command using the Pushover API</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_devices.html">get_devices()</a></code> <code><a href="get_devices.html">is.registered_device()</a></code> </p>
+        </td>
+        <td><p>Get a list of the user's registered devices</p></td>
       </tr><tr>
         
         <td>

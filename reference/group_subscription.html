@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Manage group subscriptions — group_subscription • pushoverr</title>
+<title>Manage group subscriptions — group_add_user • pushoverr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Manage group subscriptions — group_subscription" />
-<meta property="og:description" content="These functions manage a user's membership in a Pushover delivery group
+<meta property="og:title" content="Manage group subscriptions — group_add_user" />
+<meta property="og:description" content="These functions manage a user's membership in a Pushover
+delivery group
 group_add_user() adds a user to a group. Optionally, a
 device can be specified on which that user will receive notifications
 group_delete_user() removes a user from a group
@@ -124,7 +125,8 @@ notifications for a group" />
     </div>
 
     <div class="ref-description">
-    <p>These functions manage a user's membership in a Pushover delivery group</p>
+    <p>These functions manage a user's membership in a Pushover
+delivery group</p>
 <p><code>group_add_user()</code> adds a user to a group. Optionally, a
 device can be specified on which that user will receive notifications</p>
 <p><code>group_delete_user()</code> removes a user from a group</p>
@@ -134,9 +136,7 @@ receiving group notifications.</p>
 notifications for a group</p>
     </div>
 
-    <pre class="usage"><span class='fu'>group_subscription</span><span class='op'>(</span><span class='va'>cmd</span>, <span class='va'>...</span><span class='op'>)</span>
-
-<span class='fu'>group_add_user</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>group_add_user</span><span class='op'>(</span>
   <span class='va'>group</span>,
   <span class='va'>user</span>,
   app <span class='op'>=</span> <span class='fu'><a href='set_pushover_app.html'>get_pushover_app</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -153,14 +153,6 @@ notifications for a group</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>cmd</th>
-      <td><p>The group subscription command to execute</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Specific arguments for the given group subscription command</p></td>
-    </tr>
     <tr>
       <th>group</th>
       <td><p>group key</p></td>
@@ -181,6 +173,10 @@ devices)</p></td>
     <tr>
       <th>memo</th>
       <td><p>(optional) memo about the user</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Specific arguments for the given group subscription command</p></td>
     </tr>
     </table>
 
