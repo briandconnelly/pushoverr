@@ -32,8 +32,6 @@ group_enable_user(group, user, app = get_pushover_app())
 devices)}
 
 \item{memo}{(optional) memo about the user}
-
-\item{...}{Specific arguments for the given group subscription command}
 }
 \value{
 An invisible list containing the following fields:

@@ -10,7 +10,6 @@
 #' @param device (optional) device name to receive messages (defaults to all
 #' devices)
 #' @param memo (optional) memo about the user
-#' @param ... Specific arguments for the given group subscription command
 #'
 #' @return An invisible list containing the following fields:
 #' \itemize{
