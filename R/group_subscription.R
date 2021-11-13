@@ -17,7 +17,6 @@
 #'     \item `request`: unique request ID
 #'     \item `raw`: the raw [httr::response] object
 #' }
-#' @export
 #'
 group_subscription <- function(cmd, ...) {
   opt_args <- list(...)
