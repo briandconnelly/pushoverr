@@ -42,9 +42,7 @@
 <meta property="og:title" content="Set, get, and unset the Pushover application token — set_pushover_app" />
 <meta property="og:description" content="set_pushover_app() sets the Pushover application token to be used in
 subsequent commands, get_pushover_app() gets the application token
-that is currently set, and unset_pushover_app() unsets the token.
-pushover_app.isset() indicates whether or not the application token
-is set." />
+that is currently set, and unset_pushover_app() unsets the token." />
 
 
 
@@ -123,18 +121,14 @@ is set." />
     <div class="ref-description">
     <p><code>set_pushover_app()</code> sets the Pushover application token to be used in
 subsequent commands, <code>get_pushover_app()</code> gets the application token
-that is currently set, and <code>unset_pushover_app()</code> unsets the token.
-<code>pushover_app.isset()</code> indicates whether or not the application token
-is set.</p>
+that is currently set, and <code>unset_pushover_app()</code> unsets the token.</p>
     </div>
 
     <pre class="usage"><span class='fu'>set_pushover_app</span><span class='op'>(</span>token <span class='op'>=</span> <span class='cn'>NULL</span>, ask <span class='op'>=</span> <span class='fu'>is_interactive</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>get_pushover_app</span><span class='op'>(</span>ask <span class='op'>=</span> <span class='fu'>is_interactive</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>unset_pushover_app</span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'>pushover_app.isset</span><span class='op'>(</span><span class='op'>)</span></pre>
+<span class='fu'>unset_pushover_app</span><span class='op'>(</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,8 +150,6 @@ that this option only works in interactive sessions.</p></td>
     <p><code>get_pushover_app()</code> returns a string containing the current
 application token. If the token is not set but <code>ask</code> is <code>TRUE</code>,
 the user will be prompted for a token.</p>
-<p><code><a href='set_pushover_user.html'>pushover_user.isset()</a></code> returns a logical value indicating whether
-or not the application token is set.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>set_pushover_app()</code> only sets the Pushover app token for the current

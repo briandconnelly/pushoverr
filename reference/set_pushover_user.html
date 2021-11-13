@@ -42,9 +42,7 @@
 <meta property="og:title" content="Set, get, and unset the Pushover user/group key — set_pushover_user" />
 <meta property="og:description" content="set_pushover_user() sets the Pushover user or group key to be used in
 subsequent commands, get_pushover_user() gets the user or group key
-that is currently set, and unset_pushover_user() unsets the key.
-pushover_user.isset() indicates whether or not the user/group key has
-been set." />
+that is currently set, and unset_pushover_user() unsets the key." />
 
 
 
@@ -123,9 +121,7 @@ been set." />
     <div class="ref-description">
     <p><code>set_pushover_user()</code> sets the Pushover user or group key to be used in
 subsequent commands, <code>get_pushover_user()</code> gets the user or group key
-that is currently set, and <code>unset_pushover_user()</code> unsets the key.
-<code>pushover_user.isset()</code> indicates whether or not the user/group key has
-been set.</p>
+that is currently set, and <code>unset_pushover_user()</code> unsets the key.</p>
     </div>
 
     <pre class="usage"><span class='fu'>set_pushover_user</span><span class='op'>(</span>user <span class='op'>=</span> <span class='cn'>NULL</span>, ask <span class='op'>=</span> <span class='fu'>is_interactive</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
@@ -133,8 +129,6 @@ been set.</p>
 <span class='fu'>get_pushover_user</span><span class='op'>(</span>ask <span class='op'>=</span> <span class='fu'>is_interactive</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>unset_pushover_user</span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'>pushover_user.isset</span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='fu'>set_pushover_group</span><span class='op'>(</span>user <span class='op'>=</span> <span class='cn'>NULL</span>, ask <span class='op'>=</span> <span class='fu'>is_interactive</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
@@ -160,9 +154,8 @@ this only works for interactive sessions.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>get_pushover_user()</code> returns a string containing the current
-user or group key</p>
-<p><code>pushover_user.isset()</code> returns a logical value indicating whether
-or not the user/group is set.</p>
+user or group key or an empty string if not set. If the user is not set but
+<code>ask</code> is <code>TRUE</code>, the user will be prompted for a key.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>set_pushover_group()</code>, <code>get_pushover_group()</code>, and
