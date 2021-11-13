@@ -51,8 +51,3 @@ is registered with Pushover
 verify_user(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
 }
 }
-\seealso{
-\code{\link{check_valid_user}} and \code{\link{check_valid_group}} to
-determine whether or not a user key has valid formatting, but is not
-necessarily registered.
-}
