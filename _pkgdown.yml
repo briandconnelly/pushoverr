@@ -1,0 +1,49 @@
+reference:
+- title: Sending Messages
+  desc: These functions allow you to send messages your devices
+- contents:
+  - pushover
+  - pushover_quiet
+  - pushover_silent
+  - pushover_normal
+  - pushover_high
+  - pushover_emergency
+  - check_receipt
+  - cancel_retries
+  - update_glance
+
+- title: Configuration
+  desc: These functions help you configure your R environment for using Pushover
+- contents:
+  - get_pushover_app
+  - get_pushover_user
+  - get_pushover_group
+  - set_pushover_app
+  - set_pushover_user
+  - set_pushover_group
+  - pushover_app.isset
+  - pushover_user.isset
+  - unset_pushover_app
+  - unset_pushover_user
+  - unset_pushover_group
+  
+- title: Pushover API Info
+  desc: Retrieve information about message limits and available values
+- contents:
+  - get_pushover_limits
+  - get_pushover_sounds
+
+- title: Managing Group Subscriptions
+  desc: These functions manage a user's membership in a Pushover delivery group
+- contents:
+  - get_group_info
+  - starts_with("group_")
+
+- title: Extending pushoverr
+  desc: >
+    Functions that allow you to work more directly with the Pushover API and
+    check values
+- contents:
+  - pushover_api
+  - starts_with("is.registered")
+  - starts_with("verify_")
