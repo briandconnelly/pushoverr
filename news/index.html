@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pushoverr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -114,10 +114,33 @@
       <small>Source: <a href='https://github.com/briandconnelly/pushoverr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="pushoverr-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#pushoverr-development-version" class="anchor"></a>pushoverr (development version)<small> Unreleased </small>
+    <div id="pushoverr-110-2021-11-13" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.0">
+<a href="#pushoverr-110-2021-11-13" class="anchor"></a>pushoverr 1.1.0 (2021-11-13)<small> Unreleased </small>
 </h1>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New Features</h2>
+<ul>
+<li>Messages now support image attachments</li>
+<li>Messages now support basic HTML formatting and monospace text</li>
+</ul>
+</div>
+<div id="breaking-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-changes" class="anchor"></a>Breaking Changes</h2>
+<ul>
+<li>Version 1.0.0 exposed a lot of internal functions that aren’t needed for everyday use. These are no longer exported.</li>
+</ul>
+</div>
+<div id="under-the-hood-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#under-the-hood-changes" class="anchor"></a>Under the Hood Changes</h2>
+<ul>
+<li>Using {checkmate} for input validation instead of {assertthat}</li>
+<li>Added unit testing with {testthat}</li>
+</ul>
+</div>
 </div>
     <div id="pushoverr-100" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.0">
