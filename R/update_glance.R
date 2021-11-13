@@ -47,23 +47,32 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
   params <- list("token" = app, "user" = user)
 
   if (!is.null(title)) {
-    params$title <- checkmate::assert_string(title)
+    checkmate::assert_string(title)
+    checkmate::assert_true(nchar(title) <= 100)
+    params$title <- title
   }
 
   if (!is.null(text)) {
-    params$text <- checkmate::assert_string(text)
+    checkmate::assert_string(text)
+    checkmate::assert_true(nchar(text) <= 100)
+    params$text <- text
   }
 
   if (!is.null(subtext)) {
-    params$subtext <- checkmate::assert_string(subtext)
+    checkmate::assert_string(subtext)
+    checkmate::assert_true(nchar(subtext) <= 100)
+    params$subtext <- subtext
   }
 
   if (!is.null(count)) {
-    params$count <- checkmate::check_number(count)
+    checkmate::check_integerish(count)
+    params$count <- as.integer(count)
   }
 
   if (!is.null(percent)) {
-    params$percent <- checkmate::check_number(percent, lower = 0, upper = 100)
+    checkmate::check_number(percent, lower = 0, upper = 100)
+    checkmate::check_integerish(percent)
+    params$percent <- as.integer(percent)
   }
 
   if (!is.null(device)) {
