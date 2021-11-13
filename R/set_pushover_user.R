@@ -30,7 +30,7 @@
 set_pushover_user <- function(user = NULL, ask = is_interactive()) {
   if (is.null(user)) {
     if (ask && is_interactive()) {
-      inform("PUSHOVER_USER is not set and user/group key not provided (see ?pushoverr for details)")
+      cli::cli_alert_info("{.envvar PUSHOVER_USER} is not set, and user/group key not provided (see {.code ?pushoverr} for details)")
       in_user <- readline("Please enter your user/group key: ")
       Sys.setenv("PUSHOVER_USER" = in_user)
     } else {

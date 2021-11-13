@@ -26,7 +26,7 @@
 set_pushover_app <- function(token = NULL, ask = is_interactive()) {
   if (is.null(token)) {
     if (ask && is_interactive()) {
-      inform("PUSHOVER_APP is not set, and application token not provided (see ?pushoverr for details)")
+      cli::cli_alert_info("{.envvar PUSHOVER_APP} is not set, and application token not provided (see {.code ?pushoverr} for details)")
       in_token <- readline("Please enter your application token: ")
       Sys.setenv("PUSHOVER_APP" = in_token)
     } else {
@@ -59,7 +59,7 @@ get_pushover_app <- function(ask = is_interactive()) {
 #' @export
 unset_pushover_app <- function() {
   if (!pushover_app.isset()) {
-    inform("PUSHOVER_APP is not set")
+    cli::cli_alert_info("{.envvar PUSHOVER_APP} is not set")
   }
   Sys.unsetenv("PUSHOVER_APP")
 }
