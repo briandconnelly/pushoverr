@@ -194,11 +194,6 @@ features supported, please submit an
 [issue](https://github.com/briandconnelly/pushoverr/issues) or a pull
 request.
 
-## Feature Requests and Bug Reports
-
-For all feature requests and bug reports, visit [pushoverr on
-GitHub](https://github.com/briandconnelly/pushoverr/issues).
-
 ## Related Links
 
 -   [Pushover](https://pushover.net)
@@ -212,7 +207,7 @@ GitHub](https://github.com/briandconnelly/pushoverr/issues).
     Pushover tool for R (no longer maintained?)
 -   [RPushbullet](https://github.com/eddelbuettel/rpushbullet), an R
     interface for [Pushbullet](https://www.pushbullet.com), a similar
-    (and larger) service.
+    push notification service.
 
 ## Code of Conduct
 
