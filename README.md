@@ -21,18 +21,6 @@ little walk or go get a coffee, but maybe not long enough to go home for
 the day? Now you’ll be able to easily let yourself or your group know
 when it’s done.
 
-## Prerequisites
-
-You’ll need an account with [Pushover](https://pushover.net/). Once you
-have that, log in and [register an
-application](https://pushover.net/apps/build). You should now have two
-codes—a **user key** and an **API token/key**. These are what identify
-you and your app(s) to Pushover. You’ll pass these along to pushoverr
-whenever you send a message. You’ll also need the Pushover app for
-[iOS](https://pushover.net/clients/ios),
-[Android](https://pushover.net/clients/android), or your
-[desktop](https://pushover.net/clients/desktop).
-
 ## Installation
 
 Installing pushoverr is as easy as running:
@@ -48,6 +36,9 @@ Alternately, you can install the development version of pushoverr from
 # install.packages("devtools")
 devtools::install_github("briandconnelly/pushoverr")
 ```
+
+Once pushoverr is installed, you’re ready to start sending messages! See
+the Getting Started vignette for more information.
 
 ## Features Not Supported
 
