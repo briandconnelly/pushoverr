@@ -4,6 +4,7 @@
 * No breaking API changes, so any dependencies should be unaffected
 * Added proper quoting and URL syntax to Description
 * Corrected re-directed URL and added trailing slashes as per feedback on previous submission
+* Moved much of README into a "Getting Started" vignette
 
 ## Test Environments
 

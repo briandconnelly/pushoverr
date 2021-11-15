@@ -30,14 +30,20 @@ You'll also need the Pushover app for [iOS](https://pushover.net/clients/ios), [
 
 ## Installation and Setup
 
-Let's install and load pushoverr.
-Open up an R session, and run:
+If you haven't already installed pushoverr, start an R session and run:
 
 ```{r eval=FALSE}
 install.packages("pushoverr")
+```
 
+Now, let's load the package:
+
+```{r eval=FALSE}
 library(pushoverr)
 ```
+
+
+## Configuring Pushover Credentials
 
 By default, pushoverr will prompt you for your key and app token when needed and save them for all subsequent commands.
 You can directly tell pushoverr your key and token using `set_pushover_user` and `set_pushover_app`.
