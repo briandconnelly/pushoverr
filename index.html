@@ -49,6 +49,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/getting_started.html">Getting Started</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="news/index.html">Changelog</a>
 </li>
@@ -77,12 +89,7 @@
 <a href="#pushoverr" class="anchor"></a>pushoverr</h1></div>
 <!-- badges: start -->
 
-<p>pushoverr allows you to send push notifications from R to mobile devices or the desktop using <a href="https://pushover.net/">Pushover</a>. These notifications can display job status, results, scraped web data, or any other text or numeric data. Got some R code that takes a while to complete? Enough time to take a little walk or go get a coffee, but maybe not long enough to go home for the day? Now you’ll be able to easily let yourself or your group know when it’s done.</p>
-<div id="prerequisites" class="section level2">
-<h2 class="hasAnchor">
-<a href="#prerequisites" class="anchor"></a>Prerequisites</h2>
-<p>You’ll need an account with <a href="https://pushover.net/">Pushover</a>. Once you have that, log in and <a href="https://pushover.net/apps/build">register an application</a>. You should now have two codes—a <strong>user key</strong> and an <strong>API token/key</strong>. These are what identify you and your app(s) to Pushover. You’ll pass these along to pushoverr whenever you send a message. You’ll also need the Pushover app for <a href="https://pushover.net/clients/ios">iOS</a>, <a href="https://pushover.net/clients/android">Android</a>, or your <a href="https://pushover.net/clients/desktop">desktop</a>.</p>
-</div>
+<p>pushoverr allows you to send push notifications from R to mobile devices, web browsers, or even your watch using <a href="https://pushover.net/">Pushover</a>. These notifications can display job status, results, scraped web data, or any other text or numeric data. Got some R code that takes a while to complete? Enough time to take a little walk or go get a coffee, but maybe not long enough to go home for the day? Now you’ll be able to easily let yourself or your group know when it’s done.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -93,80 +100,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"briandconnelly/pushoverr"</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="using-pushoverr" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-pushoverr" class="anchor"></a>Using pushoverr</h2>
-<p>Now that pushoverr’s been installed, you’re ready to start pushing some notifications. To begin using pushoverr, you’ll need to first load the library. To do this, run:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://briandconnelly.github.io/pushoverr/">pushoverr</a></span><span class="op">)</span></code></pre></div>
-<div id="example-1-send-yourself-a-message" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-1-send-yourself-a-message" class="anchor"></a>Example 1: Send Yourself A Message</h3>
-<p>In order to send a message, you’ll need to have your user key and an app token. Then:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">pushover</span>(</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="dt">message =</span> <span class="st">"Mr. Watson--come here--I want to see you."</span>,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="dt">user =</span> <span class="op">&lt;</span>YOUR USER KEY<span class="op">&gt;</span>,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="dt">app =</span> <span class="op">&lt;</span>YOUR APP TOKEN<span class="op">&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>)</span></code></pre></div>
-<p>Within just a few seconds, your phone/tablet/watch/whatever should be abuzz with this historic message.</p>
-<p><img src="README-images/example_message1.png" alt="Our first notification message"></p>
-<p>Using other arguments to <code>pushover</code>, you can configure other aspects of your message, including sounds, links, and message priorities.</p>
-<p>The <code>message</code> and <code>title</code> arguments are evaluated with <a href="https://glue.tidyverse.org/reference/glue.html"><code>glue()</code></a>, so you can add more context:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/pushover.html">pushover</a></span><span class="op">(</span>message <span class="op">=</span> <span class="st">"Don't forget... {praise::praise()}"</span><span class="op">)</span></code></pre></div>
-<p><img src="README-images/example_message3.png" alt="Glue-ified message"></p>
-</div>
-<div id="saving-your-credentials" class="section level3">
-<h3 class="hasAnchor">
-<a href="#saving-your-credentials" class="anchor"></a>Saving your Credentials</h3>
-<p>By default, pushoverr will prompt you for your key and app token when needed and save them for all subsequent commands. You can directly tell pushoverr your key and token using <code>set_pushover_user</code> and <code>set_pushover_app</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/set_pushover_user.html">set_pushover_user</a></span><span class="op">(</span>user <span class="op">=</span> <span class="st">"uQiRzpo4DXghDmr9QzzfQu27cmVRsG"</span><span class="op">)</span>
-<span class="fu"><a href="reference/set_pushover_app.html">set_pushover_app</a></span><span class="op">(</span>token <span class="op">=</span> <span class="st">"azGDORePK8gMaC0QOYAMyEEuzJnyUi"</span><span class="op">)</span></code></pre></div>
-<p>pushoverr will forget these as soon as you end your session, so you’ll have to re-run these commands each time you restart R.</p>
-<p>Alternatively, you can store your keys in your <code>.Renviron</code>. If you have <a href="https://usethis.r-lib.org/">usethis</a>, run <code>usethis::edit_r_environ()</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">PUSHOVER_USER</span> <span class="op">=</span> <span class="st">"uQiRzpo4DXghDmr9QzzfQu27cmVRsG"</span>
-<span class="va">PUSHOVER_APP</span><span class="op">=</span> <span class="st">"azGDORePK8gMaC0QOYAMyEEuzJnyUi"</span></code></pre></div>
-<p>With this approach, your keys will be set whenever you use R. pushoverr will use these keys by default, but they can easily be overridden by supplying different values as arguments.</p>
-</div>
-<div id="example-2-send-yourself-an-important-message" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-2-send-yourself-an-important-message" class="anchor"></a>Example 2: Send Yourself an Important Message</h3>
-<p>Pushoverr provides message different message priorities. Quiet messages arrive without playing a sound, high priority messages arrive with a reddish background, and emergency messages arrive and repeat until they’ve been acknowledged. <code>pushoverr</code> provides easy methods for sending these:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/pushover.html">pushover_quiet</a></span><span class="op">(</span>message <span class="op">=</span> <span class="st">"The kittens are sleeping"</span><span class="op">)</span></code></pre></div>
-<p>Or more urgently:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pushover.html">pushover_emergency</a></span><span class="op">(</span>message <span class="op">=</span> <span class="st">"The kittens are awake, and they are ANGRY!"</span><span class="op">)</span></code></pre></div>
-<p><img src="README-images/example_message2.png" alt="An emergency notification message"></p>
-<p>Emergency messages return a receipt token that can be checked with <code><a href="reference/check_receipt.html">is.acknowledged()</a></code> to see whether or not it has been seen.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/check_receipt.html">is.acknowledged</a></span><span class="op">(</span>receipt <span class="op">=</span> <span class="va">msg</span><span class="op">$</span><span class="va">receipt</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="example-3-sending-an-image" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-3-sending-an-image" class="anchor"></a>Example 3: Sending an Image</h3>
-<p>Images such as plots can also be sent as attachments.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/pushover.html">pushover</a></span><span class="op">(</span>
-  message <span class="op">=</span> <span class="st">"Look at those gentoos!"</span>,
-  attachment <span class="op">=</span> <span class="st">"penguins.png"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="README-images/example_message_plot.png" alt="Message with plot"></p>
-<p>The full-size image can be seen in the app.</p>
-<p><img src="README-images/messages.png" alt="Messages"></p>
-</div>
-<div id="example-4-results-on-your-wrist" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-4-results-on-your-wrist" class="anchor"></a>Example 4: Results on your Wrist</h3>
-<p>Pushover can now show data on constantly-updated screens like your smartwatch or lock screen (where supported). Using <code>update_glance</code>, you can push short text messages, numbers, and percentages to your watch right from within R.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/update_glance.html">update_glance</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fl">88</span><span class="op">)</span></code></pre></div>
-<p><img src="README-images/watch1.png" alt="Showing a count notification on an Apple Watch"></p>
-<p>Note that these updates should be done infrequently—no more than once every 20 minutes or so—or watchOS will stop processing updates to promote battery life. If you encounter problems, watchOS resets this limit overnight.</p>
-</div>
+<p>Once pushoverr is installed, you’re ready to start sending messages! See the Getting Started vignette for more information.</p>
 </div>
 <div id="features-not-supported" class="section level2">
 <h2 class="hasAnchor">
