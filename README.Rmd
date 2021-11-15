@@ -177,7 +177,7 @@ update_glance(
 )
 ```
 
-![Showing more complex info on an Apple Watch](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/watch2.png)
+![Showing more complex info on an Apple Watch](README-images/watch2.png)
 
 Note that these updates should be done infrequently---no more than once every 20 minutes or so---or WatchOS will stop processing updates to promote battery life.
 If you encounter problems, WatchOS resets this limit overnight.
