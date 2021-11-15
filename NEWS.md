@@ -2,7 +2,9 @@
 
 ## New Features
 
-* `pushover()`: `glue()` is now evaluated prior to character limit checks
+* `pushover()`
+  * `glue()` is now evaluated prior to character limit checks
+  * message priority can now be specified as a string (e.g., "normal") rather than integer
 * `update_glance`
   * `glue()` formatting for `title`, `text`, and `subtext` values
   * Non-integer `count` and `percent` values are now coerced to integer rather than aborting

@@ -12,7 +12,7 @@
 pushover(
   message,
   title = NULL,
-  priority = 0,
+  priority = "normal",
   attachment = NULL,
   user = get_pushover_user(),
   app = get_pushover_app(),
@@ -44,8 +44,8 @@ pushover_emergency(message, ...)
 \item{title}{(optional) The message's title. Titles use \code{\link[glue:glue]{glue::glue()}} for
 formatting and interpolation.}
 
-\item{priority}{Message priority (\code{-2}: silent, \code{-1}: quiet, \code{0}: normal
-(default), \code{1}: high, \code{2}: emergency)}
+\item{priority}{Message priority. One of "silent", "quiet", "normal"
+(default), "high", "emergency").}
 
 \item{attachment}{Path of file attachment to include. File must be image
 format (bmp, jpg, png, tif) and no larger than 2.6 MB.}
