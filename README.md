@@ -37,8 +37,9 @@ Alternately, you can install the development version of pushoverr from
 devtools::install_github("briandconnelly/pushoverr")
 ```
 
-Once pushoverr is installed, you’re ready to start sending messages! See
-the Getting Started vignette for more information.
+That’s it! See the [Getting
+Started](https://briandconnelly.github.io/pushoverr/articles/getting_started.html)
+vignette to start sending messages.
 
 ## Features Not Supported
 
