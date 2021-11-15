@@ -23,11 +23,14 @@ Imports:
     httr,
     rlang
 Suggests: 
+    knitr,
     covr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    rmarkdown
 ByteCompile: no
 Config/testthat/edition: 3
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+VignetteBuilder: knitr

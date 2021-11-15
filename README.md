@@ -12,13 +12,14 @@ coverage](https://codecov.io/gh/briandconnelly/pushoverr/branch/master/graph/bad
 status](https://www.r-pkg.org/badges/version/pushoverr)](https://CRAN.R-project.org/package=pushoverr)
 <!-- badges: end -->
 
-pushoverr allows you to send push notifications from R to mobile devices
-or the desktop using [Pushover](https://pushover.net/). These
-notifications can display job status, results, scraped web data, or any
-other text or numeric data. Got some R code that takes a while to
-complete? Enough time to take a little walk or go get a coffee, but
-maybe not long enough to go home for the day? Now you’ll be able to
-easily let yourself or your group know when it’s done.
+pushoverr allows you to send push notifications from R to mobile
+devices, web browsers, or even your watch using
+[Pushover](https://pushover.net/). These notifications can display job
+status, results, scraped web data, or any other text or numeric data.
+Got some R code that takes a while to complete? Enough time to take a
+little walk or go get a coffee, but maybe not long enough to go home for
+the day? Now you’ll be able to easily let yourself or your group know
+when it’s done.
 
 ## Prerequisites
 
@@ -47,137 +48,6 @@ Alternately, you can install the development version of pushoverr from
 # install.packages("devtools")
 devtools::install_github("briandconnelly/pushoverr")
 ```
-
-## Using pushoverr
-
-Now that pushoverr’s been installed, you’re ready to start pushing some
-notifications. To begin using pushoverr, you’ll need to first load the
-library. To do this, run:
-
-``` r
-library(pushoverr)
-```
-
-### Example 1: Send Yourself A Message
-
-In order to send a message, you’ll need to have your user key and an app
-token. Then:
-
-``` r
-pushover(
-  message = "Mr. Watson--come here--I want to see you.",
-  user = <YOUR USER KEY>,
-  app = <YOUR APP TOKEN>
-)
-```
-
-Within just a few seconds, your phone/tablet/watch/whatever should be
-abuzz with this historic message.
-
-![Our first notification message](README-images/example_message1.png)
-
-Using other arguments to `pushover`, you can configure other aspects of
-your message, including sounds, links, and message priorities.
-
-The `message` and `title` arguments are evaluated with
-[`glue()`](https://glue.tidyverse.org/reference/glue.html), so you can
-add more context:
-
-``` r
-pushover(message = "Don't forget... {praise::praise()}")
-```
-
-![Glue-ified message](README-images/example_message3.png)
-
-### Saving your Credentials
-
-By default, pushoverr will prompt you for your key and app token when
-needed and save them for all subsequent commands. You can directly tell
-pushoverr your key and token using `set_pushover_user` and
-`set_pushover_app`:
-
-``` r
-set_pushover_user(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
-set_pushover_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
-```
-
-pushoverr will forget these as soon as you end your session, so you’ll
-have to re-run these commands each time you restart R.
-
-Alternatively, you can store your keys in your `.Renviron`. If you have
-[usethis](https://usethis.r-lib.org/), run `usethis::edit_r_environ()`.
-
-``` r
-PUSHOVER_USER = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG"
-PUSHOVER_APP= "azGDORePK8gMaC0QOYAMyEEuzJnyUi"
-```
-
-With this approach, your keys will be set whenever you use R. pushoverr
-will use these keys by default, but they can easily be overridden by
-supplying different values as arguments.
-
-### Example 2: Send Yourself an Important Message
-
-Pushoverr provides message different message priorities. Quiet messages
-arrive without playing a sound, high priority messages arrive with a
-reddish background, and emergency messages arrive and repeat until
-they’ve been acknowledged. `pushoverr` provides easy methods for sending
-these:
-
-``` r
-pushover_quiet(message = "The kittens are sleeping")
-```
-
-Or more urgently:
-
-``` r
-msg <- pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
-```
-
-![An emergency notification message](README-images/example_message2.png)
-
-Emergency messages return a receipt token that can be checked with
-`is.acknowledged()` to see whether or not it has been seen.
-
-``` r
-is.acknowledged(receipt = msg$receipt)
-```
-
-### Example 3: Sending an Image
-
-Images such as plots can also be sent as attachments.
-
-``` r
-pushover(
-  message = "Look at those gentoos!",
-  attachment = "penguins.png"
-)
-```
-
-![Message with plot](README-images/example_message_plot.png)
-
-The full-size image can be seen in the app.
-
-![Messages](README-images/messages.png)
-
-### Example 4: Results on your Wrist
-
-Pushover can now show data on constantly-updated screens like your
-smartwatch or lock screen (where supported). Using `update_glance`, you
-can push short text messages, numbers, and percentages to your watch
-right from within R.
-
-``` r
-update_glance(count = 88)
-```
-
-![Showing a count notification on an Apple
-Watch](README-images/watch1.png)
-
-Note that these updates should be done infrequently—no more than once
-every 20 minutes or so—or watchOS will stop processing updates to
-promote battery life. If you encounter problems, watchOS resets this
-limit overnight.
 
 ## Features Not Supported
 

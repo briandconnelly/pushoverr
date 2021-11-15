@@ -13,3 +13,4 @@
 ^\.github$
 ^cran-comments\.md$
 ^revdep$
+^CRAN-RELEASE$
