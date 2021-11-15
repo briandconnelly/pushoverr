@@ -1,3 +1,11 @@
+# pushover 1.1.0.9000 (development version)
+
+## New Features
+
+* `update_glance` now uses `glue()` for `title`, `text`, and `subtext` values
+* `upadte_glance` coerces non-integer `count` and `percent` values to integer rather than aborting
+
+
 # pushoverr 1.1.0 (2021-11-13)
 
 ## New Features

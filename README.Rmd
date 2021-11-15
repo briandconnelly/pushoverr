@@ -191,6 +191,7 @@ If you'd like to see these features supported, please submit an [issue](https://
 
 
 ## Related Links
+
 * [Pushover](https://pushover.net)
     * [FAQ](https://pushover.net/faq)
     * [API](https://pushover.net/api)
