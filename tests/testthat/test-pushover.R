@@ -52,6 +52,7 @@ test_that("input validation works", {
   expect_error(valid_call(title = random_string(251)))
 
   # priority should be an integer in [-2,2]
+  # or in ("silent", "quiet", "normal", "high", "emergency")
   expect_error(valid_call(priority = NULL))
   expect_error(valid_call(priority = NA))
   expect_error(valid_call(priority = "0"))
@@ -59,6 +60,7 @@ test_that("input validation works", {
   expect_error(valid_call(priority = -3))
   expect_error(valid_call(priority = 0.1))
   expect_error(valid_call(priority = 3))
+  expect_error(valid_call(priority = "danger"))
 
   # attachment must be a file
   expect_error(valid_call(attachment = NA_character_))

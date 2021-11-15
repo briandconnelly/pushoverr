@@ -7,10 +7,12 @@
 #'
 #' @note Glances are currently in beta, and features may change.
 #' @param title (optional) a description of the data being shown, such as
-#' "Widgets Sold" (max. 100 characters)
+#' "Widgets Sold" (max. 100 characters). Title values use [glue::glue()] for
+#' formatting and interpolation.
 #' @param text (optional) the main line of data, used on most screens (max. 100
-#' characters)
-#' @param subtext (optional) a second line of data (max. 100 characters)
+#' characters). Text values use [glue::glue()] for formatting and interpolation.
+#' @param subtext (optional) a second line of data (max. 100 characters).
+#' Subtext values use [glue::glue()] for formatting and interpolation.
 #' @param count (optional) integer value shown on smaller screens; useful for
 #' simple counts
 #' @param percent (optional) integer percent value (0..100) shown on some
@@ -47,32 +49,36 @@ update_glance <- function(title = NULL, text = NULL, subtext = NULL,
   params <- list("token" = app, "user" = user)
 
   if (!is.null(title)) {
-    checkmate::assert_string(title)
-    checkmate::assert_true(nchar(title) <= 100)
-    params$title <- title
+    params$title <- glue(checkmate::assert_string(title))
+    checkmate::assert_true(nchar(params$title) <= 100)
   }
 
   if (!is.null(text)) {
-    checkmate::assert_string(text)
-    checkmate::assert_true(nchar(text) <= 100)
-    params$text <- text
+    params$text <- glue(checkmate::assert_string(text))
+    checkmate::assert_true(nchar(params$text) <= 100)
   }
 
   if (!is.null(subtext)) {
-    checkmate::assert_string(subtext)
-    checkmate::assert_true(nchar(subtext) <= 100)
-    params$subtext <- subtext
+    params$subtext <- glue(checkmate::assert_string(subtext))
+    checkmate::assert_true(nchar(params$subtext) <= 100)
   }
 
   if (!is.null(count)) {
-    checkmate::check_integerish(count)
+    checkmate::check_number(count)
     params$count <- as.integer(count)
+
+    if (!is_integerish(count)) {
+      cli::cli_alert_warning("Coercing non-integer {.arg count} value {count} to {params$count}")
+    }
   }
 
   if (!is.null(percent)) {
     checkmate::check_number(percent, lower = 0, upper = 100)
-    checkmate::check_integerish(percent)
     params$percent <- as.integer(percent)
+
+    if (!is_integerish(percent)) {
+      cli::cli_alert_warning("Coercing non-integer {.arg percent} value {percent} to {params$percent}")
+    }
   }
 
   if (!is.null(device)) {

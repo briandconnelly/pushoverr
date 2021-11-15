@@ -10,8 +10,8 @@
 #' [glue::glue()] for formatting and interpolation.
 #' @param title (optional) The message's title. Titles use [glue::glue()] for
 #' formatting and interpolation.
-#' @param priority Message priority (`-2`: silent, `-1`: quiet, `0`: normal
-#' (default), `1`: high, `2`: emergency)
+#' @param priority Message priority. One of "silent", "quiet", "normal"
+#' (default), "high", "emergency").
 #' @param attachment Path of file attachment to include. File must be image
 #' format (bmp, jpg, png, tif) and no larger than 2.6 MB.
 #' @param user user/group key (see [`set_pushover_user()`])
@@ -51,7 +51,7 @@
 #' }
 pushover <- function(message,
                      title = NULL,
-                     priority = 0,
+                     priority = "normal",
                      attachment = NULL,
                      user = get_pushover_user(),
                      app = get_pushover_app(),
@@ -64,7 +64,7 @@ pushover <- function(message,
                      expire = 3600,
                      callback = NULL,
                      timestamp = NULL) {
-  checkmate::assert_string(message, min.chars = 1)
+  message <- glue(checkmate::assert_string(message, min.chars = 1))
   checkmate::assert_true(nchar(message) <= 1024)
   format <- arg_match(format)
   checkmate::assert(retry <= expire)
@@ -72,8 +72,8 @@ pushover <- function(message,
   params <- list(
     "token" = assert_valid_app(app),
     "user" = assert_valid_user(user),
-    "message" = glue(message),
-    "priority" = checkmate::assert_choice(priority, -2:2),
+    "message" = message,
+    "priority" = checkmate::assert_choice(priority_number(priority), -2:2),
     "retry" = checkmate::assert_integerish(
       retry,
       lower = 30,
@@ -110,9 +110,9 @@ pushover <- function(message,
   }
 
   if (!is.null(title)) {
-    checkmate::assert_string(title, min.chars = 1)
+    title <- glue(checkmate::assert_string(title, min.chars = 1))
     checkmate::assert_true(nchar(title) <= 250)
-    params$title <- glue(title)
+    params$title <- title
   }
 
   if (!is.null(url)) {
@@ -155,33 +155,51 @@ pushover <- function(message,
 #' @param ... Additional arguments to pass to `pushover()`
 #' @export
 pushover_silent <- function(message, ...) {
-  pushover(message = message, priority = -2, ...)
+  pushover(message = message, priority = "silent", ...)
 }
 
 
 #' @rdname pushover
 #' @export
 pushover_quiet <- function(message, ...) {
-  pushover(message = message, priority = -1, ...)
+  pushover(message = message, priority = "quiet", ...)
 }
 
 
 #' @rdname pushover
 #' @export
 pushover_normal <- function(message, ...) {
-  pushover(message = message, priority = 0, ...)
+  pushover(message = message, priority = "normal", ...)
 }
 
 
 #' @rdname pushover
 #' @export
 pushover_high <- function(message, ...) {
-  pushover(message = message, priority = 1, ...)
+  pushover(message = message, priority = "high", ...)
 }
 
 
 #' @rdname pushover
 #' @export
 pushover_emergency <- function(message, ...) {
-  pushover(message = message, priority = 2, ...)
+  pushover(message = message, priority = "emergency", ...)
+}
+
+# Convert priority string into numeric value
+priority_number <- function(x) {
+  # If already numeric, pass through
+  if (is.numeric(x)) {
+    x
+  } else {
+    priorities <- list(
+      silent = -2,
+      quiet = -1,
+      normal = 0,
+      high = 1,
+      emergency = 2
+    )
+    x <- rlang::arg_match(x, values = names(priorities))
+    priorities[[x]]
+  }
 }

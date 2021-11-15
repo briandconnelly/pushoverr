@@ -17,12 +17,14 @@ update_glance(
 }
 \arguments{
 \item{title}{(optional) a description of the data being shown, such as
-"Widgets Sold" (max. 100 characters)}
+"Widgets Sold" (max. 100 characters). Title values use \code{\link[glue:glue]{glue::glue()}} for
+formatting and interpolation.}
 
 \item{text}{(optional) the main line of data, used on most screens (max. 100
-characters)}
+characters). Text values use \code{\link[glue:glue]{glue::glue()}} for formatting and interpolation.}
 
-\item{subtext}{(optional) a second line of data (max. 100 characters)}
+\item{subtext}{(optional) a second line of data (max. 100 characters).
+Subtext values use \code{\link[glue:glue]{glue::glue()}} for formatting and interpolation.}
 
 \item{count}{(optional) integer value shown on smaller screens; useful for
 simple counts}

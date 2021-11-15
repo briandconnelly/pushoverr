@@ -27,8 +27,9 @@ have that, log in and [register an
 application](https://pushover.net/apps/build). You should now have two
 codes—a **user key** and an **API token/key**. These are what identify
 you and your app(s) to Pushover. You’ll pass these along to pushoverr
-whenever you send a message. You’ll also need the Pushover app for
-[iOS](https://pushover.net/clients/ios),
+whenever you send a message (see [Saving Your
+Credentials](#saving-your-credentials)). You’ll also need the Pushover
+app for [iOS](https://pushover.net/clients/ios),
 [Android](https://pushover.net/clients/android), or your
 [desktop](https://pushover.net/clients/desktop).
 
@@ -60,25 +61,21 @@ library(pushoverr)
 
 ### Example 1: Send Yourself A Message
 
-In order to send a message, you’ll need to have your user key and an app
-token. Then:
+pushoverr’s primary function is `pushover()`, which allows you to send
+messages along with other optional things like sounds, links, and
+images.
 
 ``` r
-pushover(
-  message = "Mr. Watson--come here--I want to see you.",
-  user = <YOUR USER KEY>,
-  app = <YOUR APP TOKEN>
-)
+pushover(message = "Mr. Watson--come here--I want to see you.")
 ```
 
-Within just a few seconds, your phone/tablet/watch/whatever should be
-abuzz with this historic message.
+You’ll be prompted for your user key and app token until you [set them
+up](#saving-your-credentials).
 
-![Our first notification
-message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message1.png)
+Within just a few seconds, your phone/tablet/whatever should be abuzz
+with this historic message.
 
-Using other arguments to `pushover`, you can configure other aspects of
-your message, including sounds, links, and message priorities.
+![Our first notification message](README-images/example_message1.png)
 
 The `message` and `title` arguments are evaluated with
 [`glue()`](https://glue.tidyverse.org/reference/glue.html), so you can
@@ -88,15 +85,14 @@ add more context:
 pushover(message = "Don't forget... {praise::praise()}")
 ```
 
-![Glue-ified
-message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message3.png)
+![Glue-ified message](README-images/example_message3.png)
 
 ### Saving your Credentials
 
 By default, pushoverr will prompt you for your key and app token when
-needed and save them for all subsequent commands. You can directly tell
-pushoverr your key and token using `set_pushover_user` and
-`set_pushover_app`:
+needed and save them for all subsequent commands. You can specify a key
+and token to use for the rest of your session using `set_pushover_user`
+and `set_pushover_app`:
 
 ``` r
 set_pushover_user(user = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG")
@@ -106,25 +102,43 @@ set_pushover_app(token = "azGDORePK8gMaC0QOYAMyEEuzJnyUi")
 pushoverr will forget these as soon as you end your session, so you’ll
 have to re-run these commands each time you restart R.
 
-Alternatively, you can store your keys in your `.Renviron`. If you have
-[usethis](https://usethis.r-lib.org/), run `usethis::edit_r_environ()`.
+Alternatively, you can store your keys in your `.Renviron` file. If you
+have [usethis](https://usethis.r-lib.org/), run
+`usethis::edit_r_environ()` to open it for editing.
 
 ``` r
 PUSHOVER_USER = "uQiRzpo4DXghDmr9QzzfQu27cmVRsG"
 PUSHOVER_APP= "azGDORePK8gMaC0QOYAMyEEuzJnyUi"
 ```
 
-With this approach, your keys will be set whenever you use R. pushoverr
-will use these keys by default, but they can easily be overridden by
-supplying different values as arguments.
+With this approach, these keys will be used any time you use pushoverr.
+Although these values will be used by default, they can easily be
+overridden by supplying different values as arguments.
 
-### Example 2: Send Yourself an Important Message
+### Example 2: Sending an Image
 
-Pushoverr provides message different message priorities. Quiet messages
-arrive without playing a sound, high priority messages arrive with a
-reddish background, and emergency messages arrive and repeat until
-they’ve been acknowledged. `pushoverr` provides easy methods for sending
-these:
+Images such as plots can also be sent as attachments.
+
+``` r
+pushover(
+  message = "Look at those gentoos!",
+  attachment = "penguins.png"
+)
+```
+
+![Message with plot](README-images/example_message_plot.png)
+
+The full-size image can be seen in the app.
+
+![Messages](README-images/messages.png)
+
+### Example 3: Send Yourself an Important Message
+
+Messages can be given different priorities ranging from silent to
+emergency. Quiet messages arrive without playing a sound, high priority
+messages arrive with a reddish background, and emergency messages arrive
+and repeat until they’ve been acknowledged. `pushoverr` provides easy
+methods for sending these:
 
 ``` r
 pushover_quiet(message = "The kittens are sleeping")
@@ -136,8 +150,7 @@ Or more urgently:
 msg <- pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
 ```
 
-![An emergency notification
-message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message2.png)
+![An emergency notification message](README-images/example_message2.png)
 
 Emergency messages return a receipt token that can be checked with
 `is.acknowledged()` to see whether or not it has been seen.
@@ -145,24 +158,6 @@ Emergency messages return a receipt token that can be checked with
 ``` r
 is.acknowledged(receipt = msg$receipt)
 ```
-
-### Example 3: Sending an Image
-
-Images such as plots can also be sent as attachments.
-
-``` r
-pushover(
-  message = "Look at those gentoos!",
-  attachment = "penguins.png"
-)
-```
-
-![Message with
-plot](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message_plot.png)
-
-The full-size image can be seen in the app.
-
-![Messages](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/messages.png)
 
 ### Example 4: Results on your Wrist
 
@@ -176,7 +171,26 @@ update_glance(count = 88)
 ```
 
 ![Showing a count notification on an Apple
-Watch](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/watch1.png)
+Watch](README-images/watch1.png)
+
+Additional pieces of information can be shown depending on your chosen
+watch face and complications.
+
+``` r
+speed <- 74.0
+current_power_gw <- 1.21
+
+update_glance(
+  count = speed,
+  percent = speed / 88.0,
+  text = "Great Scott!",
+  title = "{current_power_gw} Gigawatts",
+  subtext = "gonna see some serious sh*t"
+)
+```
+
+![Showing more complex info on an Apple Watch](README-images/watch2.png)
+![Showing more complex info on an Apple Watch](README-images/watch3.png)
 
 Note that these updates should be done infrequently—no more than once
 every 20 minutes or so—or WatchOS will stop processing updates to
@@ -185,7 +199,7 @@ limit overnight.
 
 ## Features Not Supported
 
-pushoverr currently does not support
+pushoverr does not currently support
 [subscriptions](https://pushover.net/api/subscriptions),
 [licensing](https://pushover.net/api/licensing) (I don’t use Pushover in
 this context, so I can’t test these features), or the [open client
