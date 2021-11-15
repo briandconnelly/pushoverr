@@ -187,6 +187,7 @@ update_glance(
 ```
 
 ![Showing more complex info on an Apple Watch](README-images/watch2.png)
+![Showing more complex info on an Apple Watch](README-images/watch3.png)
 
 Note that these updates should be done infrequently—no more than once
 every 20 minutes or so—or WatchOS will stop processing updates to
