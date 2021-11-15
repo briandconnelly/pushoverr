@@ -177,11 +177,14 @@ Additional pieces of information can be shown depending on your chosen
 watch face and complications.
 
 ``` r
+speed <- 74.0
+current_power_gw <- 1.21
+
 update_glance(
-  count = 74,
-  percent = 84,
+  count = speed,
+  percent = speed / 88.0,
   text = "Great Scott!",
-  title = "1.21 Gigawatts",
+  title = "{current_power_gw} Gigawatts",
   subtext = "gonna see some serious sh*t"
 )
 ```
