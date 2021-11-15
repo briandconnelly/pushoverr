@@ -75,8 +75,7 @@ up](#saving-your-credentials).
 Within just a few seconds, your phone/tablet/whatever should be abuzz
 with this historic message.
 
-![Our first notification
-message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message1.png)
+![Our first notification message](README-images/example_message1.png)
 
 The `message` and `title` arguments are evaluated with
 [`glue()`](https://glue.tidyverse.org/reference/glue.html), so you can
@@ -86,8 +85,7 @@ add more context:
 pushover(message = "Don't forget... {praise::praise()}")
 ```
 
-![Glue-ified
-message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message3.png)
+![Glue-ified message](README-images/example_message3.png)
 
 ### Saving your Credentials
 
@@ -128,12 +126,11 @@ pushover(
 )
 ```
 
-![Message with
-plot](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message_plot.png)
+![Message with plot](README-images/example_message_plot.png)
 
 The full-size image can be seen in the app.
 
-![Messages](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/messages.png)
+![Messages](README-images/messages.png)
 
 ### Example 3: Send Yourself an Important Message
 
@@ -153,8 +150,7 @@ Or more urgently:
 msg <- pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
 ```
 
-![An emergency notification
-message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message2.png)
+![An emergency notification message](README-images/example_message2.png)
 
 Emergency messages return a receipt token that can be checked with
 `is.acknowledged()` to see whether or not it has been seen.
@@ -175,7 +171,7 @@ update_glance(count = 88)
 ```
 
 ![Showing a count notification on an Apple
-Watch](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/watch1.png)
+Watch](README-images/watch1.png)
 
 Additional pieces of information can be shown depending on your chosen
 watch face and complications.
