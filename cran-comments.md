@@ -3,6 +3,7 @@
 * New release adding attachments and formatting options to messages
 * No breaking API changes, so any dependencies should be unaffected
 * Added proper quoting and URL syntax to Description
+* Corrected re-directed URL and added trailing slashes as per feedback on previous submission
 
 ## Test Environments
 

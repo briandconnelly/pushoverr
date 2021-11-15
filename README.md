@@ -74,8 +74,7 @@ pushover(
 Within just a few seconds, your phone/tablet/watch/whatever should be
 abuzz with this historic message.
 
-![Our first notification
-message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message1.png)
+![Our first notification message](README-images/example_message1.png)
 
 Using other arguments to `pushover`, you can configure other aspects of
 your message, including sounds, links, and message priorities.
@@ -88,8 +87,7 @@ add more context:
 pushover(message = "Don't forget... {praise::praise()}")
 ```
 
-![Glue-ified
-message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message3.png)
+![Glue-ified message](README-images/example_message3.png)
 
 ### Saving your Credentials
 
@@ -136,8 +134,7 @@ Or more urgently:
 msg <- pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
 ```
 
-![An emergency notification
-message](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message2.png)
+![An emergency notification message](README-images/example_message2.png)
 
 Emergency messages return a receipt token that can be checked with
 `is.acknowledged()` to see whether or not it has been seen.
@@ -157,12 +154,11 @@ pushover(
 )
 ```
 
-![Message with
-plot](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message_plot.png)
+![Message with plot](README-images/example_message_plot.png)
 
 The full-size image can be seen in the app.
 
-![Messages](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/messages.png)
+![Messages](README-images/messages.png)
 
 ### Example 4: Results on your Wrist
 
@@ -176,37 +172,37 @@ update_glance(count = 88)
 ```
 
 ![Showing a count notification on an Apple
-Watch](https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/watch1.png)
+Watch](README-images/watch1.png)
 
 Note that these updates should be done infrequently—no more than once
-every 20 minutes or so—or WatchOS will stop processing updates to
-promote battery life. If you encounter problems, WatchOS resets this
+every 20 minutes or so—or watchOS will stop processing updates to
+promote battery life. If you encounter problems, watchOS resets this
 limit overnight.
 
 ## Features Not Supported
 
 pushoverr currently does not support
-[subscriptions](https://pushover.net/api/subscriptions),
-[licensing](https://pushover.net/api/licensing) (I don’t use Pushover in
-this context, so I can’t test these features), or the [open client
-API](https://pushover.net/api/client). If you’d like to see these
+[subscriptions](https://pushover.net/api/subscriptions/),
+[licensing](https://pushover.net/api/licensing/) (I don’t use Pushover
+in this context, so I can’t test these features), or the [open client
+API](https://pushover.net/api/client/). If you’d like to see these
 features supported, please submit an
 [issue](https://github.com/briandconnelly/pushoverr/issues) or a pull
 request.
 
 ## Related Links
 
--   [Pushover](https://pushover.net)
-    -   [FAQ](https://pushover.net/faq)
-    -   [API](https://pushover.net/api)
-    -   [Terms of Service](https://pushover.net/terms)
+-   [Pushover](https://pushover.net/)
+    -   [Support](https://support.pushover.net/)
+    -   [API](https://pushover.net/api/)
+    -   [Terms of Service](https://pushover.net/terms/)
 -   [R Phone Home: Notifications with
     pushoverr](http://bconnelly.net/2016/11/R-phone-home/), blog post
     about using pushoverr
 -   [NotifyR](https://cran.r-project.org/package=notifyR), an alternate
     Pushover tool for R (no longer maintained?)
--   [RPushbullet](https://github.com/eddelbuettel/rpushbullet), an R
-    interface for [Pushbullet](https://www.pushbullet.com), a similar
+-   [RPushbullet](https://eddelbuettel.github.io/rpushbullet/), an R
+    interface for [Pushbullet](https://www.pushbullet.com/), a similar
     push notification service.
 
 ## Code of Conduct

@@ -2,7 +2,7 @@ Type: Package
 Package: pushoverr
 Title: Send Push Notifications using 'Pushover'
 Version: 1.1.0
-Date: 2021-11-13
+Date: 2021-11-15
 Authors@R: 
     person("Brian", "Connelly", , "bdc@bconnelly.net", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-9948-0379"))
