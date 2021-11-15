@@ -64,7 +64,7 @@ pushover <- function(message,
                      expire = 3600,
                      callback = NULL,
                      timestamp = NULL) {
-  checkmate::assert_string(message, min.chars = 1)
+  message <- glue(checkmate::assert_string(message, min.chars = 1))
   checkmate::assert_true(nchar(message) <= 1024)
   format <- arg_match(format)
   checkmate::assert(retry <= expire)
@@ -72,7 +72,7 @@ pushover <- function(message,
   params <- list(
     "token" = assert_valid_app(app),
     "user" = assert_valid_user(user),
-    "message" = glue(message),
+    "message" = message,
     "priority" = checkmate::assert_choice(priority, -2:2),
     "retry" = checkmate::assert_integerish(
       retry,
@@ -110,9 +110,9 @@ pushover <- function(message,
   }
 
   if (!is.null(title)) {
-    checkmate::assert_string(title, min.chars = 1)
+    title <- glue(checkmate::assert_string(title, min.chars = 1))
     checkmate::assert_true(nchar(title) <= 250)
-    params$title <- glue(title)
+    params$title <- title
   }
 
   if (!is.null(url)) {
