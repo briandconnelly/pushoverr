@@ -76,7 +76,7 @@ pushover(message = "Mr. Watson--come here--I want to see you.")
 
 Within just a few seconds, your phone/tablet/watch/whatever should be abuzz with this historic message.
 
-![Our first notification message](getting_started-example_message1.png)
+![Our first notification message](getting_started-message1.png)
 
 Using other arguments to `pushover`, you can configure other aspects of your message, including sounds, links, and message priorities.
 
@@ -86,7 +86,7 @@ The `message` and `title` arguments are evaluated with [`glue()`](https://glue.t
 pushover(message = "Don't forget... {praise::praise()}")
 ```
 
-![Glue-ified message](getting_started-example_message3.png)
+![Glue-ified message](getting_started-message3.png)
 
 
 ### Example 2: Sending an Image
@@ -100,7 +100,7 @@ pushover(
 )
 ```
 
-![Message with plot](getting_started-example_message_plot.png)
+![Message with plot](getting_started-message_plot.png)
 
 The full-size image can be seen in the app.
 
@@ -109,7 +109,7 @@ The full-size image can be seen in the app.
 
 ### Example 3: Send Yourself an Important Message
 
-Pushoverr provides message different message priorities.
+Messages can be given different priorities ranging from silent to emergency.
 Quiet messages arrive without playing a sound, high priority messages arrive with a reddish background, and emergency messages arrive and repeat until they've been acknowledged.
 `pushoverr` provides easy methods for sending these:
 
@@ -123,7 +123,7 @@ Or more urgently:
 msg <- pushover_emergency(message = "The kittens are awake, and they are ANGRY!")
 ```
 
-![An emergency notification message](getting_started-example_message2.png)
+![An emergency notification message](getting_started-message2.png)
 
 Emergency messages return a receipt token that can be checked with `is.acknowledged()` to see whether or not it has been seen.
 
@@ -143,5 +143,23 @@ update_glance(count = 88)
 
 ![Showing a count notification on an Apple Watch](getting_started-watch1.png)
 
-Note that these updates should be done infrequently---no more than once every 20 minutes or so---or watchOS will stop processing updates to promote battery life.
-If you encounter problems, watchOS resets this limit overnight.
+Additional pieces of information can be shown depending on your chosen watch face and complications.
+
+```{r eval=FALSE}
+speed <- 74.0
+current_power_gw <- 1.21
+
+update_glance(
+  count = speed,
+  percent = speed / 88.0,
+  text = "Great Scott!",
+  title = "{current_power_gw} Gigawatts",
+  subtext = "gonna see some serious sh*t"
+)
+```
+
+![Showing more complex info on an Apple Watch](getting_started-watch2.png)
+![Showing more complex info on an Apple Watch](getting_started-watch3.png)
+
+Note that these updates should be done infrequently---no more than once every 20 minutes or so---or WatchOS will stop processing updates to promote battery life.
+If you encounter problems, WatchOS resets this limit overnight.
