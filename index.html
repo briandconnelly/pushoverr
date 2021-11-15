@@ -110,12 +110,12 @@
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="dt">app =</span> <span class="op">&lt;</span>YOUR APP TOKEN<span class="op">&gt;</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a>)</span></code></pre></div>
 <p>Within just a few seconds, your phone/tablet/watch/whatever should be abuzz with this historic message.</p>
-<p><img src="https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message1.png" alt="Our first notification message"></p>
+<p><img src="README-images/example_message1.png" alt="Our first notification message"></p>
 <p>Using other arguments to <code>pushover</code>, you can configure other aspects of your message, including sounds, links, and message priorities.</p>
 <p>The <code>message</code> and <code>title</code> arguments are evaluated with <a href="https://glue.tidyverse.org/reference/glue.html"><code>glue()</code></a>, so you can add more context:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/pushover.html">pushover</a></span><span class="op">(</span>message <span class="op">=</span> <span class="st">"Don't forget... {praise::praise()}"</span><span class="op">)</span></code></pre></div>
-<p><img src="https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message3.png" alt="Glue-ified message"></p>
+<p><img src="README-images/example_message3.png" alt="Glue-ified message"></p>
 </div>
 <div id="saving-your-credentials" class="section level3">
 <h3 class="hasAnchor">
@@ -140,7 +140,7 @@
 <p>Or more urgently:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">msg</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pushover.html">pushover_emergency</a></span><span class="op">(</span>message <span class="op">=</span> <span class="st">"The kittens are awake, and they are ANGRY!"</span><span class="op">)</span></code></pre></div>
-<p><img src="https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message2.png" alt="An emergency notification message"></p>
+<p><img src="README-images/example_message2.png" alt="An emergency notification message"></p>
 <p>Emergency messages return a receipt token that can be checked with <code><a href="reference/check_receipt.html">is.acknowledged()</a></code> to see whether or not it has been seen.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/check_receipt.html">is.acknowledged</a></span><span class="op">(</span>receipt <span class="op">=</span> <span class="va">msg</span><span class="op">$</span><span class="va">receipt</span><span class="op">)</span></code></pre></div>
@@ -154,9 +154,9 @@
   message <span class="op">=</span> <span class="st">"Look at those gentoos!"</span>,
   attachment <span class="op">=</span> <span class="st">"penguins.png"</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/example_message_plot.png" alt="Message with plot"></p>
+<p><img src="README-images/example_message_plot.png" alt="Message with plot"></p>
 <p>The full-size image can be seen in the app.</p>
-<p><img src="https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/messages.png" alt="Messages"></p>
+<p><img src="README-images/messages.png" alt="Messages"></p>
 </div>
 <div id="example-4-results-on-your-wrist" class="section level3">
 <h3 class="hasAnchor">
@@ -164,25 +164,25 @@
 <p>Pushover can now show data on constantly-updated screens like your smartwatch or lock screen (where supported). Using <code>update_glance</code>, you can push short text messages, numbers, and percentages to your watch right from within R.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/update_glance.html">update_glance</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fl">88</span><span class="op">)</span></code></pre></div>
-<p><img src="https://raw.githubusercontent.com/briandconnelly/pushoverr/master/README-images/watch1.png" alt="Showing a count notification on an Apple Watch"></p>
-<p>Note that these updates should be done infrequently—no more than once every 20 minutes or so—or WatchOS will stop processing updates to promote battery life. If you encounter problems, WatchOS resets this limit overnight.</p>
+<p><img src="README-images/watch1.png" alt="Showing a count notification on an Apple Watch"></p>
+<p>Note that these updates should be done infrequently—no more than once every 20 minutes or so—or watchOS will stop processing updates to promote battery life. If you encounter problems, watchOS resets this limit overnight.</p>
 </div>
 </div>
 <div id="features-not-supported" class="section level2">
 <h2 class="hasAnchor">
 <a href="#features-not-supported" class="anchor"></a>Features Not Supported</h2>
-<p>pushoverr currently does not support <a href="https://pushover.net/api/subscriptions">subscriptions</a>, <a href="https://pushover.net/api/licensing">licensing</a> (I don’t use Pushover in this context, so I can’t test these features), or the <a href="https://pushover.net/api/client">open client API</a>. If you’d like to see these features supported, please submit an <a href="https://github.com/briandconnelly/pushoverr/issues">issue</a> or a pull request.</p>
+<p>pushoverr currently does not support <a href="https://pushover.net/api/subscriptions/">subscriptions</a>, <a href="https://pushover.net/api/licensing/">licensing</a> (I don’t use Pushover in this context, so I can’t test these features), or the <a href="https://pushover.net/api/client/">open client API</a>. If you’d like to see these features supported, please submit an <a href="https://github.com/briandconnelly/pushoverr/issues">issue</a> or a pull request.</p>
 </div>
 <div id="related-links" class="section level2">
 <h2 class="hasAnchor">
 <a href="#related-links" class="anchor"></a>Related Links</h2>
 <ul>
 <li>
-<a href="https://pushover.net">Pushover</a>
+<a href="https://pushover.net/">Pushover</a>
 <ul>
-<li><a href="https://pushover.net/faq">FAQ</a></li>
-<li><a href="https://pushover.net/api">API</a></li>
-<li><a href="https://pushover.net/terms">Terms of Service</a></li>
+<li><a href="https://support.pushover.net/">Support</a></li>
+<li><a href="https://pushover.net/api/">API</a></li>
+<li><a href="https://pushover.net/terms/">Terms of Service</a></li>
 </ul>
 </li>
 <li>
@@ -190,7 +190,7 @@
 <li>
 <a href="https://cran.r-project.org/package=notifyR">NotifyR</a>, an alternate Pushover tool for R (no longer maintained?)</li>
 <li>
-<a href="https://github.com/eddelbuettel/rpushbullet">RPushbullet</a>, an R interface for <a href="https://www.pushbullet.com">Pushbullet</a>, a similar push notification service.</li>
+<a href="https://eddelbuettel.github.io/rpushbullet/">RPushbullet</a>, an R interface for <a href="https://www.pushbullet.com/">Pushbullet</a>, a similar push notification service.</li>
 </ul>
 </div>
 <div id="code-of-conduct" class="section level2">
